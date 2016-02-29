@@ -6,6 +6,7 @@ public class Pizza {
 	
 	private int id;
 	private String nimi, koko;
+	private double hinta;
 	private ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
 	
 	public Pizza() {
@@ -56,7 +57,15 @@ public class Pizza {
 	@Override
 	public String toString() {
 		return "Pizza [id=" + id + ", nimi=" + nimi + ", koko=" + koko
-				+ ", taytteet=" + taytteet + "]";
+				+ ", hinta=" + hinta + ", taytteet=" + taytteet + "]";
+	}
+
+	public double getHinta() {
+		return hinta;
+	}
+
+	public void setHinta(double hinta) {
+		this.hinta = hinta;
 	}
 	
 	
