@@ -5,21 +5,20 @@ import java.util.ArrayList;
 public class Pizza {
 	
 	private int id;
-	private String nimi, koko;
+	private String nimi;
 	private double hinta;
-	private ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
+	
 	
 	public Pizza() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pizza(int id, String nimi, String koko, ArrayList<Tayte> taytteet) {
+	public Pizza(int id, String nimi, double hinta) {
 		super();
 		this.id = id;
 		this.nimi = nimi;
-		this.koko = koko;
-		this.taytteet = taytteet;
+		
 	}
 
 	public int getId() {
@@ -38,26 +37,10 @@ public class Pizza {
 		this.nimi = nimi;
 	}
 
-	public String getKoko() {
-		return koko;
-	}
-
-	public void setKoko(String koko) {
-		this.koko = koko;
-	}
-
-	public ArrayList<Tayte> getTaytteet() {
-		return taytteet;
-	}
-
-	public void setTaytteet(ArrayList<Tayte> taytteet) {
-		this.taytteet = taytteet;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "Pizza [id=" + id + ", nimi=" + nimi + ", koko=" + koko
-				+ ", hinta=" + hinta + ", taytteet=" + taytteet + "]";
+		return "Pizza [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta + "]";
 	}
 
 	public double getHinta() {
