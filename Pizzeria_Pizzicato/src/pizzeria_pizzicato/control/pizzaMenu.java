@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.PizzaTayte;
-import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
