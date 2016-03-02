@@ -32,10 +32,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				String sqlDelete = "DELETE FROM Tayte WHERE Tayte_id =?";
 				stmtDelete = connection.prepareStatement(sqlDelete);
 				stmtDelete.setInt(1, tayte.getId());
-				stmtDelete.executeUpdate();
-				
-				
-					
+				stmtDelete.executeUpdate();		
 				
 				
 			} catch (SQLException e) {
