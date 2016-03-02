@@ -34,16 +34,16 @@ scope="request" />
 				Näytä vastaukset
 				</a>			
 				<a href="muokkaa-kysymys?id1=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
-				Muokkaa kysymystä
+				Muokkaa pizzaa
 				</a>		
 				<a href="poista-kysymys?id1=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
-				Poista kysymys
+				Poista pizza
 				</a></div>
 				</td>								
 			</tr>
 			<% } %>
 		</table><br>
-		<a href="lisaa-kysymys" class="button">Lisää kysymys</a>
+		<a href="lisaa-pizza" class="button">Lisää pizza</a>
 		
 	</body>
 </html>

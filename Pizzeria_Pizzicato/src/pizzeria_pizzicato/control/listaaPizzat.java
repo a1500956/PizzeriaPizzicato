@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.Tayte;
+
 import pizzeria_pizzicato.model.dao.PizzaDAO;
-import pizzeria_pizzicato.model.dao.TayteDAO;
+
 
 
 @WebServlet("/listaaPizzat")
@@ -30,12 +30,10 @@ public class listaaPizzat extends HttpServlet {
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzat = pizzadao.findAll();
 			
-			TayteDAO taytedao = new TayteDAO();
-			ArrayList<Tayte> taytteet = taytedao.findAll();
-
+			
 			
 			request.setAttribute("pizzat", pizzat);
-			request.setAttribute("taytteet", taytteet);
+			
 			
 			String jsp = "/view/listaa-pizzat.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);

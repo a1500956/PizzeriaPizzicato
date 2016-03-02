@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 
@@ -84,9 +83,13 @@ public class PizzaDAO extends DataAccessObject {
 			
 			connection = getConnection();
 			
-			String sqlInsert = "INSERT INTO Pizza(pizza_nimi) VALUES (?)";
+			String sqlInsert = "INSERT INTO Pizza(pizza_nimi, pizza_hinta, nakyy) VALUES (?, ?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
 			stmtInsert.setString(1, pizza.getNimi());
+			stmtInsert.setDouble(2, pizza.getHinta());
+			stmtInsert.setInt(3, pizza.getNakyy());
+			
+			
 			stmtInsert.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -109,7 +112,7 @@ public class PizzaDAO extends DataAccessObject {
 			
 			conn = getConnection();
 			
-			String sqlSelect = "SELECT pizza_id, pizza_nimi, pizza_hinta FROM Pizza;";
+			String sqlSelect = "SELECT pizza_id, pizza_nimi, pizza_hinta, nakyy FROM Pizza;";
 		
 			stmt = conn.prepareStatement(sqlSelect);
 			
@@ -137,13 +140,13 @@ public class PizzaDAO extends DataAccessObject {
 		try {
 			
 			int id = rs.getInt("pizza_id");
-			String nimi = rs.getString("pizza_nimi");
-			
+			String nimi = rs.getString("pizza_nimi");		
 			double hinta = rs.getDouble("pizza_hinta");
+			int nakyy = rs.getInt("nakyy");
 			
 					
 			
-			return new Pizza(id, nimi, hinta);
+			return new Pizza(id, nimi, hinta, nakyy);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

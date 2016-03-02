@@ -7,6 +7,7 @@ public class Pizza {
 	private int id;
 	private String nimi;
 	private double hinta;
+	int nakyy;
 	
 	
 	public Pizza() {
@@ -14,10 +15,12 @@ public class Pizza {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pizza(int id, String nimi, double hinta) {
+	public Pizza(int id, String nimi, double hinta, int nakyy) {
 		super();
 		this.id = id;
 		this.nimi = nimi;
+		this.hinta = hinta;
+		this.nakyy = nakyy;
 		
 	}
 
@@ -40,7 +43,8 @@ public class Pizza {
 	
 	@Override
 	public String toString() {
-		return "Pizza [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta + "]";
+		return "Pizza [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta
+				+ ", nakyy=" + nakyy + "]";
 	}
 
 	public double getHinta() {
@@ -49,6 +53,14 @@ public class Pizza {
 
 	public void setHinta(double hinta) {
 		this.hinta = hinta;
+	}
+
+	public int getNakyy() {
+		return nakyy;
+	}
+
+	public void setNakyy(int nakyy) {
+		this.nakyy = nakyy;
 	}
 	
 	
