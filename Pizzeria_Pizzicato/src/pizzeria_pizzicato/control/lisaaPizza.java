@@ -37,6 +37,9 @@ public class lisaaPizza extends HttpServlet {
 			String nakyyStr = request.getParameter("nakyy");
 			int nakyy = new Integer(nakyyStr);
 			
+			String[] taytteetStr = request.getParameterValues("tayte");
+			int[] taytteet = new int[taytteetStr.length];
+			
 						Pizza pizza = new Pizza(id, nimi, hinta, nakyy);
 						PizzaDAO pizzadao = new PizzaDAO();
 						

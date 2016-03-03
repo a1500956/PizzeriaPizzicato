@@ -12,7 +12,7 @@
 
 <body>
 	<h1>Lis‰‰ pizza</h1>
-		<form method="post">
+		<form action="checkboxes" method="post">
 			<table class="lisaa-pizza" align=center>
 				
 				<tr>
@@ -28,7 +28,14 @@
 				<tr>
 					<td>Pizzan n‰kyvyys:</td>
 					<td><input type="text" value="" name="nakyy" size="1" required />
-					</td>					
+				</td>					
+				</tr>
+				<tr>
+					<td>T‰ytteet:</td>
+					<td><br><br><input type="checkbox" name="tayte" value="2"/>Tomaattikastike<br/>
+              		<input type="checkbox" name="tayte" value="3"/>Juusto<br/>
+					<input type="checkbox" name="tayte" value="4"/>Herkkusieni<br/>
+				</td>
 				</tr>
 				<tr>
 					<td><br><div class ="button"><a href="listaaPizzat">Peruuta</a></div></td>

@@ -144,6 +144,7 @@ public class PizzaDAO extends DataAccessObject {
 			double hinta = rs.getDouble("pizza_hinta");
 			int nakyy = rs.getInt("nakyy");
 			
+			
 					
 			
 			return new Pizza(id, nimi, hinta, nakyy);
