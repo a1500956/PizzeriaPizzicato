@@ -27,7 +27,8 @@
 				</tr>
 				<tr>
 					<td>Pizzan näkyvyys:</td>
-					<td><input type="text" value="" name="nakyy" size="1" required />
+					<td><input type="radio" name="nakyy" value="1" checked="checked"> Kyllä
+						<input type="radio" name="nakyy" value="0"> Ei
 					</td>					
 				</tr>
 				<tr>
