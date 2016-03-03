@@ -18,7 +18,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 	public class PizzaTayteDAO extends DataAccessObject {
 		
-		public void addTayteToPizza(Tayte tayte) throws SQLException {
+		public void addTayteToPizza(int[] taytteet) throws SQLException {
 			Connection connection = null;
 			PreparedStatement stmtInsert = null;
 		
@@ -27,8 +27,9 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				connection = getConnection();
 				
 				String sqlInsert = "INSERT INTO PizzaTayte(pId, tId) VALUES (last_insert_id(), ?)";
-				stmtInsert = connection.prepareStatement(sqlInsert);			
-				stmtInsert.setInt(2, tayte.getTayte_id());
+				stmtInsert = connection.prepareStatement(sqlInsert);
+				
+				stmtInsert.setInt(2, taytteet.length);
 				
 				
 				

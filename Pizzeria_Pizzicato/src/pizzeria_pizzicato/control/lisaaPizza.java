@@ -2,14 +2,17 @@ package pizzeria_pizzicato.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
+import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 
 @WebServlet("/lisaa-pizza")
 public class lisaaPizza extends HttpServlet {
@@ -40,10 +43,15 @@ public class lisaaPizza extends HttpServlet {
 			String[] taytteetStr = request.getParameterValues("tayte");
 			int[] taytteet = new int[taytteetStr.length];
 			
+						
 						Pizza pizza = new Pizza(id, nimi, hinta, nakyy);
-						PizzaDAO pizzadao = new PizzaDAO();
+						PizzaDAO pizzadao = new PizzaDAO();					
+						PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
 						
 						pizzadao.addPizza(pizza);
+						pizzaTaytedao.addTayteToPizza(taytteet);
+						
+						
 					} catch (SQLException e) {
 						
 						System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());

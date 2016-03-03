@@ -43,64 +43,6 @@
 		}
 
 		
-		public void deleteTayte(Tayte tayte) throws SQLException {
-			Connection connection = null;
-			
-			PreparedStatement stmtDelete = null;
-			
-			
-			
-
-			try {
-				
-				connection = getConnection();
-				
-				String sqlDelete = "DELETE FROM Tayte WHERE Tayte_id =?";
-				stmtDelete = connection.prepareStatement(sqlDelete);
-				stmtDelete.setInt(1, tayte.getId());
-				stmtDelete.executeUpdate();		
-				
-				
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			} finally {
-				close(stmtDelete, connection);
-				
-				
-			}
-		}
-
-		
-		public void updateTayte(Tayte tayte) throws SQLException {
-			Connection connection = null;
-			
-			PreparedStatement stmtUpdate = null;
-			
-			
-
-			try {
-				
-				connection = getConnection();
-				
-				String sqlUpdate = "UPDATE tayte SET nimi = ? WHERE tayte_id =?";
-				stmtUpdate = connection.prepareStatement(sqlUpdate);
-				stmtUpdate.setInt(2, tayte.getId());
-				stmtUpdate.setString(1, tayte.getNimi());
-				stmtUpdate.executeUpdate();
-				
-				
-				
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			} finally {
-				close(stmtUpdate, connection); 
-			}
-		}
-
-
-		
-		
-
 		
 		
 		public ArrayList<Tayte> findAll() {	
