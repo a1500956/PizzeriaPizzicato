@@ -5,17 +5,43 @@
 
 
 	import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import pizzeria_pizzicato.model.Tayte;
-import pizzeria_pizzicato.model.dao.DataAccessObject;
+	import java.sql.ResultSet;
+	import java.sql.SQLException;
+	import java.util.ArrayList;
+	import pizzeria_pizzicato.model.Tayte;
+	import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 
 
 
 	public class TayteDAO extends DataAccessObject {
+		
+		
+		public void addTayte(Tayte tayte) throws SQLException {
+			
+			Connection connection = null;
+			PreparedStatement stmtInsert = null;
+		
+			try {
+				
+				connection = getConnection();
+				
+				String sqlInsert = "INSERT INTO Tayte(tayte_id, tayte_nimi) VALUES (?, ?)";
+				stmtInsert = connection.prepareStatement(sqlInsert);
+				stmtInsert.setInt(1, tayte.getTayte_id());
+				stmtInsert.setString(2, tayte.getTayte_nimi());
+				
+				
+				
+				stmtInsert.executeUpdate();
+				
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+				close(stmtInsert, connection); 
+			}
+		}
+
 		
 		public void deleteTayte(Tayte tayte) throws SQLException {
 			Connection connection = null;
@@ -73,28 +99,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 
 		
-		public void addTayte(Tayte tayte) throws SQLException {
-			Connection connection = null;
-			PreparedStatement stmtInsert = null;
 		
-
-			try {
-				
-				connection = getConnection();
-				
-				String sqlInsert = "INSERT INTO Tayte(tayte_id, tayte_nimi) VALUES (?, ?)";
-				stmtInsert = connection.prepareStatement(sqlInsert);
-				stmtInsert.setInt(1, tayte.getId());
-				stmtInsert.setString(2, tayte.getNimi());
-				stmtInsert.executeUpdate();
-				
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			} finally {
-				close(stmtInsert, connection); 
-			}
-		}
-
 
 		
 		
