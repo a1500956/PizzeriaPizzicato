@@ -152,5 +152,41 @@ public class PizzaDAO extends DataAccessObject {
 		}
 	}
 	
+	public int getPizzaId(String nimi){
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int tulos = -1;
+		try {
+			
+			conn = getConnection();
+			
+			String sqlSelect = "SELECT pizza_id FROM Pizza WHERE pizza_nimi='"+nimi+"';";
+		
+			stmt = conn.prepareStatement(sqlSelect);
+			
+			rs = stmt.executeQuery(sqlSelect);
+			
+			if(rs.next()){
+				tulos =  readId(rs);
+			}
+			return tulos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn); 
+		}
+		
+		
+	}
+	
+	public int readId(ResultSet rs) {	
+		try {												
+			return rs.getInt("pizza_id");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 		
 }

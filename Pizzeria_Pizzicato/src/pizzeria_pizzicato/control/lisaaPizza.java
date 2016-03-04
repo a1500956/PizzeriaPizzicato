@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import pizzeria_pizzicato.model.Lukija;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
@@ -17,6 +17,7 @@ import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 @WebServlet("/lisaa-pizza")
 public class lisaaPizza extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Lukija lukija = new Lukija();
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -36,20 +37,30 @@ public class lisaaPizza extends HttpServlet {
 			String nimiStr = request.getParameter("nimi");
 			String nimi = new String(nimiStr);
 			String hintaStr = request.getParameter("hinta");
-			double hinta = new Double(hintaStr);
+			double hinta = lukija.lueDesimaaliluku(hintaStr);
 			String nakyyStr = request.getParameter("nakyy");
 			int nakyy = new Integer(nakyyStr);
 			
 			String[] taytteetStr = request.getParameterValues("tayte");
-			int[] taytteet = new int[taytteetStr.length];
+			//int[] taytteet = new int[taytteetStr.length];
 			
+			//for (int i = 0; i < taytteetStr.length; i++) {
+			//	taytteet[i] = Integer.parseInt(taytteetStr[i]);
+			//}
+			
+			//System.out.println(taytteet.toString());
 						
 						Pizza pizza = new Pizza(id, nimi, hinta, nakyy);
 						PizzaDAO pizzadao = new PizzaDAO();					
 						PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
 						
 						pizzadao.addPizza(pizza);
-						pizzaTaytedao.addTayteToPizza(taytteet);
+						
+						int pId = pizzadao.getPizzaId(nimiStr);
+						
+						for (int i = 0; i < taytteetStr.length; i++) {
+							pizzaTaytedao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),pId);
+						}
 						
 						
 					} catch (SQLException e) {
