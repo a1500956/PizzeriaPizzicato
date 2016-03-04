@@ -21,6 +21,7 @@ scope="request" />
 		<tr>
 			
 			<td><h4>PIZZAT</h4></td>
+			<td><h4>HINTA</h4></td>
 			<td><h4>TOIMINNOT</h4></td>
 				
 		</tr>
@@ -28,15 +29,12 @@ scope="request" />
 			<tr>
 				
 				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
-				<td><div class="toiminnot"> <a href="LisaaVastaus?id1=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">Vastaa
-				</a>		
-				<a href="listaa-vastaukset?id1=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
-				Näytä vastaukset
-				</a>			
-				<a href="muokkaa-kysymys?id1=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
+				<td><div class="pizzat"><%=pizzat.get(i).getHinta()%></div></td>
+				<td><div class="toiminnot"> 
+				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
 				Muokkaa pizzaa
 				</a>		
-				<a href="poista-kysymys?id1=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
+				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
 				Poista pizza
 				</a></div>
 				</td>								

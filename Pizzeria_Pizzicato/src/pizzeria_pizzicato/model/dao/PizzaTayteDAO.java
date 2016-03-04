@@ -4,11 +4,12 @@
 	import java.sql.Connection;
 
 
-	import java.sql.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.PizzaTayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
@@ -17,6 +18,26 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 	public class PizzaTayteDAO extends DataAccessObject {
 		
+		public void addTayteToPizza(int tayteId, int pizzaId) throws SQLException {
+			Connection connection = null;
+			PreparedStatement stmtInsert = null;
+		
+			try {
+				
+				connection = getConnection();
+				
+
+					String sqlInsert = "INSERT INTO PizzaTayte(pizza_id, tayte_id) VALUES ("+pizzaId+","+tayteId+")";
+					stmtInsert = connection.prepareStatement(sqlInsert);
+					stmtInsert.executeUpdate();
+					
+				
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+				close(stmtInsert, connection); 
+			}
+		}
 		
 		
 		public ArrayList<PizzaTayte> findAll() {	

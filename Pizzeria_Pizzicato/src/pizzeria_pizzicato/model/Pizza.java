@@ -1,6 +1,7 @@
 package pizzeria_pizzicato.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Pizza {
 	
@@ -8,6 +9,7 @@ public class Pizza {
 	private String nimi;
 	private double hinta;
 	int nakyy;
+	
 	
 	
 	public Pizza() {
@@ -23,6 +25,8 @@ public class Pizza {
 		this.nakyy = nakyy;
 		
 	}
+
+	
 
 	public int getId() {
 		return id;
@@ -40,12 +44,6 @@ public class Pizza {
 		this.nimi = nimi;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "Pizza [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta
-				+ ", nakyy=" + nakyy + "]";
-	}
 
 	public double getHinta() {
 		return hinta;
@@ -61,6 +59,12 @@ public class Pizza {
 
 	public void setNakyy(int nakyy) {
 		this.nakyy = nakyy;
+	}
+
+	@Override
+	public String toString() {
+		return "Pizza [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta
+				+ ", nakyy=" + nakyy + "]";
 	}
 	
 	
