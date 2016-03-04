@@ -34,7 +34,7 @@ scope="request" />
 				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
 				Muokkaa pizzaa
 				</a>		
-				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%><%=pizzat.get(i).getNimi()%>" class="button">
+				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
 				Poista pizza
 				</a></div>
 				</td>								
