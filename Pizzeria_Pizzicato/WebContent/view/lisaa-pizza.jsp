@@ -22,7 +22,7 @@
 					</td>					
 				</tr>
 				<tr>
-					<td>Pizzan näkyy menussa:</td>
+					<td>Pizza näkyy menussa:</td>
 					<td><input type="radio" name="nakyy" value="1" checked="checked"> Kyllä
 						<input type="radio" name="nakyy" value="0"> Ei
 				</td>					
@@ -32,6 +32,16 @@
 					<td><br><br><input type="checkbox" name="tayte" value="2"/>Tomaattikastike<br/>
               		<input type="checkbox" name="tayte" value="3"/>Juusto<br/>
 					<input type="checkbox" name="tayte" value="4"/>Herkkusieni<br/>
+					<input type="checkbox" name="tayte" value="5"/>Sipuli<br/>
+					<input type="checkbox" name="tayte" value="6"/>Oliivi<br/>
+					<input type="checkbox" name="tayte" value="7"/>Pinaatti<br/>
+					<input type="checkbox" name="tayte" value="8"/>Tonnikala<br/>
+					<input type="checkbox" name="tayte" value="9"/>Katkarapu<br/>
+					<input type="checkbox" name="tayte" value="10"/>Simpukka<br/>
+					<input type="checkbox" name="tayte" value="11"/>Kinkku<br/>
+					<input type="checkbox" name="tayte" value="12"/>Salami<br/>
+					<input type="checkbox" name="tayte" value="13"/>Pepperoni<br/>
+					<input type="checkbox" name="tayte" value="14"/>Jalopeno<br/>
 				</td>
 				</tr>
 				<tr>
