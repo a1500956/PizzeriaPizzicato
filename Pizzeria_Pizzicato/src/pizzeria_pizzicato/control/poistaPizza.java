@@ -20,11 +20,14 @@ public class poistaPizza extends HttpServlet {
    
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String strID = request.getParameter("id");
-						
 		
-		request.setAttribute("valittu", strID);
+		String strID = request.getParameter("id");
+		String strNimi = request.getParameter("id2");
+		request.setAttribute("valittuId", strID);
+		request.setAttribute("valittuNimi", strNimi);
+		
 		String jsp = "/view/poista-pizza.jsp"; 
+		
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
 }
@@ -32,7 +35,9 @@ public class poistaPizza extends HttpServlet {
 		protected void doPost(HttpServletRequest request,
     			HttpServletResponse response) throws ServletException, IOException {
 				
-			String strID = request.getParameter("id");	
+			String strID = request.getParameter("id");
+			
+			
 			
 			try{
 

@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+*{
+}
+
+
+html{text-align:center;
+	
+}
+
+body{	
+	font-family: Georgia;
+	
+	color: black;
+	
+}
+
+
+
+.lomake{
+		
+		width:600px;
+		display: inline-block;
+	
+}
+
+.listaa-pizzat{background-color:#f2f2f2;
+					margin-top: 5%;
+					color:black;
+	
+}
+
+.lisaa-pizza{text-align:left;
+	
+	
+}
+
+h2{
+	
+}
+
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+	padding:1px;
+	font-size: 13px;
+    text-decoration: none;
+    color: initial;
+    
+    
+}
+
+input[type=submit]{
+    font-family: 'Georgia';
+    font-size: 13px;
+}
+
+.toiminnot{width:382px;
+			text-align: left;
+}
+			
+.pizzat{font-size: 20px;
+			padding:5px;
+	
+}
+
