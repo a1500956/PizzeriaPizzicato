@@ -1,9 +1,6 @@
-package pizzeria_pizzicato.model.dao;
+package pizzeria_pizzicato.model;
 
 import java.util.ArrayList;
-
-import pizzeria_pizzicato.model.PizzaTayte;
-import pizzeria_pizzicato.model.Tayte;
 
 public class Taytteet extends PizzaTayte {
 	
