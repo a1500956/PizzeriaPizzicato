@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.PizzaTayte;
 import pizzeria_pizzicato.model.Tayte;
@@ -86,8 +88,19 @@ protected void doPost(HttpServletRequest request,
 		
 		Pizza pizza= new Pizza (id, nimi, hinta, nakyy);
 		PizzaDAO pizzadao = new PizzaDAO();
-					
+		PizzaTayteDAO PTdao = new PizzaTayteDAO();
+		
+		//Pizzan tiedot p‰ivitet‰‰n
 		pizzadao.updatePizza(pizza);
+		
+		//Pizzan t‰ytteet h‰vitet‰‰n warppiin PizzaT‰yte-taulukosta, toistaiseksi voimassaolevuudesta huolimatta
+		PTdao.poistaPizzaTaytelistalta(id);
+		
+		//Valitut t‰ytteet lis‰t‰‰n
+		String[] taytteetStr = request.getParameterValues("tayte");
+		for (int i = 0; i < taytteetStr.length; i++) {
+			PTdao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),id);
+		}
 		
 					
 		} catch (SQLException e) {

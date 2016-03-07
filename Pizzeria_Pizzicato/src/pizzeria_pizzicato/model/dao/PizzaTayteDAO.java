@@ -145,6 +145,29 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				throw new RuntimeException(e);
 			}
 		}
+		
+		public void poistaPizzaTaytelistalta(int pizzaID){
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			try {
+				
+				conn = getConnection();
+				
+				
+				String sqlSelect = "DELETE FROM PizzaTayte WHERE pizza_id ='"+pizzaID+"';";
+				stmt = conn.prepareStatement(sqlSelect);
+				//stmt.setInt(1, pizzaID);
+				
+				rs = stmt.executeQuery(sqlSelect);
+			
+				
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+				close(rs, stmt, conn); 
+			}
+		}
 
 		
 	}
