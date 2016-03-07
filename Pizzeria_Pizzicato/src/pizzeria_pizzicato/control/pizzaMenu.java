@@ -40,6 +40,7 @@ public class pizzaMenu extends HttpServlet {
 			ArrayList<PizzaTayte> pTaytteet = pTaytedao.findAll();
 			ArrayList<Taytteet> pizzat = new ArrayList<Taytteet>();
 			ArrayList<Pizza> pizzaMenu = new ArrayList<Pizza>();
+			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 			
 			
 			
@@ -97,13 +98,19 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
-			for(int i = 0; i < pizzaMenu.size();i++){
-				System.out.println(pizzaMenu.get(i));
+			for(int i=0;i<pizzaMenu.size();i++){
+				
+				if(pizzaMenu.get(i).getNakyy()==1){
+					Pizza pizza = new Pizza();
+	        	
+					pizza = pizzaMenu.get(i);
+					pizzaNakyy.add(pizza);
+				}
 			}
 			
-			request.setAttribute("pizzaMenu", pizzaMenu);
+			request.setAttribute("pizzat", pizzaNakyy);
 			
-			String jsp = "/view/listaa-pizzat.jsp"; 
+			String jsp = "/view/pizza-menu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
 		 
