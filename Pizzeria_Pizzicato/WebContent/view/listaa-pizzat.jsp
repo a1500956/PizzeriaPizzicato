@@ -11,8 +11,9 @@ scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Pizza lista</title>
 <link href="styles.css" rel="stylesheet" type="text/css">
+<title>Pizza lista</title>
+
 
 </head>
 	<body>
