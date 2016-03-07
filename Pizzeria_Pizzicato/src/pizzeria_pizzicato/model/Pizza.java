@@ -3,12 +3,13 @@ package pizzeria_pizzicato.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Pizza {
+public class Pizza extends Tayte {
 	
 	private int id;
 	private String nimi;
 	private double hinta;
 	int nakyy;
+	private ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
 	
 	
 	
@@ -64,7 +65,15 @@ public class Pizza {
 	@Override
 	public String toString() {
 		return "Pizza [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta
-				+ ", nakyy=" + nakyy + "]";
+				+ ", nakyy=" + nakyy + ", taytteet=" + taytteet + "]";
+	}
+
+	public ArrayList<Tayte> getTaytteet() {
+		return taytteet;
+	}
+
+	public void setTaytteet(ArrayList<Tayte> taytteet) {
+		this.taytteet = taytteet;
 	}
 	
 	
