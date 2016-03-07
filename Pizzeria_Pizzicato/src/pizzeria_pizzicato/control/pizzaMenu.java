@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.PizzaTayte;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.Taytteet;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
@@ -29,26 +30,19 @@ public class pizzaMenu extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 				
-			// PizzaDAO pizzadao = new PizzaDAO();
-			// ArrayList<Pizza> pizzat = pizzadao.findAll();
+			PizzaDAO pizzadao = new PizzaDAO();
+			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			
-			// TayteDAO taytedao = new TayteDAO();
-			// ArrayList<Tayte> taytteet = taytedao.findAll();
+			TayteDAO taytedao = new TayteDAO();
+			ArrayList<Tayte> tayteLista = taytedao.findAll();
 			
 			PizzaTayteDAO pTaytedao = new PizzaTayteDAO();
 			ArrayList<PizzaTayte> pTaytteet = pTaytedao.findAll();
 			ArrayList<Taytteet> pizzat = new ArrayList<Taytteet>();
-			ArrayList<String> sArvo = new ArrayList<String>();
+			ArrayList<Pizza> pizzaMenu = new ArrayList<Pizza>();
 			
-			/*
-			for(int i = 0; i < pTaytteet.size(); i++){
-				System.out.print("Looppikerta " + i);
-				System.out.print(" " + pTaytteet.get(i).getpId());
-				System.out.println(" " + pTaytteet.get(i).gettId());
-			}
-			*/
 			
-			// TOIMII
+			
 			boolean loytyy = false;
 			
 			for(int i = 0; i < pTaytteet.size(); i++){
@@ -69,19 +63,50 @@ public class pizzaMenu extends HttpServlet {
 			}
 			
 			for(int i = 0; i < pizzat.size(); i++){
-				System.out.println("Pizza id " + pizzat.get(i));
+				
+				for(int j = 0; j < pTaytteet.size(); j++){
+					if(pizzat.get(i).getpId() == pTaytteet.get(j).getpId()){
+						pizzat.get(i).getTaytteet().add(Integer.toString(pTaytteet.get(j).gettId()));
+					}
 				}
+				
+			}
 			
-			// TÄHÄ ASTI
+			for(int i=0; i < pizzat.size(); i++){
+				pizzaMenu.add(new Pizza());
+				pizzaMenu.get(i).setId(pizzat.get(i).getpId()); // PizzaMenulle pizzanID
+				
+				for(int j = 0; j<pizzaLista.size();j++){ //PizzaMenulle pizzan nimi ID mukaan
+					if(pizzat.get(i).getpId() == pizzaLista.get(j).getId()){
+						pizzaMenu.get(i).setNimi(pizzaLista.get(j).getNimi());
+						pizzaMenu.get(i).setNakyy(pizzaLista.get(j).getNakyy());
+						pizzaMenu.get(i).setHinta(pizzaLista.get(j).getHinta());
+					}
+				}
+				
+				for(int h = 0; h<pizzat.get(i).getTaytteet().size(); h++){
+					for(int k = 0; k<tayteLista.size(); k++){
+						if(pizzat.get(i).getTaytteet().get(h).equals(Integer.toString(tayteLista.get(k).getTayte_id()))){
+							Tayte sArvo = new Tayte();
+							sArvo.setTayte_id(tayteLista.get(k).getTayte_id());
+							sArvo.setTayte_nimi(tayteLista.get(k).getTayte_nimi());
+							pizzaMenu.get(i).getTaytteet().add(sArvo);
+						}
+					}
+					
+				}
+			}
 			
-			// request.setAttribute("pizzat", pizzat);
-			// request.setAttribute("taytteet", taytteet);
-			request.setAttribute("pTaytteet", pTaytteet);
+			for(int i = 0; i < pizzaMenu.size();i++){
+				System.out.println(pizzaMenu.get(i));
+			}
 			
-			/*String jsp = "/view/listaa-pizzat.jsp"; 
+			request.setAttribute("pizzaMenu", pizzaMenu);
+			
+			String jsp = "/view/listaa-pizzat.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
-		 */
+		 
 		}
 
 }
