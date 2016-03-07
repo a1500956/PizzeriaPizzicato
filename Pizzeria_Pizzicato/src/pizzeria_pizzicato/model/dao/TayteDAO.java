@@ -77,9 +77,6 @@
 		
 		public Tayte readTayte(ResultSet rs) {
 			
-			
-			
-			
 			try {
 				
 				int id = rs.getInt("tayte_id");
