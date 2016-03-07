@@ -68,11 +68,12 @@ public class PizzaDAO extends DataAccessObject {
 			
 			connection = getConnection();
 			
-			String sqlUpdate = "UPDATE Pizza SET pizza_nimi = ?, pizza_hinta= ? WHERE pizza_id =?";
+			String sqlUpdate = "UPDATE Pizza SET pizza_nimi = ?, pizza_hinta= ?, nakyy = ? WHERE pizza_id =?";
 			stmtUpdate = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setString(1, pizza.getNimi());
 			stmtUpdate.setDouble(2, pizza.getHinta());
-			stmtUpdate.setInt(3, pizza.getId());
+			stmtUpdate.setDouble(3, pizza.getNakyy());
+			stmtUpdate.setInt(4, pizza.getId());
 			stmtUpdate.executeUpdate();
 			
 			

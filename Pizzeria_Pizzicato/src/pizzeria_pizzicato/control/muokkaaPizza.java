@@ -50,6 +50,7 @@ public class muokkaaPizza extends HttpServlet {
 		request.setAttribute("valittuID", iidee);
 		request.setAttribute("valittuN", kyseessa.getNimi());
 		request.setAttribute("valittuH", Double.toString(kyseessa.getHinta()));
+		request.setAttribute("nakyykovaiei", kyseessa.getNakyy());
 		
 		ArrayList<PizzaTayte> pizzanTaytteittenIDt = new ArrayList<PizzaTayte>();
 		pizzanTaytteittenIDt= PTdao.haePizzanTaytteet(iidee);
@@ -64,7 +65,6 @@ public class muokkaaPizza extends HttpServlet {
 				}
 			}
 		}
-		System.out.println(taytteittenEdelleenlahetettavaNimilista.toString());
 		
 		request.setAttribute("taytteet", taytteittenEdelleenlahetettavaNimilista);
 		String jsp = "/view/muokkaa-pizza.jsp"; 
@@ -82,7 +82,8 @@ protected void doPost(HttpServletRequest request,
 		int id =Integer.parseInt(request.getParameter("id"));
 		String nimi = request.getParameter("nimi"); 
 		String StrHinta = request.getParameter("hinta");
-		double hinta = new Double (StrHinta);
+		StrHinta = StrHinta.replace(",", ".");
+		double hinta = Double.parseDouble(StrHinta);
 		String StrNakyy = request.getParameter("nakyy");
 		int nakyy = new Integer(StrNakyy);
 		

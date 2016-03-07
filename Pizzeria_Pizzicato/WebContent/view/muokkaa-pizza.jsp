@@ -8,6 +8,7 @@
 <jsp:useBean id="valittuN" type="java.lang.String" scope="request" />
 <jsp:useBean id="valittuH" type="java.lang.String" scope="request" />
 <jsp:useBean id="taytteet" type="java.util.ArrayList<PizzaTayte>" scope="request" />
+<jsp:useBean id="nakyykovaiei" type="java.lang.Integer" scope="request" />
 
 <html>
 <head>
@@ -21,7 +22,7 @@
 				
 				<tr>
 					<td>Pizzan nimi:</td>
-					<td><input type="text" value=<%=valittuN%> name="nimi" size="20" required />
+					<td><input type="text" value="<%=valittuN%>" name="nimi" size="20" required />
 					</td>					
 				</tr>
 				<tr>
@@ -31,8 +32,8 @@
 				</tr>
 				<tr>
 					<td>Pizza näkyy menussa:</td>
-					<td><input type="radio" name="nakyy" value="1" checked="checked"> Kyllä
-						<input type="radio" name="nakyy" value="0"> Ei
+					<td><input type="radio" name="nakyy" value="1" <%if(nakyykovaiei==1) {out.print("checked=\"checked\"");} %>> Kyllä
+						<input type="radio" name="nakyy" value="0" <%if(nakyykovaiei==0) {out.print("checked=\"checked\"");} %>> Ei
 				</td>					
 				</tr>
 				<tr>
