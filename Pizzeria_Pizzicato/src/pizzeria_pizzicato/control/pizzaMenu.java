@@ -42,8 +42,6 @@ public class pizzaMenu extends HttpServlet {
 			ArrayList<Pizza> pizzaMenu = new ArrayList<Pizza>();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 			
-			
-			
 			boolean loytyy = false;
 			
 			for(int i = 0; i < pTaytteet.size(); i++){
@@ -81,7 +79,7 @@ public class pizzaMenu extends HttpServlet {
 					if(pizzat.get(i).getpId() == pizzaLista.get(j).getId()){
 						pizzaMenu.get(i).setNimi(pizzaLista.get(j).getNimi());
 						pizzaMenu.get(i).setNakyy(pizzaLista.get(j).getNakyy());
-						pizzaMenu.get(i).setHinta(pizzaLista.get(j).getHinta());
+						pizzaMenu.get(i).setHinta((pizzaLista.get(j).getHinta()));
 					}
 				}
 				
