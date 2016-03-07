@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
@@ -19,6 +20,7 @@ public class PizzaDAO extends DataAccessObject {
 		Connection connection = null;
 		
 		PreparedStatement stmtDelete = null;
+		PreparedStatement stmtDeletet = null;
 		
 		
 		
@@ -33,6 +35,14 @@ public class PizzaDAO extends DataAccessObject {
 			stmtDelete.executeUpdate();
 			
 			
+			String sqlDeletet = "DELETE FROM PizzaTayte WHERE Pizza_id =?";
+			stmtDeletet = connection.prepareStatement(sqlDeletet);
+			stmtDelete.setInt(1, pizza.getId());;
+			stmtDeletet.executeUpdate();
+			
+
+			
+			
 				
 			
 			
@@ -40,6 +50,7 @@ public class PizzaDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtDelete, connection);
+			close(stmtDeletet, connection);
 			
 			
 		}
