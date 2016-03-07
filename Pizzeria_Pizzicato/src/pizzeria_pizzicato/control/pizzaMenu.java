@@ -40,8 +40,7 @@ public class pizzaMenu extends HttpServlet {
 			ArrayList<PizzaTayte> pTaytteet = pTaytedao.findAll();
 			ArrayList<Taytteet> pizzat = new ArrayList<Taytteet>();
 			ArrayList<Pizza> pizzaMenu = new ArrayList<Pizza>();
-			
-			
+			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 			
 			boolean loytyy = false;
 			
@@ -80,7 +79,7 @@ public class pizzaMenu extends HttpServlet {
 					if(pizzat.get(i).getpId() == pizzaLista.get(j).getId()){
 						pizzaMenu.get(i).setNimi(pizzaLista.get(j).getNimi());
 						pizzaMenu.get(i).setNakyy(pizzaLista.get(j).getNakyy());
-						pizzaMenu.get(i).setHinta(pizzaLista.get(j).getHinta());
+						pizzaMenu.get(i).setHinta((pizzaLista.get(j).getHinta()));
 					}
 				}
 				
@@ -97,11 +96,17 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
-			for(int i = 0; i < pizzaMenu.size();i++){
-				System.out.println(pizzaMenu.get(i));
+			for(int i=0;i<pizzaMenu.size();i++){
+				
+				if(pizzaMenu.get(i).getNakyy()==1){
+					Pizza pizza = new Pizza();
+	        	
+					pizza = pizzaMenu.get(i);
+					pizzaNakyy.add(pizza);
+				}
 			}
 			
-			request.setAttribute("pizzat", pizzaMenu);
+			request.setAttribute("pizzat", pizzaNakyy);
 			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
