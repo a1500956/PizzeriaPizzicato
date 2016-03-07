@@ -16,7 +16,7 @@
 <link href="styles.css" rel="stylesheet" type="text/css">
 <title>Muokkaa pizza</title>
 </head>
-<body bgcolor="#ccefff">
+<body>
 <h1>Muokkaa pizzaa</h1>
 		<form action="" method="post">
 			<table class="lisaa-pizza" align=center>

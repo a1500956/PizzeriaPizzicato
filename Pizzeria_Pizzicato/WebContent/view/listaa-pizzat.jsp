@@ -33,7 +33,7 @@ scope="request" />
 				
 				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
 				<td><div class="pizzat"><%=pizzat.get(i).getHinta()%></div></td>
-				<td><div class="pizzat"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+				<td><div class="taytteet"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>

@@ -5,6 +5,7 @@
 
 
 html{text-align:center;
+	background-color:#ccefff;
 	
 }
 
@@ -35,6 +36,12 @@ body{
 	
 }
 
+.taytteet{text-align:left;
+			font-family: Georgia;
+			font-size: 20px;
+			padding:5px;
+}
+
 h2{
 	
 }
@@ -57,7 +64,7 @@ input[type=submit]{
     font-size: 13px;
 }
 
-.toiminnot{width:382px;
+.toiminnot{width:180px;
 			text-align: left;
 }
 			
