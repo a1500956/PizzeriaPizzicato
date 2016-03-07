@@ -101,9 +101,9 @@ public class pizzaMenu extends HttpServlet {
 				System.out.println(pizzaMenu.get(i));
 			}
 			
-			request.setAttribute("pizzaMenu", pizzaMenu);
+			request.setAttribute("pizzat", pizzaMenu);
 			
-			String jsp = "/view/listaa-pizzat.jsp"; 
+			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
 		 
