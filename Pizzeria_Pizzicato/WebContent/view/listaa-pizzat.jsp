@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
+<%@ page import="pizzeria_pizzicato.model.Tayte"%>
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
@@ -22,6 +23,7 @@ scope="request" />
 			
 			<td><h4>PIZZAT</h4></td>
 			<td><h4>HINTA</h4></td>
+			<td><h4>TÄYTTEET</h4></td>
 			<td><h4>TOIMINNOT</h4></td>
 				
 		</tr>
@@ -30,6 +32,11 @@ scope="request" />
 				
 				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
 				<td><div class="pizzat"><%=pizzat.get(i).getHinta()%></div></td>
+				<td><div class="pizzat"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
+												<%  }%>
+												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
+												 </div></td>
 				<td><div class="toiminnot"> 
 				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
 				Muokkaa pizzaa

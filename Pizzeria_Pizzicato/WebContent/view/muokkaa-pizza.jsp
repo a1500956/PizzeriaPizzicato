@@ -13,13 +13,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+<title>Muokkaa pizza</title>
 </head>
 <body bgcolor="#ccefff">
 <h1>Muokkaa pizzaa</h1>
 		<form action="" method="post">
-			<table class="muokkaa-pizza" align=center>
-				
+			<table class="lisaa-pizza" align=center>
 				<tr>
 					<td>Pizzan nimi:</td>
 					<td><input type="text" value="<%=valittuN%>" name="nimi" size="20" required />
