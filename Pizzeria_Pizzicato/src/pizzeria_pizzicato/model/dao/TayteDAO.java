@@ -77,13 +77,10 @@
 		
 		public Tayte readTayte(ResultSet rs) {
 			
-			
-			
-			
 			try {
 				
-				int id = rs.getInt("id");
-				String nimi = rs.getString("nimi");
+				int id = rs.getInt("tayte_id");
+				String nimi = rs.getString("tayte_nimi");
 								
 						
 				

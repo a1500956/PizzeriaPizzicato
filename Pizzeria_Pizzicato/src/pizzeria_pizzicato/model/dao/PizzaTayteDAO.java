@@ -100,6 +100,36 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 			return pTaytteet;
 		}
 		
+		public ArrayList<PizzaTayte> haePizzanTaytteet(int PID) {	
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			ArrayList<PizzaTayte> pizzanTaytteet = new ArrayList<PizzaTayte>();
+			PizzaTayte pTayte = new PizzaTayte();
+			try {
+				
+				conn = getConnection();
+				
+				String sqlSelect = "SELECT pizza_id, tayte_id FROM PizzaTayte WHERE pizza_id="+PID+";";
+			
+				stmt = conn.prepareStatement(sqlSelect);
+				
+				rs = stmt.executeQuery(sqlSelect);
+			
+				while (rs.next()) {
+					pTayte = readTayte(rs);
+				
+					pizzanTaytteet.add(pTayte);
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+				close(rs, stmt, conn); 
+			}
+		
+			return pizzanTaytteet;
+		}
+		
 		public PizzaTayte readTayte(ResultSet rs) {
 			
 			

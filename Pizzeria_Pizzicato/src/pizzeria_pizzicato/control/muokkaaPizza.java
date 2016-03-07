@@ -1,6 +1,7 @@
 package pizzeria_pizzicato.control;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,12 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
+
+
+
+
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.PizzaTayte;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
+import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
+import pizzeria_pizzicato.model.dao.TayteDAO;
 
  
-@WebServlet("/muokkaaPizza")
+@WebServlet("/muokkaa-pizza")
 public class muokkaaPizza extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
        
         public muokkaaPizza() {
@@ -27,10 +38,33 @@ public class muokkaaPizza extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String strNimi = request.getParameter("id");
-						
+		PizzaDAO Pdao = new PizzaDAO();
+		PizzaTayteDAO PTdao = new PizzaTayteDAO();
+		TayteDAO Tdao = new TayteDAO();
 		
-		request.setAttribute("valittu", strNimi);
+		int iidee = Integer.parseInt(request.getParameter("id"));
+		
+		Pizza kyseessa = Pdao.getPizza(iidee);
+		request.setAttribute("valittuID", iidee);
+		request.setAttribute("valittuN", kyseessa.getNimi());
+		request.setAttribute("valittuH", Double.toString(kyseessa.getHinta()));
+		
+		ArrayList<PizzaTayte> pizzanTaytteittenIDt = new ArrayList<PizzaTayte>();
+		pizzanTaytteittenIDt= PTdao.haePizzanTaytteet(iidee);
+		ArrayList<Tayte> tietokannanTaytteet = new ArrayList<Tayte>();
+		tietokannanTaytteet = Tdao.findAll();
+		ArrayList<String> taytteittenEdelleenlahetettavaNimilista = new ArrayList<String>();
+		
+		for (int i = 0; i < pizzanTaytteittenIDt.size(); i++) {
+			for (int j = 0; j < tietokannanTaytteet.size(); j++) {
+				if((pizzanTaytteittenIDt.get(i).gettId())==tietokannanTaytteet.get(j).getTayte_id()){
+					taytteittenEdelleenlahetettavaNimilista.add(tietokannanTaytteet.get(j).getTayte_nimi());
+				}
+			}
+		}
+		System.out.println(taytteittenEdelleenlahetettavaNimilista.toString());
+		
+		request.setAttribute("taytteet", taytteittenEdelleenlahetettavaNimilista);
 		String jsp = "/view/muokkaa-pizza.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
@@ -43,7 +77,7 @@ protected void doPost(HttpServletRequest request,
 	try{
 
 		
-		int id = 0;
+		int id =Integer.parseInt(request.getParameter("id"));
 		String nimi = request.getParameter("nimi"); 
 		String StrHinta = request.getParameter("hinta");
 		double hinta = new Double (StrHinta);
