@@ -4,6 +4,12 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="java.text.NumberFormat" %>
+<%
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMaximumFractionDigits(2);
+    nf.setMinimumFractionDigits(2);
+%>
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
@@ -234,7 +240,7 @@ header, section, footer, aside, article, figure {
 			<tr>
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=pizzat.get(i).getHinta()%>€ </div></td>
+				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
 			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
