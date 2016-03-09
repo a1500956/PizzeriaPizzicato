@@ -36,6 +36,11 @@ public class lisaaPizza extends HttpServlet {
 			
 			String nimiStr = request.getParameter("nimi");
 			String nimi = new String(nimiStr);
+			
+			String eka = nimi.substring(0,1).toUpperCase();
+			String loput = nimi.substring(1).toLowerCase();
+			nimi = eka+loput;
+			
 			String hintaStr = request.getParameter("hinta");
 			double hinta = lukija.lueDesimaaliluku(hintaStr);
 			String nakyyStr = request.getParameter("nakyy");
