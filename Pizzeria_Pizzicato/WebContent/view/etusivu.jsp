@@ -4,6 +4,12 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="java.text.NumberFormat" %>
+<%
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMaximumFractionDigits(2);
+    nf.setMinimumFractionDigits(2);
+%>
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
@@ -11,14 +17,14 @@ scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Pizza lista</title>
+<title>Pizzeria Pizzicato</title>
 
-<link href="puhelin.css"
-rel="stylesheet" type="text/css"
+<link href="puhelin.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 0px)
 and (max-width: 770px)" >
 
-<link href="etusivu.css" rel="stylesheet" type="text/css">
+<link href="etusivu.css" rel="stylesheet" type="text/css"
+media="only screen and (min-width: 771px)">
 <style type="text/css">
 
 
@@ -33,14 +39,30 @@ and (max-width: 770px)" >
 </head>
 	<body>
 	<div class="container">
-<nav>
- <h1>Pizzeria Pizzicato</h1>
- <h5>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</h5>
+<nav><ul>
+  <li><a href ="Etusivu.jsp"> Etusivu</a></li>
+ 	<li>	<a href ="juomaSivut.jsp"> Juomat</a></li>
+ 	<li>	<a href ="listaa-pizzat.jsp"> Omistajan sivut</a></li>
+</ul>
+
+
+	
 </nav>
+
+ <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> </button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="etusivu.jsp">Etusivu</a>
+    <a href="juomaSivut.jsp">Juomat</a>
+    <a href="listaa-pizzat.jsp">Omistajan sivut</a>
+  </div>
+</div>
+
 
   <header>
   <section><img src="http://www.greenitalia.ie/images/slider-2.jpg" alt="Pizzicato" width="55%" height="250" id="Insert_logo" style="background-color: #C6D580; " />
-  <p>Header ja navi vaihtavat paikkojaan jatkossa.</p>
+  <p><h5>Pizzeria Pizzicato</h5></p>
+  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
   </section>
    
   </header>
@@ -64,7 +86,7 @@ and (max-width: 770px)" >
 			<tr>
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=pizzat.get(i).getHinta()%>€ </div></td>
+				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
 			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>

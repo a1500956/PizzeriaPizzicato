@@ -85,23 +85,23 @@ nav {
 	display:inline-block; position: fixed; width:90%;
 }
 nav ul{border-style:none;
-	list-style: none; /* this removes the list marker */
-	 /* this creates the top border for the links - all others are placed using a bottom border on the LI */
-	margin-bottom: 15px;  /* this creates the space between the navigation on the content below */
+	list-style: none;
+	
+	margin-bottom: 15px; 
 }
-nav li {border-style:none;
-	 display:inline; padding: 8px; /* this creates the button separation */
+nav li {border-style:none; 
+	 display:inline-block; padding: 8px; /* this creates the button separation */
 }
 nav a, nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
 	padding: 5px 5px 5px 15px;
 	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
 	width: 100%;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
 	text-decoration: none;
-	background-color: #C6D580;
+	background-color: #ADB96E;
 }
 nav a:hover, nav a:active, nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
 	background-color: #ADB96E;
-	color: #FFF;
+	color: black;
 }
 .menu{
 	
@@ -144,20 +144,11 @@ header, section, footer, aside, article, figure {
 }
 /*dropdown*/
 .dropdown {
-    position: relative;
-    display: inline-block;
+       display: none;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-}
+.dropdown-content { display:none;
 
-.dropdown:hover .dropdown-content {
-    display: block;
 }
 
 
