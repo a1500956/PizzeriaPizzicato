@@ -80,7 +80,7 @@ protected void doPost(HttpServletRequest request,
 
 		
 		int id =Integer.parseInt(request.getParameter("id"));
-		String nimi = request.getParameter("nimi"); 
+		String nimi = request.getParameter("nimi");
 		String StrHinta = request.getParameter("hinta");
 		StrHinta = StrHinta.replace(",", ".");
 		double hinta = Double.parseDouble(StrHinta);
