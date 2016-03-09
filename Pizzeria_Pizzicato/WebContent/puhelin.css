@@ -1,5 +1,5 @@
 body {font-family:tahoma, arial, sans-serif;   
-		background-color: rgb(0,255,127); 
+		background-color: white; 
 
       
       }
@@ -11,31 +11,19 @@ header img {
 header {text-align:center}
 
 
-
-
-
 footer {text-align:center;
         padding:10px;
         
         }
 
+nav {display:none}
+nav ul {display:none}
+nav li {display:none}
 
-nav ul {padding-left:5px}
-nav li {display:inline}
-a {color:black}
 
 
-/*
-nav ul li {background-color:rgb(153,229,127);
-           list-style-type:none;
-           float:left;
-           margin-right:10px;
-           margin-bottom:5px;
-           text-align:center;
-           width:100px;
-           padding:5px}
-           
-           .dropdown {
+.dropdown {
+	
     position: relative;
     display: inline-block;
 }
