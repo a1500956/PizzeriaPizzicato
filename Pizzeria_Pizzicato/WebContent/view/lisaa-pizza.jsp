@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<td>Pizzan hinta:</td>
-					<td><input type="text" value="" name="hinta" size="5" required />
+					<td><input type="number" value="" name="hinta" size="5" required />
 					</td>					
 				</tr>
 				<tr>
