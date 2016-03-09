@@ -27,7 +27,7 @@
 				</tr>
 				<tr>
 					<td>Pizzan hinta:</td>
-					<td><input type="number" value=<%=valittuH%> step=0.01 name="hinta" size="5" min="0" max="100" required title="Arvon tulee olla väliltä 0.0 ja 100.0" />
+					<td><input type="number" value=<%=valittuH%> step=0.01 name="hinta" size="5" min="0" max="100" required title="Arvon tulee olla väliltä 0.0 ja 100.0" />&euro;
 					</td>					
 				</tr>
 				<tr>
