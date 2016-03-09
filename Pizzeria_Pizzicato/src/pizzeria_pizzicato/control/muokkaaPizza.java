@@ -81,6 +81,11 @@ protected void doPost(HttpServletRequest request,
 		
 		int id =Integer.parseInt(request.getParameter("id"));
 		String nimi = request.getParameter("nimi");
+		
+		String eka = nimi.substring(0,1).toUpperCase();
+		String loput = nimi.substring(1).toLowerCase();
+		nimi = eka+loput;
+		
 		String StrHinta = request.getParameter("hinta");
 		StrHinta = StrHinta.replace(",", ".");
 		double hinta = Double.parseDouble(StrHinta);
@@ -113,5 +118,6 @@ protected void doPost(HttpServletRequest request,
 				
 }
 }
+
 
 

@@ -37,7 +37,7 @@ public class PizzaDAO extends DataAccessObject {
 			
 			String sqlDeletet = "DELETE FROM PizzaTayte WHERE Pizza_id =?";
 			stmtDeletet = connection.prepareStatement(sqlDeletet);
-			stmtDelete.setInt(1, pizza.getId());;
+			stmtDeletet.setInt(1, pizza.getId());;
 			stmtDeletet.executeUpdate();
 			
 
