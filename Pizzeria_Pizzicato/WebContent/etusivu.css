@@ -124,6 +124,7 @@ footer {
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none;
 }
+tr:nth-child(even){background-color: #f2f2f2}
 .fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
 	float: left;
 	margin-right: 8px;

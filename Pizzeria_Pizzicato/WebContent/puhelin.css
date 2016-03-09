@@ -1,32 +1,66 @@
 body {font-family:tahoma, arial, sans-serif;   
-		background-color: white; 
+		background-color:#CCC49F ; 
 
       
       }
+ .pizzalista{ text-align:center; 
+}
 
+.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none;
+}
+tr:nth-child(even){background-color: #f2f2f2}
 header img {
             
             width:200px}
-            
-header {text-align:center}
 
 
-footer {text-align:center;
-        padding:10px;
-        
-        }
 
-nav {display:none}
-nav ul {display:none}
-nav li {display:none}
-
+footer {
+	padding: 10px 0;
+	background-color:  #98fb98;
+	position: relative;
+	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
+}
+header {
+	margin-top:-40px;
+	background-color: #006400;text-align:center;
+	
+}
+.container {
+	width: 90%;
+	background-color: #ffffff;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+.isoruutu {display:none;}
+}
+nav {background-color: #ADB96E;}
+nav ul{border-style:none;
+	list-style: none;
+	
+	margin-bottom: 15px; 
+}
+nav li {border-style:none; 
+	 display:inline-block; padding: 8px; /* this creates the button separation */
+}
+nav a, nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	width: 100%;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	text-decoration: none;
+	background-color: #ADB96E;
+}
+nav a:hover, nav a:active, nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background-color: #ADB96E;
+	color: black;
+}
 
 
 .dropdown {
-	
+	background-color: #ADB96E;
     position: relative;
     display: inline-block;
 }
+
 
 .dropdown-content {
     display: none;
