@@ -14,12 +14,12 @@
 				
 				<tr>
 					<td>Pizzan nimi:</td>
-					<td><input type="text" value="" name="nimi" size="20" required />
+					<td><input type="text" value="" name="nimi" size="20" pattern=".{4,20}" required title="Pituuden tulee olla 4-20 merkkiä" />
 					</td>					
 				</tr>
 				<tr>
 					<td>Pizzan hinta:</td>
-					<td><input type="number" value="" name="hinta" size="5" required />
+					<td><input type="number" step=0.01 value="" name="hinta" size="5" min="0" max="100" required title="Arvon tulee olla väliltä 0.0 ja 100.0" />&euro;
 					</td>					
 				</tr>
 				<tr>
