@@ -54,14 +54,12 @@
 				</td>
 				</tr>
 				<tr>
-					<td><br><div class ="button"><a href="listaaPizzat">Peruuta</a></div></td>
+					<td><br><div class ="button"><a href="listaaPizzat">Palaa pizzalistaan</a></div></td>
 					<td><br>
 						<input type="submit" name="submit-button" class="submit-button" value="Tallenna" />
 					</td>
 				</tr>	
 			</table>
 			</form>
-
-</body>
 </body>
 </html>

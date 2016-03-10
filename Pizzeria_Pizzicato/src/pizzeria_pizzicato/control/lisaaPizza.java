@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import pizzeria_pizzicato.model.Lukija;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
@@ -30,6 +32,10 @@ public class lisaaPizza extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		String viesti = null;
+		
+		
 		
 		try{
 			int id = 0;  
@@ -60,11 +66,13 @@ public class lisaaPizza extends HttpServlet {
 						PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
 						
 						pizzadao.addPizza(pizza);
+						viesti = "y";
 						
 						int pId = pizzadao.getPizzaId(nimiStr);
 						
 						for (int i = 0; i < taytteetStr.length; i++) {
 							pizzaTaytedao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),pId);
+							
 						}
 						
 						
@@ -73,7 +81,12 @@ public class lisaaPizza extends HttpServlet {
 						System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
 					}
 				
-					response.sendRedirect("listaaPizzat");
+					
+					HttpSession session = request.getSession();
+		
+					session.setAttribute("viesti", viesti );
+	
+					response.sendRedirect("lisaa-pizza");
 					
 	}
 }
