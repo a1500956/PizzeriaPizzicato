@@ -25,6 +25,8 @@ scope="request" />
 	<body>
 
 		<h1>PIZZALISTA</h1>
+		
+		<div class ="button"><a href="pizzaMenu">Palaa etusivulle</a></div>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			<td><h4>MENUSSA</h4></td>
@@ -46,10 +48,10 @@ scope="request" />
 												 </div></td>
 				<td><div class="toiminnot"> 
 				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
-				Muokkaa pizzaa
+				Muokkaa
 				</a>		
 				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>&id2=<%=pizzat.get(i).getNimi()%>" class="button">
-				Poista pizza
+				Poista
 				</a></div>
 				</td>								
 			</tr>
