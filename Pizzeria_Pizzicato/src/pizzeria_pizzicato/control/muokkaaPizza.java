@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+import javax.servlet.http.HttpSession;
+
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.PizzaTayte;
 import pizzeria_pizzicato.model.Tayte;
@@ -73,6 +76,8 @@ public class muokkaaPizza extends HttpServlet {
 }
 protected void doPost(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
+		
+		String viesti = null;
 	
 			
 	
@@ -80,7 +85,12 @@ protected void doPost(HttpServletRequest request,
 
 		
 		int id =Integer.parseInt(request.getParameter("id"));
-		String nimi = request.getParameter("nimi"); 
+		String nimi = request.getParameter("nimi");
+		
+		String eka = nimi.substring(0,1).toUpperCase();
+		String loput = nimi.substring(1).toLowerCase();
+		nimi = eka+loput;
+		
 		String StrHinta = request.getParameter("hinta");
 		StrHinta = StrHinta.replace(",", ".");
 		double hinta = Double.parseDouble(StrHinta);
@@ -102,16 +112,21 @@ protected void doPost(HttpServletRequest request,
 		for (int i = 0; i < taytteetStr.length; i++) {
 			PTdao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),id);
 		}
-		
+		viesti = "y";
 					
 		} catch (SQLException e) {
 				
 		System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
 		}
 
+	HttpSession session = request.getSession();
+	
+	session.setAttribute("viesti", viesti );
+
 	response.sendRedirect("listaaPizzat");
 				
 }
 }
+
 
 

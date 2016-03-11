@@ -1,7 +1,6 @@
 package pizzeria_pizzicato.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Pizza extends Tayte {
 	

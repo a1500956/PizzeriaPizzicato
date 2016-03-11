@@ -10,7 +10,7 @@
 <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h2>Oletko varma, että haluat poistaa pizzan: " <%=valittuNimi%> "</h2>
+<h3>Oletko varma, että haluat poistaa pizzan: " <%=valittuNimi%> "</h3>
 <div class="lomake">
 
 		<form method="post">

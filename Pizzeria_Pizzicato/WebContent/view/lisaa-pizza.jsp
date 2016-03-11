@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="styles.css" rel="stylesheet" type="text/css">
+
 <title>Lisää pizza</title>
 </head>
 <body>
@@ -14,12 +15,12 @@
 				
 				<tr>
 					<td>Pizzan nimi:</td>
-					<td><input type="text" value="" name="nimi" size="20" required />
+					<td><input type="text" value="" name="nimi" size="20" pattern=".{4,20}" required title="Pituuden tulee olla 4-20 merkkiä" />
 					</td>					
 				</tr>
 				<tr>
 					<td>Pizzan hinta:</td>
-					<td><input type="text" value="" name="hinta" size="5" required />
+					<td><input type="number" step=0.01 value="" name="hinta" size="5" min="0" max="100" required title="Arvon tulee olla väliltä 0.0 ja 100.0" />&euro;
 					</td>					
 				</tr>
 				<tr>
@@ -46,13 +47,26 @@
 				</td>
 				</tr>
 				<tr>
-					<td><br><div class ="button"><a href="listaaPizzat">Peruuta</a></div></td>
+					<td><br><div class ="button"><a href="listaaPizzat">Palaa pizzalistaan</a></div></td>
 					<td><br>
 						<input type="submit" name="submit-button" class="submit-button" value="Tallenna" />
 					</td>
 				</tr>	
 			</table>
 			</form>
+				<%
+session.setMaxInactiveInterval(2);
+%>
 
+ <script type="text/javascript">
+var Msg ='<%=session.getAttribute("viesti")%>';
+    if (Msg == "y") {
+ function alertName(){
+ alert("Tallennus onnistui!");
+ } 
+ }
+ </script> 
+<script type="text/javascript"> window.onload = alertName; </script>
+			
 </body>
 </html>

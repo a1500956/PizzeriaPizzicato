@@ -28,7 +28,8 @@ public class listaaPizzat extends HttpServlet {
        
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		
+		
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 		
@@ -96,8 +97,8 @@ public class listaaPizzat extends HttpServlet {
 			}
 		}
 		
-			request.setAttribute("pizzat", listaaPizzat);
 				
+			request.setAttribute("pizzat", listaaPizzat);		
 			String jsp = "/view/listaa-pizzat.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
