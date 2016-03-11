@@ -64,7 +64,7 @@ media="only screen and (min-width: 771px)">
 
 
   <header>
-  <section><img src="Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo" style="background-color: #C6D580; " />
+  <section><img src= "Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo"  />
 
   </section>
    
