@@ -39,9 +39,10 @@ media="only screen and (min-width: 771px)">
 </head>
 	<body>
 	<div class="container">
-<nav class=isoruutu><ul>
-  <li><a href ="Etusivu.jsp"> Etusivu</a></li>
- 	<li>	<a href ="juomaSivut.jsp"> Juomat</a></li>
+<nav class=isoruutu>
+<ul>
+ 	<li>	<a href ="#"> Etusivu</a></li>
+ 	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
 </ul>
 
@@ -54,8 +55,8 @@ media="only screen and (min-width: 771px)">
   <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
-  <li><a href ="Etusivu.jsp"> Etusivu</a></li>
- 	<li>	<a href ="juomaSivut.jsp"> Juomat</a></li>
+ 	<li>		<a href ="#"> Etusivu</a></li>
+ 	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
 </ul>
   </div>
@@ -63,8 +64,8 @@ media="only screen and (min-width: 771px)">
 
 
   <header>
-  <section><img src="/Kuvia/pizzamies.png" alt="Pizzicato" id="Insert_logo" style="background-color: #C6D580; " />
-  
+  <section><img src="Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo" style="background-color: #C6D580; " />
+
   </section>
    
   </header>
@@ -107,7 +108,7 @@ media="only screen and (min-width: 771px)">
   <!-- end .content --></article>
  
   <footer>
-  
+     
   <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
     <address>
       

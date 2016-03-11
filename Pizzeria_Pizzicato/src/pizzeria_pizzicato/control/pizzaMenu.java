@@ -29,7 +29,7 @@ public class pizzaMenu extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-				
+		
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			
