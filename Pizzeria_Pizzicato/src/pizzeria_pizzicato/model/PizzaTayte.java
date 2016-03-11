@@ -1,7 +1,5 @@
 package pizzeria_pizzicato.model;
 
-import java.util.ArrayList;
-
 public class PizzaTayte {
 
 	private int pId, tId;
