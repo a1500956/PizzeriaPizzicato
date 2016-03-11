@@ -17,6 +17,10 @@ header {
 header, section, footer, aside, article, figure {
 	display: block;
 }
+header img{
+	margin-top: -65px;
+	width: 200px;
+}
 
 body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
