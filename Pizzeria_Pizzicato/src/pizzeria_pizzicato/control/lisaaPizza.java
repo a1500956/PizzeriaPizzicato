@@ -18,6 +18,7 @@ import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 public class lisaaPizza extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Lukija lukija = new Lukija();
+	String ilmoitus = "Pizzan lis‰‰minen onnistui";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +41,7 @@ public class lisaaPizza extends HttpServlet {
 			double hinta = lukija.lueDesimaaliluku(hintaStr);
 			String nakyyStr = request.getParameter("nakyy");
 			int nakyy = new Integer(nakyyStr);
+			
 			
 			String[] taytteetStr = request.getParameterValues("tayte");
 			//int[] taytteet = new int[taytteetStr.length];
@@ -65,9 +67,11 @@ public class lisaaPizza extends HttpServlet {
 						
 					} catch (SQLException e) {
 						
+						ilmoitus = "Pizzan lis‰‰minen ep‰onnistui!";
 						System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
 					}
 				
+					request.setAttribute("ilmoitus", ilmoitus);
 					response.sendRedirect("listaaPizzat");
 					
 	}
