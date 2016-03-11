@@ -47,10 +47,10 @@ scope="request" />
 												 </div></td>
 				<td><div class="toiminnot"> 
 				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
-				Muokkaa pizzaa
+				Muokkaa
 				</a>		
 				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>&id2=<%=pizzat.get(i).getNimi()%>" class="button">
-				Poista pizza
+				Poista
 				</a></div>
 				</td>								
 			</tr>
