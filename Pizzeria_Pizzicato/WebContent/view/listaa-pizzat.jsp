@@ -25,6 +25,7 @@ scope="request" />
 	<body>
 
 		<h1>PIZZALISTA</h1>
+		<div class ="button"><a href="pizzaMenu">Palaa etusivulle</a></div>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			<td><h4>MENUSSA</h4></td>
