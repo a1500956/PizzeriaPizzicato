@@ -64,8 +64,7 @@ media="only screen and (min-width: 771px)">
 
   <header>
   <section><img src="/Kuvia/pizzamies.png" alt="Pizzicato" id="Insert_logo" style="background-color: #C6D580; " />
-  <p><h5>Pizzeria Pizzicato</h5></p>
-  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
+  
   </section>
    
   </header>
@@ -108,7 +107,8 @@ media="only screen and (min-width: 771px)">
   <!-- end .content --></article>
  
   <footer>
-    <p>Yhteystietoja yms</p>
+  
+  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
     <address>
       
     </address>
