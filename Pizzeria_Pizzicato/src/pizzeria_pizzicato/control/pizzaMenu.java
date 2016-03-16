@@ -110,8 +110,8 @@ public class pizzaMenu extends HttpServlet {
 			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
-			dispather.forward(request, response);
-		 
-		}
+		dispather.forward(request, response);
+
+	}
 
 }

@@ -14,41 +14,37 @@ public class DataAccessObject {
 		String password = Accounts.DBPASSWORD;
 		String url = "jdbc:mysql://localhost:3306/projekti";
 
-		
 		try {
-			
+
 			Class.forName("org.mariadb.jdbc.Driver").newInstance();
-		
-		
+
 			connection = DriverManager.getConnection(url, username, password);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		return connection;
 	}
-	
 
 	protected static void close(Statement stmt, Connection connection) {
-		close (null, stmt, connection);
+		close(null, stmt, connection);
 	}
 
-	
-	protected static void close(ResultSet rs, Statement stmt, Connection conn ) {
-		
+	protected static void close(ResultSet rs, Statement stmt, Connection conn) {
+
 		try {
-			if (rs != null) { 
+			if (rs != null) {
 				rs.close();
 			}
-			if (stmt != null) { 
+			if (stmt != null) {
 				stmt.close();
 			}
 			if (conn != null) {
 				conn.close();
 			}
-			
+
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 }

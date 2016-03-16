@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Pizza extends Tayte {
-	
+
 	private int id;
 	private String nimi;
 	private double hinta;
 	int nakyy;
 	private ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
-	
-	
-	
+
 	public Pizza() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,10 +22,8 @@ public class Pizza extends Tayte {
 		this.nimi = nimi;
 		this.hinta = hinta;
 		this.nakyy = nakyy;
-		
-	}
 
-	
+	}
 
 	public int getId() {
 		return id;
@@ -44,7 +40,6 @@ public class Pizza extends Tayte {
 	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
-
 
 	public double getHinta() {
 		return hinta;
@@ -75,7 +70,5 @@ public class Pizza extends Tayte {
 	public void setTaytteet(ArrayList<Tayte> taytteet) {
 		this.taytteet = taytteet;
 	}
-	
-	
 
 }

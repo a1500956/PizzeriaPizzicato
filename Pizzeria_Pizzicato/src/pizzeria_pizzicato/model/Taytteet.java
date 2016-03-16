@@ -3,10 +3,8 @@ package pizzeria_pizzicato.model;
 import java.util.ArrayList;
 
 public class Taytteet extends PizzaTayte {
-	
+
 	private ArrayList<String> taytteet = new ArrayList<String>();
-	
-	
 
 	public Taytteet(ArrayList<String> taytteet) {
 		super();
@@ -36,5 +34,5 @@ public class Taytteet extends PizzaTayte {
 		return "Taytteet [taytteet=" + taytteet + ", toString()="
 				+ super.toString() + "]";
 	}
-	
+
 }
