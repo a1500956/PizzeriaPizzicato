@@ -5,11 +5,13 @@
 
 
 	import java.sql.PreparedStatement;
-	import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.util.ArrayList;
-	import pizzeria_pizzicato.model.Tayte;
-	import pizzeria_pizzicato.model.dao.DataAccessObject;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 
 
@@ -42,7 +44,35 @@
 			}
 		}
 
-		
+		public void deleteTayte(Tayte tayte) throws SQLException {
+			Connection connection = null;
+			
+			PreparedStatement stmtDelete = null;
+			
+			
+			
+			
+
+			try {
+				
+				connection = getConnection();
+				
+				String sqlDelete = "DELETE FROM Tayte WHERE tayte_id =?";
+				stmtDelete = connection.prepareStatement(sqlDelete);
+				stmtDelete.setInt(1, tayte.getTayte_id());
+				stmtDelete.executeUpdate();
+				
+						
+				
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+				close(stmtDelete, connection);
+				
+				
+				
+			}
+		}
 		
 		
 		public ArrayList<Tayte> findAll() {	
