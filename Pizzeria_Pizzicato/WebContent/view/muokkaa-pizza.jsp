@@ -3,11 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
-<%@ page import="pizzeria_pizzicato.model.PizzaTayte"%>
+<%@ page import="pizzeria_pizzicato.model.Tayte"%>
 
 <jsp:useBean id="valittuN" type="java.lang.String" scope="request" />
 <jsp:useBean id="valittuH" type="java.lang.String" scope="request" />
-<jsp:useBean id="taytteet" type="java.util.ArrayList<PizzaTayte>"
+<jsp:useBean id="taytteet" type="java.util.ArrayList<String>"
 	scope="request" />
 <jsp:useBean id="nakyykovaiei" type="java.lang.Integer" scope="request" />
 

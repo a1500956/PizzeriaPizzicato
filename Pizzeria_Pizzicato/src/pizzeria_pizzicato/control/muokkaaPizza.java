@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.PizzaTayte;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
@@ -45,7 +44,7 @@ public class muokkaaPizza extends HttpServlet {
 		request.setAttribute("valittuH", Double.toString(kyseessa.getHinta()));
 		request.setAttribute("nakyykovaiei", kyseessa.getNakyy());
 
-		ArrayList<PizzaTayte> pizzanTaytteittenIDt = new ArrayList<PizzaTayte>();
+		ArrayList<Tayte> pizzanTaytteittenIDt = new ArrayList<Tayte>();
 		pizzanTaytteittenIDt = PTdao.haePizzanTaytteet(iidee);
 		ArrayList<Tayte> tietokannanTaytteet = new ArrayList<Tayte>();
 		tietokannanTaytteet = Tdao.findAll();
@@ -53,7 +52,7 @@ public class muokkaaPizza extends HttpServlet {
 
 		for (int i = 0; i < pizzanTaytteittenIDt.size(); i++) {
 			for (int j = 0; j < tietokannanTaytteet.size(); j++) {
-				if ((pizzanTaytteittenIDt.get(i).gettId()) == tietokannanTaytteet
+				if ((pizzanTaytteittenIDt.get(i).getTayte_id()) == tietokannanTaytteet
 						.get(j).getTayte_id()) {
 					taytteittenEdelleenlahetettavaNimilista
 							.add(tietokannanTaytteet.get(j).getTayte_nimi());
