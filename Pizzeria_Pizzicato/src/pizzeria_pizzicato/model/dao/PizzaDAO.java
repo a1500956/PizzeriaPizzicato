@@ -1,13 +1,14 @@
 package pizzeria_pizzicato.model.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.PizzaTayte;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class PizzaDAO extends DataAccessObject {
@@ -97,29 +98,33 @@ public class PizzaDAO extends DataAccessObject {
 	//Hakee kaikki tietokannassa olevat pizzat
 	
 	public ArrayList<Pizza> findAll() {
-
-	
-	
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		Tayte tayte = new Tayte();
 		ArrayList<Pizza> pizzat = new ArrayList<Pizza>();
-		Pizza pizza = null;
+		Pizza pizza = new Pizza();
+		int edellinenPizzaId = 0;
 		try {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT pizza_id, pizza_nimi, pizza_hinta, nakyy FROM Pizza;";
+			String sqlSelect = "SELECT p.pizza_nimi, t.pizza_id, t.tayte_id, p.pizza_hinta, nakyy, x.tayte_nimi FROM PizzaTayte t JOIN Pizza p ON p.pizza_id = t.pizza_id JOIN Tayte x ON x.tayte_id = t.tayte_id ORDER BY t.pizza_id;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
 			rs = stmt.executeQuery(sqlSelect);
 
 			while (rs.next()) {
-				pizza = readPizza(rs);
-
-				pizzat.add(pizza);
-			}
+				if(rs.getInt("pizza_id") != edellinenPizzaId ){
+					pizza = readPizza(rs);
+					pizzat.add(pizza);
+					edellinenPizzaId = pizza.getId();
+				}
+				tayte = readTayte(rs); //luodaan t‰yteolio
+				pizza.addTayte(tayte);//lis‰‰ t‰yte pizzan t‰ytelistaan
+			}			
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -205,6 +210,19 @@ public class PizzaDAO extends DataAccessObject {
 	public String readNimi(ResultSet rs) {
 		try {
 			return rs.getString("pizza_nimi");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Tayte readTayte(ResultSet rs) {
+
+		try {
+
+			int tayte = rs.getInt("tayte_id");
+			String nimi = rs.getString("tayte_nimi");
+
+			return new Tayte(tayte, nimi, 0);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
