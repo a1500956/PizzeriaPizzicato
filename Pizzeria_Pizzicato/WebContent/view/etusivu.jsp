@@ -4,12 +4,9 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
-<<<<<<< HEAD
 <%@ page import="java.text.NumberFormat"%>
-=======
 <%@ page import="java.text.NumberFormat" %>
 
->>>>>>> refs/remotes/origin/master
 <%
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -75,9 +72,9 @@ and (max-width: 770px)">
 		<header> <section>
 		<img src="Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo" />
 
-<<<<<<< HEAD
+
 		</section> </header>
-=======
+
   </section>
    
   </header>
@@ -114,9 +111,9 @@ and (max-width: 770px)">
 			<% } %>
 		</table><br>
     </span>
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
+
+
 		<article> <span class="pizzalista"><h1>Pizzamenumme</h1></span>
 		<section> <span class="pizzalista">
 			<table class="listaa-pizzat" width="auto" border="1" align="center">
@@ -160,7 +157,7 @@ and (max-width: 770px)">
 	</div>
 
 </body>
-=======
+
     
     </section>
     
@@ -175,5 +172,5 @@ and (max-width: 770px)">
   </footer>
   <!-- end .container --></div>
 	</body>
->>>>>>> refs/remotes/origin/master
+
 </html>
