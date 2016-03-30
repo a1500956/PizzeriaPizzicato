@@ -85,12 +85,7 @@ public class listaaPizzat extends HttpServlet {
 
 			for (int h = 0; h < pizzat.get(i).getTaytteet().size(); h++) {
 				for (int k = 0; k < tayteLista.size(); k++) {
-					if (pizzat
-							.get(i)
-							.getTaytteet()
-							.get(h)
-							.equals(Integer.toString(tayteLista.get(k)
-									.getTayte_id()))) {
+					if (pizzat.get(i).getTaytteet().get(h).equals(Integer.toString(tayteLista.get(k).getTayte_id()))) {
 						Tayte sArvo = new Tayte();
 						sArvo.setTayte_id(tayteLista.get(k).getTayte_id());
 						sArvo.setTayte_nimi(tayteLista.get(k).getTayte_nimi());
