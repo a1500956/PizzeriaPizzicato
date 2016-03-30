@@ -47,6 +47,7 @@ public class muokkaaPizza extends HttpServlet {
 		PizzaTayteDAO PTdao = new PizzaTayteDAO();
 		TayteDAO Tdao = new TayteDAO();
 		
+		
 		int iidee = Integer.parseInt(request.getParameter("id"));
 		
 		Pizza kyseessa = Pdao.getPizza(iidee);

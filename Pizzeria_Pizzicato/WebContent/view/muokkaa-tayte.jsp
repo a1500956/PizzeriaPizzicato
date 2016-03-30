@@ -7,6 +7,7 @@
 
 
 <jsp:useBean id="valittuN" type="java.lang.String" scope="request" />
+<jsp:useBean id="valittuN_en" type="java.lang.String" scope="request" />
 <jsp:useBean id="valittuH" type="java.lang.String" scope="request" />
 
 <html>
@@ -20,8 +21,13 @@
 		<form action="" method="post">
 			<table class="lisaa-pizza" align=center>
 				<tr>
-					<td>Täytteen nimi:</td>
+					<td>Täytteen nimi suomeksi:</td>
 					<td><input type="text" value="<%=valittuN%>" name="nimi" size="20" pattern=".{4,20}" required title="Pituuden tulee olla 4-20 merkkiä" />
+					</td>					
+				</tr>
+				<tr>
+					<td>Täytteen nimi englanniksi:</td>
+					<td><input type="text" value="<%=valittuN_en%>" name="nimi_en" size="20" pattern=".{4,20}" required title="Pituuden tulee olla 4-20 merkkiä" />
 					</td>					
 				</tr>
 				<tr>

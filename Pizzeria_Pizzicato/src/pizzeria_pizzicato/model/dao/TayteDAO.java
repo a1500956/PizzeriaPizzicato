@@ -21,11 +21,12 @@ public class TayteDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlInsert = "INSERT INTO Tayte(tayte_id, tayte_nimi, tayte_hinta) VALUES (?, ?, ?)";
+			String sqlInsert = "INSERT INTO Tayte(tayte_id, tayte_nimi, tayte_nimi_en, tayte_hinta) VALUES (?, ?, ?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
 			stmtInsert.setInt(1, tayte.getTayte_id());
 			stmtInsert.setString(2, tayte.getTayte_nimi());
-			stmtInsert.setDouble(3, tayte.getTayte_hinta());
+			stmtInsert.setString(3, tayte.getTayte_nimi_en());
+			stmtInsert.setDouble(4, tayte.getTayte_hinta());
 
 			stmtInsert.executeUpdate();
 
@@ -47,11 +48,12 @@ public class TayteDAO extends DataAccessObject {
 			
 			connection = getConnection();
 			
-			String sqlUpdate = "UPDATE Tayte SET tayte_nimi = ?, tayte_hinta= ? WHERE tayte_id =?";
+			String sqlUpdate = "UPDATE Tayte SET tayte_nimi = ?, tayte_nimi_en=?, tayte_hinta= ? WHERE tayte_id =?";
 			stmtUpdate = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setString(1, tayte.getTayte_nimi());
-			stmtUpdate.setDouble(2, tayte.getTayte_hinta());
-			stmtUpdate.setInt(3, tayte.getTayte_id());
+			stmtUpdate.setString(2, tayte.getTayte_nimi_en());
+			stmtUpdate.setDouble(3, tayte.getTayte_hinta());
+			stmtUpdate.setInt(4, tayte.getTayte_id());
 			stmtUpdate.executeUpdate();
 			
 			
@@ -96,7 +98,7 @@ public class TayteDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT tayte_id, tayte_nimi, tayte_hinta FROM Tayte;";
+			String sqlSelect = "SELECT tayte_id, tayte_nimi, tayte_nimi_en, tayte_hinta FROM Tayte;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
@@ -122,9 +124,10 @@ public class TayteDAO extends DataAccessObject {
 
 			int id = rs.getInt("tayte_id");
 			String nimi = rs.getString("tayte_nimi");
+			String nimi_en = rs.getString("tayte_nimi_en");
 			double hinta = rs.getDouble("tayte_hinta");
 
-			return new Tayte(id, nimi, hinta);
+			return new Tayte(id, nimi, nimi_en, hinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -140,7 +143,7 @@ public class TayteDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT tayte_id, tayte_nimi, tayte_hinta FROM Tayte WHERE;";
+			String sqlSelect = "SELECT tayte_id, tayte_nimi, tayte_nimi_en, tayte_hinta FROM Tayte;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
@@ -158,6 +161,29 @@ public class TayteDAO extends DataAccessObject {
 		}
 
 		return taytteet;
+	}
+	
+	public Tayte getTayte(int id){
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Tayte tulos = null;
+		try {
+			
+			conn = getConnection();
+			ArrayList<Tayte> taytteet = findTayte();
+			for (int i = 0; i < taytteet.size(); i++) {
+				if(taytteet.get(i).getTayte_id()==id){
+					tulos = taytteet.get(i);
+				}
+			}
+			
+			return tulos;
+		} finally {
+			close(rs, stmt, conn); 
+		}
+		
+		
 	}
 
 }

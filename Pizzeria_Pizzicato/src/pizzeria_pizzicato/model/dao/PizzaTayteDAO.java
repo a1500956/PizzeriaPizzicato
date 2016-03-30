@@ -110,7 +110,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				
 				conn = getConnection();
 				
-				String sqlSelect = "SELECT pizza_id, tayte_id FROM PizzaTayte WHERE pizza_id="+PID+";";
+				String sqlSelect = "SELECT tayte_id FROM PizzaTayte WHERE pizza_id="+PID+";";
 			
 				stmt = conn.prepareStatement(sqlSelect);
 				
