@@ -37,11 +37,13 @@ public class lisaaTayte extends HttpServlet {
 
 			String nimiStr = request.getParameter("nimi");
 			String tayte_nimi = new String(nimiStr);
+			
+			String tayte_nimi_en = new String(request.getParameter("nimi_en"));
 
 			String hintaStr = request.getParameter("hinta");
 			double tayte_hinta = lukija.lueDesimaaliluku(hintaStr);
 
-			Tayte tayte = new Tayte(tayte_id, tayte_nimi, tayte_hinta);
+			Tayte tayte = new Tayte(tayte_id, tayte_nimi, tayte_nimi_en, tayte_hinta);
 			TayteDAO taytedao = new TayteDAO();
 
 			taytedao.addTayte(tayte);

@@ -27,14 +27,15 @@ public class muokkaaTayte extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String strID = request.getParameter("id");
-		String strNimi = request.getParameter("id2");
-		String strHinta = request.getParameter("id3");
+		
+		TayteDAO TDAO = new TayteDAO();
+		Tayte kasittelyssa = TDAO.getTayte(Integer.parseInt(request.getParameter("id")));
 						
 		
-		request.setAttribute("valittu", strID);
-		request.setAttribute("valittuN", strNimi);
-		request.setAttribute("valittuH", strHinta);
+		request.setAttribute("valittu", request.getParameter("id"));
+		request.setAttribute("valittuN", kasittelyssa.getTayte_nimi());
+		request.setAttribute("valittuN_en", kasittelyssa.getTayte_nimi_en());
+		request.setAttribute("valittuH", Double.toString(kasittelyssa.getTayte_hinta()));
 		String jsp = "/view/muokkaa-tayte.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
@@ -45,20 +46,21 @@ public class muokkaaTayte extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String strNimi = request.getParameter("id2");
 		
 		
 		try{
 
 			int tayte_id = Integer.parseInt(request.getParameter("id"));
-			String tayte_nimi = new String(strNimi);
+			String tayte_nimi = new String(request.getParameter("nimi"));
+			String tayte_nimi_en = new String(request.getParameter("nimi_en"));
 			
 			String StrHinta = request.getParameter("hinta");
 			StrHinta = StrHinta.replace(",", ".");
 			double tayte_hinta = Double.parseDouble(StrHinta);
 			
 			
-			Tayte tayte = new Tayte(tayte_id, tayte_nimi, tayte_hinta);
+			Tayte tayte = new Tayte(tayte_id, tayte_nimi, tayte_nimi_en, tayte_hinta);
+			
 			TayteDAO taytedao = new TayteDAO();
 						
 			taytedao.updateTayte(tayte);
