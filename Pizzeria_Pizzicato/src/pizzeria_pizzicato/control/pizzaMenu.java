@@ -34,10 +34,6 @@ public class pizzaMenu extends HttpServlet {
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 			
-			for(int i = 0; i<pizzaLista.size(); i++){
-				System.out.println(pizzaLista.get(i));
-			}
-			
 			for(int i=0;i<pizzaLista.size();i++){
 				
 				if(pizzaLista.get(i).getNakyy()==1){
