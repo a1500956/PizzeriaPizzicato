@@ -4,18 +4,16 @@ package pizzeria_pizzicato.model;
 import java.util.ArrayList;
 
 public class Pizza extends Tayte {
-	
+
 	private int id;
 	private String nimi;
 	private double hinta;
 	int nakyy;
-	private ArrayList<Tayte> taytteet = new ArrayList<Tayte>();
-	
-	
-	
+	private ArrayList<Tayte> taytteet;
+
 	public Pizza() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.taytteet = new ArrayList<Tayte>(); //tyhjän listan luonti
 	}
 
 	public Pizza(int id, String nimi, double hinta, int nakyy) {
@@ -24,10 +22,8 @@ public class Pizza extends Tayte {
 		this.nimi = nimi;
 		this.hinta = hinta;
 		this.nakyy = nakyy;
-		
+		this.taytteet = new ArrayList<Tayte>(); //tyhjän listan luonti
 	}
-
-	
 
 	public int getId() {
 		return id;
@@ -44,7 +40,6 @@ public class Pizza extends Tayte {
 	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
-
 
 	public double getHinta() {
 		
@@ -63,6 +58,10 @@ public class Pizza extends Tayte {
 	public void setNakyy(int nakyy) {
 		this.nakyy = nakyy;
 	}
+	
+	public ArrayList<Tayte> getTaytteet() {
+		return taytteet;
+	}
 
 	@Override
 	public String toString() {
@@ -70,14 +69,19 @@ public class Pizza extends Tayte {
 				+ ", nakyy=" + nakyy + ", taytteet=" + taytteet + "]";
 	}
 
-	public ArrayList<Tayte> getTaytteet() {
-		return taytteet;
-	}
-
-	public void setTaytteet(ArrayList<Tayte> taytteet) {
-		this.taytteet = taytteet;
+	public Tayte getTayte(int index) {
+		Tayte tayte = null;
+		if(index>=0 && index < taytteet.size() ){
+		tayte = taytteet.get(index);
+		}
+		return tayte;
 	}
 	
-	
+	public void addTayte(Tayte tayte){
+		if(tayte != null){
+			this.taytteet.add(tayte);	
+		}
+		
+	}
 
 }

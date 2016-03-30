@@ -6,7 +6,6 @@ public class PizzaTayte {
 
 	private int pId, tId;
 
-
 	public PizzaTayte() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -37,6 +36,6 @@ public class PizzaTayte {
 	@Override
 	public String toString() {
 		return "PizzaTayte [pId=" + pId + ", tId=" + tId + "]";
-	}	
-	
+	}
+
 }
