@@ -3,6 +3,7 @@ package pizzeria_pizzicato.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -92,10 +93,13 @@ public class listaaPizzat extends HttpServlet {
 						sArvo.setTayte_nimi(tayteLista.get(k).getTayte_nimi());
 						listaaPizzat.get(i).getTaytteet().add(sArvo);
 					}
+					
+					
 				}
 				
 			}
 		}
+		
 		
 				
 			request.setAttribute("pizzat", listaaPizzat);		

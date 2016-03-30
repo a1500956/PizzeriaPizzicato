@@ -5,6 +5,7 @@
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="java.text.NumberFormat" %>
+
 <%
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -86,6 +87,7 @@ media="only screen and (min-width: 771px)">
 				
 		</tr>
 			<%for(int i = 0; i < pizzat.size(); i++) {%>
+			
 			<tr>
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
@@ -115,6 +117,5 @@ media="only screen and (min-width: 771px)">
     </address>
   </footer>
   <!-- end .container --></div>
-
 	</body>
 </html>

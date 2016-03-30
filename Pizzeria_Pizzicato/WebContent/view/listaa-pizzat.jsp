@@ -26,7 +26,9 @@ scope="request" />
 
 		<h1>PIZZALISTA</h1>
 		
-		<div class ="button"><a href="pizzaMenu">Palaa etusivulle</a></div>
+		<div class ="button"><a href="pizzaMenu">Palaa etusivulle</a></div><br>
+		<a href="lisaa-pizza" class="button">Lisää pizza</a>
+		<a href="listaa-taytteet" class="button">Näytä täytteet</a>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			<td><h4>MENUSSA</h4></td>
@@ -57,8 +59,7 @@ scope="request" />
 			</tr>
 			<% } %>
 		</table><br>
-		<a href="lisaa-pizza" class="button">Lisää pizza</a>
-		
+				
 			<%
 session.setMaxInactiveInterval(2);
 %>

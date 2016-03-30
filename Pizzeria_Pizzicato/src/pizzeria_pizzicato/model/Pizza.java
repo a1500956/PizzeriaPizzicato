@@ -1,5 +1,6 @@
 package pizzeria_pizzicato.model;
 
+
 import java.util.ArrayList;
 
 public class Pizza extends Tayte {
@@ -46,6 +47,8 @@ public class Pizza extends Tayte {
 
 
 	public double getHinta() {
+		
+				
 		return hinta;
 	}
 
