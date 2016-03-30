@@ -4,7 +4,12 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<<<<<<< HEAD
 <%@ page import="java.text.NumberFormat"%>
+=======
+<%@ page import="java.text.NumberFormat" %>
+
+>>>>>>> refs/remotes/origin/master
 <%
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -70,8 +75,48 @@ and (max-width: 770px)">
 		<header> <section>
 		<img src="Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo" />
 
+<<<<<<< HEAD
 		</section> </header>
+=======
+  </section>
+   
+  </header>
+ 
+  <article>
+  
+    <span class="pizzalista"><h1>Pizza menumme</h1></span>
+    
+    <section>
+   
+    <span class="pizzalista">
+		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		<tr>
+			
+			<th>PIZZAT</th>
+			<th>HINTA</th>
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+			<%for(int i = 0; i < pizzat.size(); i++) {%>
+			
+			<tr>
+				
+				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
+										
+			</tr>
+			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
+												<%  }%>
+												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
+												 
+			</div></td></tr>
+			<% } %>
+		</table><br>
+    </span>
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
 		<article> <span class="pizzalista"><h1>Pizzamenumme</h1></span>
 		<section> <span class="pizzalista">
 			<table class="listaa-pizzat" width="auto" border="1" align="center">
@@ -115,4 +160,20 @@ and (max-width: 770px)">
 	</div>
 
 </body>
+=======
+    
+    </section>
+    
+  <!-- end .content --></article>
+ 
+  <footer>
+     
+  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
+    <address>
+      
+    </address>
+  </footer>
+  <!-- end .container --></div>
+	</body>
+>>>>>>> refs/remotes/origin/master
 </html>

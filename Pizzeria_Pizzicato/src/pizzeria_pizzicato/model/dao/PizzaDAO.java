@@ -12,6 +12,8 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class PizzaDAO extends DataAccessObject {
 
+	//Poistaa pizzan sek‰ siihen liittyv‰t t‰ytteet PizzaTayte taulukosta
+	
 	public void deletePizza(Pizza pizza) throws SQLException {
 		Connection connection = null;
 
@@ -66,6 +68,9 @@ public class PizzaDAO extends DataAccessObject {
 		}
 	}
 
+
+	//Lis‰‰ uuden pizzan attribuutteineen 
+	
 	public void addPizza(Pizza pizza) throws SQLException {
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
@@ -89,7 +94,12 @@ public class PizzaDAO extends DataAccessObject {
 		}
 	}
 
+	//Hakee kaikki tietokannassa olevat pizzat
+	
 	public ArrayList<Pizza> findAll() {
+
+	
+	
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
