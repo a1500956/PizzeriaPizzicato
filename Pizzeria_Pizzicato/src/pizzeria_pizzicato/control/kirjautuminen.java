@@ -27,7 +27,7 @@ public class kirjautuminen extends HttpServlet {
     
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        jsp = context.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+        jsp = context.getRequestDispatcher("login.jsp");
      }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
@@ -40,7 +40,7 @@ public class kirjautuminen extends HttpServlet {
     throws ServletException, IOException {
        logger.debug("doPost()");
 
-       String kayttaja_tunnus = req.getParameter("kayttaja_tunnus");
+       String kayttaja_tunnus = req.getParameter("kayttajatunnus");
        Kayttaja kayttaja = new KayttajaDAO().findByKayttajaTunnus(kayttaja_tunnus);
        if (kayttaja == null)
        {
@@ -50,7 +50,7 @@ public class kirjautuminen extends HttpServlet {
           return;
        }
        
-       String kayttaja_salasana = req.getParameter("password");
+       String kayttaja_salasana = req.getParameter("salasana");
        if (kayttaja_salasana == null || !kayttaja.getKayttaja_salasana().equals(kayttaja_salasana))
        {
           logger.debug("authentication failed: bad password");
@@ -63,7 +63,7 @@ public class kirjautuminen extends HttpServlet {
        int kayttaja_id = kayttaja.getKayttaja_id();
        session.setAttribute("kayttaja_id", kayttaja_id);
        logger.debug("authenticated");
-       String url = "home";
+       String url = "pizzaMenu";
        resp.sendRedirect(url);
     }  
 }
