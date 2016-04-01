@@ -18,27 +18,36 @@ public class PizzaDAO extends DataAccessObject {
 		Connection connection = null;
 
 		PreparedStatement stmtDelete = null;
-		PreparedStatement stmtDeletet = null;
 
 		try {
 
 			connection = getConnection();
-
-			String sqlDelete = "DELETE FROM Pizza WHERE tuote_id =?";
+			
+			String sqlDelete = "DELETE FROM PizzaTayte WHERE tuote_id =?";
 			stmtDelete = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
 
-			String sqlDeletet = "DELETE FROM PizzaTayte WHERE Pizza_id =?";
-			stmtDeletet = connection.prepareStatement(sqlDeletet);
-			stmtDeletet.setInt(1, pizza.getId());
-			stmtDeletet.executeUpdate();
+			sqlDelete = "DELETE FROM Pizza WHERE tuote_id =?";
+			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete.setInt(1, pizza.getId());
+			stmtDelete.executeUpdate();
+			
+			sqlDelete = "DELETE FROM Tuote WHERE tuote_id =?";
+			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete.setInt(1, pizza.getId());
+			stmtDelete.executeUpdate();
+			
+			
+			
+			
+			
+			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtDelete, connection);
-			close(stmtDeletet, connection);
 
 		}
 	}
