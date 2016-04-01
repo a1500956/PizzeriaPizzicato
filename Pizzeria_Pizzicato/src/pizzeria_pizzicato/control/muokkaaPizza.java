@@ -52,10 +52,8 @@ public class muokkaaPizza extends HttpServlet {
 
 		for (int i = 0; i < pizzanTaytteittenIDt.size(); i++) {
 			for (int j = 0; j < tietokannanTaytteet.size(); j++) {
-				if ((pizzanTaytteittenIDt.get(i).getTayte_id()) == tietokannanTaytteet
-						.get(j).getTayte_id()) {
-					taytteittenEdelleenlahetettavaNimilista
-							.add(tietokannanTaytteet.get(j).getTayte_nimi());
+				if ((pizzanTaytteittenIDt.get(i).getTayte_id()) == tietokannanTaytteet.get(j).getTayte_id()) {
+					taytteittenEdelleenlahetettavaNimilista.add(tietokannanTaytteet.get(j).getTayte_nimi());
 				}
 			}
 		}

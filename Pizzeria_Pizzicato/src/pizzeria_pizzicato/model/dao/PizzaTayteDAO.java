@@ -25,8 +25,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				
 				connection = getConnection();
 				
-
-					String sqlInsert = "INSERT INTO PizzaTayte(pizza_id, tayte_id) VALUES ("+pizzaId+","+tayteId+")";
+					String sqlInsert = "INSERT INTO PizzaTayte(tuote_id, tayte_id) VALUES ("+pizzaId+","+tayteId+")";
 					stmtInsert = connection.prepareStatement(sqlInsert);
 					stmtInsert.executeUpdate();
 					
@@ -48,7 +47,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				
 				conn = getConnection();
 				
-				String sqlSelect = "SELECT tayte_id FROM PizzaTayte WHERE pizza_id="+PID+";";
+				String sqlSelect = "SELECT tayte_id FROM PizzaTayte WHERE tuote_id="+PID+";";
 			
 				stmt = conn.prepareStatement(sqlSelect);
 				
@@ -92,7 +91,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				conn = getConnection();
 				
 				
-				String sqlSelect = "DELETE FROM PizzaTayte WHERE pizza_id ='"+pizzaID+"';";
+				String sqlSelect = "DELETE FROM PizzaTayte WHERE tuote_id ='"+pizzaID+"';";
 				stmt = conn.prepareStatement(sqlSelect);
 				//stmt.setInt(1, pizzaID);
 				
