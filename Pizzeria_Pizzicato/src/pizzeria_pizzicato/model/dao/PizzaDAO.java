@@ -18,28 +18,36 @@ public class PizzaDAO extends DataAccessObject {
 		Connection connection = null;
 
 		PreparedStatement stmtDelete = null;
-		PreparedStatement stmtDeletet = null;
 
 		try {
 
 			connection = getConnection();
-
-			String sqlDelete = "DELETE FROM Pizza WHERE Pizza_id =?";
+			
+			String sqlDelete = "DELETE FROM PizzaTayte WHERE tuote_id =?";
 			stmtDelete = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
 
-			String sqlDeletet = "DELETE FROM PizzaTayte WHERE Pizza_id =?";
-			stmtDeletet = connection.prepareStatement(sqlDeletet);
-			stmtDeletet.setInt(1, pizza.getId());
-			;
-			stmtDeletet.executeUpdate();
+			sqlDelete = "DELETE FROM Pizza WHERE tuote_id =?";
+			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete.setInt(1, pizza.getId());
+			stmtDelete.executeUpdate();
+			
+			sqlDelete = "DELETE FROM Tuote WHERE tuote_id =?";
+			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete.setInt(1, pizza.getId());
+			stmtDelete.executeUpdate();
+			
+			
+			
+			
+			
+			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtDelete, connection);
-			close(stmtDeletet, connection);
 
 		}
 	}
@@ -53,13 +61,19 @@ public class PizzaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlUpdate = "UPDATE Pizza SET pizza_nimi = ?, pizza_hinta= ?, nakyy = ? WHERE pizza_id =?";
+			String sqlUpdate = "UPDATE Pizza SET pizza_nakyy = ? WHERE tuote_id =?";
+			stmtUpdate = connection.prepareStatement(sqlUpdate);
+			stmtUpdate.setDouble(1, pizza.getNakyy());
+			stmtUpdate.setInt(2, pizza.getId());
+			stmtUpdate.executeUpdate();
+			
+			sqlUpdate = "UPDATE Tuote SET tuote_nimi = ?, tuote_hinta = ? WHERE tuote_id =?";
 			stmtUpdate = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setString(1, pizza.getNimi());
 			stmtUpdate.setDouble(2, pizza.getHinta());
-			stmtUpdate.setDouble(3, pizza.getNakyy());
-			stmtUpdate.setInt(4, pizza.getId());
+			stmtUpdate.setInt(3, pizza.getId());
 			stmtUpdate.executeUpdate();
+
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -79,11 +93,22 @@ public class PizzaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlInsert = "INSERT INTO Pizza(pizza_nimi, pizza_hinta, nakyy) VALUES (?, ?, ?)";
+
+			String sqlInsert = "INSERT INTO Tuote(tuote_nimi, tuote_hinta) VALUES (?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
+
 			stmtInsert.setString(1, pizza.getNimi());
 			stmtInsert.setDouble(2, pizza.getHinta());
-			stmtInsert.setInt(3, pizza.getNakyy());
+			
+			stmtInsert.executeUpdate();
+			
+			String iidee = Integer.toString(getPizzaId(pizza.getNimi()));
+
+			String sqlInsert2 = "INSERT INTO Pizza(tuote_id, pizza_nakyy) VALUES (?, ?)";
+			stmtInsert = connection.prepareStatement(sqlInsert2);
+
+			stmtInsert.setString(1, iidee);
+			stmtInsert.setInt(2, pizza.getNakyy());
 
 			stmtInsert.executeUpdate();
 
@@ -108,14 +133,14 @@ public class PizzaDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT p.pizza_nimi, t.pizza_id, t.tayte_id, p.pizza_hinta, nakyy, x.tayte_nimi, x.tayte_nimi_en FROM PizzaTayte t JOIN Pizza p ON p.pizza_id = t.pizza_id JOIN Tayte x ON x.tayte_id = t.tayte_id ORDER BY t.pizza_id;";
+			String sqlSelect = "SELECT y.tuote_nimi, p.tuote_id, t.tayte_id, y.tuote_hinta, p.pizza_nakyy, x.tayte_nimi, x.tayte_nimi_en FROM Tuote y JOIN Pizza p ON p.tuote_id = y.tuote_id JOIN PizzaTayte t ON t.tuote_id = p.tuote_id JOIN Tayte x ON x.tayte_id = t.tayte_id;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
 			rs = stmt.executeQuery(sqlSelect);
 
 			while (rs.next()) {
-				if(rs.getInt("pizza_id") != edellinenPizzaId ){
+				if(rs.getInt("tuote_id") != edellinenPizzaId ){
 					pizza = readPizza(rs);
 					pizzat.add(pizza);
 					edellinenPizzaId = pizza.getId();
@@ -137,10 +162,10 @@ public class PizzaDAO extends DataAccessObject {
 
 		try {
 
-			int id = rs.getInt("pizza_id");
-			String nimi = rs.getString("pizza_nimi");
-			double hinta = rs.getDouble("pizza_hinta");
-			int nakyy = rs.getInt("nakyy");
+			int id = rs.getInt("tuote_id");
+			String nimi = rs.getString("tuote_nimi");
+			double hinta = rs.getDouble("tuote_hinta");
+			int nakyy = rs.getInt("pizza_nakyy");
 
 			return new Pizza(id, nimi, hinta, nakyy);
 		} catch (SQLException e) {
@@ -152,12 +177,12 @@ public class PizzaDAO extends DataAccessObject {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		int tulos = -1;
+		int tulos = 0;
 		try {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT pizza_id FROM Pizza WHERE pizza_nimi='"
+			String sqlSelect = "SELECT tuote_id FROM Tuote WHERE tuote_nimi='"
 					+ nimi + "';";
 
 			stmt = conn.prepareStatement(sqlSelect);
@@ -178,7 +203,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	public int readId(ResultSet rs) {
 		try {
-			return rs.getInt("pizza_id");
+			return rs.getInt("tuote_id");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -208,7 +233,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	public String readNimi(ResultSet rs) {
 		try {
-			return rs.getString("pizza_nimi");
+			return rs.getString("tuote_nimi");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

@@ -14,31 +14,14 @@ header {
 	
 }
 
-.dropdown{
-	visibility: hidden;
-	background-color: green;
-	display: none;
-}
-
 header, section, footer, aside, article, figure {
 	display: block;
 }
-#logo img{
-	margin-top: -20px;
+header img{
+	margin-top: -65px;
 	width: 200px;
-	margin:0 auto;
-}
-	
-}
-#lippu img{
-	height: 25px; float:right
 }
 
-.submitImage {float:right;}
-
-.textField { background-color: black;  float:right; text-color: white;
-	
-}
 
 
 body {
@@ -60,8 +43,8 @@ h1, h2, h3, h4, h5, h6, p {
 	padding-right: 15px;
 	padding-left: 15px; 
 }
-a img {
-	border: none; 
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none; margin-top:80px;
 }
 
 
@@ -97,7 +80,7 @@ aside {
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 
 nav {
-	background-color: black;   text-align:center;
+	background-color: #ADB96E;   text-align:center;
 	display:inline-block; position: fixed; width:90%;
 }
 nav ul{border-style:none;
@@ -117,10 +100,10 @@ nav a, nav a:visited {
 }
 nav a:hover, nav a:active, nav a:focus { 
 	background-color: #ADB96E;
-	color: white;
+	color: black;
 }
 a:link {
-	color: white;
+	color: #42413C;
 	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 a:visited {
