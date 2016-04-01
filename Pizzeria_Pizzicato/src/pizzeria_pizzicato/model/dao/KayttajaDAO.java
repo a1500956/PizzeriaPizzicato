@@ -21,22 +21,26 @@ public class KayttajaDAO extends DataAccessObject {
 	   {
 	      int kayttaja_id = new Integer(rs.getInt("kayttaja_id"));
 	      //int kayttaja_id = rs.getInt("kayttaja_id");
-	      String kayttaja_nimi = rs.getString("knimi");
-	      String kayttaja_enimi = rs.getString("enimi");
-	      String kayttaja_snimi = rs.getString("snimi");
+	      String kayttaja_ktunnus = rs.getString("kayttaja_ktunnus");
+	      String kayttaja_enimi = rs.getString("kayttaja_enimi");
+	      String kayttaja_snimi = rs.getString("kayttaja_snimi");
+	      String kayttaja_osoite = rs.getString("kayttaja_osoite");
+	      String kayttaja_sposti = rs.getString("kayttaja_sposti");
 	      String kayttaja_salasana = rs.getString("salasana");
-	      int kayttajaryhma_id = rs.getInt("kryhma_id");
-	      int puhnro = rs.getInt("puhnro");
+	      int ryhma_id = rs.getInt("ryhma_id");
+	      String kayttaja_puhnro = rs.getString("kayttaja_puhnro");
 	      
 	      
 	      Kayttaja kayttaja = new Kayttaja();
 	      kayttaja.setKayttaja_id(kayttaja_id);
-	      kayttaja.setKayttaja_nimi(kayttaja_nimi);
+	      kayttaja.setKayttaja_ktunnus(kayttaja_ktunnus);
 	      kayttaja.setKayttaja_enimi(kayttaja_enimi);
 	      kayttaja.setKayttaja_snimi(kayttaja_snimi);
+	      kayttaja.setKayttaja_osoite(kayttaja_osoite);
+	      kayttaja.setKayttaja_sposti(kayttaja_sposti);
 	      kayttaja.setKayttaja_salasana(kayttaja_salasana);
-	      kayttaja.setKayttajaryhma_id(kayttajaryhma_id);
-	      kayttaja.setPuhnro(puhnro);
+	      kayttaja.setRyhma_id(ryhma_id);
+	      kayttaja.setKayttaja_puhnro(kayttaja_puhnro);
 	      return kayttaja;
 	   }
 	 
@@ -48,7 +52,7 @@ public class KayttajaDAO extends DataAccessObject {
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "select * from Kayttajat where kayttaja_id=?";
+	         String sql = "select * from Kayttaja where kayttaja_id=?";
 	         statement = connection.prepareStatement(sql);
 	         statement.setInt(1, kayttaja.getKayttaja_id());
 	         rs = statement.executeQuery();
@@ -68,7 +72,7 @@ public class KayttajaDAO extends DataAccessObject {
 	      }
 	   }
 	   
-	   public Kayttaja findByKayttajanimi(String kayttaja_nimi)
+	   public Kayttaja findByKayttajaTunnus(String kayttaja_ktunnus)
 	   {
 	      ResultSet rs = null;
 	      PreparedStatement statement = null;
@@ -76,9 +80,9 @@ public class KayttajaDAO extends DataAccessObject {
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "select * from Kayttajat where knimi=?";
+	         String sql = "select * from Kayttaja where kayttaja_ktunnus=?";
 	         statement = connection.prepareStatement(sql);
-	         statement.setString(1, kayttaja_nimi);
+	         statement.setString(1, kayttaja_ktunnus);
 	         rs = statement.executeQuery();
 	         if (!rs.next())
 	         {
@@ -132,10 +136,10 @@ public class KayttajaDAO extends DataAccessObject {
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "update Kayttajat set " + "salasana=?, KRyhma_id=? where kayttaja_id=?";
+	         String sql = "update Kayttaja set " + "kayttaja_salasana=?, ryhma_id=? where kayttaja_id=?";
 	         statement = connection.prepareStatement(sql);
 	         statement.setString(1, kayttaja.getKayttaja_salasana());
-	         statement.setInt(2, kayttaja.getKayttajaryhma_id());
+	         statement.setInt(2, kayttaja.getRyhma_id());
 	         statement.setInt(3, kayttaja.getKayttaja_id());
 	         statement.executeUpdate();
 	      } catch (SQLException e)
@@ -149,25 +153,26 @@ public class KayttajaDAO extends DataAccessObject {
 	   
 	   public void create(Kayttaja kayttaja)
 	   {
-	      int id = 0;
-	      int kryhma_id = 0;
+	      int kayttaja_id = 0;
+	      int ryhma_id = 0;
 	      PreparedStatement statement = null;
 	      Connection connection = null;
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "insert into Kayttajat " + "(kayttaja_id, knimi, enimi, snimi, salasana, kryhma_id, puhnro, osoite) "
+	         String sql = "insert into Kayttajat " + "(kayttaja_id, kayttaja_ktunnus, kayttaja_enimi, kayttaja_snimi, kayttaja_salasana, kryhma_id, kayttaja_sposti, kayttaja_osoite) "
 
-	               + "values (?, ?, ?, ?, ?, ?, ?, ?)";
+	               + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	         statement = connection.prepareStatement(sql);
-	         statement.setInt(1, id);
-	         statement.setString(2, kayttaja.getKayttaja_nimi());
+	         statement.setInt(1, kayttaja_id);
+	         statement.setString(2, kayttaja.getKayttaja_ktunnus());
 	         statement.setString(3, kayttaja.getKayttaja_enimi());
 	         statement.setString(4, kayttaja.getKayttaja_snimi());
-	         statement.setString(5, kayttaja.getKayttaja_salasana());
-	         statement.setInt(6, kryhma_id);
-	         statement.setInt(7, kayttaja.getPuhnro());
-	         statement.setString(8, kayttaja.getOsoite());
+	         statement.setString(5, kayttaja.getKayttaja_puhnro());
+	         statement.setString(6, kayttaja.getKayttaja_salasana());
+	         statement.setInt(7, ryhma_id);
+	         statement.setString(8, kayttaja.getKayttaja_sposti());
+	         statement.setString(9, kayttaja.getKayttaja_osoite());
 	         statement.executeUpdate();
 	      } catch (SQLException e)
 	      {
@@ -185,7 +190,7 @@ public class KayttajaDAO extends DataAccessObject {
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "delete from Kayttajat where kayttaja_id=?";
+	         String sql = "delete from Kayttaja where kayttaja_id=?";
 	         statement = connection.prepareStatement(sql);
 	         int kayttaja_id = kayttaja.getKayttaja_id();
 	         statement.setInt(1, kayttaja_id);
