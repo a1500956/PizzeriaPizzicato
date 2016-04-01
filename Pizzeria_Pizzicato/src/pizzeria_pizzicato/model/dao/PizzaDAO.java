@@ -24,7 +24,7 @@ public class PizzaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlDelete = "DELETE FROM Pizza WHERE Pizza_id =?";
+			String sqlDelete = "DELETE FROM Pizza WHERE tuote_id =?";
 			stmtDelete = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
@@ -52,7 +52,7 @@ public class PizzaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlUpdate = "UPDATE Pizza SET pizza_nimi = ?, pizza_hinta= ?, nakyy = ? WHERE pizza_id =?";
+			String sqlUpdate = "UPDATE Pizza SET pizza_nimi = ?, pizza_hinta= ?, nakyy = ? WHERE tuote_id =?";
 			stmtUpdate = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setString(1, pizza.getNimi());
 			stmtUpdate.setDouble(2, pizza.getHinta());
@@ -78,11 +78,22 @@ public class PizzaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlInsert = "INSERT INTO Pizza(pizza_nimi, pizza_hinta, nakyy) VALUES (?, ?, ?)";
+
+			String sqlInsert = "INSERT INTO Tuote(tuote_nimi, tuote_hinta) VALUES (?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
+
 			stmtInsert.setString(1, pizza.getNimi());
 			stmtInsert.setDouble(2, pizza.getHinta());
-			stmtInsert.setInt(3, pizza.getNakyy());
+			
+			stmtInsert.executeUpdate();
+			
+			String iidee = Integer.toString(getPizzaId(pizza.getNimi()));
+
+			String sqlInsert2 = "INSERT INTO Pizza(tuote_id, pizza_nakyy) VALUES (?, ?)";
+			stmtInsert = connection.prepareStatement(sqlInsert2);
+
+			stmtInsert.setString(1, iidee);
+			stmtInsert.setInt(2, pizza.getNakyy());
 
 			stmtInsert.executeUpdate();
 
@@ -151,12 +162,12 @@ public class PizzaDAO extends DataAccessObject {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		int tulos = -1;
+		int tulos = 0;
 		try {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT pizza_id FROM Pizza WHERE pizza_nimi='"
+			String sqlSelect = "SELECT tuote_id FROM Tuote WHERE tuote_nimi='"
 					+ nimi + "';";
 
 			stmt = conn.prepareStatement(sqlSelect);
