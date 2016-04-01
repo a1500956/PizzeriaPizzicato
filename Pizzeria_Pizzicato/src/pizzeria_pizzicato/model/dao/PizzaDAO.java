@@ -61,13 +61,19 @@ public class PizzaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlUpdate = "UPDATE Pizza SET pizza_nimi = ?, pizza_hinta= ?, nakyy = ? WHERE tuote_id =?";
+			String sqlUpdate = "UPDATE Pizza SET pizza_nakyy = ? WHERE tuote_id =?";
+			stmtUpdate = connection.prepareStatement(sqlUpdate);
+			stmtUpdate.setDouble(1, pizza.getNakyy());
+			stmtUpdate.setInt(2, pizza.getId());
+			stmtUpdate.executeUpdate();
+			
+			sqlUpdate = "UPDATE Tuote SET tuote_nimi = ?, tuote_hinta = ? WHERE tuote_id =?";
 			stmtUpdate = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setString(1, pizza.getNimi());
 			stmtUpdate.setDouble(2, pizza.getHinta());
-			stmtUpdate.setDouble(3, pizza.getNakyy());
-			stmtUpdate.setInt(4, pizza.getId());
+			stmtUpdate.setInt(3, pizza.getId());
 			stmtUpdate.executeUpdate();
+
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

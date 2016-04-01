@@ -90,7 +90,6 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				
 				String sqlSelect = "DELETE FROM PizzaTayte WHERE tuote_id ='"+pizzaID+"';";
 				stmt = conn.prepareStatement(sqlSelect);
-				//stmt.setInt(1, pizzaID);
 				
 				rs = stmt.executeQuery(sqlSelect);
 			
