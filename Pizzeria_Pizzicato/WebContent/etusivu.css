@@ -23,9 +23,15 @@ header {
 header, section, footer, aside, article, figure {
 	display: block;
 }
-header img{
+#logo img{
 	margin-top: -20px;
 	width: 200px;
+	margin:0 auto;
+}
+	
+}
+#lippu img{
+	height: 25px; float:right
 }
 
 .submitImage {float:right;}
@@ -54,8 +60,8 @@ h1, h2, h3, h4, h5, h6, p {
 	padding-right: 15px;
 	padding-left: 15px; 
 }
-a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
-	border: none; margin-top:80px;
+a img {
+	border: none; 
 }
 
 

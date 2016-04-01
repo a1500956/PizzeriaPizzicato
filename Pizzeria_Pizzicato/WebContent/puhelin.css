@@ -47,7 +47,7 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 
 
 .dropdown {
-	background-color: #ADB96E;
+	background-color: #ff0000;
     position: relative;
     display: inline-block;
 }
