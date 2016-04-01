@@ -40,6 +40,26 @@ and (max-width: 770px)">
 </head>
 <body>
 	<div class="container">
+<<<<<<< HEAD
+<nav class=isoruutu>
+<ul>
+ 	<li>	<a href ="#"> Etusivu</a></li>
+ 	<li>	<a href ="#"> Juomat</a></li>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+ 	
+
+    <form action="/kirjaudu.html" method="post">
+      <div class="loginRow">
+          <input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25">
+        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
+
+      </div>
+    </form>
+
+ 	
+</ul>
+=======
 		<nav class=isoruutu>
 		<ul>
 			<li><a href="#"> Etusivu</a></li>
@@ -50,6 +70,21 @@ and (max-width: 770px)">
 
 
 
+
+<<<<<<< HEAD
+ <div class="dropdown">
+ 
+  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
+  <div id="myDropdown" class="dropdown-content">
+    <ul>
+ 	<li>		<a href ="#"> Etusivu</a></li>
+ 	<li>	<a href ="#"> Juomat</a></li>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+ 	
+</ul>
+  </div>
+</div>
+=======
 		</nav>
 
 		<div class="dropdown">
@@ -67,6 +102,7 @@ and (max-width: 770px)">
 				</ul>
 			</div>
 		</div>
+
 
 
 		<header> <section>

@@ -11,46 +11,61 @@ import javax.servlet.http.HttpServletResponse;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 
+
+
+
 @WebServlet("/poista-pizza")
 public class poistaPizza extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+   
+   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String strID = request.getParameter("id");
 		String strNimi = request.getParameter("id2");
 		request.setAttribute("valittuId", strID);
 		request.setAttribute("valittuNimi", strNimi);
-
-		String jsp = "/view/poista-pizza.jsp";
-
-		RequestDispatcher dispather = getServletContext().getRequestDispatcher(
-				jsp);
+		
+		String jsp = "/view/poista-pizza.jsp"; 
+		
+		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		String strID = request.getParameter("id");
-
-		try {
-
-			int id = new Integer(strID);
-
-			Pizza pizza = new Pizza(id, null, 0, 0);
-			PizzaDAO pizzadao = new PizzaDAO();
-
-			pizzadao.deletePizza(pizza);
-
-		} catch (SQLException e) {
-
-			System.out
-					.println("Sovelluksessa tapahtui virhe " + e.getMessage());
-		}
-
-		response.sendRedirect("listaaPizzat");
-
-	}
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		protected void doPost(HttpServletRequest request,
+    			HttpServletResponse response) throws ServletException, IOException {
+				
+			String strID = request.getParameter("id");
+			
+			
+			
+			try{
+
+				int id = new Integer(strID);
+				
+				
+				
+				Pizza pizza = new Pizza (id, null, 0, 0);
+				PizzaDAO pizzadao = new PizzaDAO();
+							
+				pizzadao.deletePizza(pizza);
+				
+							
+				} catch (SQLException e) {
+						
+				System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
+				}
+
+			response.sendRedirect("listaaPizzat");
+						
+		}
+		}
