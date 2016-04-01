@@ -108,7 +108,7 @@ public class pizzaMenu extends HttpServlet {
 			
 			request.setAttribute("pizzat", pizzaNakyy);
 			
-			String jsp = "/view/etusivu.jsp"; 
+			String jsp = "/view/etusivu.jsp" ;
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
 		 

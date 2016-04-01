@@ -31,6 +31,15 @@ public class poistaPizza extends HttpServlet {
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 		protected void doPost(HttpServletRequest request,
     			HttpServletResponse response) throws ServletException, IOException {
