@@ -45,7 +45,7 @@ public class poistaTayte extends HttpServlet {
 				
 				
 				
-				Tayte tayte = new Tayte (tayte_id, null, 0);
+				Tayte tayte = new Tayte (tayte_id, null, null, 0);
 				TayteDAO taytedao = new TayteDAO();
 							
 				taytedao.deleteTayte(tayte);

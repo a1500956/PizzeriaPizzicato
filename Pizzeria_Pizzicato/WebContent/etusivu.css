@@ -14,17 +14,23 @@ header {
 	
 }
 
+.dropdown{
+	visibility: hidden;
+	background-color: green;
+	display: none;
+}
+
 header, section, footer, aside, article, figure {
 	display: block;
 }
 header img{
-	margin-top: -65px;
+	margin-top: -20px;
 	width: 200px;
 }
 
 .submitImage {float:right;}
 
-.textField { background-color: #ADB96E;  float:right;
+.textField { background-color: black;  float:right; text-color: white;
 	
 }
 
@@ -85,7 +91,7 @@ aside {
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 
 nav {
-	background-color: #ADB96E;   text-align:center;
+	background-color: black;   text-align:center;
 	display:inline-block; position: fixed; width:90%;
 }
 nav ul{border-style:none;
@@ -105,10 +111,10 @@ nav a, nav a:visited {
 }
 nav a:hover, nav a:active, nav a:focus { 
 	background-color: #ADB96E;
-	color: black;
+	color: white;
 }
 a:link {
-	color: #42413C;
+	color: white;
 	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 a:visited {

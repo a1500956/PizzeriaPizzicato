@@ -31,6 +31,7 @@ scope="request" />
 		
 		<tr>
 			<td><h4>TÄYTE</h4></td>
+			<td><h4>TÄYTE ENG</h4></td>
 			<td><h4>HINTA/KG</h4></td>
 			<td><h4>TOIMINNOT</h4></td>
 				
@@ -39,10 +40,11 @@ scope="request" />
 			<tr>
 				
 				<td><div class="pizzat"><%=taytteet.get(i).getTayte_nimi()%></div></td>
+				<td><div class="pizzat"><%=taytteet.get(i).getTayte_nimi_en()%></div></td>
 				<td><div class="pizzat"><%=nf.format(taytteet.get(i).getTayte_hinta())%></div></td>
 				
 				<td><div class="toiminnot"> 
-				<a href="muokkaa-tayte?id=<%=taytteet.get(i).getTayte_id()%>&id2=<%=taytteet.get(i).getTayte_nimi()%>&id3=<%=taytteet.get(i).getTayte_hinta()%>" class="button">
+				<a href="muokkaa-tayte?id=<%=taytteet.get(i).getTayte_id()%>" class="button">
 				Muokkaa
 				</a>		
 				<a href="poista-tayte?id=<%=taytteet.get(i).getTayte_id()%>&id2=<%=taytteet.get(i).getTayte_nimi()%>" class="button">
