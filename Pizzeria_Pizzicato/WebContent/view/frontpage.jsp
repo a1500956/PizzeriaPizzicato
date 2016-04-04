@@ -47,6 +47,13 @@ and (max-width: 770px)">
 			<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
 					sivut</a></li>
 		</ul>
+ <form action="/kirjaudu.html" method="post">
+      <div class="loginRow">
+        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
+        <input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25">
+      </div>
+    </form>
 
 
 
@@ -65,14 +72,22 @@ and (max-width: 770px)">
 					<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
 							sivut</a></li>
 				</ul>
+				 <form action="/kirjaudu.html" method="post">
+      <div class="loginRow">
+        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="username" />&nbsp;
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="passwword" />&nbsp;
+        <input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25">
+      </div>
+    </form>
+				
 			</div>
 		</div>
 
 
 		<header> <section>
 		<img src="Kuvia/pizzamies.png" alt="Pizzicato logo" id="logo" />
-		<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/suomen_lippu.jpg" class="lippu"alt="suomi" id="flag"/></a>
-		<a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+		<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
+		<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
 
 		</section> </header>
 

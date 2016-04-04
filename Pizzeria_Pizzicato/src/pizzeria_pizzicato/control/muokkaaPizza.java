@@ -44,19 +44,12 @@ public class muokkaaPizza extends HttpServlet {
 		request.setAttribute("valittuH", Double.toString(kyseessa.getHinta()));
 		request.setAttribute("nakyykovaiei", kyseessa.getNakyy());
 
+		//Hakee pizzan täytteitten ID-numerot
 		ArrayList<Tayte> pizzanTaytteittenIDt = new ArrayList<Tayte>();
 		pizzanTaytteittenIDt = PTdao.haePizzanTaytteet(iidee);
-		ArrayList<Tayte> tietokannanTaytteet = new ArrayList<Tayte>();
-		tietokannanTaytteet = Tdao.findAll();
-		ArrayList<String> taytteittenEdelleenlahetettavaNimilista = new ArrayList<String>();
-
-		for (int i = 0; i < pizzanTaytteittenIDt.size(); i++) {
-			for (int j = 0; j < tietokannanTaytteet.size(); j++) {
-				if ((pizzanTaytteittenIDt.get(i).getTayte_id()) == tietokannanTaytteet.get(j).getTayte_id()) {
-					taytteittenEdelleenlahetettavaNimilista.add(tietokannanTaytteet.get(j).getTayte_nimi());
-				}
-			}
-		}
+		
+		//Luo listan, jonka sisältönä on edellisten ID-lukujen perusteella haetut nimet.
+		ArrayList<String> taytteittenEdelleenlahetettavaNimilista = PTdao.haePizzanTaytteittenNimet(pizzanTaytteittenIDt);
 
 		request.setAttribute("taytteet",
 				taytteittenEdelleenlahetettavaNimilista);

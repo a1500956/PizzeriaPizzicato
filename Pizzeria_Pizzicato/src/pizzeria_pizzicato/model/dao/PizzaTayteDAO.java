@@ -64,11 +64,31 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 			return pizzanTaytteet;
 		}
 		
+		public ArrayList<String> haePizzanTaytteittenNimet(ArrayList<Tayte> IDlista) {
+			
+			ArrayList<String> taytteittenEdelleenlahetettavaNimilista = new ArrayList<String>();
+		
+				TayteDAO TDAO = new TayteDAO();
+				ArrayList<Tayte> tietokannanTaytteet = new ArrayList<Tayte>();
+				//Hakee tietokannasta kaikki täytteet
+				tietokannanTaytteet = TDAO.findAll();
+				
+				//Vertaa Täyte-taulun (ks. ed komm.) täytteiden ID-lukuja ja pizzan täytteiden vastaavia, poimien muistiin täytteen nimen, jos se on pizzassa.
+				for (int i = 0; i < IDlista.size(); i++) {
+					for (int j = 0; j < tietokannanTaytteet.size(); j++) {
+						if ((IDlista.get(i).getTayte_id()) == tietokannanTaytteet.get(j).getTayte_id()) {
+							taytteittenEdelleenlahetettavaNimilista.add(tietokannanTaytteet.get(j).getTayte_nimi());
+						}
+					}
+				}
+		
+			
+			
+			return taytteittenEdelleenlahetettavaNimilista;
+		}
+		
 			public Tayte readTayte(ResultSet rs) {
-			
-			
-			
-			
+	
 			try {
 				
 				TayteDAO TDAO = new TayteDAO();
