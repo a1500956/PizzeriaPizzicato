@@ -94,8 +94,33 @@ public class TilausDAO extends DataAccessObject {
 			close(stmtUpdate, connection); 
 		}
 	}
+	
+	//Tämä toiminto asettaa tilauksen 'peruutettu'-tilaan arkistointia varten.
+	public void peruutaTilaus(int tilausID) throws SQLException {
+
+		Connection connection = null;		
+		PreparedStatement stmtUpdate = null;
+
+		try {
+
+				connection = getConnection();
+			
+				//Status nro '400' viittaa 'Tilaus Peruttu'-tilaan
+				String sqlUpdate = "UPDATE Tilaus SET status_id= 400 WHERE tilaus_id =?";
+				stmtUpdate = connection.prepareStatement(sqlUpdate);
+				stmtUpdate.setInt(1, tilausID);
+				stmtUpdate.executeUpdate();
+				
+					
+			}catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+			close(stmtUpdate, connection);
+		}
+	}
 
 
+	//Tämä poistaa tilauksen. Pysyvästi. Käytä harkiten!
 	public void deleteTilaus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;
 
@@ -109,7 +134,12 @@ public class TilausDAO extends DataAccessObject {
 			stmtDelete = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, Tilaus.getId());
 			stmtDelete.executeUpdate();
-
+			
+			sqlDelete = "DELETE FROM TilattuTuote WHERE Tilaus_id =?";
+			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete.setInt(1, Tilaus.getId());
+			stmtDelete.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
