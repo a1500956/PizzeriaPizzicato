@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class KayttajaDAO extends DataAccessObject {
 	      String kayttaja_snimi = rs.getString("kayttaja_snimi");
 	      String kayttaja_osoite = rs.getString("kayttaja_osoite");
 	      String kayttaja_sposti = rs.getString("kayttaja_sposti");
-	      String kayttaja_salasana = rs.getString("salasana");
+	      String kayttaja_salasana = rs.getString("kayttaja_salasana");
 	      int ryhma_id = rs.getInt("ryhma_id");
 	      String kayttaja_puhnro = rs.getString("kayttaja_puhnro");
 	      
@@ -100,9 +101,9 @@ public class KayttajaDAO extends DataAccessObject {
 	      }
 	   }
 	   
-	   public List<Kayttaja> findAll() 
+	   public ArrayList<Kayttaja> findAll() 
 	   {
-	      LinkedList<Kayttaja> kayttajat = new LinkedList<Kayttaja>();
+	      ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
 	      ResultSet rs = null;
 	      PreparedStatement statement = null;
 	      Connection connection = null;
@@ -180,6 +181,35 @@ public class KayttajaDAO extends DataAccessObject {
 	      } finally
 	      {
 	         close(statement, connection);
+	      }
+	   }
+	   
+	   public Kayttaja login(String kayttaja_ktunnus, String kayttaja_salasana)
+	   {
+	      ResultSet rs = null;
+	      PreparedStatement statement = null;
+	      Connection connection = null;
+	      try
+	      {
+	         connection = getConnection();
+	         String sql = "SELECT * from Kayttaja where kayttaja_ktunnus=? AND kayttaja_salasana=?";
+	         statement = connection.prepareStatement(sql);
+	         statement.setString(1, kayttaja_ktunnus);
+	         statement.setString(2, kayttaja_salasana);
+	         rs = statement.executeQuery();
+	         if (!rs.next())
+	         {
+	            return null;
+	         }
+	         return read(rs);
+	      }
+	      catch (SQLException e)
+	      {
+	         throw new RuntimeException(e);
+	      }
+	      finally
+	      {
+	         close(rs, statement, connection);
 	      }
 	   }
 	   
