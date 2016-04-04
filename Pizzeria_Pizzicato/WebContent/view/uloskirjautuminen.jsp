@@ -24,7 +24,7 @@ for(Cookie cookie : cookies){
 }
 }
 %>
-<h3>Hi <%=userName %>, do the checkout.</h3>
+<h3>Hei <%=userName %>, do the checkout.</h3>
 <br>
 <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
 <input type="submit" value="Logout" >
