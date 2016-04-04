@@ -39,7 +39,6 @@ media="only screen and (min-width: 771px)">
 <![endif]--></head>
 </head>
 	<body>
-	
 	<div class="container">
 <nav class=isoruutu>
 <ul>
@@ -50,7 +49,7 @@ media="only screen and (min-width: 771px)">
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
 
-    <form action="/kirjaudu.html" method="post">
+    <form action="kirjautuminen" method="post">
       <div class="loginRow">
         <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
