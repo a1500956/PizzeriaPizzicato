@@ -3,7 +3,7 @@ package pizzeria_pizzicato.model;
 
 import java.util.ArrayList;
 
-public class Pizza extends Tuote {
+public class Pizza extends Tayte {
 
 	private int id;
 	private String nimi;
@@ -42,6 +42,7 @@ public class Pizza extends Tuote {
 	}
 
 	public double getHinta() {
+		
 				
 		return hinta;
 	}
