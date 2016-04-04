@@ -1,24 +1,40 @@
 body {font-family:tahoma, arial, sans-serif;   
-		background-color: green ; 
+	  background-image: url("Kuvia/ruokaa.jpg"); 
+	background-repeat: no-repeat; 
+	background-size: 100%;
 
       
       }
 
-tr:nth-child(even){background-color: #f2f2f2}
+h4{ position: inline-block; 
+	background-color: white;}
+	
 header img {
      width:150px}
 
-
+.kielet{position: right;
+		display: inline-block;
+		}
+		
+.kielet a {
+		color: black;
+		text-decoration: none;
+		display: inline;
+		background-color: white;
+		
+		}
 
 header {
-	margin-top:-40px;
-	background-color: red;
+	margin-top:5px;
+	background-color: white;
 	text-align:center;
+	padding: 2px;
+	
 	}
 	
 .container {
 	width: 90%;
-	background-color: #ffffff;
+	background-color:white;
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
 }
 
@@ -38,11 +54,12 @@ nav a, nav a:visited { /* grouping these selectors makes sure that your links re
 	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
 	width: 100%;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
 	text-decoration: none;
-	background-color: #ADB96E;
+	background-color: black;
+	color: white;
 }
 nav a:hover, nav a:active, nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
 	background-color: #ADB96E;
-	color: black;
+	color:  white;
 }
 
 
@@ -55,11 +72,15 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: black;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
+    color: black;
 }
 
+.dropdown-content a {
+    color: white;
+}
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -72,7 +93,9 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
    
 footer {
 	padding: 10px 0;
-	background-color: #CCC49F;
+	background-color: black;
 	position: relative;
+	color: white;
+	text-align: center;
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
 }        
