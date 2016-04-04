@@ -33,6 +33,7 @@ public class kirjautuminen extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kayttaja_ktunnus = request.getParameter("kayttaja");
 		String kayttaja_salasana = request.getParameter("salasana");
+		System.out.println(kayttaja_ktunnus);
 		
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kirjautuja = new Kayttaja();
@@ -45,9 +46,9 @@ public class kirjautuminen extends HttpServlet {
 		Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 		userName.setMaxAge(30*60);
 		response.addCookie(userName);
-		response.sendRedirect(kirjautuminen-ok.jsp);
+		response.sendRedirect("kirjautuminenOk");
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("pizzaMenu.java");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenu.java");
 			PrintWriter out= response.getWriter();
 			out.println("<font color=red>Either user name or password is wrong.</font>");
 			rd.include(request, response);

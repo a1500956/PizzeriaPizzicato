@@ -2,8 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<jsp:useBean id="kayttajaTunnus" type="java.lang.String" scope="request" />
-<jsp:useBean id="kayttajaNimi" type="java.lang.String" scope="request" />
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -29,14 +28,14 @@ for(Cookie cookie : cookies){
     sessionID = session.getId();
 }
 %>
-<h3>Hi <%=kayttajaTunnus %>, Login successful. Your Session ID=<%=sessionID %></h3>
+<h3>Hi <%=userName %>, Login successful. Your Session ID=<%=sessionID %></h3>
 <br>
-User=<%=kayttajaNimi %>
+User=<%=user %>
 <br>
 <!-- need to encode all the URLs where we want session information to be passed -->
-<a href="<%=response.encodeURL("etusivu.jsp") %>">Etusivu</a>
-<a href="<%=response.encodeURL("listaa-pizzat.jsp") %>">Pizzalista</a>
-<form action="<%=response.encodeURL("uloskirjaus") %>" method="post">
+<a href="<%=response.encodeURL("pizzaMenu") %>">Etusivu</a>
+<a href="<%=response.encodeURL("listaaPizzat") %>">Pizzalista</a>
+<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
 <input type="submit" value="Uloskirjaus" >
 </form>
 </body>
