@@ -28,14 +28,15 @@ for(Cookie cookie : cookies){
     sessionID = session.getId();
 }
 %>
-<h3>Hi <%=userName %>, Login successful. Your Session ID=<%=sessionID %></h3>
+<h3>Hei <%=userName %>, kirjautuminen onnistui.</h3>
 <br>
-User=<%=user %>
-<br>
+
 <!-- need to encode all the URLs where we want session information to be passed -->
 <a href="<%=response.encodeURL("pizzaMenu") %>">Etusivu</a>
 <a href="<%=response.encodeURL("listaaPizzat") %>">Pizzalista</a>
 <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+<br>
+<br>
 <input type="submit" value="Uloskirjaus" >
 </form>
 </body>

@@ -34,7 +34,7 @@ public class kirjautuminen extends HttpServlet {
 		
 		System.out.println(kayttaja_ktunnus);
 		
-		response.sendRedirect("etusivu.jsp");
+		
 		
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kirjautuja = new Kayttaja();
@@ -50,13 +50,14 @@ public class kirjautuminen extends HttpServlet {
 		response.addCookie(userName);
 
 		response.sendRedirect("kirjautuminenOk");
+		
 		}else{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenu.java");
 			PrintWriter out= response.getWriter();
 			out.println("<font color=red>Either user name or password is wrong.</font>");
 			rd.include(request, response);
 
-		response.sendRedirect("kirjautuminen-ok.jsp");
+		
  
 		}
 		
