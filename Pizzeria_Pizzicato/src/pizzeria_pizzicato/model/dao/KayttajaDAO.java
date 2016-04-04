@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -100,9 +101,9 @@ public class KayttajaDAO extends DataAccessObject {
 	      }
 	   }
 	   
-	   public List<Kayttaja> findAll() 
+	   public ArrayList<Kayttaja> findAll() 
 	   {
-	      LinkedList<Kayttaja> kayttajat = new LinkedList<Kayttaja>();
+	      ArrayList<Kayttaja> kayttajat = new ArrayList<Kayttaja>();
 	      ResultSet rs = null;
 	      PreparedStatement statement = null;
 	      Connection connection = null;
