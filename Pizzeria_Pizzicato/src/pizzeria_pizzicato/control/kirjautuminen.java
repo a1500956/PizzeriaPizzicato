@@ -30,7 +30,6 @@ public class kirjautuminen extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kayttaja_ktunnus = request.getParameter("kayttaja");
 		String kayttaja_salasana = request.getParameter("salasana");
-		System.out.println(kayttaja_ktunnus);
 		
 		System.out.println(kayttaja_ktunnus);
 		

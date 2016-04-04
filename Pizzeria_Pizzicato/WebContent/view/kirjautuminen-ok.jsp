@@ -32,9 +32,9 @@ for(Cookie cookie : cookies){
 <br>
 
 <!-- need to encode all the URLs where we want session information to be passed -->
-<a href="<%=response.encodeURL("pizzaMenu") %>">Etusivu</a>
-<a href="<%=response.encodeURL("listaaPizzat") %>">Pizzalista</a>
-<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+<a href="<%=response.encodeRedirectURL("pizzaMenu") %>">Etusivu</a>
+<a href="<%=response.encodeRedirectURL("listaaPizzat") %>">Pizzalista</a>
+<form action="<%=response.encodeRedirectURL("uloskirjautuminen") %>" method="post">
 <br>
 <br>
 <input type="submit" value="Uloskirjaus" >
