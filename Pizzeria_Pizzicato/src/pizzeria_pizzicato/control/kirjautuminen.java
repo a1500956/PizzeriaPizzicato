@@ -17,9 +17,6 @@ import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.dao.KayttajaDAO;
 
 
-
-
-
 @WebServlet("/kirjautuminen")
 public class kirjautuminen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,9 +32,14 @@ public class kirjautuminen extends HttpServlet {
 		String kayttaja_salasana = request.getParameter("salasana");
 		System.out.println(kayttaja_ktunnus);
 		
+		System.out.println(kayttaja_ktunnus);
+		
+		response.sendRedirect("etusivu.jsp");
+		
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kirjautuja = new Kayttaja();
 		kirjautuja = kayttajadao.login(kayttaja_ktunnus, kayttaja_salasana);
+		
 		
 		if(kirjautuja != null){
 		HttpSession session = request.getSession();
@@ -46,12 +48,16 @@ public class kirjautuminen extends HttpServlet {
 		Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 		userName.setMaxAge(30*60);
 		response.addCookie(userName);
+
 		response.sendRedirect("kirjautuminenOk");
 		}else{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenu.java");
 			PrintWriter out= response.getWriter();
 			out.println("<font color=red>Either user name or password is wrong.</font>");
 			rd.include(request, response);
+
+		response.sendRedirect("kirjautuminen-ok.jsp");
+ 
 		}
 		
 	}
