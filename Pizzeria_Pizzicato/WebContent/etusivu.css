@@ -6,7 +6,7 @@
 @viewport           { width: auto; }
 
 
-
+h1{color: white;}
 
 header {
 	background-color: red; margin-top:0
@@ -52,7 +52,7 @@ a img { /* this selector removes the default blue border displayed in some brows
 
 
 .container {
-	width: 90%;
+	width: 80%;
 	background-color: #FFFFFF;
 	margin: 0 auto; 
 }
@@ -83,8 +83,8 @@ aside {
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 
 nav {
-	background-color: #ADB96E;   text-align:center;
-	display:inline-block; position: fixed; width:90%;
+	background-color: black;   text-align:center;
+	display:inline-block; position: fixed; width:80%;
 }
 nav ul{border-style:none;
 	list-style: none;
@@ -99,14 +99,14 @@ nav a, nav a:visited {
 	display: block; 
 	width: 100%;  
 	text-decoration: none;
-	background-color: #ADB96E;
+	background-color: black;
 }
 nav a:hover, nav a:active, nav a:focus { 
-	background-color: #ADB96E;
+	background-color: black;
 	color: black;
 }
 a:link {
-	color: #42413C;
+	color: white;
 	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 a:visited {
@@ -126,6 +126,13 @@ a:hover, a:active, a:focus
 
 }
 
+.submitImage {float: right;}
+
+.textField {float: right;
+			background-color: black;
+			padding:none;}
+
+
 
 
 
@@ -142,9 +149,9 @@ table { width:auto, text-aling_ center;
 .pizzalista{ text-align:center; 
 }
 
-.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none;
+.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
 }
-tr:nth-child(even){background-color: #f2f2f2}
+
 
 .clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
 	clear:both;
@@ -153,7 +160,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 	line-height: 0px;
 }
 
-
+article {background-image: url("Kuvia/Taustakuva.jpg")}
 
 footer {
 	padding: 10px 0;

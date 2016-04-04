@@ -39,6 +39,7 @@ media="only screen and (min-width: 771px)">
 <![endif]--></head>
 </head>
 	<body>
+	
 	<div class="container">
 <nav class=isoruutu>
 <ul>
@@ -49,9 +50,10 @@ media="only screen and (min-width: 771px)">
 
     <form action="/kirjaudu.html" method="post">
       <div class="loginRow">
+        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
         <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
-        <input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25">
+        
       </div>
     </form>
 
