@@ -32,6 +32,9 @@ body {
 	color: #000;
 }
 
+#flag { height: 20px; width:auto; 
+	
+}
 
 ul, ol, dl { 
 	padding: 0;
