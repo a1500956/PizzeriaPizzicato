@@ -43,18 +43,22 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <ul>
+   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
+   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>	<a href ="#"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
-    	
+ 	
+
     <form action="kirjautuminen" method="post">
       <div class="loginRow">
-        <input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />&nbsp;
-        <input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-        <input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25">
+        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
+        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
+       
+       
       </div>
     </form>
-
 
  	
 </ul>
@@ -72,22 +76,25 @@ media="only screen and (min-width: 771px)">
  	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
+ 	
 </ul>
+
   </div>
+ 
 </div>
 
 
-  <header>
-  <section><img src= "Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo"  />
-		<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-		<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
-  </section>
-   
+  <header>   
+  <div class="kielet"> 
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
+  </div>
+	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!!!!<br></h6>
   </header>
   <article>
   
-    <span class="pizzalista"><h1>Pizza menumme</h1></span>
-	
+    <span class="pizzalista"><h1><br>Pizza menumme</h1></span>
+    
     <section>
    
     <span class="pizzalista">
@@ -121,7 +128,7 @@ media="only screen and (min-width: 771px)">
     </section>
     
   <!-- end .content --></article>
- 
+ 	
   <footer>
      
   <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
