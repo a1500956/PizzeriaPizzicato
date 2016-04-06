@@ -4,7 +4,6 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
-<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -45,7 +44,7 @@ media="only screen and (min-width: 771px)">
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
    <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 	<li>	<a href ="#"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
@@ -72,7 +71,7 @@ media="only screen and (min-width: 771px)">
   <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
@@ -84,16 +83,17 @@ media="only screen and (min-width: 771px)">
 </div>
 
 
-  <header>   
+  <header>
   <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
-  <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
   </div>
-	<h6>Olemme terveellinen ja vihreä valinta. Ravintolamme sijaitsee Helsingin keskustassa, hyvien kulkuyhteyksien varrella.<br></h6>
+	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!!!!<br></h6>
   </header>
+ 
   <article>
   
-    <span class="pizzalista"><h1><br>Pizza menumme</h1></span>
+
     
     <section>
    
@@ -112,6 +112,7 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
+				<td><div class="maara"><p><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" > </p> </div></td>
 										
 			</tr>
 			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -127,8 +128,8 @@ media="only screen and (min-width: 771px)">
      
     </section>
     
-    <a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa"> Tilaa Pizza</a>
-   
+
+    
   <!-- end .content --></article>
  	
   <footer>
