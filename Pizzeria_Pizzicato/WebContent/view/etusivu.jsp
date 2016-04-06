@@ -4,6 +4,7 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -78,12 +79,11 @@ media="only screen and (min-width: 771px)">
 
   <header>
   <section><img src= "Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo"  />
-<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
+		<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
 		<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
   </section>
    
   </header>
- 
   <article>
   
     <span class="pizzalista"><h1>Pizza menumme</h1></span>
