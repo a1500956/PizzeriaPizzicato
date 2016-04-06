@@ -29,13 +29,14 @@ public class TilausDAO extends DataAccessObject {
 
 			stmtInsert.executeUpdate();
 			
+			
 			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
 			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttajaID());
 			
 			//Valmistellaan tilattujen tuotteiden lisäys
 			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, lkm) VALUES (?,?,?)";
-			stmtInsert = connection.prepareStatement(sqlInsert);
-			stmtInsert.setString(1, Tilaus.getOsoite());
+			stmtInsert = connection.prepareStatement(sqlInsert2);
+			stmtInsert.setInt(1, tilauksenID);
 			Tuote kasilla;
 			
 			//Poimitaan tuotelistan tuotteet yksi kerrallaan, lisäten ne tietokannan tilaustauluun.
