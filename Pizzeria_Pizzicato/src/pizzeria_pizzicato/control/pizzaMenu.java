@@ -11,10 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
-import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
-import pizzeria_pizzicato.model.dao.TayteDAO;
 
 
 @WebServlet("/pizzaMenu")
@@ -31,10 +28,6 @@ public class pizzaMenu extends HttpServlet {
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
-			
-			for(int i = 0; i<pizzaLista.size(); i++){
-			System.out.println(pizzaLista.get(i));
-			}
 			
 			for(int i=0;i<pizzaLista.size();i++){
 				
