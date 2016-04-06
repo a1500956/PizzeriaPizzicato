@@ -32,7 +32,7 @@ body {
 	background-size: 100%;
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	background-color: green;
-	margin: 1;
+	margin: 0;
 	padding: 0;
 	
 }
@@ -201,7 +201,5 @@ footer {
  
  /* tilaa pizza css:ät!
  
- .maara {size: 10;}
- 
- #qty1 {size: 10;}
+
 

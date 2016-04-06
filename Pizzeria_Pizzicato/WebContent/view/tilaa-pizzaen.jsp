@@ -41,11 +41,11 @@ and (max-width: 770px)">
 <body>
 	<div class="container">
 		<nav class=isoruutu>
-		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-   			<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
-			<li><a href="#"> Frontpage</a></li>
+		<ul> <a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
+   			 <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+			<li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> Return Back on the Frontpage</a></li>
 			<li><a href="#"> Drinks</a></li>
-			<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+	
 		</ul>
  <form action="/kirjaudu.html" method="post">
       <div class="loginRow">
@@ -70,7 +70,7 @@ and (max-width: 770px)">
 			<div id="myDropdown" class="dropdown-content">
 				<ul>
 				
-					<li><a href="#"> Frontpage</a></li>
+					<li><a href="/Pizzeria_Pizzicato/PizzaMenuEn"> Frontpage</a></li>
 					<li><a href="#"> Drinks</a></li>
 					<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
 							sivut</a></li>
@@ -82,10 +82,10 @@ and (max-width: 770px)">
 		</div>
   <header>
   <div class="kielet"> 
-  <li><a href="#"> ENG</a><li>
-  <li><a href="#"> FIN</a></li> 
+  <li><a href="/Pizzeria_Pizzicato/PizzaMenuEng"> ENG</a><li>
+  <li><a href="/Pizzeria_Pizzicato/PizzaMenu"> FIN</a></li> 
   </div>
-	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
+	<h6>Please select pizzas from below <br></h6>
   </header>
 
 		
@@ -117,7 +117,7 @@ and (max-width: 770px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-										
+					<td><div class="maara"><p><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" > </p> </div></td>						
 			</tr>
 			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
@@ -129,7 +129,6 @@ and (max-width: 770px)">
 		</table><br>
     </span>
 
-   <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
   
 
 		<footer>

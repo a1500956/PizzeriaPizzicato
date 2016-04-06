@@ -95,7 +95,13 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 }
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none;
-}       
+} 
+
+
+
+.tilaa {position: center;
+		text-align: center;
+		color:white}      
    
 footer {
 	padding: 10px 0;
