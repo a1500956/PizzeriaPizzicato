@@ -44,14 +44,13 @@ media="only screen and (min-width: 771px)">
 <ul>
  	<li>	<a href ="#"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
 
     <form action="kirjautuminen" method="post">
-      <div class="loginRow">
-        <input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />&nbsp;
-        <input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-        <input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25">
+      <div class="loginrow2">
+      	<input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25"/>
+       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />
       </div>
     </form>
 
@@ -64,12 +63,11 @@ media="only screen and (min-width: 771px)">
 
  <div class="dropdown">
  
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
+  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="15" height="15"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
  	<li>		<a href ="#"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
 </ul>
   </div>
