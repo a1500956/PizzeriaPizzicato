@@ -6,21 +6,27 @@ body {font-family:tahoma, arial, sans-serif;
       
       }
 
-h4{ position: inline-block; 
+h4{ position: block; 
 	background-color: white;}
 	
 header img {
      width:150px}
 
 .kielet{position: right;
-		display: inline-block;
+	
+		display: inline;
+		text-decoration: none;
+		border-style:none;
+		background-color: white;
 		}
 		
 .kielet a {
 		color: black;
 		text-decoration: none;
-		display: inline;
+		display: inline-block;
 		background-color: white;
+		border-style: none;
+		position: top;
 		
 		}
 

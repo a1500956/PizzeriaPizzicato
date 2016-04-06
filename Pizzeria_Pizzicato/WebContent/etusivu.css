@@ -1,0 +1,207 @@
+
+@-webkit-viewport   { width: auto; }
+@-moz-viewport      { width: auto; }
+@-ms-viewport       { width: auto; }
+@-o-viewport        { width: auto; }
+@viewport           { width: auto; }
+
+
+h1{color: #FF007F; padding-top: 5%;}
+h6{color:white;}
+p{color: #FF007F;}
+
+header {
+	background-color: black; margin-top:0
+	; text-align:center; width:100%;  padding-top: 90px;
+	
+}
+
+header, section, footer, aside, article, figure {
+	display: block; margin-top: 10;
+}
+
+
+.loginRow {border: none;}
+
+.kielet {display: none;}
+
+body {
+
+	background-image: url("Kuvia/ruokaa.jpg"); 
+	background-repeat: no-repeat; 
+	background-size: 100%;
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: green;
+	margin: 1;
+	padding: 0;
+	
+}
+
+#flag {  height: 20px; width:auto; float: left;
+		 display: inline-block; padding: 2px;
+	
+}
+
+ul, ol, dl { 
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 
+	padding-right: 15px;
+	padding-left: 15px; 
+}
+
+
+
+
+.container {
+	width: 80%;
+	background-color: black;
+	margin: 0 auto; 
+	
+}
+
+
+
+section{padding: 10px 0;
+}
+.content {
+	padding-top:50px;
+	width: auto;
+	max-width: 100%;
+	float: left;
+
+}
+aside {
+	float: left;
+	width: auto;
+	background-color: black;
+	padding: 10px 0;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol {
+	padding: 0 15px 15px 15px; align-content:center 
+	margin-left: -100;/* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+
+nav {
+	background-color: black;   text-align:center;
+	display:inline-block; position: fixed; width:79%; 
+	margin-left: 20;
+	
+}
+nav ul{border-style:none;
+	list-style: none;
+	
+	margin-bottom: 15px; 
+}
+nav li {border-style:none; 
+	 display:inline-block; 
+	 padding: 8px;
+	 height: 20px; 
+	 width:auto;
+	 padding: 5px 5px 5px 15px;
+	 
+}
+nav a, nav a:visited { 
+	
+	display: block; 
+	width: 100%;  
+	text-decoration: none;
+	background-color: black;
+}
+nav a:hover, nav a:active, nav a:focus { 
+	background-color: black;
+	color: #3AEE58;
+}
+a:link {
+	color: white;
+	 /*text-decoration: underline;       unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus
+	text-decoration: none;
+}
+
+
+.dropdown {
+       display: none;
+}
+
+.dropdown-content { display:none;
+
+}
+
+.submitImage {float: right;}
+
+.textField {float: right;
+			background-color: black;
+			padding:none;
+			border: solib black;
+			color: white;
+			}
+
+
+
+
+
+
+
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+	
+table { width:auto, text-aling_ center;
+}
+	
+}
+.pizzalista{ text-align:center; padding-bottom: 30%;
+}
+
+.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
+}
+
+
+.clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+article {background-image: url("Kuvia/Taustakuva.jpg"); 
+		 background-repeat: no-repeat; 
+		 background-size: 100%;
+		 text-align: center;}
+
+.tilaa {position: center;
+		text-align: center;
+		color:white}
+
+footer {
+	padding: 10px 0;
+	background-color: black;
+	text-align: center;
+	position: relative;
+	clear: both; 
+	color: white;
+
+	margin-bottom: -20px;
+
+}
+
+ 
+ /* tilaa pizza css:ät!
+ 
+ .maara {size: 10;}
+ 
+ #qty1 {size: 10;}
+
