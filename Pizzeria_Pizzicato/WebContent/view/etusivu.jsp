@@ -88,7 +88,7 @@ media="only screen and (min-width: 771px)">
   <li><a href="#"> ENG</a><li>
   <li><a href="#"> FIN</a></li> 
   </div>
-	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!<br></h6>
+	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!!!!<br></h6>
   </header>
  
   <article>
