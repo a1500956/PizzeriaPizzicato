@@ -39,37 +39,26 @@ media="only screen and (min-width: 771px)">
 <![endif]--></head>
 </head>
 	<body>
-<%
-//allow access only if session exists
-String user = null;
-if(session.getAttribute("kayttaja") == null){
-    response.sendRedirect("pizzaMenu");
-}else user = (String) session.getAttribute("kayttaja");
-String userName = null;
-String sessionID = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-for(Cookie cookie : cookies){
-    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
-    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
-}
-}else{
-    sessionID = session.getId();
-}
-%>
 	<div class="container">
 <nav class=isoruutu>
 <ul>
- 	<li>	<a href ="#"> Etusivu</a></li>
+   <a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
+   <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
-    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
-      <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3>
-	<input type="submit" value="Uloskirjaus" >
+
+ 	
+
+    <form action="kirjautuminen" method="post">
+      <div class="loginRow">
+        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
+        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
+       
+       
       </div>
     </form>
 
-<<<<<<< HEAD
  	
 </ul>
 
@@ -82,25 +71,29 @@ for(Cookie cookie : cookies){
   <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
- 	<li>		<a href ="#"> Etusivu</a></li>
+ 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+ 	
  	
 </ul>
+
   </div>
+ 
 </div>
 
 
   <header>
-  <section><img src= "Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo"  />
-<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-		<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
-  </section>
-   
+  <div class="kielet"> 
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
+  </div>
+	<h6>Tee pizzatilauksesi ja jotain<br></h6>
   </header>
  
   <article>
   
-    <span class="pizzalista"><h1>Pizza menumme</h1></span>
+
     
     <section>
    
@@ -119,6 +112,7 @@ for(Cookie cookie : cookies){
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
+				<td><div class="maara"><p><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" > </p> </div></td>
 										
 			</tr>
 			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -131,11 +125,13 @@ for(Cookie cookie : cookies){
 		</table><br>
     </span>
 
-    
+     
     </section>
     
+
+    
   <!-- end .content --></article>
- 
+ 	
   <footer>
      
   <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
@@ -146,15 +142,3 @@ for(Cookie cookie : cookies){
   <!-- end .container --></div>
 	</body>
 </html>
-=======
-<!-- need to encode all the URLs where we want session information to be passed -->
-<a href="<%=response.encodeRedirectURL("pizzaMenu") %>">Etusivu</a>
-<a href="<%=response.encodeRedirectURL("listaaPizzat") %>">Pizzalista</a>
-<form action="<%=response.encodeRedirectURL("uloskirjautuminen") %>" method="post">
-<br>
-<br>
-<input type="submit" value="Uloskirjaus" >
-</form>
-</body>
-</html>
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git

@@ -42,7 +42,9 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <ul>
- 	<li>	<a href ="#"> Etusivu</a></li>
+   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
+   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	
 
@@ -66,25 +68,29 @@ media="only screen and (min-width: 771px)">
   <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="15" height="15"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
- 	<li>		<a href ="#"> Etusivu</a></li>
+ 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	
+ 	
 </ul>
+
   </div>
+ 
 </div>
 
 
   <header>
-  <section><img src= "Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo"  />
-<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-		<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
-  </section>
-   
+  <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
+  <div class="kielet"> 
+  <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
+  <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
+  </div>
+	<h6>Olemme terveellinen ja vihreä valinta. Ravintolamme sijaitsee Helsingin keskustassa, hyvien kulkuyhteyksien varrella.<br></h6>
   </header>
  
   <article>
   
-    <span class="pizzalista"><h1>Pizza menumme</h1></span>
+    <span class="pizzalista"><h1><br>Pizza menumme</h1></span>
     
     <section>
    
@@ -115,11 +121,13 @@ media="only screen and (min-width: 771px)">
 		</table><br>
     </span>
 
-    
+     
     </section>
     
+    <a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa"> Tilaa Pizza</a>
+   
   <!-- end .content --></article>
- 
+ 	
   <footer>
      
   <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>

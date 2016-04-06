@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 
@@ -19,7 +20,15 @@ public class kirjautuminenOk extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
+
        
+
+    
+    public kirjautuminenOk() {
+        super();
+        
+    }
+
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,6 +54,10 @@ public class kirjautuminenOk extends HttpServlet {
 			String jsp = "/view/kirjautuminen-ok.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
+
+}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
 	}
 }
