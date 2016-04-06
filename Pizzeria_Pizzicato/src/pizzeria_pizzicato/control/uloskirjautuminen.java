@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
  
-/**
- * Servlet implementation class LogoutServlet
- */
+
 @WebServlet("/uloskirjautuminen")
 public class uloskirjautuminen extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -29,13 +27,13 @@ public class uloskirjautuminen extends HttpServlet {
             response.addCookie(cookie);
         }
         }
-        //invalidate the session if exists
+      
         HttpSession session = request.getSession(false);
-        System.out.println("User="+session.getAttribute("kayttaja"));
+        
         if(session != null){
             session.invalidate();
         }
-        //no encoding because we have invalidated the session
+       
         response.sendRedirect("pizzaMenu");
     }
  

@@ -26,7 +26,35 @@ scope="request" />
 
 		<h1>PIZZALISTA</h1>
 		
-		<div class ="button"><a href="pizzaMenu">Palaa etusivulle</a></div><br>
+		<%
+//allow access only if session exists
+String user = null;
+if(session.getAttribute("kayttaja") == null){
+    response.sendRedirect("pizzaMenu");
+}else user = (String) session.getAttribute("kayttaja");
+String userName = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}else{
+    sessionID = session.getId();
+}
+%>
+<header>
+<div class="login">
+    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h4><%=userName %>, olet kirjautuneena.</h4>
+	<input type="submit" value="Uloskirjaus" >
+      </div>
+    </form>
+</div>
+</header>
+    
 		<a href="lisaa-pizza" class="button">Lisää pizza</a>
 		<a href="listaa-taytteet" class="button">Näytä täytteet</a>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
@@ -59,6 +87,8 @@ scope="request" />
 			</tr>
 			<% } %>
 		</table><br>
+		
+		
 				
 			<%
 session.setMaxInactiveInterval(2);

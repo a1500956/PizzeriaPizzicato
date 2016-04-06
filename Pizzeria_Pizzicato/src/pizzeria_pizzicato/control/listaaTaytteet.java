@@ -1,16 +1,21 @@
 package pizzeria_pizzicato.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.dao.KayttajaDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
 
 @WebServlet("/listaa-taytteet")
@@ -36,8 +41,34 @@ public class listaaTaytteet extends HttpServlet {
 		
 	}
 
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String kayttaja_ktunnus = request.getParameter("kayttaja");
+		String kayttaja_salasana = request.getParameter("salasana");
+		
+		
+		
+		KayttajaDAO kayttajadao = new KayttajaDAO();
+		Kayttaja kirjautuja = new Kayttaja();
+		kirjautuja = kayttajadao.login(kayttaja_ktunnus, kayttaja_salasana);
+		
+		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1 ){
+			HttpSession session = request.getSession();
+			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			response.addCookie(userName);
+
+			response.sendRedirect("listaaTaytteet");
+				
+		
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenu.java");
+			PrintWriter out= response.getWriter();
+			out.println("<font color=red>Käyttäjätunnus ja/tai salasana on virheellinen.</font>");
+			rd.include(request, response);
+
+		
+ 
+		}
 		
 	}
-
 }
