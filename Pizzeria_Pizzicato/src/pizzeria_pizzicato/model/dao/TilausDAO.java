@@ -29,37 +29,28 @@ public class TilausDAO extends DataAccessObject {
 
 			stmtInsert.executeUpdate();
 			
-			//Valmistellaan tilattujen tuotteiden lisäys
-			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, lkm) VALUES (?,?,?)";
-			
 			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
 			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttajaID());
 			
-			//Luodaan kopio listasta, jottei mitään vahingossa kadotettaisi
-			ArrayList<Tuote> kasittelykopio = tuotelista;;
+			//Valmistellaan tilattujen tuotteiden lisäys
+			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, lkm) VALUES (?,?,?)";
+			stmtInsert = connection.prepareStatement(sqlInsert);
+			stmtInsert.setString(1, Tilaus.getOsoite());
+			Tuote kasilla;
 			
-			for (int i = 0; i < kasittelykopio.size(); i++) {
-				int lukumaara = 0;
-				Tuote TX = kasittelykopio.get(i);
+			//Poimitaan tuotelistan tuotteet yksi kerrallaan, lisäten ne tietokannan tilaustauluun.
+			for (int i = 0; i < tuotelista.size(); i++) {
+				kasilla = tuotelista.get(i);
+				stmtInsert.setInt(2, kasilla.getId());
+				stmtInsert.setInt(3, kasilla.getLkm());
 				
-				//Tämä looppi käy läpi listan, laskien saman
-				for (int j = 0; j < kasittelykopio.size(); j++) {
-					if(TX.getId()==kasittelykopio.get(j).getId()){
-						lukumaara++;
-						//Poistetaan turhat kopiot, joiden olemassaolo on jo laskettu. Tämän takia me käytämme kopiota, lapset, ettei pahin tapahtuisi.
-						kasittelykopio.remove(j);
-					}
-					
-					stmtInsert = connection.prepareStatement(sqlInsert2);
-					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
-					stmtInsert.setInt(tilauksenID, 1);
-					stmtInsert.setInt(TX.getId(), 2);
-					stmtInsert.setInt(lukumaara, 3);
-					stmtInsert.executeUpdate();	
-				}
+				stmtInsert.executeUpdate();
 				
-					
 			}
+			
+				
+					
+			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -67,6 +58,7 @@ public class TilausDAO extends DataAccessObject {
 			close(stmtInsert, connection);
 		}
 	}
+
 	
 	public void updateTilaus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;

@@ -3,11 +3,19 @@ package pizzeria_pizzicato.model;
 public class Tuote {
 	private int id;
 	private double hinta;
+	private int lkm;
+	
+	public Tuote(int id, int hinta, int lkm) {
+		super();
+		this.id = id;
+		this.hinta = hinta;
+	}
 	
 	public Tuote(int id, int hinta) {
 		super();
 		this.id = id;
 		this.hinta = hinta;
+		this.lkm = 1;
 	}
 	
 	public Tuote() {
@@ -30,10 +38,19 @@ public class Tuote {
 		this.hinta = hinta;
 	}
 
+	public int getLkm() {
+		return lkm;
+	}
+
+	public void setLkm(int lkm) {
+		this.lkm = lkm;
+	}
+
 	@Override
 	public String toString() {
-		return "Tuote [id=" + id + ", hinta=" + hinta + "]";
+		return "Tuote [id=" + id + ", hinta=" + hinta + ", lkm=" + lkm + "]";
 	}
+	
 	
 	
 }
