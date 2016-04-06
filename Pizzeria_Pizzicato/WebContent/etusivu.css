@@ -25,6 +25,8 @@ header, section, footer, aside, article, figure {
 
 .kielet {display: none;}
 
+# {diplay:none;}
+
 body {
 
 	background-image: url("Kuvia/ruokaa.jpg"); 

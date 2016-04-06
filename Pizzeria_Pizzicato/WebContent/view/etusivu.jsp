@@ -84,6 +84,7 @@ media="only screen and (min-width: 771px)">
 
 
   <header>
+  <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
   <div class="kielet"> 
   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
   <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>

@@ -1,7 +1,21 @@
+@-webkit-viewport   { width: auto; }
+@-moz-viewport      { width: auto; }
+@-ms-viewport       { width: auto; }
+@-o-viewport        { width: auto; }
+@viewport           { width: auto; }
+
+
+
+
+
+
+html, body {height:100%;}
+
 body {font-family:tahoma, arial, sans-serif;   
 	  background-image: url("Kuvia/ruokaa.jpg"); 
 	background-repeat: no-repeat; 
-	background-size: 100%;
+	background-size: auto 100%;
+	background-position: left top;
 
       
       }
@@ -20,6 +34,9 @@ header img {
 		background-color: white;
 		}
 		
+		
+		
+		
 .kielet a {
 		color: black;
 		text-decoration: none;
@@ -31,7 +48,7 @@ header img {
 		}
 
 header {
-	margin-top:5px;
+	margin-top:1px;
 	background-color: white;
 	text-align:center;
 	padding: 2px;
