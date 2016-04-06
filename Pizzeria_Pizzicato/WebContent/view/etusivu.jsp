@@ -47,8 +47,7 @@ media="only screen and (min-width: 771px)">
  	<li>	<a href ="#"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
- 	
-
+    	
     <form action="kirjautuminen" method="post">
       <div class="loginRow">
         <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
@@ -58,6 +57,7 @@ media="only screen and (min-width: 771px)">
        
       </div>
     </form>
+
 
  	
 </ul>
@@ -94,7 +94,7 @@ media="only screen and (min-width: 771px)">
   <article>
   
     <span class="pizzalista"><h1><br>Pizza menumme</h1></span>
-    
+	
     <section>
    
     <span class="pizzalista">

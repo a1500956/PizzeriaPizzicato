@@ -6,40 +6,33 @@
 @viewport           { width: auto; }
 
 
-h1{color: #FF007F; padding-top: 5%;}
-h6{color:white;}
-p{color: #FF007F;}
+h1{color: white;}
 
 header {
-	background-color: black; margin-top:0
-	; text-align:center; width:100%;  padding-top: 90px;
+	background-color: red; margin-top:0
+	; text-align:center; width:100%;  padding-top: 102px;
 	
 }
 
 header, section, footer, aside, article, figure {
-	display: block; margin-top: 10;
+	display: block;
+}
+header img{
+	margin-top: -65px;
+	width: 200px;
 }
 
 
-.loginRow {border: none;}
-
-.kielet {display: none;}
 
 body {
-
-	background-image: url("Kuvia/ruokaa.jpg"); 
-	background-repeat: no-repeat; 
-	background-size: 100%;
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	background-color: green;
 	margin: 0;
 	padding: 0;
-	margin-top: 0;
-	
+	color: #000;
 }
 
-#flag {  height: 20px; width:auto; float: left;
-		 display: inline-block; padding: 2px;
+#flag { height: 20px; width:auto; 
 	
 }
 
@@ -53,20 +46,20 @@ h1, h2, h3, h4, h5, h6, p {
 	padding-right: 15px;
 	padding-left: 15px; 
 }
-
-
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none; margin-top:80px;
+}
 
 
 .container {
 	width: 80%;
-	background-color: black;
+	background-color: #FFFFFF;
 	margin: 0 auto; 
-	
 }
 
 
 
-section{padding: 10px 0;
+section{padding: 10px 0; 
 }
 .content {
 	padding-top:50px;
@@ -78,23 +71,20 @@ section{padding: 10px 0;
 aside {
 	float: left;
 	width: auto;
-	background-color: black;
+	background-color: #EADCAE;
 	padding: 10px 0;
 }
 
 /* ~~ This grouped selector gives the lists in the .content area space ~~ */
 .content ul, .content ol {
-	padding: 0 15px 15px 15px; align-content:center 
-	margin-left: -100;/* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+	padding: 0 15px 15px 15px; align-content:center /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
 }
 
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 
 nav {
 	background-color: black;   text-align:center;
-	display:inline-block; position: fixed; width:80%; 
-	margin-left: 20;
-	
+	display:inline-block; position: fixed; width:80%;
 }
 nav ul{border-style:none;
 	list-style: none;
@@ -102,15 +92,10 @@ nav ul{border-style:none;
 	margin-bottom: 15px; 
 }
 nav li {border-style:none; 
-	 display:inline-block; 
-	 padding: 8px;
-	 height: 20px; 
-	 width:auto;
-	 padding: 5px 5px 5px 15px;
-	 
+	 display:inline-block; padding: 8px;
 }
 nav a, nav a:visited { 
-	
+	padding: 5px 5px 5px 15px;
 	display: block; 
 	width: 100%;  
 	text-decoration: none;
@@ -118,11 +103,11 @@ nav a, nav a:visited {
 }
 nav a:hover, nav a:active, nav a:focus { 
 	background-color: black;
-	color: #3AEE58;
+	color: black;
 }
 a:link {
 	color: white;
-	 /*text-decoration: underline;       unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 a:visited {
 	color: #6E6C64;
@@ -145,10 +130,7 @@ a:hover, a:active, a:focus
 
 .textField {float: right;
 			background-color: black;
-			padding:none;
-			border: solib black;
-			color: white;
-			}
+			padding:none;}
 
 
 
@@ -164,7 +146,7 @@ table { width:auto, text-aling_ center;
 }
 	
 }
-.pizzalista{ text-align:center; padding-bottom: 30%;
+.pizzalista{ text-align:center; 
 }
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
@@ -178,19 +160,14 @@ table { width:auto, text-aling_ center;
 	line-height: 0px;
 }
 
-article {background-image: url("Kuvia/Taustakuva.jpg"); 
-		 background-repeat: no-repeat; 
-		 background-size: 100%;}
+article {background-image: url("Kuvia/Taustakuva.jpg")}
 
 footer {
 	padding: 10px 0;
-	background-color: black;
+	background-color: #CCC49F;
 	text-align: center;
 	position: relative;
 	clear: both; 
-	color: white;
-
-	margin-bottom: -20px;
 
 }
 
