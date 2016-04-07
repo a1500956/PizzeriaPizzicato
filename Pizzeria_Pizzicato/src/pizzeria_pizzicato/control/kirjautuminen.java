@@ -41,8 +41,10 @@ public class kirjautuminen extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
 			response.addCookie(userName);
-			response.sendRedirect("listaaPizzat");
+			String encodedURL = response.encodeRedirectURL("listaaPizzat");
+            response.sendRedirect(encodedURL);
 			
 		}
 		
@@ -52,8 +54,10 @@ public class kirjautuminen extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
 			response.addCookie(userName);
-			response.sendRedirect("kirjautuminenOk");
+			String encodedURL = response.encodeRedirectURL("kirjautuminenOk");
+            response.sendRedirect(encodedURL);
 			
 
 

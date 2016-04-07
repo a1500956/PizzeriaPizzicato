@@ -9,6 +9,28 @@
 <title>Lis‰‰ pizza</title>
 </head>
 <body>
+
+<%
+//allow access only if session exists
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+
+}
+}
+%>
+<header>
+<div class="login">
+    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h4><%=userName %>, olet kirjautuneena.</h4>
+	<input type="submit" value="Uloskirjaus" >
+      </div>
+    </form>
+</div>
+</header>
 	<h1>Lis‰‰ pizza</h1>
 		
 	<form action="" method="post">
@@ -53,7 +75,7 @@
 			<tr>
 				<td><br>
 				<div class="button">
-						<a href="listaaPizzat">Palaa pizzalistaan</a>
+						<a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a>
 					</div></td>
 				<td><br> <input type="submit" name="submit-button"
 					class="submit-button" value="Tallenna" /></td>

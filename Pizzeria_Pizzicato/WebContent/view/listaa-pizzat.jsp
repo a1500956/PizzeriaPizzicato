@@ -23,15 +23,9 @@ scope="request" />
 
 </head>
 	<body>
-
-		<h1>PIZZALISTA</h1>
-		
-		<%
+	<%
 //allow access only if session exists
 String user = null;
-if(session.getAttribute("kayttaja") == null){
-    response.sendRedirect("pizzaMenu");
-}else user = (String) session.getAttribute("kayttaja");
 String userName = null;
 String sessionID = null;
 Cookie[] cookies = request.getCookies();
@@ -41,7 +35,7 @@ for(Cookie cookie : cookies){
     if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
 }
 }else{
-    sessionID = session.getId();
+   sessionID = session.getId();
 }
 %>
 <header>
@@ -54,9 +48,13 @@ for(Cookie cookie : cookies){
     </form>
 </div>
 </header>
-    
-		<a href="lisaa-pizza" class="button">Lisää pizza</a>
-		<a href="listaa-taytteet" class="button">Näytä täytteet</a>
+
+		<h1>PIZZALISTA</h1>
+		
+
+		<a href="<%=response.encodeURL("lisaa-pizza") %>">Lisää pizza</a>
+		<a href="<%=response.encodeURL("listaa-taytteet") %>">Näytä täytteet</a>
+		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			<td><h4>MENUSSA</h4></td>

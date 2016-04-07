@@ -22,10 +22,32 @@ scope="request" />
 
 </head>
 	<body>
+	
+<%
+//allow access only if session exists
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+
+}
+}
+%>
+<header>
+<div class="login">
+    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h4><%=userName %>, olet kirjautuneena.</h4>
+	<input type="submit" value="Uloskirjaus" >
+      </div>
+    </form>
+</div>
+</header>
 		
 		<h1>TÄYTELISTA</h1>
 		
-		<div class ="button"><a href="listaaPizzat">Palaa pizzalistaan</a></div><br>
+		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
 		<a href="lisaa-tayte" class="button">Lisää täyte</a>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		
