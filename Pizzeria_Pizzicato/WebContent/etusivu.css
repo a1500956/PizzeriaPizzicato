@@ -31,9 +31,9 @@ body {
 
 	background-image: url("Kuvia/ruokaa.jpg"); 
 	background-repeat: no-repeat; 
-	background-size: 100%;
+	background-size: 100% 100%;
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
-	background-color: green;
+	background-color: white;
 	margin: 0;
 	padding: 0;
 	background-attachment: fixed;
