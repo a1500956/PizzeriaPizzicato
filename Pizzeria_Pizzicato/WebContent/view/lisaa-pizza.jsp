@@ -11,8 +11,12 @@
 <body>
 
 <%
-//allow access only if session exists
 String userName = null;
+//allow access only if session exists
+if(session.getAttribute("kayttaja") == null){
+	response.sendRedirect("pizzaMenu");
+}else userName = (String) session.getAttribute("kayttaja");
+
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
@@ -82,19 +86,7 @@ for(Cookie cookie : cookies){
 			</tr>
 		</table>
 	</form>
-	<%
-session.setMaxInactiveInterval(2);
-%>
 
-	<script type="text/javascript">
-var Msg ='<%=session.getAttribute("viesti")%>';
-    if (Msg == "y") {
- function alertName(){
- alert("Tallennus onnistui!");
- } 
- }
- </script>
-	<script type="text/javascript"> window.onload = alertName; </script>
 
 </body>
 </html>

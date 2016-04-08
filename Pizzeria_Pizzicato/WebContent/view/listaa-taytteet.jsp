@@ -77,18 +77,7 @@ for(Cookie cookie : cookies){
 			<% } %>
 		</table><br>
 				
-			<%
-session.setMaxInactiveInterval(2);
-%>
-
- <script type="text/javascript">
-var Msg ='<%=session.getAttribute("viesti")%>';
-    if (Msg == "y") {
- function alertName(){
- alert("Tallennus onnistui!");
- } 
- }
- </script> 
+ 
 <script type="text/javascript"> window.onload = alertName; </script>
 		
 		

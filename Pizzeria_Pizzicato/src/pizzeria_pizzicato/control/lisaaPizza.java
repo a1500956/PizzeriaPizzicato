@@ -1,18 +1,22 @@
 package pizzeria_pizzicato.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Lukija;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.dao.KayttajaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 
@@ -23,6 +27,8 @@ public class lisaaPizza extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		
 
 		String jsp = "/view/lisaa-pizza.jsp";
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(
@@ -32,7 +38,7 @@ public class lisaaPizza extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+	
 		String viesti = null;
 
 		try {
@@ -75,10 +81,10 @@ public class lisaaPizza extends HttpServlet {
 		}
 
 		HttpSession session = request.getSession();
-
+		
 		session.setAttribute("viesti", viesti);
 
-		response.sendRedirect("lisaa-pizza");
+		response.sendRedirect("listaaPizzat");
 
 	}
 }
