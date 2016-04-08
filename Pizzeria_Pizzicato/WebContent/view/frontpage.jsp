@@ -81,9 +81,10 @@ and (max-width: 770px)">
 			</div>
 		</div>
   <header>
+   <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
   <div class="kielet"> 
-  <li><a href="#"> ENG</a><li>
-  <li><a href="#"> FIN</a></li> 
+ <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
+ <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
   </div>
 	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
   </header>
@@ -128,10 +129,14 @@ and (max-width: 770px)">
 			<% } %>
 		</table><br>
     </span>
+ 
+     
+    </section>
 
    <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
   
-
+  
+ <!-- end .content --></article>
 		<footer>
 
 		<p>Ratapihantie 13, 00100 Helsinki. Phone (09) 123 123 12</p>
