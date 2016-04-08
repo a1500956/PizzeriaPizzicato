@@ -45,13 +45,14 @@ and (max-width: 770px)">
    			<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
 			<li><a href="#"> Frontpage</a></li>
 			<li><a href="#"> Drinks</a></li>
-			<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+			
 		</ul>
  <form action="/kirjaudu.html" method="post">
-      <div class="loginRow">
+      <div class="loginrow2">
        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
-        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="username" />&nbsp;
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
+    
      
         
       </div>

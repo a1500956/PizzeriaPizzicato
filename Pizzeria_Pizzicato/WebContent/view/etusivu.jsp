@@ -51,7 +51,7 @@ media="only screen and (min-width: 771px)">
 
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
-      	<input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25"/>
+      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="25" height="25"/>
        	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
        	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />
       </div>
