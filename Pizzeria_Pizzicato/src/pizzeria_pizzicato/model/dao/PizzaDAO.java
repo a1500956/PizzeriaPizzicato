@@ -18,6 +18,8 @@ public class PizzaDAO extends DataAccessObject {
 		Connection connection = null;
 
 		PreparedStatement stmtDelete = null;
+		PreparedStatement stmtDelete2 = null;
+		PreparedStatement stmtDelete3 = null;
 
 		try {
 
@@ -29,12 +31,12 @@ public class PizzaDAO extends DataAccessObject {
 			stmtDelete.executeUpdate();
 
 			sqlDelete = "DELETE FROM Pizza WHERE tuote_id =?";
-			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete2 = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
 			
 			sqlDelete = "DELETE FROM Tuote WHERE tuote_id =?";
-			stmtDelete = connection.prepareStatement(sqlDelete);
+			stmtDelete3 = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
 			
@@ -48,6 +50,8 @@ public class PizzaDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtDelete, connection);
+			close(stmtDelete2, connection);
+			close(stmtDelete3, connection);
 
 		}
 	}
@@ -56,6 +60,7 @@ public class PizzaDAO extends DataAccessObject {
 		Connection connection = null;
 
 		PreparedStatement stmtUpdate = null;
+		PreparedStatement stmtUpdate2 = null;
 
 		try {
 
@@ -68,7 +73,7 @@ public class PizzaDAO extends DataAccessObject {
 			stmtUpdate.executeUpdate();
 			
 			sqlUpdate = "UPDATE Tuote SET tuote_nimi = ?, tuote_hinta = ? WHERE tuote_id =?";
-			stmtUpdate = connection.prepareStatement(sqlUpdate);
+			stmtUpdate2 = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setString(1, pizza.getNimi());
 			stmtUpdate.setDouble(2, pizza.getHinta());
 			stmtUpdate.setInt(3, pizza.getId());
@@ -79,6 +84,7 @@ public class PizzaDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtUpdate, connection);
+			close(stmtUpdate2, connection);
 		}
 	}
 
@@ -88,6 +94,7 @@ public class PizzaDAO extends DataAccessObject {
 	public void addPizza(Pizza pizza) throws SQLException {
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
+		PreparedStatement stmtInsert2 = null;
 
 		try {
 
@@ -96,6 +103,7 @@ public class PizzaDAO extends DataAccessObject {
 
 			String sqlInsert = "INSERT INTO Tuote(tuote_nimi, tuote_hinta) VALUES (?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
+			
 
 			stmtInsert.setString(1, pizza.getNimi());
 			stmtInsert.setDouble(2, pizza.getHinta());
@@ -105,7 +113,7 @@ public class PizzaDAO extends DataAccessObject {
 			String iidee = Integer.toString(getPizzaId(pizza.getNimi()));
 
 			String sqlInsert2 = "INSERT INTO Pizza(tuote_id, pizza_nakyy) VALUES (?, ?)";
-			stmtInsert = connection.prepareStatement(sqlInsert2);
+			stmtInsert2 = connection.prepareStatement(sqlInsert2);
 
 			stmtInsert.setString(1, iidee);
 			stmtInsert.setInt(2, pizza.getNakyy());
@@ -116,6 +124,7 @@ public class PizzaDAO extends DataAccessObject {
 			throw new RuntimeException(e);
 		} finally {
 			close(stmtInsert, connection);
+			close(stmtInsert2, connection);
 		}
 	}
 
