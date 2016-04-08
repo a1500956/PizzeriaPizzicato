@@ -18,6 +18,27 @@
 <title>Muokkaa pizza</title>
 </head>
 <body>
+<%
+//allow access only if session exists
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+
+}
+}
+%>
+<header>
+<div class="login">
+    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h4><%=userName %>, olet kirjautuneena.</h4>
+	<input type="submit" value="Uloskirjaus" >
+      </div>
+    </form>
+</div>
+</header>
 	<h1>Muokkaa pizzaa</h1>
 	<form action="" method="post">
 		<table class="lisaa-pizza" align=center>
@@ -30,7 +51,7 @@
 			<tr>
 				<td>Pizzan hinta:</td>
 				<td><input type="number" value=<%=valittuH%> step=0.01
-					name="hinta" size="5" min="0" max="100" required
+					name="hinta" size="5" min="6" max="100" required
 					title="Arvon tulee olla väliltä 0.0 ja 100.0" />&euro;</td>
 			</tr>
 			<tr>

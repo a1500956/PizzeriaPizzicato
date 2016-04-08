@@ -34,7 +34,7 @@ header img {
 		background-color: white;
 		}
 		
-		
+article {text-align: center;}
 		
 		
 .kielet a {
@@ -118,7 +118,7 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 
 .tilaa {position: center;
 		text-align: center;
-		color:white}      
+		color:black}      
    
 footer {
 	padding: 10px 0;

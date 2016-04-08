@@ -107,7 +107,7 @@ aside {
 
 nav {
 	background-color: black;   text-align:center;
-	display:inline-block; position: fixed; width:79%; 
+	display:inline-block; position: fixed; width:80%; 
 	margin-left: 20;
 	
 }
@@ -140,7 +140,7 @@ a:link {
 	 /*text-decoration: underline;       unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 a:visited {
-	color: #6E6C64;
+	color: #ffffff;
 	text-decoration: underline;
 }
 a:hover, a:active, a:focus

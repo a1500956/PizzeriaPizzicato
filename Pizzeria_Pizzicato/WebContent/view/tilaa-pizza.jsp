@@ -84,9 +84,10 @@ media="only screen and (min-width: 771px)">
 
 
   <header>
+   <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
   <div class="kielet"> 
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
+  <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> ENG</a>
+  <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
   </div>
 	<h6>Tee pizzatilauksesi ja jotain<br></h6>
   </header>

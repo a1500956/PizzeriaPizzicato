@@ -43,12 +43,12 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
-			HttpSession sessionTilaus = request.getSession();
+			/*HttpSession sessionTilaus = request.getSession();
 			sessionTilaus.setAttribute("testi", "testitietoa");
 			sessionTilaus.setMaxInactiveInterval(30*60);
 			Cookie testi = new Cookie("kayttaja", "testitietoa");
 			testi.setMaxAge(30*60);
-			response.addCookie(testi);
+			response.addCookie(testi);*/
 			
 			request.setAttribute("pizzat", pizzaNakyy);
 			

@@ -70,7 +70,7 @@ and (max-width: 770px)">
 			<div id="myDropdown" class="dropdown-content">
 				<ul>
 				
-					<li><a href="/Pizzeria_Pizzicato/PizzaMenuEn"> Frontpage</a></li>
+					<li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> Frontpage</a></li>
 					<li><a href="#"> Drinks</a></li>
 					<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
 							sivut</a></li>
@@ -81,9 +81,10 @@ and (max-width: 770px)">
 			</div>
 		</div>
   <header>
+   <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
   <div class="kielet"> 
-  <li><a href="/Pizzeria_Pizzicato/PizzaMenuEng"> ENG</a><li>
-  <li><a href="/Pizzeria_Pizzicato/PizzaMenu"> FIN</a></li> 
+  <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> ENG</a>
+  <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
   </div>
 	<h6>Please select pizzas from below <br></h6>
   </header>
