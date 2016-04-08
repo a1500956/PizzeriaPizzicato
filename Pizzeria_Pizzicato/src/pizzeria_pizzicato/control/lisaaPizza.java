@@ -58,7 +58,6 @@ public class lisaaPizza extends HttpServlet {
 
 			String[] taytteetStr = request.getParameterValues("tayte");
 
-
 			Pizza pizza = new Pizza(id, nimi, hinta, nakyy);
 			PizzaDAO pizzadao = new PizzaDAO();
 			PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
