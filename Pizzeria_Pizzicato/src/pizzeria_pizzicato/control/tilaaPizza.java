@@ -104,7 +104,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 				
 			}	
 			if(tuotteet.isEmpty()){
-			response.sendRedirect("tilaa-pizza.jsp");
+			 doGet(request, response);
 			}else{
 				String jsp = "/view/vahvista-tilaus.jsp"; 
 				request.setAttribute("tilauslista", tuotteet);
