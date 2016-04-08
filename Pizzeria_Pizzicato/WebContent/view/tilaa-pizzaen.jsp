@@ -41,15 +41,13 @@ and (max-width: 770px)">
 <body>
 	<div class="container">
 		<nav class=isoruutu>
-		<ul> <a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-   			 <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+		<ul><a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
 			<li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> Return Back on the Frontpage</a></li>
 			<li><a href="#"> Drinks</a></li>
 	
-		</ul>
  <form action="/kirjaudu.html" method="post">
-      <div class="loginRow">
-       <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
+      <div class="loginrow2">
+       <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22">
         <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="username" />&nbsp;
      
@@ -58,7 +56,7 @@ and (max-width: 770px)">
     </form>
 
 
-
+</ul>
 		</nav>
 
 		<div class="dropdown">
@@ -81,12 +79,10 @@ and (max-width: 770px)">
 			</div>
 		</div>
   <header>
-   <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
+   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
   <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> ENG</a>
   <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
   </div>
-	<h6>Please select pizzas from below <br></h6>
   </header>
 
 		
@@ -99,7 +95,7 @@ and (max-width: 770px)">
  
   <article>
   
-    <span class="pizzalista"><h1>Pizzamenu</h1></span>
+    
     
     <section>
    

@@ -39,19 +39,40 @@ and (max-width: 770px)">
 </head>
 </head>
 <body>
+<%
+//allow access only if session exists
+String user = null;
+if(session.getAttribute("kayttaja") == null){
+    response.sendRedirect("pizzaMenuEng");
+}else user = (String) session.getAttribute("kayttaja");
+String userName = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}else{
+    sessionID = session.getId();
+}
+%>
 	<div class="container">
 		<nav class=isoruutu>
 		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
 			<li><a href="#"> Frontpage</a></li>
 			<li><a href="#"> Drinks</a></li>
-	<form action="kirjautuminenEN" method="post">
+			<form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
       <div class="loginrow2">
-      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
-       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
-       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
+      <h3><%=userName %>, you are signed in.</h3>
+	<input type="submit" value="Log Out" >
       </div>
     </form>
- </ul>
+		</ul>
+         
+  
+   
+
 
 
 		</nav>
@@ -77,10 +98,7 @@ and (max-width: 770px)">
 		</div>
   <header>
    <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
-  <div class="kielet"> 
- <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
-  </div>
-	
+	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
   </header>
 
 		
@@ -93,7 +111,7 @@ and (max-width: 770px)">
  
   <article>
   
-    <span class="pizzalista"><h1>PIZZAMENU</h1></span>
+    <span class="pizzalista"><h1>Pizzamenu</h1></span>
     
     <section>
    
