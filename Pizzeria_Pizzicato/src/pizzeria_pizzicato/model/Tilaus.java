@@ -6,17 +6,23 @@ public class Tilaus {
 	private int id;
 	private Timestamp aika;
 	private String osoite;
+	private String puhnro;
 	private int statusID;
 	private int kayttajaID;
 	
-	public Tilaus(int id, Timestamp aika, String osoite, int statusID,
+	public Tilaus(int id, Timestamp aika, String osoite, String puhnro, int statusID,
 			int kayttajaID) {
 		super();
 		this.id = id;
 		this.aika = aika;
 		this.osoite = osoite;
+		this.puhnro = puhnro;
 		this.statusID = statusID;
 		this.kayttajaID = kayttajaID;
+	}
+	
+	public Tilaus() {
+		
 	}
 
 	public int getId() {
@@ -41,6 +47,16 @@ public class Tilaus {
 
 	public void setOsoite(String osoite) {
 		this.osoite = osoite;
+	}
+	
+	
+
+	public String getPuhnro() {
+		return puhnro;
+	}
+
+	public void setPuhnro(String puhnro) {
+		this.puhnro = puhnro;
 	}
 
 	public int getStatusID() {

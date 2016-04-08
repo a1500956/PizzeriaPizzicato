@@ -1,9 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 
-<%@ page import="pizzeria_pizzicato.model.Pizza"%>
-<%@ page import="pizzeria_pizzicato.model.Tayte"%>
+
+<jsp:useBean id="tilauslista" type="java.util.ArrayList<Tuote> "
+scope="request" />
+
+
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -12,13 +16,12 @@
     nf.setMinimumFractionDigits(2);
 %>
 
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
-scope="request" />
-
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Pizzeria Pizzicato</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Vahvista Tilaus</title>
+</head>
+<body>
 
 <link href="puhelin.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 0px)
@@ -39,6 +42,12 @@ media="only screen and (min-width: 771px)">
 <![endif]--></head>
 </head>
 	<body>
+	
+	  <%
+  	session.setAttribute("tilauslista", tilauslista);
+  
+  %>
+	
 	<div class="container">
 <nav class=isoruutu>
 <ul>
@@ -53,7 +62,7 @@ media="only screen and (min-width: 771px)">
       <div class="loginRow">
         <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
         <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
-        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="kÃ¤yttÃ¤jÃ¤tunnus" />&nbsp;
+        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
        
        
       </div>
@@ -88,43 +97,48 @@ media="only screen and (min-width: 771px)">
   <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
   <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
   </div>
-	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessÃ¤!!!!<br></h6>
+	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!!!!<br></h6>
   </header>
  
   <article>
   
+
     
     <section>
-   <form action="" method="post">	
+    
+   <form action="vahvistaTilaus" method="post" style="padding-top:100px">	
     <span class="pizzalista">
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		<table class="listaa-pizzat" width="auto" border="1" align="center">	
+  		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
+  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="10" pattern=".{10,10}" required></p>
 		<tr>
 			
-			<th>PIZZAT</th>
-			<th>HINTA</th>
+			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
+			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
+			<th style="border-bottom: solid 1px grey;">LUKUMÄÄRÄ</th>
+			
 			<!--  <th>TOIMINNOT</th>-->
 			
 		</tr>
-			<%for(int i = 0; i < pizzat.size(); i++) {%>
-			
+		<%double summa=0;%>
+
+			<%for(int i = 0; i < tilauslista.size(); i++) {%>
 			<tr>
-				
-				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>â‚¬ </div></td>
-				<td><div class="maara"><p><input name=<%=pizzat.get(i).getId()%> type="text" value="0" size="1" > </p> </div></td>
-										
+				<td><div class="tilauslista"><%=tilauslista.get(i).getNimi()%></div></td>
+				<td><div class="tilauslista"><%=nf.format(tilauslista.get(i).getHinta())%>&euro;</div></td>
+				<%summa+=(tilauslista.get(i).getHinta()*tilauslista.get(i).getLkm());%>
+				<td><div class="taytteet"><%=tilauslista.get(i).getLkm()%> kpl</div></td>
+				<td>
+				</td>								
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
-												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
-												<%  }%>
-												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
-												 
-			</div></td></tr>
 			<% } %>
+		
 		</table><br>
-		<tr><div class=button><a href="pizzaMenu">Takaisin</a></div>
+		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p>
+		
+		<tr><div class=button><a href="tilaaPizza">Takaisin</a></div>
 		<input type="submit" name="submit-button"
-					class="submit-button" value="Jatka Tilausta" /></tr>
+					class="submit-button" value="Vahvista Tilaus" /></tr>
 		
     </span>
     </form>

@@ -38,11 +38,6 @@ public class PizzaDAO extends DataAccessObject {
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
 			
-			
-			
-			
-			
-			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
