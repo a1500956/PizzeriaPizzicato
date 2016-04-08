@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import javax.servlet.http.HttpSession;
 
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
@@ -39,6 +42,13 @@ public class pizzaMenu extends HttpServlet {
 					pizzaNakyy.add(pizza);
 				}
 			}
+			
+			/*HttpSession sessionTilaus = request.getSession();
+			sessionTilaus.setAttribute("testi", "testitietoa");
+			sessionTilaus.setMaxInactiveInterval(30*60);
+			Cookie testi = new Cookie("kayttaja", "testitietoa");
+			testi.setMaxAge(30*60);
+			response.addCookie(testi);*/
 			
 			request.setAttribute("pizzat", pizzaNakyy);
 			

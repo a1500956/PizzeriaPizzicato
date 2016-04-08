@@ -9,6 +9,29 @@
 <title>Lis‰‰ t‰yte</title>
 </head>
 <body>
+<%
+//allow access only if session exists
+
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+
+}
+}
+%>
+<header>
+<div class="login">
+    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h4><%=userName %>, olet kirjautuneena.</h4>
+	<input type="submit" value="Uloskirjaus" >
+      </div>
+    </form>
+</div>
+</header>
+
 <h1>Lis‰‰ t‰yte</h1>
 		<form action="" method="post">
 			<table class="lisaa-pizza" align=center>
@@ -36,19 +59,6 @@
 				</tr>	
 			</table>
 			</form>
-				<%
-session.setMaxInactiveInterval(2);
-%>
-
- <script type="text/javascript">
-var Msg ='<%=session.getAttribute("viesti")%>';
-    if (Msg == "y") {
- function alertName(){
- alert("Tallennus onnistui!");
- } 
- }
- </script> 
-<script type="text/javascript"> window.onload = alertName; </script>
 			
 </body>
 </html>

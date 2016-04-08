@@ -45,13 +45,14 @@ and (max-width: 770px)">
    			<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
 			<li><a href="#"> Frontpage</a></li>
 			<li><a href="#"> Drinks</a></li>
-			<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+			
 		</ul>
  <form action="/kirjaudu.html" method="post">
-      <div class="loginRow">
+      <div class="loginrow2">
        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
-        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="username" />&nbsp;
+        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
+    
      
         
       </div>
@@ -81,11 +82,12 @@ and (max-width: 770px)">
 			</div>
 		</div>
   <header>
+   <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
   <div class="kielet"> 
-  <li><a href="#"> ENG</a><li>
-  <li><a href="#"> FIN</a></li> 
+ <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
+ <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
   </div>
-	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!<br></h6>
+	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
   </header>
 
 		
@@ -128,11 +130,17 @@ and (max-width: 770px)">
 			<% } %>
 		</table><br>
     </span>
+ 
+     
+    </section>
 
-
+   <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
+  
+  
+ <!-- end .content --></article>
 		<footer>
 
-		<p>Ratapihantie 13, 00100 Helsinki. Puh. (09) 123 123 12</p>
+		<p>Ratapihantie 13, 00100 Helsinki. Phone (09) 123 123 12</p>
 		<address></address>
 		</footer>
 		<!-- end .container -->

@@ -42,11 +42,11 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>	<a href ="#"> Etusivu</a></li>
+   <a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
+   <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
+
  	
 
     <form action="kirjautuminen" method="post">
@@ -84,11 +84,12 @@ media="only screen and (min-width: 771px)">
 
 
   <header>
+   <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
   <div class="kielet"> 
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
+  <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> ENG</a>
+  <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
   </div>
-	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!!!!<br></h6>
+	<h6>Tee pizzatilauksesi ja jotain<br></h6>
   </header>
  
   <article>

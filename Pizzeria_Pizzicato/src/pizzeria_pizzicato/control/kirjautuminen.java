@@ -30,30 +30,41 @@ public class kirjautuminen extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kayttaja_ktunnus = request.getParameter("kayttaja");
 		String kayttaja_salasana = request.getParameter("salasana");
-		
-		System.out.println(kayttaja_ktunnus);
-		
-		
+
+	
 		
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kirjautuja = new Kayttaja();
 		kirjautuja = kayttajadao.login(kayttaja_ktunnus, kayttaja_salasana);
 		
+		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1 ){
+			HttpSession session = request.getSession();
+			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
+			response.addCookie(userName);
+			String encodedURL = response.encodeRedirectURL("listaaPizzat");
+            response.sendRedirect(encodedURL);
+			
+		}
 		
-		if(kirjautuja != null){
-		HttpSession session = request.getSession();
-		session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
-		session.setMaxInactiveInterval(30*60);
-		Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
-		userName.setMaxAge(30*60);
-		response.addCookie(userName);
 
-		response.sendRedirect("kirjautuminenOk");
 		
+		else if(kirjautuja != null){
+			HttpSession session = request.getSession();
+			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
+			response.addCookie(userName);
+			String encodedURL = response.encodeRedirectURL("kirjautuminenOk");
+            response.sendRedirect(encodedURL);
+			
+
+
 		}else{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenu.java");
 			PrintWriter out= response.getWriter();
-			out.println("<font color=red>Either user name or password is wrong.</font>");
+			out.println("<font color=red>Käyttäjätunnus ja/tai salasana on virheellinen.</font>");
 			rd.include(request, response);
 
 		
@@ -62,4 +73,4 @@ public class kirjautuminen extends HttpServlet {
 		
 	}
 
-}
+	}

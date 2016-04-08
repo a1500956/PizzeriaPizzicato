@@ -4,6 +4,7 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -46,16 +47,13 @@ media="only screen and (min-width: 771px)">
    <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
 
     <form action="kirjautuminen" method="post">
-      <div class="loginRow">
-        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
-        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
-        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
-       
-       
+      <div class="loginrow2">
+      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="40" height="22"/>
+       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
       </div>
     </form>
 
@@ -68,12 +66,11 @@ media="only screen and (min-width: 771px)">
 
  <div class="dropdown">
  
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
+  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="15" height="15"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
  	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
  	
 </ul>
@@ -83,14 +80,14 @@ media="only screen and (min-width: 771px)">
 </div>
 
 
-  <header>
+  <header>   
+  <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
   <div class="kielet"> 
   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
   <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
   </div>
 	<h6>Olemme terveellinen ja vihreä valinta. Ravintolamme sijaitsee Helsingin keskustassa, hyvien kulkuyhteyksien varrella.<br></h6>
   </header>
- 
   <article>
   
     <span class="pizzalista"><h1><br>Pizza menumme</h1></span>

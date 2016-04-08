@@ -9,12 +9,28 @@ html{text-align:center;
 	
 }
 
-body{	
+body{
 	font-family: Georgia;
-	
 	color: black;
 	
 }
+
+header{text-align:right;
+	
+}
+
+.loginrow2 {text-align: right;
+			font-size: 15px;
+			padding-right:20px;
+}
+
+.login {
+		text-align: right;
+		font-size: 15px;
+		padding-right:190px;	
+}
+
+
 
 
 
