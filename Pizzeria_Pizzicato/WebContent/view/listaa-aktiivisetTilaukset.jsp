@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ page import="pizzeria_pizzicato.model.Pizza"%>
-<%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="pizzeria_pizzicato.model.Tilaus"%>
 <%@ page import="java.text.NumberFormat" %>
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -11,14 +10,14 @@
     nf.setMinimumFractionDigits(2);
 %>
 
-<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
+<jsp:useBean id="tilaukset" type="java.util.ArrayList<Tilaus> "
 scope="request" />
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
-<title>Pizzalista</title>
+<title>Aktiiviset tilaukset</title>
 
 
 </head>
@@ -40,6 +39,11 @@ for(Cookie cookie : cookies){
    sessionID = session.getId();
 }
 %>
+
+<%
+response.setIntHeader("Refresh", 5);
+%>
+
 <header>
 <div class="login">
     <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
@@ -51,46 +55,36 @@ for(Cookie cookie : cookies){
 </div>
 </header>
 
-		<h1>PIZZALISTA</h1>
+		<h1>Aktiiviset tilaukset</h1>
 		
 
-		<a href="<%=response.encodeURL("lisaa-pizza") %>">Lisää pizza</a>
-		<a href="<%=response.encodeURL("listaa-taytteet") %>">Näytä täytteet</a>
-		<a href="<%=response.encodeURL("listaaAktiivisetTilaukset") %>">Näytä aktiiviset tilaukset</a>
-		
+		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			<td><h4>MENUSSA</h4></td>
-			<td><h4>PIZZAT</h4></td>
-			<td><h4>HINTA</h4></td>
-			<td><h4>TÄYTTEET</h4></td>
-			<td><h4>TOIMINNOT</h4></td>
+			<td><h4>Tilaus numero</h4></td>
+			<td><h4>Aika</h4></td>
+			<td><h4>Status</h4></td>
+			<td><h4>Tuote</h4></td>
+			<td><h4>Lukumäärä</h4></td>
+			<td><h4>Toimitusosoite</h4></td>
+			<td><h4>Tilaaja</h4></td>
+			<td><h4>Puhelinnumero</h4></td>
 				
 		</tr>
-			<%for(int i = 0; i < pizzat.size(); i++) {%>
+			<%for(int i = 0; i < tilaukset.size(); i++) {%>
 			<tr>
-				<td><div class="nakyvyys"><%if (pizzat.get(i).getNakyy()==1){out.print("kyllä");}else{out.print("ei");}%></div></td>
-				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%></div></td>
-				<td><div class="taytteet"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
-												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
-												<%  }%>
-												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
-												 </div></td>
-				<td><div class="toiminnot"> 
-				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
-				Muokkaa
-				</a>		
-				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>&id2=<%=pizzat.get(i).getNimi()%>" class="button">
-				Poista
-				</a></div>
-				</td>								
+				<td><%=tilaukset.get(i).getId() %></td>
+				<td><%=tilaukset.get(i).getAika()%></td>
+				<td><%=tilaukset.get(i).getStatusNimi() %></td>
+				<td><%=tilaukset.get(i).getTuoteNimi() %></td>
+				<td><%=tilaukset.get(i).getLukumaara() %></td>
+				<td><%=tilaukset.get(i).getOsoite()%></td>
+				<td><%=tilaukset.get(i).getKtunnus()%></td>
+				<td><%=tilaukset.get(i).getPuhnro()%></td>						
 			</tr>
 			<% } %>
 		</table><br>
-		
-	
 		
 	</body>
 </html>

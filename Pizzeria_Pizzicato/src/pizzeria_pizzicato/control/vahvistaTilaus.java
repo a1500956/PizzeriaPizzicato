@@ -48,7 +48,7 @@ public class vahvistaTilaus extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("etusivu.jsp");
+		response.sendRedirect("pizzaMenu");
 		
 		
 		

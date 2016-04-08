@@ -138,6 +138,37 @@ public class TilausDAO extends DataAccessObject {
 
 		}
 	}
+	
+	public ArrayList<Tilaus> haeAktiivisetTilaukset() {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Tilaus> tilaukset = new ArrayList<Tilaus>();
+		Tilaus tilaus = null;
+		
+		try{
+		
+		conn = getConnection();
+		String sqlSelect = "SELECT ti.tilaus_id, ti.tilaus_aika, s.status_nimi, tu.tuote_nimi, tt.lkm, ti.tilaus_osoite, k.kayttaja_ktunnus, ti.tilaus_puhnro FROM TilattuTuote tt JOIN Tilaus ti ON ti.tilaus_id=tt.tilaus_id JOIN Kayttaja k ON ti.kayttaja_id=k.kayttaja_id JOIN Tuote tu ON tt.tuote_id=tu.tuote_id JOIN Status s ON ti.status_id=s.status_id WHERE s.status_id <= 5 ORDER BY tilaus_id;";
+		stmt = conn.prepareStatement(sqlSelect);
+		rs = stmt.executeQuery(sqlSelect);
+		
+		while (rs.next()) {
+			tilaus = readTilaus(rs);
+
+			tilaukset.add(tilaus);
+		}
+		
+		return tilaukset;
+		
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+		
+		
+	}
 
 	public ArrayList<Tilaus> findAll() {
 		Connection conn = null;
@@ -174,13 +205,19 @@ public class TilausDAO extends DataAccessObject {
 		try {
 
 			int id = rs.getInt("tilaus_id");
-			Timestamp nimi = rs.getTimestamp("tilaus_aika");
+			Timestamp aika = rs.getTimestamp("tilaus_aika");
 			String osoite = rs.getString("tilaus_osoite");
 			String puhnro = rs.getString("tilaus_puhnro");
-			int statusID = rs.getInt("status_id");
-			int kayttajaID = rs.getInt("kayttaja_id");
+			int statusID = 0;
+			int kayttajaID = 0;
+			String statusNimi= rs.getString("status_nimi");
+			String tuoteNimi = rs.getString("tuote_nimi");
+			int lkm = rs.getInt("lkm");
+			String kayttajaTunnus = rs.getString("kayttaja_ktunnus");
+			
+			
 
-			return new Tilaus(id, nimi, osoite, puhnro, statusID, kayttajaID);
+			return new Tilaus(id, aika, osoite, puhnro, statusID, kayttajaID, statusNimi, tuoteNimi, lkm, kayttajaTunnus);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

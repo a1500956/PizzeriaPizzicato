@@ -9,9 +9,13 @@ public class Tilaus {
 	private String puhnro;
 	private int statusID;
 	private int kayttajaID;
+	private String statusNimi;
+	private String tuoteNimi;
+	private int lukumaara;
+	private String ktunnus;
 	
 	public Tilaus(int id, Timestamp aika, String osoite, String puhnro, int statusID,
-			int kayttajaID) {
+			int kayttajaID, String statusNimi, String tuoteNimi, int lukumaara, String kTunnus) {
 		super();
 		this.id = id;
 		this.aika = aika;
@@ -19,6 +23,10 @@ public class Tilaus {
 		this.puhnro = puhnro;
 		this.statusID = statusID;
 		this.kayttajaID = kayttajaID;
+		this.statusNimi = statusNimi;
+		this.tuoteNimi = tuoteNimi;
+		this.lukumaara = lukumaara;
+		this.ktunnus = kTunnus;
 	}
 	
 	public Tilaus() {
@@ -74,11 +82,48 @@ public class Tilaus {
 	public void setKayttajaID(int kayttajaID) {
 		this.kayttajaID = kayttajaID;
 	}
+	
+	
+
+	public String getStatusNimi() {
+		return statusNimi;
+	}
+
+	public void setStatusNimi(String statusNimi) {
+		this.statusNimi = statusNimi;
+	}
+
+	public String getTuoteNimi() {
+		return tuoteNimi;
+	}
+
+	public void setTuoteNimi(String tuoteNimi) {
+		this.tuoteNimi = tuoteNimi;
+	}
+
+	public int getLukumaara() {
+		return lukumaara;
+	}
+
+	public void setLukumaara(int lukumaara) {
+		this.lukumaara = lukumaara;
+	}
+
+	public String getKtunnus() {
+		return ktunnus;
+	}
+
+	public void setKtunnus(String kTunnus) {
+		this.ktunnus = kTunnus;
+	}
 
 	@Override
 	public String toString() {
 		return "Tilaus [id=" + id + ", aika=" + aika + ", osoite=" + osoite
-				+ ", statusID=" + statusID + ", kayttajaID=" + kayttajaID + "]";
+				+ ", puhnro=" + puhnro + ", statusID=" + statusID
+				+ ", kayttajaID=" + kayttajaID + ", statusNimi=" + statusNimi
+				+ ", tuoteNimi=" + tuoteNimi + ", lukumaara=" + lukumaara
+				+ ", ktunnus=" + ktunnus + "]";
 	}
 	
 	
