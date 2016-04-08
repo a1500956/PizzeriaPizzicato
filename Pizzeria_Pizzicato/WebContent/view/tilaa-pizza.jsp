@@ -94,10 +94,9 @@ media="only screen and (min-width: 771px)">
  
   <article>
   
-
     
     <section>
-   
+   <form action="" method="post">	
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
@@ -105,7 +104,7 @@ media="only screen and (min-width: 771px)">
 			<th>PIZZAT</th>
 			<th>HINTA</th>
 			<!--  <th>TOIMINNOT</th>-->
-				
+			
 		</tr>
 			<%for(int i = 0; i < pizzat.size(); i++) {%>
 			
@@ -113,7 +112,7 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td><div class="maara"><p><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" > </p> </div></td>
+				<td><div class="maara"><p><input name=<%=pizzat.get(i).getId()%> type="text" value="0" size="1" > </p> </div></td>
 										
 			</tr>
 			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -124,7 +123,12 @@ media="only screen and (min-width: 771px)">
 			</div></td></tr>
 			<% } %>
 		</table><br>
+		<tr><div class=button><a href="pizzaMenu">Takaisin</a></div>
+		<input type="submit" name="submit-button"
+					class="submit-button" value="Jatka Tilausta" /></tr>
+		
     </span>
+    </form>
 
      
     </section>

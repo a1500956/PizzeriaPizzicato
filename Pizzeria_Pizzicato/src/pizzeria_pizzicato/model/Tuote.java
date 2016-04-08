@@ -2,9 +2,11 @@ package pizzeria_pizzicato.model;
 
 public class Tuote {
 	private int id;
+	private String nimi;
 	private double hinta;
 	private int lkm;
 	
+
 	public Tuote(int id, int hinta, int lkm) {
 		super();
 		this.id = id;
@@ -34,7 +36,7 @@ public class Tuote {
 		return hinta;
 	}
 
-	public void setHinta(int hinta) {
+	public void setHinta(double hinta) {
 		this.hinta = hinta;
 	}
 
@@ -44,6 +46,14 @@ public class Tuote {
 
 	public void setLkm(int lkm) {
 		this.lkm = lkm;
+	}
+
+	public String getNimi() {
+		return nimi;
+	}
+
+	public void setNimi(String nimi) {
+		this.nimi = nimi;
 	}
 
 	@Override
