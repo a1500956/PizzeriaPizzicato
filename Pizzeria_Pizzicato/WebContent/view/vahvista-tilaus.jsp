@@ -51,15 +51,15 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>	<a href ="#"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
 
     <form action="kirjautuminen" method="post">
-      <div class="loginRow">
+      <div class="loginrow2">
         <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
         <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
@@ -94,10 +94,9 @@ media="only screen and (min-width: 771px)">
 
   <header>
   <div class="kielet"> 
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a><li>
+  <li><a href="/Pizzeria_Pizzicato/pizzaMenuEng"> ENG</a><li>
   <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
   </div>
-	<h6>Olemme trenditietoinen hipstereiden suosima itupizzeria Helsingin sykkeessä!!!!<br></h6>
   </header>
  
   <article>
