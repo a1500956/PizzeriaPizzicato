@@ -10,19 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
-import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
-import pizzeria_pizzicato.model.dao.TayteDAO;
 
 
-@WebServlet("/pizzaMenuEng")
-public class pizzaMenuEng extends HttpServlet {
+@WebServlet("/kirjautuminenOkEN")
+public class kirjautuminenOkEN extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
+
        
+
+    
+    public kirjautuminenOkEN() {
+        super();
+        
+    }
+
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,10 +51,13 @@ public class pizzaMenuEng extends HttpServlet {
 			request.setAttribute("pizzat", pizzaNakyy);
 			
 			
-			String jsp = "/view/frontpage.jsp"; 
+			String jsp = "/view/kirjautuminen-ok-en.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
 
-	}
+}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
+	}
 }
