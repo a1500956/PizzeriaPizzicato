@@ -44,11 +44,10 @@ media="only screen and (min-width: 771px)">
 <ul>
 
    <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
-
  	
 
+ 	
+	<li><a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
         <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22">
@@ -84,10 +83,11 @@ media="only screen and (min-width: 771px)">
 
 
   <header>
-   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
+   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/><br>
+  
   <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> ENG</a>
-  <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
+  <a href="/Pizzeria_Pizzicato/tilaaPizzaEn">ENG</a>
+  <a href="/Pizzeria_Pizzicato/tilaaPizza">FIN</a>
   </div>
   </header>
  
@@ -95,7 +95,10 @@ media="only screen and (min-width: 771px)">
   
     
     <section>
-   <form action="" method="post">	
+   <form action="" method="post">
+   <tr><div class=button><a href="pizzaMenu">Takaisin</a></div><br>
+		<input type="submit" name="submit-button"
+					class="submit-button" value="Jatka Tilausta" /></tr>
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
@@ -121,10 +124,7 @@ media="only screen and (min-width: 771px)">
 												 
 			</div></td></tr>
 			<% } %>
-		</table><br>
-		<tr><div class=button><a href="pizzaMenu">Takaisin</a></div>
-		<input type="submit" name="submit-button"
-					class="submit-button" value="Jatka Tilausta" /></tr>
+		</table>
 		
     </span>
     </form>

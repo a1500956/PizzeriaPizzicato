@@ -53,11 +53,9 @@ media="only screen and (min-width: 771px)">
 <ul>
    
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>	<a href ="#"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
  	
-
+ 	
+	<li><a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
         <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
@@ -88,28 +86,19 @@ media="only screen and (min-width: 771px)">
 </ul>
 
   </div>
- 
-</div>
-
-
-  <header>
-  <div class="kielet"> 
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenuEng"> ENG</a><li>
-  <li><a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a></li> 
-  </div>
-  </header>
- 
   <article>
+ 
+    <section>
+   
+   <form action="vahvistaTilaus" method="post" style="padding-top:100px">
   
 
-    
-    <section>
-    
-   <form action="vahvistaTilaus" method="post" style="padding-top:100px">	
     <span class="pizzalista">
+     <h1>TILAUKSENNE</h1>
+    <div class=button><a href="tilaaPizza">Takaisin</a></div><br><br>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">	
   		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="10" pattern=".{10,10}" required></p>
+  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{10,10}" required></p>
 		<tr>
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
@@ -133,11 +122,9 @@ media="only screen and (min-width: 771px)">
 			<% } %>
 		
 		</table><br>
-		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p>
+		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
+					class="submit-button" value="Vahvista Tilaus" />
 		
-		<tr><div class=button><a href="tilaaPizza">Takaisin</a></div>
-		<input type="submit" name="submit-button"
-					class="submit-button" value="Vahvista Tilaus" /></tr>
 		
     </span>
     </form>

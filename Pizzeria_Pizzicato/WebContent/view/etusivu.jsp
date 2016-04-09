@@ -44,10 +44,7 @@ media="only screen and (min-width: 771px)">
 <nav class=isoruutu>
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
- 	
-
+ 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
       	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
@@ -70,25 +67,21 @@ media="only screen and (min-width: 771px)">
     <ul>
  	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	
- 	
 </ul>
-
   </div>
- 
 </div>
 
 
   <header>   
   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
   <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
+  <a href="/Pizzeria_Pizzicato/pizzaMenuEng">ENG</a>
   </div>
   </header>
   <article>
   
-    <span class="pizzalista"><h1><br>PIZZA MENUMME</h1></span>
-    
+  <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
+  
     <section>
    
     <span class="pizzalista">
@@ -121,7 +114,6 @@ media="only screen and (min-width: 771px)">
      
     </section>
     
-    <a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa"> Tilaa Pizza</a>
    
   <!-- end .content --></article>
  	

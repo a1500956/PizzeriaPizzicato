@@ -61,7 +61,6 @@ for(Cookie cookie : cookies){
 		<nav class=isoruutu>
 		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
 			<li><a href="#"> Frontpage</a></li>
-			<li><a href="#"> Drinks</a></li>
 			<form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
       <div class="loginrow2">
       <h3><%=userName %>, you are signed in.</h3>
@@ -98,21 +97,13 @@ for(Cookie cookie : cookies){
 		</div>
   <header>
    <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
-	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
   </header>
 
-		
-
-		
-
- 
-   
-  </header>
  
   <article>
   
-    <span class="pizzalista"><h1>Pizzamenu</h1></span>
-    
+    <span class="pizzalista"><h1>PIZZA MENU</h1></span><br> 
+    <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa">ORDER HERE!</a><br><br> 
     <section>
    
     <span class="pizzalista">
@@ -145,7 +136,6 @@ for(Cookie cookie : cookies){
      
     </section>
 
-   <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
   
   
  <!-- end .content --></article>

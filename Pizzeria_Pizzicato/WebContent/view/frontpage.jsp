@@ -37,13 +37,11 @@ and (max-width: 770px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
-</head>
 <body>
 	<div class="container">
 		<nav class=isoruutu>
 		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
 			<li><a href="#"> Frontpage</a></li>
-			<li><a href="#"> Drinks</a></li>
 	<form action="kirjautuminenEN" method="post">
       <div class="loginrow2">
       	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
@@ -52,8 +50,6 @@ and (max-width: 770px)">
       </div>
     </form>
  </ul>
-
-
 		</nav>
 
 		<div class="dropdown">
@@ -67,11 +63,9 @@ and (max-width: 770px)">
 				
 					<li><a href="#"> Frontpage</a></li>
 					<li><a href="#"> Drinks</a></li>
-					<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
-							sivut</a></li>
+					
 				</ul>
 
-    </form>
 				
 			</div>
 		</div>
@@ -82,18 +76,11 @@ and (max-width: 770px)">
   </div>
 	
   </header>
-
-		
-
-		
-
- 
-   
-  </header>
  
   <article>
   
-    <span class="pizzalista"><h1>PIZZAMENU</h1></span>
+    <h1>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa">ORDER HERE!</a>
+    
     
     <section>
    
@@ -127,7 +114,6 @@ and (max-width: 770px)">
      
     </section>
 
-   <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
   
   
  <!-- end .content --></article>

@@ -6,13 +6,15 @@
 @viewport           { width: auto; }
 
 
-h1{color:#db1b51; padding-top: 5%;}
+h1{color:#db1b51;
+	font-family: Georgia;
+}
 h6{color:white;}
 p{color: #db1b51;}
 
 header {
-	background-color: black; margin-top:0
-	; text-align:center; width:100%;  padding-top: 90px;
+	background-color: black; margin-top:80px
+	; text-align:center; width:100%;
 	
 }
 
@@ -28,7 +30,7 @@ header, section, footer, aside, article, figure {
 # {diplay:none;}
 
 body {
-
+	
 	background-image: url("Kuvia/ruokaa.jpg"); 
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
@@ -67,7 +69,8 @@ h3{color:white;
 
 
 .container {
-	width: 80%;
+	
+	width: 70%;
 	background-color: black;
 	margin: 0 auto; 
 	
@@ -107,7 +110,7 @@ aside {
 
 nav {
 	background-color: black;   text-align:center;
-	display:inline-block; position: fixed; width:80%; 
+	display:inline-block; position: fixed; width:70%; 
 	margin-left: 20;
 	
 }
@@ -187,8 +190,11 @@ table { width:auto, text-aling_ center;
 
 article {background-image: url("Kuvia/Taustakuva.jpg"); 
 		 background-repeat: no-repeat; 
-		 background-size: 100%;
-		 text-align: center;}
+		 background-size: 100% 100%;
+		 text-align: center;
+		 min-height:600px;
+		 
+		 }
 
 .tilaa {position: center;
 		text-align: center;
@@ -202,7 +208,7 @@ footer {
 	clear: both; 
 	color: white;
 
-	margin-bottom: -20px;
+	
 
 }
 
