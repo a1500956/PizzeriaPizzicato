@@ -16,6 +16,7 @@ header {
 	background-color: black; margin-top:80px
 	; text-align:center; width:100%;
 	
+	
 }
 
 header, section, footer, aside, article, figure {
@@ -42,6 +43,7 @@ body {
 	
 }
 
+
 #flag {  height: 20px; width:auto; float: left;
 		 display: inline-block; padding: 2px;
 	
@@ -63,9 +65,17 @@ h3{color:white;
 }
 
 
+.taytteet{width:90%;
+	
+}
 
+.pcs{padding-left: 30px; 
+	
+}
 
-
+.hMode2{Font-size:30px;
+	
+}
 
 
 .container {
@@ -82,7 +92,9 @@ h3{color:white;
 	
 }
 
-
+.maara{padding-left:30px;
+	
+}
 
 section{padding: 10px 0;
 }
@@ -192,7 +204,8 @@ article {background-image: url("Kuvia/Taustakuva.jpg");
 		 background-repeat: no-repeat; 
 		 background-size: 100% 100%;
 		 text-align: center;
-		 min-height:600px;
+		 min-height:900px;
+		 padding-top:50px;
 		 
 		 }
 
@@ -212,7 +225,19 @@ footer {
 
 }
 
- 
+.listaa-pizzat{width:60%;
+	
+	
+}
+
+.listaa-pizzat2{width:30%;
+			
+}
+
+.tilauslista{text-align: right;
+	
+}
+
  /* tilaa pizza css:ät!
  
 

@@ -94,11 +94,11 @@ media="only screen and (min-width: 771px)">
   
 
     <span class="pizzalista">
-     <h1>TILAUKSENNE</h1>
+     <h1 class=hMode2>TILAUKSENNE</h1>
     <div class=button><a href="tilaaPizza">Takaisin</a></div><br><br>
-		<table class="listaa-pizzat" width="auto" border="1" align="center">	
+		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
   		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{10,10}" required></p>
+  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{10,10}" required></p><br>
 		<tr>
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
@@ -112,10 +112,10 @@ media="only screen and (min-width: 771px)">
 
 			<%for(int i = 0; i < tilauslista.size(); i++) {%>
 			<tr>
-				<td><div class="tilauslista"><%=tilauslista.get(i).getNimi()%></div></td>
+				<td><div class=""><%=tilauslista.get(i).getNimi()%></div></td>
 				<td><div class="tilauslista"><%=nf.format(tilauslista.get(i).getHinta())%>&euro;</div></td>
 				<%summa+=(tilauslista.get(i).getHinta()*tilauslista.get(i).getLkm());%>
-				<td><div class="taytteet"><%=tilauslista.get(i).getLkm()%> kpl</div></td>
+				<td><div class="tilauslista"><%=tilauslista.get(i).getLkm()%> kpl</div></td>
 				<td>
 				</td>								
 			</tr>

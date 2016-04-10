@@ -76,7 +76,7 @@ and (max-width: 770px)">
 		</div>
   <header>
    <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/><br><br>
-   <div class=button><a href="pizzaMenu">Back</a></div><br>
+   
   <div class="kielet"> 
   <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
   </div>
@@ -85,13 +85,15 @@ and (max-width: 770px)">
   <article>
   
     <section>
-   
+   <form action="" method="post">
+   <div class=button><a href="pizzaMenuEng">Back</a></div><br>
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			
 			<th>PIZZAS</th>
 			<th>PRICE</th>
+			<th class="pcs">PCS</th>
 			<!--  <th>TOIMINNOT</th>-->
 				
 		</tr>
@@ -101,19 +103,23 @@ and (max-width: 770px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-					<td><div class="maara"><p><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" > </p> </div></td>						
+					<td><div class="maara"><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" ></div></td>						
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>
 												 
 			</div></td></tr>
 			<% } %>
-		</table><br>
+		</table>
     </span>
+    </form>
 
-  
+     
+    </section>
+
+  <!-- end .content --></article>
 
 		<footer>
 

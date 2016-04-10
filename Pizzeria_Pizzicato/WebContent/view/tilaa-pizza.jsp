@@ -105,6 +105,7 @@ media="only screen and (min-width: 771px)">
 			
 			<th>PIZZAT</th>
 			<th>HINTA</th>
+			<th class="pcs">KPL</th>
 			<!--  <th>TOIMINNOT</th>-->
 			
 		</tr>
@@ -114,10 +115,10 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td><div class="maara"><p><input name=<%=pizzat.get(i).getId()%> type="text" value="0" size="1" > </p> </div></td>
+				<td><div class="maara"><input name=<%=pizzat.get(i).getId()%> type="text" value="0" size="1" ></div></td>
 										
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
