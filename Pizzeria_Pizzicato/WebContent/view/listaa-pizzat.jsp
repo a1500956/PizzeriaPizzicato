@@ -67,7 +67,6 @@ for(Cookie cookie : cookies){
 			<td><h4>TÄYTTEET</h4></td>
 			<td><h4>TOIMINNOT</h4></td>
 				
-		</tr>
 			<%for(int i = 0; i < pizzat.size(); i++) {%>
 			<tr>
 				<td><div class="nakyvyys"><%if (pizzat.get(i).getNakyy()==1){out.print("kyllä");}else{out.print("ei");}%></div></td>

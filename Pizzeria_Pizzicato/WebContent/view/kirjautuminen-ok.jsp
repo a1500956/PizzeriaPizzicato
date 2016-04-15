@@ -38,7 +38,7 @@ media="only screen and (min-width: 771px)">
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]--></head>
-</head>
+
 	<body>
 
 <%
@@ -59,21 +59,17 @@ for(Cookie cookie : cookies){
     sessionID = session.getId();
 }
 %>
-	
 
 
-	
-</nav>
 	<div class="container">
 <nav class=isoruutu>
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3>
-	<input type="submit" value="Uloskirjaus" >
+      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+
       </div>
     </form>
 </ul>
@@ -104,8 +100,7 @@ for(Cookie cookie : cookies){
   </header>
   <article>
   
-    <span class="pizzalista"><h1><br>PIZZA MENUMME</h1></span>
-    
+    <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
     <section>
    
     <span class="pizzalista">
@@ -125,7 +120,7 @@ for(Cookie cookie : cookies){
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
@@ -138,7 +133,6 @@ for(Cookie cookie : cookies){
      
     </section>
     
-    <a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa"> Tilaa Pizza</a>
    
   <!-- end .content --></article>
  	

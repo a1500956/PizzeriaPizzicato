@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
+import pizzeria_pizzicato.control.Vertailija;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
@@ -30,15 +32,15 @@ public class PizzaDAO extends DataAccessObject {
 			stmtDelete.setInt(1, pizza.getId());
 			stmtDelete.executeUpdate();
 
-			sqlDelete = "DELETE FROM Pizza WHERE tuote_id =?";
-			stmtDelete2 = connection.prepareStatement(sqlDelete);
-			stmtDelete.setInt(1, pizza.getId());
-			stmtDelete.executeUpdate();
+			String sqlDelete2 = "DELETE FROM Pizza WHERE tuote_id =?";
+			stmtDelete2 = connection.prepareStatement(sqlDelete2);
+			stmtDelete2.setInt(1, pizza.getId());
+			stmtDelete2.executeUpdate();
 			
-			sqlDelete = "DELETE FROM Tuote WHERE tuote_id =?";
-			stmtDelete3 = connection.prepareStatement(sqlDelete);
-			stmtDelete.setInt(1, pizza.getId());
-			stmtDelete.executeUpdate();
+			String sqlDelete3 = "DELETE FROM Tuote WHERE tuote_id =?";
+			stmtDelete3 = connection.prepareStatement(sqlDelete3);
+			stmtDelete3.setInt(1, pizza.getId());
+			stmtDelete3.executeUpdate();
 			
 
 		} catch (SQLException e) {
@@ -67,12 +69,12 @@ public class PizzaDAO extends DataAccessObject {
 			stmtUpdate.setInt(2, pizza.getId());
 			stmtUpdate.executeUpdate();
 			
-			sqlUpdate = "UPDATE Tuote SET tuote_nimi = ?, tuote_hinta = ? WHERE tuote_id =?";
-			stmtUpdate2 = connection.prepareStatement(sqlUpdate);
-			stmtUpdate.setString(1, pizza.getNimi());
-			stmtUpdate.setDouble(2, pizza.getHinta());
-			stmtUpdate.setInt(3, pizza.getId());
-			stmtUpdate.executeUpdate();
+			String sqlUpdate2 = "UPDATE Tuote SET tuote_nimi = ?, tuote_hinta = ? WHERE tuote_id =?";
+			stmtUpdate2 = connection.prepareStatement(sqlUpdate2);
+			stmtUpdate2.setString(1, pizza.getNimi());
+			stmtUpdate2.setDouble(2, pizza.getHinta());
+			stmtUpdate2.setInt(3, pizza.getId());
+			stmtUpdate2.executeUpdate();
 
 
 		} catch (SQLException e) {
@@ -110,10 +112,10 @@ public class PizzaDAO extends DataAccessObject {
 			String sqlInsert2 = "INSERT INTO Pizza(tuote_id, pizza_nakyy) VALUES (?, ?)";
 			stmtInsert2 = connection.prepareStatement(sqlInsert2);
 
-			stmtInsert.setString(1, iidee);
-			stmtInsert.setInt(2, pizza.getNakyy());
+			stmtInsert2.setString(1, iidee);
+			stmtInsert2.setInt(2, pizza.getNakyy());
 
-			stmtInsert.executeUpdate();
+			stmtInsert2.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -137,7 +139,7 @@ public class PizzaDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT y.tuote_nimi, p.tuote_id, t.tayte_id, y.tuote_hinta, p.pizza_nakyy, x.tayte_nimi, x.tayte_nimi_en FROM Tuote y JOIN Pizza p ON p.tuote_id = y.tuote_id JOIN PizzaTayte t ON t.tuote_id = p.tuote_id JOIN Tayte x ON x.tayte_id = t.tayte_id ORDER BY tuote_hinta DESC;";
+			String sqlSelect = "SELECT y.tuote_nimi, p.tuote_id, t.tayte_id, y.tuote_hinta, p.pizza_nakyy, x.tayte_nimi, x.tayte_nimi_en FROM Tuote y JOIN Pizza p ON p.tuote_id = y.tuote_id JOIN PizzaTayte t ON t.tuote_id = p.tuote_id JOIN Tayte x ON x.tayte_id = t.tayte_id;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
@@ -158,7 +160,7 @@ public class PizzaDAO extends DataAccessObject {
 		} finally {
 			close(rs, stmt, conn);
 		}
-
+		Collections.sort(pizzat, new Vertailija());
 		return pizzat;
 	}
 

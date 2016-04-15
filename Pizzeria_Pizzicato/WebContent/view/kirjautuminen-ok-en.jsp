@@ -61,7 +61,6 @@ for(Cookie cookie : cookies){
 		<nav class=isoruutu>
 		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
 			<li><a href="#"> Frontpage</a></li>
-			<li><a href="#"> Drinks</a></li>
 			<form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
       <div class="loginrow2">
       <h3><%=userName %>, you are signed in.</h3>
@@ -98,21 +97,12 @@ for(Cookie cookie : cookies){
 		</div>
   <header>
    <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
-	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
   </header>
 
-		
-
-		
-
- 
-   
-  </header>
  
   <article>
   
-    <span class="pizzalista"><h1>Pizzamenu</h1></span>
-    
+    <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa">ORDER HERE!</a>
     <section>
    
     <span class="pizzalista">
@@ -132,7 +122,7 @@ for(Cookie cookie : cookies){
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>
@@ -145,7 +135,6 @@ for(Cookie cookie : cookies){
      
     </section>
 
-   <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
   
   
  <!-- end .content --></article>
