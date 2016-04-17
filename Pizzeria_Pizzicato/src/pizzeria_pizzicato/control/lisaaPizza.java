@@ -63,7 +63,6 @@ public class lisaaPizza extends HttpServlet {
 
 			String[] taytteetStr = request.getParameterValues("tayte");
 
-
 			Pizza pizza = new Pizza(id, nimi, hinta, nakyy);
 			PizzaDAO pizzadao = new PizzaDAO();
 			PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
@@ -74,6 +73,7 @@ public class lisaaPizza extends HttpServlet {
 			int pId = pizzadao.getPizzaId(nimiStr);
 
 			for (int i = 0; i < taytteetStr.length; i++) {
+				System.out.println(Integer.parseInt(taytteetStr[i]));
 				pizzaTaytedao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),
 						pId);
 
