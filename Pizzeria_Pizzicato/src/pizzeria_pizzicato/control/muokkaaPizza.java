@@ -34,7 +34,9 @@ public class muokkaaPizza extends HttpServlet {
 
 		PizzaDAO Pdao = new PizzaDAO();
 		PizzaTayteDAO PTdao = new PizzaTayteDAO();
-		TayteDAO Tdao = new TayteDAO();
+		TayteDAO TDAO = new TayteDAO(); 
+		ArrayList<Tayte> kaikkiTaytteet = TDAO.findAll();
+		request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
 
 		int iidee = Integer.parseInt(request.getParameter("id"));
 

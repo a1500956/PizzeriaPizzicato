@@ -3,6 +3,7 @@ package pizzeria_pizzicato.control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpSession;
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Lukija;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.KayttajaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
+import pizzeria_pizzicato.model.dao.TayteDAO;
 
 @WebServlet("/lisaa-pizza")
 public class lisaaPizza extends HttpServlet {
@@ -28,9 +31,11 @@ public class lisaaPizza extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		
-
+		TayteDAO TDAO = new TayteDAO(); 
+		ArrayList<Tayte> kaikkiTaytteet = TDAO.findAll();
+		request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
 		String jsp = "/view/lisaa-pizza.jsp";
+		
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(
 				jsp);
 		dispather.forward(request, response);
@@ -68,6 +73,7 @@ public class lisaaPizza extends HttpServlet {
 			int pId = pizzadao.getPizzaId(nimiStr);
 
 			for (int i = 0; i < taytteetStr.length; i++) {
+				System.out.println(Integer.parseInt(taytteetStr[i]));
 				pizzaTaytedao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),
 						pId);
 
