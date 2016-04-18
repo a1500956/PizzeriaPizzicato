@@ -57,7 +57,7 @@ public class lisaaTayte extends HttpServlet {
 
 		if (viesti!=null){
 			request.getSession().setAttribute("message", viesti);
-			response.sendRedirect("listaaPizzat");
+			response.sendRedirect("listaa-taytteet");
 
 			}else{
 

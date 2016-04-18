@@ -97,7 +97,7 @@ public class muokkaaPizza extends HttpServlet {
 			for (int i = 0; i < taytteetStr.length; i++) {
 				PTdao.addTayteToPizza(Integer.parseInt(taytteetStr[i]), id);
 			}
-			viesti = "y";
+			viesti = "Pizzan muokkaaminen onnistui!";
 
 		} catch (SQLException e) {
 
@@ -105,11 +105,14 @@ public class muokkaaPizza extends HttpServlet {
 					.println("Sovelluksessa tapahtui virhe " + e.getMessage());
 		}
 
-		HttpSession session = request.getSession();
+		if (viesti!=null){
+			request.getSession().setAttribute("message", viesti);
+			response.sendRedirect("listaaPizzat");
 
-		session.setAttribute("viesti", viesti);
-
+			}else{
+				
 		response.sendRedirect("listaaPizzat");
 
 	}
+}
 }
