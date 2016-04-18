@@ -4,12 +4,12 @@ public class Tuote {
 	private int id;
 	private String nimi;
 	private double hinta;
-	private int lkm;
 	
 
-	public Tuote(int id, int hinta, int lkm) {
+	public Tuote(int id, String nimi, double hinta) {
 		super();
 		this.id = id;
+		this.nimi = nimi;
 		this.hinta = hinta;
 	}
 	
@@ -17,7 +17,6 @@ public class Tuote {
 		super();
 		this.id = id;
 		this.hinta = hinta;
-		this.lkm = 1;
 	}
 	
 	public Tuote() {
@@ -40,14 +39,6 @@ public class Tuote {
 		this.hinta = hinta;
 	}
 
-	public int getLkm() {
-		return lkm;
-	}
-
-	public void setLkm(int lkm) {
-		this.lkm = lkm;
-	}
-
 	public String getNimi() {
 		return nimi;
 	}
@@ -58,10 +49,8 @@ public class Tuote {
 
 	@Override
 	public String toString() {
-		return "Tuote [id=" + id + ", hinta=" + hinta + ", lkm=" + lkm + "]";
+		return "Tuote [id=" + id + ", hinta=" + hinta + "]";
 	}
-	
-	
 	
 }
 
