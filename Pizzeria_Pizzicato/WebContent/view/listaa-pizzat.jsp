@@ -11,6 +11,11 @@
     nf.setMinimumFractionDigits(2);
 %>
 
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 
@@ -52,6 +57,11 @@ for(Cookie cookie : cookies){
 </header>
 
 		<h1>PIZZALISTA</h1>
+		
+		<p class="viesti">${message}</p>
+<c:remove var="message" scope="session" /> 
+
+		
 		
 
 		<a href="<%=response.encodeURL("lisaa-pizza") %>">Lisää pizza</a>

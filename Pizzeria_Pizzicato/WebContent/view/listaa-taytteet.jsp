@@ -10,6 +10,10 @@
     nf.setMinimumFractionDigits(2);
 %>
 
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 
@@ -46,6 +50,10 @@ for(Cookie cookie : cookies){
 </header>
 		
 		<h1>TÄYTELISTA</h1>
+		
+		<p class="viesti">${message}</p>
+<c:remove var="message" scope="session" /> 
+		
 		
 		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
 		<a href="lisaa-tayte" class="button">Lisää täyte</a>

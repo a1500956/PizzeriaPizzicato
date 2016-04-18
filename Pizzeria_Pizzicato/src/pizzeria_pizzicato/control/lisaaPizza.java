@@ -63,7 +63,7 @@ public class lisaaPizza extends HttpServlet {
 			PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
 
 			pizzadao.addPizza(pizza);
-			viesti = "y";
+			viesti = "Pizzan tallennus onnistui!";
 
 			int pId = pizzadao.getPizzaId(nimiStr);
 
@@ -79,11 +79,14 @@ public class lisaaPizza extends HttpServlet {
 					.println("Sovelluksessa tapahtui virhe " + e.getMessage());
 		}
 
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("viesti", viesti);
+		if (viesti!=null){
+		request.getSession().setAttribute("message", viesti);
+		response.sendRedirect("listaaPizzat");
+
+		}else{
 
 		response.sendRedirect("listaaPizzat");
 
 	}
+}
 }

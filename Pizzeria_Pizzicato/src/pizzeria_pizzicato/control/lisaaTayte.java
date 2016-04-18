@@ -47,7 +47,7 @@ public class lisaaTayte extends HttpServlet {
 			TayteDAO taytedao = new TayteDAO();
 
 			taytedao.addTayte(tayte);
-			viesti = "y";
+			viesti = "Täytteen tallennus onnistui!";
 
 		} catch (SQLException e) {
 
@@ -55,11 +55,14 @@ public class lisaaTayte extends HttpServlet {
 					.println("Sovelluksessa tapahtui virhe " + e.getMessage());
 		}
 
-		HttpSession session = request.getSession();
+		if (viesti!=null){
+			request.getSession().setAttribute("message", viesti);
+			response.sendRedirect("listaaPizzat");
 
-		session.setAttribute("viesti", viesti);
+			}else{
 
-		response.sendRedirect("lisaa-tayte");
+		response.sendRedirect("listaa-taytteet");
 
 	}
+}
 }
