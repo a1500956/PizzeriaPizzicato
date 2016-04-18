@@ -2,10 +2,10 @@
 	package pizzeria_pizzicato.control;
 
 	import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 	import javax.servlet.RequestDispatcher;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
-	import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 
@@ -29,7 +29,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 
 		
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+				
 			
 				PizzaDAO pizzadao = new PizzaDAO();
 				ArrayList<Pizza> pizzaLista = pizzadao.findAll();
@@ -49,7 +49,8 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 				
 				String jsp = "/view/tilaa-pizza.jsp"; 
 				RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
-			dispather.forward(request, response);
+				dispather.forward(request, response);
+				
 
 		}
 		
@@ -67,14 +68,16 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			for (int i = 0; i < pizzaLista.size(); i++) {
 				haettu = pizzaLista.get(i);
 				lkm = Integer.parseInt(request.getParameter(Integer.toString(haettu.getId())));
-				if(lkm>0){
-					Tuote tuote = new Tuote();
-					tuote.setId(haettu.getId());
-					tuote.setLkm(lkm);
-					tuote.setHinta(haettu.getHinta());
-					tuotteet.add(tuote);
+				if(lkm != (int)lkm){
+				doGet(request, response);
+				}else if(lkm>0){
+						Tuote tuote = new Tuote();
+						tuote.setId(haettu.getId());
+						tuote.setLkm(lkm);
+						tuote.setHinta(haettu.getHinta());
+						tuotteet.add(tuote);
 					
-				}
+					}
 				
 			}
 			
@@ -94,7 +97,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			}*/
 			
 			
-			for(int i = 0; i<tuotteet.size(); i++){
+			for(int i = 0; i<tuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
 				int sArvo = tuotteet.get(i).getId();
 				for(int j = 0; j<plista.size(); j++){
 					if(sArvo == plista.get(j).getId()){

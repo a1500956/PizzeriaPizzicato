@@ -1,6 +1,7 @@
 package pizzeria_pizzicato.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class Tilaus {
 	private int id;
@@ -8,27 +9,24 @@ public class Tilaus {
 	private String osoite;
 	private String puhnro;
 	private int statusID;
-	private int kayttajaID;
 	private String statusNimi;
-	private String tuoteNimi;
-	private int lukumaara;
-	private String ktunnus;
+	private Kayttaja kayttaja;
+	private ArrayList<TilattuTuote> tilatutTuotteet;
 	
-	public Tilaus(int id, Timestamp aika, String osoite, String puhnro, int statusID,
-			int kayttajaID, String statusNimi, String tuoteNimi, int lukumaara, String kTunnus) {
+	
+	
+	public Tilaus(int id, Timestamp aika, String osoite, String puhnro, int statusID, String statusNimi, Kayttaja kayttaja, ArrayList<TilattuTuote> tilatutTuotteet) {
 		super();
 		this.id = id;
 		this.aika = aika;
 		this.osoite = osoite;
 		this.puhnro = puhnro;
 		this.statusID = statusID;
-		this.kayttajaID = kayttajaID;
 		this.statusNimi = statusNimi;
-		this.tuoteNimi = tuoteNimi;
-		this.lukumaara = lukumaara;
-		this.ktunnus = kTunnus;
+		this.kayttaja = kayttaja;
+		this.tilatutTuotteet = tilatutTuotteet;
 	}
-	
+
 	public Tilaus() {
 		
 	}
@@ -56,8 +54,6 @@ public class Tilaus {
 	public void setOsoite(String osoite) {
 		this.osoite = osoite;
 	}
-	
-	
 
 	public String getPuhnro() {
 		return puhnro;
@@ -75,16 +71,6 @@ public class Tilaus {
 		this.statusID = statusID;
 	}
 
-	public int getKayttajaID() {
-		return kayttajaID;
-	}
-
-	public void setKayttajaID(int kayttajaID) {
-		this.kayttajaID = kayttajaID;
-	}
-	
-	
-
 	public String getStatusNimi() {
 		return statusNimi;
 	}
@@ -93,37 +79,40 @@ public class Tilaus {
 		this.statusNimi = statusNimi;
 	}
 
-	public String getTuoteNimi() {
-		return tuoteNimi;
+	public Kayttaja getKayttaja() {
+		return kayttaja;
 	}
 
-	public void setTuoteNimi(String tuoteNimi) {
-		this.tuoteNimi = tuoteNimi;
+	public void setKayttaja(Kayttaja kayttaja) {
+		this.kayttaja = kayttaja;
 	}
 
-	public int getLukumaara() {
-		return lukumaara;
+	public ArrayList<TilattuTuote> getTilatutTuotteet() {
+		return tilatutTuotteet;
+	}
+	
+	public TilattuTuote getTilattuTuote(int index) {
+		TilattuTuote tilattuTuote = null;
+		if(index>=0 && index < tilatutTuotteet.size() ){
+		tilattuTuote = tilatutTuotteet.get(index);
+		}
+		return tilattuTuote;
+	}
+	
+	public void addTilattuTuote(TilattuTuote tilattuTuote){
+		if(tilattuTuote != null){
+			this.tilatutTuotteet.add(tilattuTuote);	
+		}
+		
 	}
 
-	public void setLukumaara(int lukumaara) {
-		this.lukumaara = lukumaara;
-	}
-
-	public String getKtunnus() {
-		return ktunnus;
-	}
-
-	public void setKtunnus(String kTunnus) {
-		this.ktunnus = kTunnus;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Tilaus [id=" + id + ", aika=" + aika + ", osoite=" + osoite
 				+ ", puhnro=" + puhnro + ", statusID=" + statusID
-				+ ", kayttajaID=" + kayttajaID + ", statusNimi=" + statusNimi
-				+ ", tuoteNimi=" + tuoteNimi + ", lukumaara=" + lukumaara
-				+ ", ktunnus=" + ktunnus + "]";
+				+ ", statusNimi=" + statusNimi + ", kayttaja=" + kayttaja
+				+ ", tilatutTuotteet=" + tilatutTuotteet + "]";
 	}
 	
 	

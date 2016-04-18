@@ -115,7 +115,7 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td><div class="maara"><input name=<%=pizzat.get(i).getId()%> type="text" value="0" size="1" ></div></td>
+				<td><div class="maara"><input name=<%=pizzat.get(i).getLkm()%> type="text" value="0" size="1" ></div></td>
 										
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
