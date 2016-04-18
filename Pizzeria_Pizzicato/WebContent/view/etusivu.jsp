@@ -82,7 +82,7 @@ media="only screen and (min-width: 771px)">
   </div>
   </header>
   <article>
-  
+   <a href="/Pizzeria_Pizzicato/listaaPizzatkokki" class="Kokki"> Kokin sivut</a>
   <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
   
     <section>
