@@ -19,7 +19,14 @@
 <body>
 <%
 //allow access only if session exists
-String userName = null;
+int ryhma= 1;
+	String userName = null;
+	//allow access only if session exists
+	if(session.getAttribute("ryhma").equals(ryhma)){
+		userName = (String) session.getAttribute("kayttaja");
+		
+	}else{ response.sendRedirect("pizzaMenu");
+}	
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
