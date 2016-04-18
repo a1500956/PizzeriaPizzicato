@@ -9,6 +9,7 @@
 <jsp:useBean id="valittuH" type="java.lang.String" scope="request" />
 <jsp:useBean id="taytteet" type="java.util.ArrayList<String>"
 	scope="request" />
+<jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte>" scope="request" />
 <jsp:useBean id="nakyykovaiei" type="java.lang.Integer" scope="request" />
 
 <html>
@@ -66,34 +67,15 @@ for(Cookie cookie : cookies){
 				<td>Täytteet:</td>
 				<td><br>
 				<br>
+				<td>
+				<%for(int i = 0; i<kaikkitaytteet.size(); i++){ %>
+				
+				
 				<input type="checkbox" name="tayte"
-					<%if(taytteet.contains("tomaattikastike")) {out.print("checked=\"checked\"");} %>
-					value="2" />Tomaattikastike<br /> <input type="checkbox"
-					name="tayte"
-					<%if(taytteet.contains("juusto")) {out.print("checked=\"checked\"");} %>
-					value="3" />Juusto<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("herkkusieni")) {out.print("checked=\"checked\"");} %>
-					value="4" />Herkkusieni<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("sipuli")) {out.print("checked=\"checked\"");} %>
-					value="5" />Sipuli<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("oliivi")) {out.print("checked=\"checked\"");} %>
-					value="6" />Oliivi<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("pinaatti")) {out.print("checked=\"checked\"");} %>
-					value="7" />Pinaatti<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("tonnikala")) {out.print("checked=\"checked\"");} %>
-					value="8" />Tonnikala<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("katkarapu")) {out.print("checked=\"checked\"");} %>
-					value="9" />Katkarapu<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("simpukka")) {out.print("checked=\"checked\"");} %>
-					value="10" />Simpukka<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("kinkku")) {out.print("checked=\"checked\"");} %>
-					value="11" />Kinkku<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("salami")) {out.print("checked=\"checked\"");} %>
-					value="12" />Salami<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("pepperoni")) {out.print("checked=\"checked\"");} %>
-					value="13" />Pepperoni<br /> <input type="checkbox" name="tayte"
-					<%if(taytteet.contains("jalopeno")) {out.print("checked=\"checked\"");} %>
-					value="14" />Jalopeno<br /></td>
+					<%if(taytteet.contains(kaikkitaytteet.get(i).getTayte_nimi())) {out.print("checked=\"checked\"");} %>
+					value="<%=kaikkitaytteet.get(i).getTayte_id() %>" /><%=kaikkitaytteet.get(i).getTayte_nimi() %><br />
+					<%}%>
+					</td>
 			</tr>
 			<tr>
 				<td><br>

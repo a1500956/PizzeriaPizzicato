@@ -10,6 +10,10 @@
     nf.setMinimumFractionDigits(2);
 %>
 
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 
@@ -47,6 +51,10 @@ for(Cookie cookie : cookies){
 		
 		<h1>TÄYTELISTA</h1>
 		
+		<p class="viesti">${message}</p>
+<c:remove var="message" scope="session" /> 
+		
+		
 		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
 		<a href="lisaa-tayte" class="button">Lisää täyte</a>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
@@ -77,18 +85,7 @@ for(Cookie cookie : cookies){
 			<% } %>
 		</table><br>
 				
-			<%
-session.setMaxInactiveInterval(2);
-%>
-
- <script type="text/javascript">
-var Msg ='<%=session.getAttribute("viesti")%>';
-    if (Msg == "y") {
- function alertName(){
- alert("Tallennus onnistui!");
- } 
- }
- </script> 
+ 
 <script type="text/javascript"> window.onload = alertName; </script>
 		
 		

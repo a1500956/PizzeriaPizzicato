@@ -11,6 +11,11 @@
     nf.setMinimumFractionDigits(2);
 %>
 
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 
@@ -24,9 +29,11 @@ scope="request" />
 </head>
 	<body>
 	<%
-//allow access only if session exists
-String user = null;
-String userName = null;
+	String userName = null;
+	//allow access only if session exists
+	if(session.getAttribute("kayttaja") == null){
+		response.sendRedirect("pizzaMenu");
+	}else userName = (String) session.getAttribute("kayttaja");
 String sessionID = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
@@ -51,9 +58,16 @@ for(Cookie cookie : cookies){
 
 		<h1>PIZZALISTA</h1>
 		
+		<p class="viesti">${message}</p>
+<c:remove var="message" scope="session" /> 
+
+		
+		
 
 		<a href="<%=response.encodeURL("lisaa-pizza") %>">Lisää pizza</a>
 		<a href="<%=response.encodeURL("listaa-taytteet") %>">Näytä täytteet</a>
+		<a href="<%=response.encodeURL("listaaAktiivisetTilaukset") %>">Näytä aktiiviset tilaukset</a>
+		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
@@ -63,7 +77,6 @@ for(Cookie cookie : cookies){
 			<td><h4>TÄYTTEET</h4></td>
 			<td><h4>TOIMINNOT</h4></td>
 				
-		</tr>
 			<%for(int i = 0; i < pizzat.size(); i++) {%>
 			<tr>
 				<td><div class="nakyvyys"><%if (pizzat.get(i).getNakyy()==1){out.print("kyllä");}else{out.print("ei");}%></div></td>
@@ -86,22 +99,7 @@ for(Cookie cookie : cookies){
 			<% } %>
 		</table><br>
 		
-		
-				
-			<%
-session.setMaxInactiveInterval(2);
-%>
-
- <script type="text/javascript">
-var Msg ='<%=session.getAttribute("viesti")%>';
-    if (Msg == "y") {
- function alertName(){
- alert("Tallennus onnistui!");
- } 
- }
- </script> 
-<script type="text/javascript"> window.onload = alertName; </script>
-		
+	
 		
 	</body>
 </html>

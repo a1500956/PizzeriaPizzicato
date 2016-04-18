@@ -17,7 +17,7 @@ import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
 
 
-@WebServlet("/pizzaMenuen")
+@WebServlet("/pizzaMenuEng")
 public class pizzaMenuEng extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

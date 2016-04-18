@@ -4,6 +4,7 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -37,8 +38,9 @@ media="only screen and (min-width: 771px)">
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]--></head>
-</head>
+
 	<body>
+
 <%
 //allow access only if session exists
 String user = null;
@@ -57,20 +59,19 @@ for(Cookie cookie : cookies){
     sessionID = session.getId();
 }
 %>
+
+
 	<div class="container">
 <nav class=isoruutu>
 <ul>
- 	<li>	<a href ="#"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
-    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3>
-	<input type="submit" value="Uloskirjaus" >
+      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+
       </div>
     </form>
-
-<<<<<<< HEAD
- 	
 </ul>
 
 
@@ -79,29 +80,27 @@ for(Cookie cookie : cookies){
 
  <div class="dropdown">
  
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
+  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="15" height="15"></button>
   <div id="myDropdown" class="dropdown-content">
     <ul>
- 	<li>		<a href ="#"> Etusivu</a></li>
+ 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
  	
+ 	
 </ul>
+
   </div>
+ 
 </div>
 
 
-  <header>
-  <section><img src= "Kuvia/pizzamies.png" alt="Pizzicato logo" id="Insert_logo"  />
-<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-		<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
-  </section>
-   
+  <header>   
+  <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
+	
   </header>
- 
   <article>
   
-    <span class="pizzalista"><h1>Pizza menumme</h1></span>
-    
+    <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
     <section>
    
     <span class="pizzalista">
@@ -121,7 +120,7 @@ for(Cookie cookie : cookies){
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
@@ -131,11 +130,12 @@ for(Cookie cookie : cookies){
 		</table><br>
     </span>
 
-    
+     
     </section>
     
+   
   <!-- end .content --></article>
- 
+ 	
   <footer>
      
   <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
@@ -146,15 +146,3 @@ for(Cookie cookie : cookies){
   <!-- end .container --></div>
 	</body>
 </html>
-=======
-<!-- need to encode all the URLs where we want session information to be passed -->
-<a href="<%=response.encodeRedirectURL("pizzaMenu") %>">Etusivu</a>
-<a href="<%=response.encodeRedirectURL("listaaPizzat") %>">Pizzalista</a>
-<form action="<%=response.encodeRedirectURL("uloskirjautuminen") %>" method="post">
-<br>
-<br>
-<input type="submit" value="Uloskirjaus" >
-</form>
-</body>
-</html>
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git

@@ -43,17 +43,13 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" alt="suomi" id="flag"/></a>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
- 	
-
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
-      	<input type="image" class="submitImage" src="Kuvia/forward.png" id="LoginLogo" width="25" height="25"/>
+      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
        	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
-       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />
+       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
       </div>
     </form>
 
@@ -71,27 +67,21 @@ media="only screen and (min-width: 771px)">
     <ul>
  	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<li>	<a href ="#"> Juomat</a></li>
- 	
- 	
 </ul>
-
   </div>
- 
 </div>
 
 
   <header>   
-  <img src="Kuvia/pizzamies.png" id="logo" width="100"/> <br>  
+  <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
   <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/pizzaMenuen"> ENG</a>
-  <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
+  <a href="/Pizzeria_Pizzicato/pizzaMenuEng">ENG</a>
   </div>
-	<h6>Olemme terveellinen ja vihreä valinta. Ravintolamme sijaitsee Helsingin keskustassa, hyvien kulkuyhteyksien varrella.<br></h6>
   </header>
   <article>
   
-    <span class="pizzalista"><h1><br>Pizza menumme</h1></span>
-    
+  <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
+  
     <section>
    
     <span class="pizzalista">
@@ -111,7 +101,7 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
@@ -124,7 +114,6 @@ media="only screen and (min-width: 771px)">
      
     </section>
     
-    <a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa"> Tilaa Pizza</a>
    
   <!-- end .content --></article>
  	

@@ -37,28 +37,19 @@ and (max-width: 770px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
-</head>
 <body>
 	<div class="container">
 		<nav class=isoruutu>
 		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-   			<a href="/Pizzeria_Pizzicato/pizzaMenuen"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
 			<li><a href="#"> Frontpage</a></li>
-			<li><a href="#"> Drinks</a></li>
-			<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
-		</ul>
- <form action="/kirjaudu.html" method="post">
-      <div class="loginRow">
-       <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
-        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
-        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="username" />&nbsp;
-     
-        
+	<form action="kirjautuminenEN" method="post">
+      <div class="loginrow2">
+      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
+       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
       </div>
     </form>
-
-
-
+ </ul>
 		</nav>
 
 		<div class="dropdown">
@@ -72,33 +63,24 @@ and (max-width: 770px)">
 				
 					<li><a href="#"> Frontpage</a></li>
 					<li><a href="#"> Drinks</a></li>
-					<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
-							sivut</a></li>
+					
 				</ul>
 
-    </form>
 				
 			</div>
 		</div>
   <header>
+   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
   <div class="kielet"> 
-  <li><a href="#"> ENG</a><li>
-  <li><a href="#"> FIN</a></li> 
+ <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
   </div>
-	<h6> Restaurant Pizzicato is super trendy restaurant in the heart of Helsinki!<br></h6>
-  </header>
-
-		
-
-		
-
- 
-   
+	
   </header>
  
   <article>
   
-    <span class="pizzalista"><h1>Pizzamenu</h1></span>
+    <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa">ORDER HERE!</a>
+    
     
     <section>
    
@@ -119,7 +101,7 @@ and (max-width: 770px)">
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 										
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>
@@ -128,10 +110,13 @@ and (max-width: 770px)">
 			<% } %>
 		</table><br>
     </span>
+ 
+     
+    </section>
 
-   <a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa"> Make an Order</a>
   
-
+  
+ <!-- end .content --></article>
 		<footer>
 
 		<p>Ratapihantie 13, 00100 Helsinki. Phone (09) 123 123 12</p>

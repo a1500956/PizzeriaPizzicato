@@ -41,15 +41,12 @@ and (max-width: 770px)">
 <body>
 	<div class="container">
 		<nav class=isoruutu>
-		<ul> <a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-   			 <a href="/Pizzeria_Pizzicato/tilaaPizzaEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
-			<li><a href="/Pizzeria_Pizzicato/pizzaMenuen"> Return Back on the Frontpage</a></li>
-			<li><a href="#"> Drinks</a></li>
-	
-		</ul>
+		<ul><a href="/Pizzeria_Pizzicato/tilaaPizza"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
+			
+	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenuEng">Frontpage</a></li>
  <form action="/kirjaudu.html" method="post">
-      <div class="loginRow">
-       <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
+      <div class="loginrow2">
+       <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22">
         <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="password" />&nbsp;
         <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="username" />&nbsp;
      
@@ -58,7 +55,7 @@ and (max-width: 770px)">
     </form>
 
 
-
+</ul>
 		</nav>
 
 		<div class="dropdown">
@@ -70,44 +67,33 @@ and (max-width: 770px)">
 			<div id="myDropdown" class="dropdown-content">
 				<ul>
 				
-					<li><a href="/Pizzeria_Pizzicato/PizzaMenuEn"> Frontpage</a></li>
-					<li><a href="#"> Drinks</a></li>
-					<li><a href="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan
-							sivut</a></li>
+					
 				</ul>
 
-    </form>
+  
 				
 			</div>
 		</div>
   <header>
-  <div class="kielet"> 
-  <li><a href="/Pizzeria_Pizzicato/PizzaMenuEng"> ENG</a><li>
-  <li><a href="/Pizzeria_Pizzicato/PizzaMenu"> FIN</a></li> 
-  </div>
-	<h6>Please select pizzas from below <br></h6>
-  </header>
-
-		
-
-		
-
- 
+   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/><br><br>
    
+  <div class="kielet"> 
+  <a href="/Pizzeria_Pizzicato/tilaaPizza"> FIN</a>
+  </div>
   </header>
- 
+
   <article>
   
-    <span class="pizzalista"><h1>Pizzamenu</h1></span>
-    
     <section>
-   
+   <form action="" method="post">
+   <div class=button><a href="pizzaMenuEng">Back</a></div><br>
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			
 			<th>PIZZAS</th>
 			<th>PRICE</th>
+			<th class="pcs">PCS</th>
 			<!--  <th>TOIMINNOT</th>-->
 				
 		</tr>
@@ -117,19 +103,23 @@ and (max-width: 770px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-					<td><div class="maara"><p><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" > </p> </div></td>						
+					<td><div class="maara"><input id=pId+<%=pizzat.get(i).getId() %> type="text" value="0" size="1" ></div></td>						
 			</tr>
-			<tr><td><div class="pizzat"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>
 												 
 			</div></td></tr>
 			<% } %>
-		</table><br>
+		</table>
     </span>
+    </form>
 
-  
+     
+    </section>
+
+  <!-- end .content --></article>
 
 		<footer>
 

@@ -14,8 +14,9 @@ html, body {height:100%;}
 body {font-family:tahoma, arial, sans-serif;   
 	  background-image: url("Kuvia/ruokaa.jpg"); 
 	background-repeat: no-repeat; 
-	background-size: auto 100%;
+	background-size: 100% 100%;
 	background-position: left top;
+	background-attachment: fixed;
 
       
       }
@@ -34,7 +35,7 @@ header img {
 		background-color: white;
 		}
 		
-		
+article {text-align: center;}
 		
 		
 .kielet a {
@@ -118,7 +119,7 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 
 .tilaa {position: center;
 		text-align: center;
-		color:white}      
+		color:black}      
    
 footer {
 	padding: 10px 0;
