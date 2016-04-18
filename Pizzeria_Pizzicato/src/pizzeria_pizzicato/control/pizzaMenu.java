@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
+import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 
 
@@ -32,6 +34,8 @@ public class pizzaMenu extends HttpServlet {
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
+			Ostoskori kori = new Ostoskori();
+			Pizza pizzaTuote = new Pizza();
 			
 			for(int i=0;i<pizzaLista.size();i++){
 				
@@ -43,6 +47,24 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
+			pizzaTuote = pizzaLista.get(2);
+			kori.addPizza(pizzaTuote, 0, 0);
+			
+			System.out.println("yksi tuote korissa " + kori);
+			
+			pizzaTuote = pizzaLista.get(2);
+			kori.addPizza(pizzaTuote, 0, 0);
+			
+			System.out.println("kaksi tuotetta korissa toisella mausteet " + kori);
+			
+			pizzaTuote = pizzaLista.get(2);
+			kori.addPizza(pizzaTuote, 0, 0);
+			
+			System.out.println("lisättiin ensimmäiseen +1 lkm " + kori);
+			
+			
+			
+			
 			/*HttpSession sessionTilaus = request.getSession();
 			sessionTilaus.setAttribute("testi", "testitietoa");
 			sessionTilaus.setMaxInactiveInterval(30*60);
@@ -50,12 +72,14 @@ public class pizzaMenu extends HttpServlet {
 			testi.setMaxAge(30*60);
 			response.addCookie(testi);*/
 			
+			
+			
 			request.setAttribute("pizzat", pizzaNakyy);
 			
 			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
-		dispather.forward(request, response);
+			dispather.forward(request, response);
 
 	}
 
