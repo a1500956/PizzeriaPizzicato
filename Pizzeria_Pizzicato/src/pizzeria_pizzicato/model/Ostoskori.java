@@ -32,10 +32,8 @@ public class Ostoskori {
 		}
 		
 		boolean loytyy = false;
-		System.out.println("t‰ss‰ ostoskori " + this.ostoskori);
 		if(ostoskori == null){ //Katsotaan onko ostoskori tyhj‰, jos on lis‰t‰‰n TilattuTuote ostoskoriin
 			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
-			System.out.println("MOI!");
 			this.ostoskori.add(tuote);
 			loytyy = true;
 			return;
@@ -43,8 +41,9 @@ public class Ostoskori {
 			ArrayList<TilattuTuote> kori = this.ostoskori;
 			for(int i = 0; i < kori.size();i++){
 				TilattuTuote sArvo = vertaa(kori.get(i));
-				if(kori.get(i).getTuote().equals(tuote.getTuote())){
-					System.out.println("Hei!");
+				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
+				   && kori.get(i).getOregano() == tuote.getOregano() 
+				   && kori.get(i).getvSipuli() == tuote.getvSipuli()){
 					int luku = kori.get(i).getLkm();
 					luku += 1;
 					kori.get(i).setLkm(luku);
@@ -52,12 +51,11 @@ public class Ostoskori {
 					loytyy = true; // vaihdetaan loytyy arvo trueksi
 					break; //ja lopetetaan for loop
 				}else{
-					loytyy = false;
+					loytyy = false; //jos tuotetta ei lˆytynyt pidet‰‰n loytyy falsena
 				}
 			}
 		}
 		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei lˆydy lis‰t‰‰n ostoskoriin uusi TilattuTuote
-			System.out.println("MOIKKA!");
 			this.ostoskori.add(tuote);
 		}
 		

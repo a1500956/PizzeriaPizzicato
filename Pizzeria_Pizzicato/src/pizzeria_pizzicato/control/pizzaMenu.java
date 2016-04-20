@@ -34,8 +34,6 @@ public class pizzaMenu extends HttpServlet {
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
-			Ostoskori kori = new Ostoskori();
-			Pizza pizzaTuote = new Pizza();
 			
 			for(int i=0;i<pizzaLista.size();i++){
 				
@@ -47,23 +45,15 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
-			pizzaTuote = pizzaLista.get(2);
-			kori.addPizza(pizzaTuote, 0, 0);
+			HttpSession session = request.getSession();
+			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+			if(ostoskori == null){
+				ostoskori = new Ostoskori();
+				session.setAttribute("ostoskori", ostoskori);
+				session.setMaxInactiveInterval(60*60);
+			}
 			
-			System.out.println("yksi tuote korissa " + kori);
-			
-			pizzaTuote = pizzaLista.get(2);
-			kori.addPizza(pizzaTuote, 0, 0);
-			
-			System.out.println("kaksi tuotetta korissa toisella mausteet " + kori);
-			
-			pizzaTuote = pizzaLista.get(2);
-			kori.addPizza(pizzaTuote, 0, 0);
-			
-			System.out.println("lis‰ttiin ensimm‰iseen +1 lkm " + kori);
-			
-			
-			
+			System.out.println("Ostoskori! " + ostoskori);
 			
 			/*HttpSession sessionTilaus = request.getSession();
 			sessionTilaus.setAttribute("testi", "testitietoa");
@@ -82,5 +72,35 @@ public class pizzaMenu extends HttpServlet {
 			dispather.forward(request, response);
 
 	}
+	
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList<Pizza> pizzaLista = (ArrayList<Pizza>) request.getAttribute("pizzat"); // haetaan pizzat
 
+		
+		//k‰sitell‰‰n formista tullut data
+		System.out.println("pizzaID " + request.getAttribute("pizzaID"));
+		System.out.println("oregano checkbox " + request.getAttribute("oregano"));
+		System.out.println("vSipuli checkbox " + request.getAttribute("vSipuli"));
+		
+		int sArvo = Integer.parseInt((String) request.getAttribute("pizzaID")); //Haetaan ensin pizzaID
+		int oregano = 0, vSipuli = 0;
+		Pizza pizza = new Pizza();
+		pizza = pizzaLista.get(sArvo); //luodaan pizzaID mukaan 
+		
+		HttpSession session = request.getSession(); //haetaan session
+		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
+		ostoskori.addPizza(pizza, oregano, vSipuli); //lis‰t‰‰n ostoskoriin pizza
+		if(ostoskori != null){ //jos ostoskori ei ole tyhj‰ vied‰‰n ostoskori muutoksineen sessioniin
+			session.setAttribute("ostoskori", ostoskori);
+		}
+		
+		System.out.println("Ostoskoriin lis‰tty tuote! " + ostoskori);
+		
+		doGet(request, response);
+		
+	}
+	
+	
 }

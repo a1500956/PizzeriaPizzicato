@@ -5,6 +5,8 @@
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
+<%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -12,6 +14,13 @@
     nf.setMaximumFractionDigits(2);
     nf.setMinimumFractionDigits(2);
 %>
+
+<%
+Ostoskori ostoskori = new Ostoskori();
+ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+%>
+
+
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
@@ -90,6 +99,8 @@ media="only screen and (min-width: 771px)">
 			
 			<th>PIZZAT</th>
 			<th>HINTA</th>
+			<th>Oregano</th>
+			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
 		</tr>
@@ -99,7 +110,12 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-										
+				<td><form action="pizzaMenu" method="post">
+				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
+				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+				<input type="submit" value="Lisää koriin">
+				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
@@ -108,6 +124,7 @@ media="only screen and (min-width: 771px)">
 												 
 			</div></td></tr>
 			<% } %>
+			
 		</table><br>
     </span>
 
