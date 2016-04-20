@@ -55,6 +55,9 @@ public class pizzaMenu extends HttpServlet {
 			
 			request.setAttribute("pizzat", pizzaNakyy);
 			
+			System.out.println("Ostoskori " + ostoskori);
+			System.out.println("Ostoskori koko " + ostoskori.getKoko());
+			
 			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);

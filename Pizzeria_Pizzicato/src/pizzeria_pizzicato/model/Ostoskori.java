@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Ostoskori {
 	
 	ArrayList<TilattuTuote> ostoskori;
+	int koko = 0;
 	
-	public Ostoskori(ArrayList<TilattuTuote> ostoskori) {
+	public Ostoskori(ArrayList<TilattuTuote> ostoskori, int koko) {
 		super();
 		this.ostoskori = ostoskori;
+		this.koko =  koko;
 	}
 
 	public Ostoskori() {
@@ -35,6 +37,7 @@ public class Ostoskori {
 		if(ostoskori == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
 			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
 			this.ostoskori.add(tuote);
+			this.koko++; // lisätään korin kokoa
 			loytyy = true;
 			return;
 		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
@@ -48,6 +51,7 @@ public class Ostoskori {
 					luku += 1;
 					kori.get(i).setLkm(luku);
 					this.ostoskori = kori; //Jos löytyy lisätään lukumäärää
+					this.koko++; // lisätään korin kokoa
 					loytyy = true; // vaihdetaan loytyy arvo trueksi
 					break; //ja lopetetaan for loop
 				}else{
@@ -57,14 +61,23 @@ public class Ostoskori {
 		}
 		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei löydy lisätään ostoskoriin uusi TilattuTuote
 			this.ostoskori.add(tuote);
+			this.koko++;
 		}
 		
 	}
-
+	
 	public TilattuTuote vertaa(TilattuTuote vertaa){
 		TilattuTuote verrattu = new TilattuTuote();
 		
 		return verrattu;
+	}
+	
+	public int getKoko() {
+		return koko;
+	}
+
+	public void setKoko(int koko) {
+		this.koko = koko;
 	}
 
 

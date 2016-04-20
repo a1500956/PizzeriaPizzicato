@@ -57,6 +57,7 @@ media="only screen and (min-width: 771px)">
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus">Ostoskori(<%=ostoskori.getKoko()%>)</a> </li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
       	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
@@ -99,10 +100,8 @@ media="only screen and (min-width: 771px)">
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			
 			<th>PIZZAT</th>
 			<th>HINTA</th>
-			<th>Oregano</th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
