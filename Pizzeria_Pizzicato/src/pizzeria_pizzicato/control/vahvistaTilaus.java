@@ -35,7 +35,6 @@ public class vahvistaTilaus extends HttpServlet {
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
 		ArrayList<TilattuTuote> tuotteet = (ArrayList) request.getSession().getAttribute("tilauslista");
-		System.out.println(tuotteet);
 		Kayttaja valiaikainen = new Kayttaja();
 		valiaikainen.setKayttaja_id(404);
 		Tilaus T = new Tilaus();

@@ -85,8 +85,6 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			}
 			
 			ArrayList<Pizza> plista = pizzadao.findAll();
-			System.out.println(Ttuotteet);
-			
 			for(int i = 0; i<Ttuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
 				int sArvo = Ttuotteet.get(i).getTuote().getId();
 				for(int j = 0; j<plista.size(); j++){
