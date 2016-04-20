@@ -51,44 +51,4 @@ public class listaaPizzatkokki extends HttpServlet {
 
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String viesti = null;
-		
-		
-		try {
-		
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		String aika = request.getParameter("aika");
-		String statusNimi=request.getParameter("statusNimi");
-		String tuoteNimi=request.getParameter("tuoteNimi");
-		int lukumaara = Integer.parseInt(request.getParameter("lukumaara"));
-		String ktunnus=request.getParameter(ktunnus);
-		
-	
-		
-		Tilaus tilaus= new Tilaus(id, null, aika, statusNimi, lukumaara, lukumaara, tuoteNimi,ktunnus, lukumaara,ktunnus);
-		TilausDAO tilausdao = new TilausDAO();
-
-		
-		
-		
-		// Pizzan tiedot p‰ivitet‰‰n
-		tilausdao.updateTilaus(ktunnus);
-
-	
-
-							
-				} catch (SQLException e) {
-						
-				System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
-				}
-
-			response.sendRedirect("listaaPizzat");
-						
-		}
-		
-
-
 }

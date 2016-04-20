@@ -57,10 +57,19 @@ scope="request" />
 				<td><%=tilaukset.get(i).getLukumaara() %></td>
 				<td><%=tilaukset.get(i).getKtunnus()%></td>
 				
+				
 				<td><div class="toiminnot"> 
+				<p><b id='boldStuff<%=tilaukset.get(i).getId() %>'>Ei paistettu</b> </p> 
+				<input type='button' onclick='changeText()' value='Change Text'/>
+				<script>
+function changeText()
+{
+ document.getElementById('boldStuff'+<%=tilaukset.get(i).getId() %>).innerHTML = 'Paistettu';
+}
+</script>
 				<a href="#"<%=tilaukset.get(i).getId()%>" class="button">
 				Ei paistettu</a> 
-								
+							</div></td>	
 			</tr>
 			<% } %>
 		</table><br>
