@@ -57,7 +57,7 @@ media="only screen and (min-width: 771px)">
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
- 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus">Ostoskori(<%=ostoskori.getKoko()%>)</a> </li>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus">Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
       	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
@@ -113,7 +113,7 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 				<td>
-				<form method="post">
+				<form style="width: 350px;" method="post">
 				 Oregano<input type="checkbox" name="oregano" value="1"> 
 				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">

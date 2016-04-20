@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import pizzeria_pizzicato.model.Kayttaja;
+import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
@@ -28,13 +29,34 @@ import pizzeria_pizzicato.model.Tilaus;
 public class vahvistaTilaus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
+		
+		HttpSession session = request.getSession();
+		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+		if(ostoskori == null){
+			ostoskori = new Ostoskori();
+			session.setAttribute("ostoskori", ostoskori);
+			session.setMaxInactiveInterval(60*60);
+		}
+		
+		String jsp = "/view/vahvista-tilaus.jsp"; 
+		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
+		dispather.forward(request, response);
+		
+		
+		
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
 		TilausDAO TDAO = new TilausDAO();
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
-		ArrayList<TilattuTuote> tuotteet = (ArrayList) request.getSession().getAttribute("tilauslista");
+		Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
 		Kayttaja valiaikainen = new Kayttaja();
 		valiaikainen.setKayttaja_id(404);
 		Tilaus T = new Tilaus();
@@ -42,7 +64,7 @@ public class vahvistaTilaus extends HttpServlet {
 		T.setKayttaja(valiaikainen);
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
-		request.getSession().removeAttribute("tilauslista");
+		request.getSession().removeAttribute("ostoskori");
 		try {
 			TDAO.addTilaus(T, tuotteet);
 		} catch (SQLException e) {

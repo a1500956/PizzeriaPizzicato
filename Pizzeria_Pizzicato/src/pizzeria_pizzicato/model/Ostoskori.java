@@ -51,7 +51,6 @@ public class Ostoskori {
 					luku += 1;
 					kori.get(i).setLkm(luku);
 					this.ostoskori = kori; //Jos löytyy lisätään lukumäärää
-					this.koko++; // lisätään korin kokoa
 					loytyy = true; // vaihdetaan loytyy arvo trueksi
 					break; //ja lopetetaan for loop
 				}else{
@@ -72,6 +71,30 @@ public class Ostoskori {
 		return verrattu;
 	}
 	
+	public TilattuTuote getTuote(int index) {
+		TilattuTuote tuote = null;
+		if(index>=0 && index < ostoskori.size() ){
+		tuote = ostoskori.get(index);
+		}
+		return tuote;
+	}
+	
+	public ArrayList<TilattuTuote> getOstoskori() {
+		return ostoskori;
+	}
+
+	public void setOstoskori(ArrayList<TilattuTuote> ostoskori) {
+		this.ostoskori = ostoskori;
+	}
+	
+	public int getMaara() {
+		int lkm = 0;
+		for(int i = 0; i<this.koko; i++){
+			lkm += this.ostoskori.get(i).getLkm();
+		}
+		return lkm;
+	}
+
 	public int getKoko() {
 		return koko;
 	}
@@ -83,7 +106,7 @@ public class Ostoskori {
 
 	@Override
 	public String toString() {
-		return "Ostoskori [ostoskori=" + ostoskori + "]";
+		return "Ostoskori [koko=" + koko + " ostoskori=" + ostoskori + "]";
 	}
 	
 	
