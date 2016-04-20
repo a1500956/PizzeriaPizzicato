@@ -59,8 +59,8 @@ media="only screen and (min-width: 771px)">
 
  	
 </ul>
-<p class="p1">${message}</p>
-		<c:remove var="message" scope="session" />
+<p class="p1">${message3}</p>
+		<c:remove var="message3" scope="session" />
 </nav>
 
  <div class="dropdown">

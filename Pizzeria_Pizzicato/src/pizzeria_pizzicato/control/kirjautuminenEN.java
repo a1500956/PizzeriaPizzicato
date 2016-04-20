@@ -62,10 +62,10 @@ public class kirjautuminenEN extends HttpServlet {
 
 
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenuEng.java");
-			PrintWriter out= response.getWriter();
-			out.println("<font color=red>Käyttäjätunnus ja/tai salasana on virheellinen.</font>");
-			rd.include(request, response);
+			
+			String viesti = "Username and/or password are incorrect.";
+			request.getSession().setAttribute("message4", viesti);
+			response.sendRedirect("pizzaMenuEng");
 
 		
  
