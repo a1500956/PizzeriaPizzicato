@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="pizzeria_pizzicato.model.TilattuTuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
 
 
-<jsp:useBean id="tilauslista" type="java.util.ArrayList<Tuote> "
+<jsp:useBean id="tilauslista" type="java.util.ArrayList<TilattuTuote> "
 scope="request" />
 
 
@@ -112,9 +113,9 @@ media="only screen and (min-width: 771px)">
 
 			<%for(int i = 0; i < tilauslista.size(); i++) {%>
 			<tr>
-				<td><div class=""><%=tilauslista.get(i).getNimi()%></div></td>
-				<td><div class="tilauslista"><%=nf.format(tilauslista.get(i).getHinta())%>&euro;</div></td>
-				<%summa+=(tilauslista.get(i).getHinta()*tilauslista.get(i).getLkm());%>
+				<td><div class=""><%=tilauslista.get(i).getTuote().getNimi()%></div></td>
+				<td><div class="tilauslista"><%=nf.format(tilauslista.get(i).getTuote().getHinta())%>&euro;</div></td>
+				<%summa+=(tilauslista.get(i).getTuote().getHinta()*tilauslista.get(i).getLkm());%>
 				<td><div class="tilauslista"><%=tilauslista.get(i).getLkm()%> kpl</div></td>
 				<td>
 				</td>								
