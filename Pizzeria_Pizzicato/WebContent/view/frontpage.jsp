@@ -50,6 +50,8 @@ and (max-width: 770px)">
       </div>
     </form>
  </ul>
+ <p class="p1">${message4}</p>
+		<c:remove var="message4" scope="session" />
 		</nav>
 
 		<div class="dropdown">

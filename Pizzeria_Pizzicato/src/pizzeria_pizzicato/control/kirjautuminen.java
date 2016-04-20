@@ -65,8 +65,8 @@ public class kirjautuminen extends HttpServlet {
 
 		}else{
 			
-			String viesti = "Käyttäjätunnus ja/tai salasana on virheellinen";
-			request.getSession().setAttribute("message", viesti);
+			String viesti = "Käyttäjätunnus ja/tai salasana on virheellinen.";
+			request.getSession().setAttribute("message3", viesti);
 			response.sendRedirect("pizzaMenu");
 			
 			/*
