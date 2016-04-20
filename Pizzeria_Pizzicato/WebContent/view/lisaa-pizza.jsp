@@ -2,7 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
-
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte>" scope="request" />
 
 <html>
@@ -15,12 +16,14 @@
 <body>
 
 <%
+int ryhma= 1;
 String userName = null;
 //allow access only if session exists
-if(session.getAttribute("kayttaja") == null){
-	response.sendRedirect("pizzaMenu");
-}else userName = (String) session.getAttribute("kayttaja");
-
+if(session.getAttribute("ryhma").equals(ryhma)){
+	userName = (String) session.getAttribute("kayttaja");
+	
+}else{ response.sendRedirect("pizzaMenu");
+}	
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
@@ -55,6 +58,8 @@ for(Cookie cookie : cookies){
 				<td><input type="number" step=0.01 value="" name="hinta"
 					size="5" min="6" max="100" required
 					title="Arvon tulee olla väliltä 0.0 ja 100.0" />&euro;</td>
+					<p>${message2}</p>
+					<c:remove var="message2" scope="session" /> 
 			</tr>
 			<tr>
 				<td>Pizza näkyy menussa:</td>

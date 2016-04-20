@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Timestamp;
 
+import pizzeria_pizzicato.model.Kayttaja;
+import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
@@ -25,7 +27,7 @@ public class TilausDAO extends DataAccessObject {
 			String sqlInsert = "INSERT INTO Tilaus(tilaus_osoite, kayttaja_id, tilaus_puhnro) VALUES (?, ?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
 			stmtInsert.setString(1, Tilaus.getOsoite());
-			stmtInsert.setInt(2, Tilaus.getKayttajaID());
+			stmtInsert.setInt(2, Tilaus.getKayttaja().getKayttaja_id());
 			stmtInsert.setString(3, Tilaus.getPuhnro());
 			
 
@@ -34,7 +36,7 @@ public class TilausDAO extends DataAccessObject {
 			//Valmistellaan tilattujen tuotteiden lisäys
 			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, lkm) VALUES (?,?,?)";
 			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
-			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttajaID());
+			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttaja().getKayttaja_id());
 			
 			//Luodaan kopio listasta, jottei mitään vahingossa kadotettaisi
 			Tuote TX;
@@ -45,7 +47,7 @@ public class TilausDAO extends DataAccessObject {
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
 					stmtInsert.setInt(1, tilauksenID);
 					stmtInsert.setInt(2, TX.getId());
-					stmtInsert.setInt(3, TX.getLkm());
+					stmtInsert.setInt(3, 0);
 					stmtInsert.executeUpdate();	
 				}
 				
@@ -149,13 +151,12 @@ public class TilausDAO extends DataAccessObject {
 		try{
 		
 		conn = getConnection();
-		String sqlSelect = "SELECT ti.tilaus_id, ti.tilaus_aika, s.status_nimi, tu.tuote_nimi, tt.lkm, ti.tilaus_osoite, k.kayttaja_ktunnus, ti.tilaus_puhnro FROM TilattuTuote tt JOIN Tilaus ti ON ti.tilaus_id=tt.tilaus_id JOIN Kayttaja k ON ti.kayttaja_id=k.kayttaja_id JOIN Tuote tu ON tt.tuote_id=tu.tuote_id JOIN Status s ON ti.status_id=s.status_id WHERE s.status_id <= 5 ORDER BY tilaus_id;";
+		String sqlSelect = "SELECT ti.tilaus_id AS tilaus_id, ti.tilaus_aika, ti.tilaus_osoite, ti.tilaus_puhnro, ti.status_id, s.status_nimi, k.kayttaja_ktunnus FROM Tilaus ti JOIN Status s ON ti.status_id=s.status_id JOIN Kayttaja k ON ti.kayttaja_id=k.kayttaja_id;";
 		stmt = conn.prepareStatement(sqlSelect);
 		rs = stmt.executeQuery(sqlSelect);
 		
 		while (rs.next()) {
 			tilaus = readTilaus(rs);
-
 			tilaukset.add(tilaus);
 		}
 		
@@ -180,7 +181,7 @@ public class TilausDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT tilaus_id, tilaus_aika, tilaus_osoite, status_id, kayttaja_id FROM Tilaus;";
+			String sqlSelect = "SELECT ti.tilaus_id, ti.tilaus_aika, ti.tilaus_osoite, ti.tilaus_puhnro, ti.status_id, s.status_nimi, k.kayttaja_ktunnus FROM Tilaus ti JOIN Status s ON ti.status_id=s.status_id JOIN Kayttaja k ON ti.kayttaja_id=k.kayttaja_id;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
@@ -188,7 +189,6 @@ public class TilausDAO extends DataAccessObject {
 
 			while (rs.next()) {
 				Tilaus = readTilaus(rs);
-
 				tilaukset.add(Tilaus);
 			}
 		} catch (SQLException e) {
@@ -203,25 +203,29 @@ public class TilausDAO extends DataAccessObject {
 	public Tilaus readTilaus(ResultSet rs) {
 
 		try {
-
+			KayttajaDAO KDAO = new KayttajaDAO();
+			TuoteDAO TuDAO = new TuoteDAO();
 			int id = rs.getInt("tilaus_id");
 			Timestamp aika = rs.getTimestamp("tilaus_aika");
 			String osoite = rs.getString("tilaus_osoite");
 			String puhnro = rs.getString("tilaus_puhnro");
-			int statusID = 0;
-			int kayttajaID = 0;
+			int statusID= rs.getInt("status_id");
 			String statusNimi= rs.getString("status_nimi");
-			String tuoteNimi = rs.getString("tuote_nimi");
-			int lkm = rs.getInt("lkm");
-			String kayttajaTunnus = rs.getString("kayttaja_ktunnus");
+			String kayttajaTunnus = rs.getString("kayttaja_ktunnus");	
+			
+			Kayttaja kayttaja = KDAO.findByKayttajaTunnus(kayttajaTunnus);
+			System.out.println(id+"qwerty");
+			ArrayList<TilattuTuote> tilatutTuotteet = TuDAO.haeTilatutTuotteet(id);
+			System.out.println(id+"jklöä");
 			
 			
 
-			return new Tilaus(id, aika, osoite, puhnro, statusID, kayttajaID, statusNimi, tuoteNimi, lkm, kayttajaTunnus);
+			return new Tilaus(id, aika, osoite, puhnro, statusID, statusNimi, kayttaja, tilatutTuotteet);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	
 	public Tilaus haeTilaus(int ID) {
 
@@ -258,8 +262,9 @@ public class TilausDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT MAX(tilaus_id) AS MaxTilaus FROM Tilaus WHERE kayttaja_id="+KID+";";
+			String sqlSelect = "SELECT MAX(tilaus_id) AS MaxTilaus FROM Tilaus WHERE kayttaja_id=?;";
 			stmtSelect = conn.prepareStatement(sqlSelect);
+			stmtSelect.setInt(1, KID);
 			
 			rs = stmtSelect.executeQuery(sqlSelect);
 
@@ -274,6 +279,39 @@ public class TilausDAO extends DataAccessObject {
 		}
 
 		return tulos;
+	}
+	
+	public ArrayList<TilattuTuote> haeTilatutTuotteetIDnPerusteella(int TID) {
+		Connection conn = null;
+		PreparedStatement stmtSelect = null;
+		ResultSet rs = null;
+		ArrayList<TilattuTuote> tilatutTuotteet = new ArrayList<TilattuTuote>();
+		TilattuTuote tilattuTuote;
+		TuoteDAO TuDAO = new TuoteDAO();
+		
+		try {
+
+			conn = getConnection();
+
+			String sqlSelect = "SELECT tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano FROM TilattuTuote WHERE Tilaus_id = ?";
+			stmtSelect = conn.prepareStatement(sqlSelect);
+			stmtSelect.setInt(1, TID);
+			
+			rs = stmtSelect.executeQuery(sqlSelect);
+
+			if (rs.next()) {
+			tilattuTuote = TuDAO.readTilatutTuotteet(rs);
+			tilatutTuotteet.add(tilattuTuote);
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtSelect, conn);
+		}
+
+		return tilatutTuotteet;
+		
 	}
 	
 

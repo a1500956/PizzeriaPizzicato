@@ -39,6 +39,7 @@ public class kirjautuminen extends HttpServlet {
 		
 		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1 ){
 			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 			session.setMaxInactiveInterval(30*60);
@@ -52,6 +53,7 @@ public class kirjautuminen extends HttpServlet {
 		
 		else if(kirjautuja != null){
 			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 			session.setMaxInactiveInterval(30*60);
@@ -62,10 +64,16 @@ public class kirjautuminen extends HttpServlet {
 
 
 		}else{
+			
+			String viesti = "Käyttäjätunnus ja/tai salasana on virheellinen";
+			request.getSession().setAttribute("message", viesti);
+			response.sendRedirect("pizzaMenu");
+			
+			/*
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/pizzaMenu.java");
 			PrintWriter out= response.getWriter();
 			out.println("<font color=red>Käyttäjätunnus ja/tai salasana on virheellinen.</font>");
-			rd.include(request, response);
+			rd.include(request, response);*/
 
 		
  

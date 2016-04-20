@@ -46,7 +46,7 @@ public class muokkaaTayte extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
+		String viesti = null;
 		
 		try{
 
@@ -64,18 +64,26 @@ public class muokkaaTayte extends HttpServlet {
 			TayteDAO taytedao = new TayteDAO();
 						
 			taytedao.updateTayte(tayte);
+			viesti="Täytteen muokkaaminen onnistui!";
 			
 						
 			} catch (SQLException e) {
 					
 			System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
 			}
+		
+		if (viesti!=null){
+			request.getSession().setAttribute("message", viesti);
+			response.sendRedirect("listaa-taytteet");
+
+			}else{
 
 		response.sendRedirect("listaa-taytteet");
 					
 	}
 
 		
+}
 }
 
 

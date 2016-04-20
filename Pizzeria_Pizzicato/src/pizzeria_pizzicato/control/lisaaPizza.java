@@ -58,15 +58,25 @@ public class lisaaPizza extends HttpServlet {
 
 			String hintaStr = request.getParameter("hinta");
 			double hinta = lukija.lueDesimaaliluku(hintaStr);
+			
+			if(hinta<6){String viesti2 = "Pizzan hinnan täytyy olla vähintään 6 euroa!";
+			request.getSession().setAttribute("message2", viesti2);
+			response.sendRedirect("lisaa-pizza");
+			
+			
+			}else{
+			
 			String nakyyStr = request.getParameter("nakyy");
 			int nakyy = new Integer(nakyyStr);
 
 			String[] taytteetStr = request.getParameterValues("tayte");
 
 			Pizza pizza = new Pizza(id, nimi, hinta, nakyy);
+			
+			
 			PizzaDAO pizzadao = new PizzaDAO();
 			PizzaTayteDAO pizzaTaytedao = new PizzaTayteDAO();
-
+			
 			pizzadao.addPizza(pizza);
 			viesti = "Pizzan tallennus onnistui!";
 
@@ -77,6 +87,7 @@ public class lisaaPizza extends HttpServlet {
 				pizzaTaytedao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),
 						pId);
 
+			}
 			}
 
 		} catch (SQLException e) {
@@ -89,10 +100,9 @@ public class lisaaPizza extends HttpServlet {
 		request.getSession().setAttribute("message", viesti);
 		response.sendRedirect("listaaPizzat");
 
-		}else{
-
-		response.sendRedirect("listaaPizzat");
+		
 
 	}
 }
 }
+
