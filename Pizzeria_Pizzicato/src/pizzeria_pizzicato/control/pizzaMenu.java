@@ -53,17 +53,6 @@ public class pizzaMenu extends HttpServlet {
 				session.setMaxInactiveInterval(60*60);
 			}
 			
-			System.out.println("Ostoskori! " + ostoskori);
-			
-			/*HttpSession sessionTilaus = request.getSession();
-			sessionTilaus.setAttribute("testi", "testitietoa");
-			sessionTilaus.setMaxInactiveInterval(30*60);
-			Cookie testi = new Cookie("kayttaja", "testitietoa");
-			testi.setMaxAge(30*60);
-			response.addCookie(testi);*/
-			
-			
-			
 			request.setAttribute("pizzat", pizzaNakyy);
 			
 			
@@ -76,16 +65,21 @@ public class pizzaMenu extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Pizza> pizzaLista = (ArrayList<Pizza>) request.getAttribute("pizzat"); // haetaan pizzat
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
 
 		
 		//k‰sitell‰‰n formista tullut data
-		System.out.println("pizzaID " + request.getAttribute("pizzaID"));
-		System.out.println("oregano checkbox " + request.getAttribute("oregano"));
-		System.out.println("vSipuli checkbox " + request.getAttribute("vSipuli"));
 		
-		int sArvo = Integer.parseInt((String) request.getAttribute("pizzaID")); //Haetaan ensin pizzaID
+		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
 		int oregano = 0, vSipuli = 0;
+		if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
+			oregano = 1;
+		}
+		if(request.getParameter("vSipuli") != null){ //haetaan vSipuli jos null j‰tet‰‰n 0
+			vSipuli = 1;
+		}
+		
 		Pizza pizza = new Pizza();
 		pizza = pizzaLista.get(sArvo); //luodaan pizzaID mukaan 
 		
@@ -96,9 +90,7 @@ public class pizzaMenu extends HttpServlet {
 			session.setAttribute("ostoskori", ostoskori);
 		}
 		
-		System.out.println("Ostoskoriin lis‰tty tuote! " + ostoskori);
-		
-		doGet(request, response);
+		doGet(request, response); // palaa takaisin servletin alkuun
 		
 	}
 	
