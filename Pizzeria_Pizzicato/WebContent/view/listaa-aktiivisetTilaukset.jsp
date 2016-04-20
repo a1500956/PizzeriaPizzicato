@@ -62,27 +62,35 @@ response.setIntHeader("Refresh", 5);
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			<td><h4>Tilaus numero</h4></td>
+			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Aika</h4></td>
 			<td><h4>Status</h4></td>
 			<td><h4>Tuote</h4></td>
 			<td><h4>Lukumäärä</h4></td>
+			<td><h4>Valkos.</h4></td>
+			<td><h4>Oreg.</h4></td>
 			<td><h4>Toimitusosoite</h4></td>
 			<td><h4>Tilaaja</h4></td>
 			<td><h4>Puhelinnumero</h4></td>
 				
 		</tr>
+			
+		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
-			<tr>
-				<td><%=tilaukset.get(i).getId() %></td>
-				<td><%=tilaukset.get(i).getAika()%></td>
-				<td><%=tilaukset.get(i).getStatusNimi() %></td>
-				<td><%=tilaukset.get(i).getTuoteNimi() %></td>
-				<td><%=tilaukset.get(i).getLukumaara() %></td>
-				<td><%=tilaukset.get(i).getOsoite()%></td>
-				<td><%=tilaukset.get(i).getKtunnus()%></td>
-				<td><%=tilaukset.get(i).getPuhnro()%></td>						
-			</tr>
+				<%for(int j = 0; j < tilaukset.get(i).getTilatutTuotteet().size(); j++) {%>
+					<tr>
+						<td><%=tilaukset.get(i).getId() %></td>
+						<td><%=tilaukset.get(i).getAika()%></td>
+						<td><%=tilaukset.get(i).getStatusNimi() %></td>
+						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
+						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
+						<td><%=tilaukset.get(i).getTilattuTuote(j).getvSipuli()%></td>
+						<td><%=tilaukset.get(i).getTilattuTuote(j).getOregano()%></td>
+						<td><%=tilaukset.get(i).getOsoite()%></td>
+						<td><%=tilaukset.get(i).getKayttaja().getKayttaja_ktunnus()%></td>
+						<td><%=tilaukset.get(i).getPuhnro()%></td>						
+					</tr>
+				<% } %>
 			<% } %>
 		</table><br>
 		

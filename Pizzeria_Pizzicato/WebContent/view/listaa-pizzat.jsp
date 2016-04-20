@@ -29,11 +29,14 @@ scope="request" />
 </head>
 	<body>
 	<%
+	int ryhma= 1;
 	String userName = null;
 	//allow access only if session exists
-	if(session.getAttribute("kayttaja") == null){
-		response.sendRedirect("pizzaMenu");
-	}else userName = (String) session.getAttribute("kayttaja");
+	if(session.getAttribute("ryhma").equals(ryhma)){
+		userName = (String) session.getAttribute("kayttaja");
+		
+	}else{ response.sendRedirect("pizzaMenu");
+}	
 String sessionID = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
@@ -58,10 +61,9 @@ for(Cookie cookie : cookies){
 
 		<h1>PIZZALISTA</h1>
 		
-		<p class="viesti">${message}</p>
+		<p>${message}</p>
 <c:remove var="message" scope="session" /> 
 
-		
 		
 
 		<a href="<%=response.encodeURL("lisaa-pizza") %>">Lisää pizza</a>

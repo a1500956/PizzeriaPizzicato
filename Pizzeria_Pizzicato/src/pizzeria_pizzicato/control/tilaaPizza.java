@@ -62,7 +62,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			
 			Pizza haettu = new Pizza();
-			ArrayList<TilattuTuote> tilatutTuotteet = new ArrayList<TilattuTuote>();
+			ArrayList<TilattuTuote> Ttuotteet = new ArrayList<TilattuTuote>();
 			
 			int lkm = 0;
 
@@ -72,49 +72,33 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 				if(lkm != (int)lkm){
 				doGet(request, response);
 				}else if(lkm>0){
-						TilattuTuote tilattuTuote = new TilattuTuote();
-						tilattuTuote.getTuote().setId(haettu.getId());
-						tilattuTuote.setLkm(lkm);
-						tilattuTuote.setHinta(haettu.getHinta());
-						tilatutTuotteet.add(tilattuTuote);
+						Tuote tuote = new Tuote();
+						TilattuTuote TT = new TilattuTuote();
+						tuote.setId(haettu.getId());
+						tuote.setHinta(haettu.getHinta());
+						TT.setTuote(tuote);
+						TT.setLkm(lkm);
+						Ttuotteet.add(TT);
 					
 					}
+				
 			}
 			
-			System.out.println("Ennen nimeä ja järjestelyä " + tilatutTuotteet);
-			
 			ArrayList<Pizza> plista = pizzadao.findAll();
-			/*Pizza P1;
-			Tuote T2;
-			
-			for (int i = 0; i < plista.size(); i++) {
-				P1 = plista.get(i);
-				for (int j = 0; j < tuotteet.size(); j++) {
-					T2 = tuotteet.get(j);
-					if(P1.getId()!=T2.getId()){
-						T2.setNimi(P1.getNimi());
-						tuotteet.set(j, T2);
-					}
-				}
-			}*/
-			
-			
-			for(int i = 0; i<tilatutTuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
-				int sArvo = tilatutTuotteet.get(i).getTuote().getId();
+			for(int i = 0; i<Ttuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
+				int sArvo = Ttuotteet.get(i).getTuote().getId();
 				for(int j = 0; j<plista.size(); j++){
 					if(sArvo == plista.get(j).getId()){
-						tilatutTuotteet.get(i).getTuote().setNimi(plista.get(j).getNimi());
+						Ttuotteet.get(i).getTuote().setNimi(plista.get(j).getNimi());
 					}
-				}	
+				}
+				
 			}	
-			
-			System.out.println("nimen jälkeen " + tilatutTuotteet);
-			
-			if(tilatutTuotteet.isEmpty()){
+			if(Ttuotteet.isEmpty()){
 			 doGet(request, response);
 			}else{
 				String jsp = "/view/vahvista-tilaus.jsp"; 
-				request.setAttribute("tilauslista", tilatutTuotteet);
+				request.setAttribute("tilauslista", Ttuotteet);
 				RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 				dispather.forward(request, response);
 			}

@@ -22,6 +22,9 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 
 
 
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 
@@ -59,14 +62,14 @@ media="only screen and (min-width: 771px)">
       	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
        	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
        	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 
       </div>
     </form>
 
  	
 </ul>
-
-
-	
+<p class="p1">${message3}</p>
+		<c:remove var="message3" scope="session" />
 </nav>
 
  <div class="dropdown">

@@ -29,7 +29,14 @@ scope="request" />
 	
 <%
 //allow access only if session exists
-String userName = null;
+int ryhma= 1;
+	String userName = null;
+	//allow access only if session exists
+	if(session.getAttribute("ryhma").equals(ryhma)){
+		userName = (String) session.getAttribute("kayttaja");
+		
+	}else{ response.sendRedirect("pizzaMenu");
+}	
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
@@ -51,7 +58,7 @@ for(Cookie cookie : cookies){
 		
 		<h1>TÄYTELISTA</h1>
 		
-		<p class="viesti">${message}</p>
+		<p>${message}</p>
 <c:remove var="message" scope="session" /> 
 		
 		
