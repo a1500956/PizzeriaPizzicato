@@ -5,6 +5,8 @@
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
+<%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
 
 <%
@@ -12,6 +14,13 @@
     nf.setMaximumFractionDigits(2);
     nf.setMinimumFractionDigits(2);
 %>
+
+<%
+Ostoskori ostoskori = new Ostoskori();
+ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+%>
+
+
 
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
@@ -48,6 +57,7 @@ media="only screen and (min-width: 771px)">
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus">Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
     <form action="kirjautuminen" method="post">
       <div class="loginrow2">
       	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
@@ -90,9 +100,9 @@ media="only screen and (min-width: 771px)">
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			
 			<th>PIZZAT</th>
 			<th>HINTA</th>
+			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
 		</tr>
@@ -102,7 +112,13 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-										
+				<td>
+				<form style="width: 350px;" method="post">
+				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
+				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+				<input type="submit" value="Koriin">
+				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
@@ -111,6 +127,7 @@ media="only screen and (min-width: 771px)">
 												 
 			</div></td></tr>
 			<% } %>
+			
 		</table><br>
     </span>
 

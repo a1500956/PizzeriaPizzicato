@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 
 import pizzeria_pizzicato.model.Kayttaja;
+import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 import pizzeria_pizzicato.model.Tuote;
@@ -15,7 +16,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TilausDAO extends DataAccessObject {
 
-	public void addTilaus(Tilaus Tilaus, ArrayList<TilattuTuote> tuotelista) throws SQLException {
+	public void addTilaus(Tilaus Tilaus, Ostoskori ostoskori) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
@@ -40,8 +41,8 @@ public class TilausDAO extends DataAccessObject {
 			
 			TilattuTuote TX;
 			
-			for (int i = 0; i < tuotelista.size(); i++) {
-					TX = tuotelista.get(i);
+			for (int i = 0; i < ostoskori.getKoko(); i++) {
+					TX = ostoskori.getTuote(i);
 					stmtInsert = connection.prepareStatement(sqlInsert2);
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
 					stmtInsert.setInt(1, tilauksenID);
