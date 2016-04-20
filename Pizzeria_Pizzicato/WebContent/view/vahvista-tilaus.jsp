@@ -99,7 +99,7 @@ media="only screen and (min-width: 771px)">
     <div class=button><a href="tilaaPizza">Takaisin</a></div><br><br>
 		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
   		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{10,10}" required></p><br>
+  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
 		<tr>
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>

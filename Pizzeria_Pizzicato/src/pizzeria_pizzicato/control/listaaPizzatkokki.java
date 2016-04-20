@@ -20,11 +20,13 @@ import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.Tilaus;
+import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.KayttajaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
 import pizzeria_pizzicato.model.dao.TilausDAO;
+import pizzeria_pizzicato.model.dao.TuoteDAO;
 
 @WebServlet("/listaaPizzatkokki")
 public class listaaPizzatkokki extends HttpServlet {
@@ -34,58 +36,47 @@ public class listaaPizzatkokki extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 		
-		TilausDAO tilausdao = new TilausDAO();
-		ArrayList<Tilaus> tilaukset = new ArrayList<Tilaus>(tilausdao.haeAktiivisetTilaukset());
-		request.setAttribute("tilaukset", tilaukset);
-		
-
-		request.setAttribute("pizzat", pizzaLista);
-		
-		String jsp = "/view/listaa-kokki.jsp";
-		RequestDispatcher dispather = getServletContext().getRequestDispatcher(
-				jsp);
-		dispather.forward(request, response);
-
-	}
+			TilausDAO tilausdao = new TilausDAO();
+			ArrayList<Tilaus> tilaukset = new ArrayList<Tilaus>(tilausdao.haeAktiivisetTilaukset());
+			request.setAttribute("tilaukset", tilaukset);
+			
+			String jsp = "/view/listaa-kokki.jsp"; 
+			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
+			dispather.forward(request, response);
+			
+		}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String viesti = null;
+			
 		
 		
 		try {
+			
+			String valmisStr = request.getParameter("valmis");
+			System.out.println(valmisStr);
+			
+			
+			if(valmisStr!=null){
+				
+			int id = Integer.parseInt(valmisStr);	
+			
+			Tuote tuote = new Tuote (id, null, 0);
+			TuoteDAO tuotedao = new TuoteDAO();
+						
+			tuotedao.deleteTuote(tuote);
 		
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		String aika = request.getParameter("aika");
-		String statusNimi=request.getParameter("statusNimi");
-		String tuoteNimi=request.getParameter("tuoteNimi");
-		int lukumaara = Integer.parseInt(request.getParameter("lukumaara"));
-		String ktunnus=request.getParameter(ktunnus);
-		
-	
-		
-		Tilaus tilaus= new Tilaus(id, null, aika, statusNimi, lukumaara, lukumaara, tuoteNimi,ktunnus, lukumaara,ktunnus);
-		TilausDAO tilausdao = new TilausDAO();
+			
+			}
 
-		
-		
-		
-		// Pizzan tiedot p‰ivitet‰‰n
-		tilausdao.updateTilaus(ktunnus);
-
-	
-
-							
+				
 				} catch (SQLException e) {
 						
 				System.out.println("Sovelluksessa tapahtui virhe "+ e.getMessage());
 				}
 
-			response.sendRedirect("listaaPizzat");
+			response.sendRedirect("listaaPizzatkokki");
 						
 		}
 		
