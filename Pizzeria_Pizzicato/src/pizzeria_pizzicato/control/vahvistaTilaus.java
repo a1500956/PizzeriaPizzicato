@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
@@ -34,10 +35,11 @@ public class vahvistaTilaus extends HttpServlet {
 		String puhnro = request.getParameter("puhnro");
 		ArrayList<Tuote> tuotteet = (ArrayList) request.getSession().getAttribute("tilauslista");
 		request.getSession().removeAttribute("tilauslista");
-		
+		Kayttaja valiaikainen = new Kayttaja();
+		valiaikainen.setKayttaja_id(404);
 		Tilaus T = new Tilaus();
 		
-		T.setKayttajaID(404);
+		T.setKayttaja(valiaikainen);
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
 		
