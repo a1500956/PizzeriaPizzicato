@@ -61,7 +61,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			
 			Pizza haettu = new Pizza();
-			ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
+			ArrayList<Tuote> Ttuotteet = new ArrayList<Tuote>();
 			
 			int lkm = 0;
 
@@ -73,9 +73,9 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 				}else if(lkm>0){
 						Tuote tuote = new Tuote();
 						tuote.setId(haettu.getId());
-						tuote.setLkm(lkm);
+						tuote.setId(lkm);
 						tuote.setHinta(haettu.getHinta());
-						tuotteet.add(tuote);
+						Ttuotteet.add(tuote);
 					
 					}
 				
@@ -97,20 +97,20 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			}*/
 			
 			
-			for(int i = 0; i<tuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
-				int sArvo = tuotteet.get(i).getId();
+			for(int i = 0; i<Ttuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
+				int sArvo = Ttuotteet.get(i).getId();
 				for(int j = 0; j<plista.size(); j++){
 					if(sArvo == plista.get(j).getId()){
-						tuotteet.get(i).setNimi(plista.get(j).getNimi());
+						Ttuotteet.get(i).setNimi(plista.get(j).getNimi());
 					}
 				}
 				
 			}	
-			if(tuotteet.isEmpty()){
+			if(Ttuotteet.isEmpty()){
 			 doGet(request, response);
 			}else{
 				String jsp = "/view/vahvista-tilaus.jsp"; 
-				request.setAttribute("tilauslista", tuotteet);
+				request.setAttribute("tilauslista", Ttuotteet);
 				RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 				dispather.forward(request, response);
 			}
