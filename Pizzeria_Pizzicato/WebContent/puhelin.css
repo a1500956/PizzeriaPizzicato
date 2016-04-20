@@ -85,7 +85,10 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 	background-color: #ADB96E;
 	color:  white;
 }
-
+#flag {  height: 20px; width:auto; float: left;
+		 display: inline-block; padding: 2px;
+	
+}
 
 .dropdown {
 	background-color: #ff0000;
