@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
+import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 
 
@@ -43,20 +45,54 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
-			/*HttpSession sessionTilaus = request.getSession();
-			sessionTilaus.setAttribute("testi", "testitietoa");
-			sessionTilaus.setMaxInactiveInterval(30*60);
-			Cookie testi = new Cookie("kayttaja", "testitietoa");
-			testi.setMaxAge(30*60);
-			response.addCookie(testi);*/
+			HttpSession session = request.getSession();
+			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+			if(ostoskori == null){
+				ostoskori = new Ostoskori();
+				session.setAttribute("ostoskori", ostoskori);
+				session.setMaxInactiveInterval(60*60);
+			}
 			
 			request.setAttribute("pizzat", pizzaNakyy);
 			
 			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
-		dispather.forward(request, response);
+			dispather.forward(request, response);
 
 	}
+	
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		PizzaDAO pizzadao = new PizzaDAO();
+		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
 
+		
+		//k‰sitell‰‰n formista tullut data
+		
+		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
+		int oregano = 0, vSipuli = 0;
+		if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
+			oregano = 1;
+		}
+		if(request.getParameter("vSipuli") != null){ //haetaan vSipuli jos null j‰tet‰‰n 0
+			vSipuli = 1;
+		}
+		
+		Pizza pizza = new Pizza();
+		pizza = pizzaLista.get(sArvo); //luodaan pizzaID mukaan 
+		
+		HttpSession session = request.getSession(); //haetaan session
+		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
+		ostoskori.addPizza(pizza, oregano, vSipuli); //lis‰t‰‰n ostoskoriin pizza
+		if(ostoskori != null){ //jos ostoskori ei ole tyhj‰ vied‰‰n ostoskori muutoksineen sessioniin
+			session.setAttribute("ostoskori", ostoskori);
+		}
+		
+		doGet(request, response); // palaa takaisin servletin alkuun
+		
+	}
+	
+	
 }
