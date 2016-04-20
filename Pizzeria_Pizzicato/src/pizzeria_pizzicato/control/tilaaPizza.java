@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 
@@ -61,7 +62,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			
 			Pizza haettu = new Pizza();
-			ArrayList<Tuote> tuotteet = new ArrayList<Tuote>();
+			ArrayList<TilattuTuote> Ttuotteet = new ArrayList<TilattuTuote>();
 			
 			int lkm = 0;
 
@@ -72,45 +73,32 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 				doGet(request, response);
 				}else if(lkm>0){
 						Tuote tuote = new Tuote();
+						TilattuTuote TT = new TilattuTuote();
 						tuote.setId(haettu.getId());
-						tuote.setLkm(lkm);
 						tuote.setHinta(haettu.getHinta());
-						tuotteet.add(tuote);
+						TT.setTuote(tuote);
+						TT.setLkm(lkm);
+						Ttuotteet.add(TT);
 					
 					}
 				
 			}
 			
 			ArrayList<Pizza> plista = pizzadao.findAll();
-			/*Pizza P1;
-			Tuote T2;
-			
-			for (int i = 0; i < plista.size(); i++) {
-				P1 = plista.get(i);
-				for (int j = 0; j < tuotteet.size(); j++) {
-					T2 = tuotteet.get(j);
-					if(P1.getId()!=T2.getId()){
-						T2.setNimi(P1.getNimi());
-						tuotteet.set(j, T2);
-					}
-				}
-			}*/
-			
-			
-			for(int i = 0; i<tuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
-				int sArvo = tuotteet.get(i).getId();
+			for(int i = 0; i<Ttuotteet.size(); i++){ // haetaan tilattujen pizzojen nimet
+				int sArvo = Ttuotteet.get(i).getTuote().getId();
 				for(int j = 0; j<plista.size(); j++){
 					if(sArvo == plista.get(j).getId()){
-						tuotteet.get(i).setNimi(plista.get(j).getNimi());
+						Ttuotteet.get(i).getTuote().setNimi(plista.get(j).getNimi());
 					}
 				}
 				
 			}	
-			if(tuotteet.isEmpty()){
+			if(Ttuotteet.isEmpty()){
 			 doGet(request, response);
 			}else{
 				String jsp = "/view/vahvista-tilaus.jsp"; 
-				request.setAttribute("tilauslista", tuotteet);
+				request.setAttribute("tilauslista", Ttuotteet);
 				RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 				dispather.forward(request, response);
 			}

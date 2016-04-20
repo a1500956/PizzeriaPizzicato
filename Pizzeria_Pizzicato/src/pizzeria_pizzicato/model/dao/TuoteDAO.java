@@ -78,7 +78,6 @@ public class TuoteDAO extends DataAccessObject{
 		try{
 		
 		conn = getConnection();
-		System.out.println(TilausID+"asdf");
 		String sqlSelect = "SELECT tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano FROM TilattuTuote WHERE tilaus_id = ?;";
 		stmt = conn.prepareStatement(sqlSelect);
 		stmt.setInt(1, TilausID);

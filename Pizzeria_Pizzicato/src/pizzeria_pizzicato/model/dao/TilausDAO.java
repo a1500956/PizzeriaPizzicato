@@ -15,7 +15,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TilausDAO extends DataAccessObject {
 
-	public void addTilaus(Tilaus Tilaus, ArrayList<Tuote> tuotelista) throws SQLException {
+	public void addTilaus(Tilaus Tilaus, ArrayList<TilattuTuote> tuotelista) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
@@ -34,20 +34,23 @@ public class TilausDAO extends DataAccessObject {
 			stmtInsert.executeUpdate();
 			
 			//Valmistellaan tilattujen tuotteiden lisäys
-			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, lkm) VALUES (?,?,?)";
+			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano) VALUES (?,?,?,?,?,?,?)";
 			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
 			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttaja().getKayttaja_id());
 			
-			//Luodaan kopio listasta, jottei mitään vahingossa kadotettaisi
-			Tuote TX;
+			TilattuTuote TX;
 			
 			for (int i = 0; i < tuotelista.size(); i++) {
 					TX = tuotelista.get(i);
 					stmtInsert = connection.prepareStatement(sqlInsert2);
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
 					stmtInsert.setInt(1, tilauksenID);
-					stmtInsert.setInt(2, TX.getId());
-					stmtInsert.setInt(3, 0);
+					stmtInsert.setInt(2, TX.getTuote().getId());
+					stmtInsert.setInt(3, i);
+					stmtInsert.setDouble(4, TX.getTuote().getHinta());
+					stmtInsert.setDouble(5, TX.getLkm());
+					stmtInsert.setInt(6, TX.getvSipuli());
+					stmtInsert.setInt(7, TX.getOregano());
 					stmtInsert.executeUpdate();	
 				}
 				
@@ -241,9 +244,7 @@ public class TilausDAO extends DataAccessObject {
 			String kayttajaTunnus = rs.getString("kayttaja_ktunnus");	
 			
 			Kayttaja kayttaja = KDAO.findByKayttajaTunnus(kayttajaTunnus);
-			System.out.println(id+"qwerty");
 			ArrayList<TilattuTuote> tilatutTuotteet = TuDAO.haeTilatutTuotteet(id);
-			System.out.println(id+"jklöä");
 			
 			
 
@@ -289,9 +290,9 @@ public class TilausDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT MAX(tilaus_id) AS MaxTilaus FROM Tilaus WHERE kayttaja_id=?;";
+			String sqlSelect = "SELECT MAX(tilaus_id) AS MaxTilaus FROM Tilaus WHERE kayttaja_id="+KID+";";
 			stmtSelect = conn.prepareStatement(sqlSelect);
-			stmtSelect.setInt(1, KID);
+			//stmtSelect.setInt(1, KID);
 			
 			rs = stmtSelect.executeQuery(sqlSelect);
 
