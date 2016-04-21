@@ -94,7 +94,7 @@ media="only screen and (min-width: 771px)">
 
     <span class="pizzalista">
      <h1 class=hMode2>TILAUKSENNE</h1>
-    <div class=button><a href="tilaaPizza">Takaisin</a></div><br><br>
+    <div class=button><a href="pizzaMenu">Takaisin</a></div><br><br>
     
     <%double summa=0;%>
     <%if(ostoskori.getOstoskori() != null){ %>
