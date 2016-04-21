@@ -88,8 +88,8 @@ response.setIntHeader("Refresh", 5);
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
-						<td><%if(tilaukset.get(i).getTilattuTuote(i).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
-						<td><%if(tilaukset.get(i).getTilattuTuote(i).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
+						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
+						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
 						</tr>				
 					
 				<% } %>

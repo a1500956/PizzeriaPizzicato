@@ -56,8 +56,7 @@ public class listaaPizzatkokki extends HttpServlet {
 		try {
 			
 			String riviStr = request.getParameter("valmis");			
-			System.out.println(riviStr);
-						
+			
 			if(riviStr!=null){
 				
 			int tilaus_id = Integer.parseInt(riviStr);			
