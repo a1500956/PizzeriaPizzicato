@@ -23,14 +23,6 @@ scope="request" />
 </head>
 	<body>
 	
-	<iframe id="autopost"></iframe>
-<script>
-setInterval(function(){
-  if (!document.version) document.version=1;
-  document.version++;
-  document.getElementById('autopost').src='poster.htm?v='+document.version;
-},100000);
-</script>
 	
 	<%
 	int ryhma= 2;
@@ -53,6 +45,11 @@ for(Cookie cookie : cookies){
 }
 %>
 
+<%
+response.setIntHeader("Refresh", 5);
+%>
+
+
 
 <header>
 <div class="login">
@@ -67,49 +64,58 @@ for(Cookie cookie : cookies){
 		
 		<h1>TILAUKSET</h1>
 		
-
-		
 	
-		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
-		<form id="valmis" action="" name="valmis" method="post">
+		
+		<form action="" method="post">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Aika</h4></td>
 			<td><h4>Status</h4></td>
-			<td><h4>Tuote</h4></td>	
+			<td><h4>Tuote</h4></td>		
 			<td><h4>Lukumäärä</h4></td>
 			<td><h4>Valkosipuli</h4></td>
-			<td><h4>Oregano</h4></td>
-			<td><h4>Valmis</h4></td>
-			
+			<td><h4>Oregano</h4></td>		
 		</tr>
-			
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
 				<%for(int j = 0; j < tilaukset.get(i).getTilatutTuotteet().size(); j++) {%>
+			
+	
 					<tr>
 						<td><%=tilaukset.get(i).getId() %></td>
 						<td><%=tilaukset.get(i).getAika()%></td>
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
-						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
-						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
-						<td><input type="checkbox" name="valmis" value="<%=tilaukset.get(i).getTilattuTuote(j).getTuote().getId() %>"></td>		
-					</tr>
+						<td><%if(tilaukset.get(i).getTilattuTuote(i).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
+						<td><%if(tilaukset.get(i).getTilattuTuote(i).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
+						</tr>				
+					
 				<% } %>
-				<% } %>
-				
-			
-	
+			<% } %>	
+					
 		</table>
- 
 </form>
-<script>
-  document.getElementById('valmis').checkbox();
-</script>
+	<p>Valmiiden tilauksien kuittaus</p>
+	
+		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		<tr>
+			<td><h4>Tilausnumero</h4></td>
+			<td><h4>Valmis</h4></td>
+				
+		</tr>
 		
-		
+			<%for(int i = 0; i < tilaukset.size(); i++) {%>
+					<tr>
+					<td><form action="" method="post">
+						<input type="hidden" name="valmis" value="<%=tilaukset.get(i).getId() %>"><%=tilaukset.get(i).getId() %></td>						
+  						<td><input type="submit" value="Kyllä">
+						</form></td>
+  						
+						</tr>				
+					
+				<% } %>
+		</table>
 	</body>
 </html>

@@ -15,33 +15,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TuoteDAO extends DataAccessObject{
 	
-	public void deleteTuote(Tuote tuote) throws SQLException {
-		Connection connection = null;
-
-		PreparedStatement stmtDelete = null;
-		
-
-		try {
-
-			connection = getConnection();
-			
-			String sqlDelete = "DELETE FROM TilattuTuote WHERE tuote_id =?";
-			stmtDelete = connection.prepareStatement(sqlDelete);
-			stmtDelete.setInt(1, tuote.getId());
-			stmtDelete.executeUpdate();
-
-			
-			
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			close(stmtDelete, connection);
-			
-
-		}
-	}
-
+	
 	
 	public ArrayList<Tuote> findAll() {
 		Connection conn = null;

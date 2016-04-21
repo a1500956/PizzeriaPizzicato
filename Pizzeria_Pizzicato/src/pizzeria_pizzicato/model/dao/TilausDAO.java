@@ -92,6 +92,38 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
+	//P‰ivitt‰‰ tilauksen statuksen kokilta.
+	
+	public void updateTilausOk(int tilaus_id) throws SQLException {
+		Connection connection = null;
+		
+		PreparedStatement stmtUpdate = null;
+		
+		int tRivi = tilaus_id;
+		int sId = 3;
+
+		try {
+			
+			connection = getConnection();
+			
+			String sqlUpdate = "UPDATE Tilaus SET status_id =? WHERE tilaus_id =?";
+			stmtUpdate = connection.prepareStatement(sqlUpdate);
+			stmtUpdate.setInt(1, sId);
+			stmtUpdate.setInt(2, tRivi);
+			
+			
+
+			stmtUpdate.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtUpdate, connection); 
+		}
+	}
+
+	
 	//T‰m‰ toiminto asettaa tilauksen 'peruutettu'-tilaan arkistointia varten.
 	public void peruutaTilaus(int tilausID) throws SQLException {
 

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.KayttajaDAO;
@@ -54,18 +55,16 @@ public class listaaPizzatkokki extends HttpServlet {
 		
 		try {
 			
-			String valmisStr = request.getParameter("valmis");
-			System.out.println(valmisStr);
-			
-			
-			if(valmisStr!=null){
-				
-			int id = Integer.parseInt(valmisStr);	
-			
-			Tuote tuote = new Tuote (id, null, 0);
-			TuoteDAO tuotedao = new TuoteDAO();
+			String riviStr = request.getParameter("valmis");			
+			System.out.println(riviStr);
 						
-			tuotedao.deleteTuote(tuote);
+			if(riviStr!=null){
+				
+			int tilaus_id = Integer.parseInt(riviStr);			
+						
+			TilausDAO tilausdao = new TilausDAO();
+						
+			tilausdao.updateTilausOk(tilaus_id);
 		
 			
 			}
