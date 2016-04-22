@@ -8,8 +8,10 @@
 
 h1{color:#db1b51;
 	font-family: Georgia;
+	
 }
-h6{color:white;}
+
+h4{color:white;}
 p{color: #db1b51;}
 
 header {
@@ -20,13 +22,13 @@ header {
 }
 
 header, section, footer, aside, article, figure {
-	display: block; margin-top: 10;
+	display: block; margin-top: 0;
 }
 
 
 .loginRow {border: none;}
 
-.kielet {display: none;}
+
 
 .puhelin{diplay:none;}
 
@@ -47,7 +49,7 @@ body {
 #flag {  height: 20px; width:auto; float: right;
 		  padding: 0px;
 		 margin-top: 2px;
-		 margin-right: 10px;
+		 margin-right: 35px;
 }
 
 #logo {float: left;
@@ -163,8 +165,10 @@ nav a:hover, nav a:active, nav a:focus {
 	color: #3AEE58;
 }
 
-.button {background-color: black;}
-.dropbtn.button {background-color: black;}
+button {background-color: black; color: white; border: none;}
+.dropdown {background-color: black;}
+
+
 .dropdown {
 	background-color: #ffffff;
     position: relative;
@@ -188,7 +192,7 @@ nav a:hover, nav a:active, nav a:focus {
     display: block;
 }
 
-.Loginlogo {}
+#LoginLogo { background-color: black;}
 
 
 /* puhelin jutut piiloitettu*/
@@ -207,7 +211,7 @@ a:hover, a:active, a:focus
 
 
 
-.submitImage {float: right;}
+.submitImage {float: right; background-color: black;}
 
 .textField {background-color: white;
 			padding-right:10px;

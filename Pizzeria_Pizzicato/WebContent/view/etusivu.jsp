@@ -54,13 +54,13 @@ media="only screen and (min-width: 771px)">
 		<body>
 	<div class="container">
 <nav class=isoruutu>
-<img src="Kuvia/pizzamies.png" id="logo" /> 
+<img src="Kuvia/pizzamies.png" id="logo" />
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
        <div class="dropdown">
- 
   <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
@@ -77,6 +77,7 @@ media="only screen and (min-width: 771px)">
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
 </nav>
+<!--
 <nav class="puhelin">
  <div class="dropdown">
  <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
@@ -93,11 +94,12 @@ media="only screen and (min-width: 771px)">
   </div>
 </div>
 </nav>
+ !-->
 
 
   <article>
-   <a href="/Pizzeria_Pizzicato/listaaPizzatkokki" class="Kokki"> Kokin sivut</a>
-  <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
+
+  <h1><br>PIZZA MENU</h1>
   
     <section>
    
@@ -107,7 +109,7 @@ media="only screen and (min-width: 771px)">
 			
 			<th>PIZZAT</th>
 			<th>HINTA</th>
-			<th>Oregano</th>
+		
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
@@ -137,7 +139,6 @@ media="only screen and (min-width: 771px)">
 		</table><br>
     </span>
 
-     
     </section>
     
    
