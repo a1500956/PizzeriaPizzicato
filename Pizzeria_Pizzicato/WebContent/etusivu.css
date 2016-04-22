@@ -232,7 +232,9 @@ footer {
 
 }
 
-.listaa-pizzat{width:60%;
+.listaa-pizzat{
+	width:80%;
+	padding-left: 5%;
 	
 	
 }

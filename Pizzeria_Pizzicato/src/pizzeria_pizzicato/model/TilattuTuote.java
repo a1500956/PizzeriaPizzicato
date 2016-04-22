@@ -1,10 +1,13 @@
 package pizzeria_pizzicato.model;
 
+import java.util.ArrayList;
+
 public class TilattuTuote {
 	
 	private int tilausRivi, lkm, oregano, vSipuli;
 	private Tuote tuote;
 	private double hinta;
+	
 	
 	
 	public TilattuTuote() {

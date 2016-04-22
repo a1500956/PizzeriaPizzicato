@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import pizzeria_pizzicato.control.VertailijaTuote;
+import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TuoteDAO extends DataAccessObject{
-
+	
+	
 	
 	public ArrayList<Tuote> findAll() {
 		Connection conn = null;
@@ -98,6 +100,8 @@ public class TuoteDAO extends DataAccessObject{
 		
 		
 	}
+	
+	
 	
 	
 	public TilattuTuote readTilatutTuotteet(ResultSet rs) {
