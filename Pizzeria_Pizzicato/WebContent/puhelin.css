@@ -24,8 +24,6 @@ body {font-family:tahoma, arial, sans-serif;
 h4{ position: block; 
 	background-color: white;}
 	
-header img {
-     width:150px}
 
 .kielet{position: right;
 	
@@ -85,29 +83,15 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 	background-color: #ADB96E;
 	color:  white;
 }
-
-
-.dropdown {
-	background-color: #ff0000;
-    position: relative;
-    display: inline-block;
+#flag {  height: 20px; width:auto; float: right;
+		 display: inline-block; padding: 2px;
+	
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: black;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    color: black;
-}
+#logo {display: none;}
 
-.dropdown-content a {
-    color: white;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+
+
     
 .pizzalista{ text-align:center; 
 }
