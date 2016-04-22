@@ -15,7 +15,7 @@ h4{color:white;}
 p{color: #db1b51;}
 
 header {
-	background-color: black; margin-top:0px
+	background-color: rgba(0, 0, 0, 0.8); margin-top:0px
 	; text-align:center; width:100%;
 	
 	
@@ -281,7 +281,7 @@ footer {
 	
 }
 
- /* tilaa pizza css:ät!*/
+ /* tilaa pizza css:at!*/
 .reveal-if-active {
   opacity: 0;
   max-height: 0;

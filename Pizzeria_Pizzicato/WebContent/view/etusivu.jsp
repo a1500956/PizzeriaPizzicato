@@ -60,15 +60,17 @@ media="only screen and (min-width: 771px)">
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
-       <div class="dropdown">
+<div class="dropdown">
   <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
-    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
- 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
- </button>
-</ul>
+    <ul>
+    	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ 		</button>
+	</ul>
+  </form>
   </div>
 </div>
 
@@ -94,7 +96,7 @@ media="only screen and (min-width: 771px)">
   </div>
 </div>
 </nav>
- !-->
+!-->
 
 
   <article>

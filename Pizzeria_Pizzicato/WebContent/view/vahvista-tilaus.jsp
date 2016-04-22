@@ -91,7 +91,7 @@ media="only screen and (min-width: 771px)">
 		
 		<div class="yhteystiedot" align="center" margin-right="100px">
 		
-		<p style="color:white;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
+		<p style="color:white; align:right;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
 		<p style="color:white;">Sukunimi:<input type="text" name="snimi" size="40" pattern=".{2,40}" required></p>
 		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
 		<input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
@@ -139,7 +139,7 @@ var FormStuff = {
 		
 		
 		
-		<tr>
+		<tr style="width=350px;">
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
