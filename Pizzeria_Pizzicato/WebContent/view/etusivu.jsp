@@ -51,45 +51,60 @@ media="only screen and (min-width: 771px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]--></head>
 </head>
-	<body>
+		<body>
 	<div class="container">
 <nav class=isoruutu>
+<img src="Kuvia/pizzamies.png" id="logo" /> 
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
-    <form action="kirjautuminen" method="post">
-      <div class="loginrow2">
-      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
-       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
-       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-       	 
-      </div>
-    </form>
-
- 	
-</ul>
-<p class="p1">${message3}</p>
-		<c:remove var="message3" scope="session" />
-</nav>
-
- <div class="dropdown">
+	
+   <br><a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   <div class="dropdown">
  
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="15" height="15"></button>
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
-    <ul>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
+  <form action="kirjautuminen" method="post">
+    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
 </ul>
   </div>
 </div>
+   
+ <!--<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">kirjaudu sisään</button>
+    <form action="kirjautuminen" method="post">
+      <div class="loginrow2">
+      	<onclick="myFunction()" class="dropbtn">Kirjaudu sisään</button>
+  		
+       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	<button onclick="myFunction()" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+      </div>
+    </form>- -->
 
-
-  <header>   
-  <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
-  <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/pizzaMenuEng">ENG</a>
+ 	
+</ul>
+<p class="p1">${message}</p>
+		<c:remove var="message" scope="session" />
+</nav>
+<nav class="puhelin">
+ <div class="dropdown">
+ 
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
+  <div id="myDropdown" class="dropdown-content">
+  <form action="kirjautuminen" method="post">
+    <ul>	
+    <li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
+</ul>
   </div>
-  </header>
+</div>
+</nav>
+
+
   <article>
    <a href="/Pizzeria_Pizzicato/listaaPizzatkokki" class="Kokki"> Kokin sivut</a>
   <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa">TILAA TÄSTÄ!</a>
