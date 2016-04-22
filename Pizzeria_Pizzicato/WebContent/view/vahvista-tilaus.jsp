@@ -18,9 +18,6 @@
 <%
 Ostoskori ostoskori = new Ostoskori();
 ostoskori = (Ostoskori) session.getAttribute("ostoskori");
-String osoite=null, puhnro=null;
-session.setAttribute("osoite", osoite);
-session.setAttribute("puhnro", puhnro);
 %>
 
 <html>
@@ -52,47 +49,34 @@ media="only screen and (min-width: 771px)">
 	
 	<div class="container">
 <nav class=isoruutu>
+<img src="Kuvia/pizzamies.png" id="logo" />
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
-   
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	
- 	
-	<li><a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
-    <form action="kirjautuminen" method="post">
-      <div class="loginrow2">
-        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
-        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
-        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
-       
-       
-      </div>
-    </form>
-
- 	
-</ul>
-
-
-	
-</nav>
-
- <div class="dropdown">
  
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+       <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
-    <ul>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
- 	
+  <form action="kirjautuminen" method="post">
+    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
+</ul>
+  </div>
+</div>
+
  	
 </ul>
-
-  </div>
+<p class="p1">${message3}</p>
+		<c:remove var="message3" scope="session" />
+</nav>
   <article>
  
     <section>
    
-   <form action="vahvistaTilaus" method="post" style="padding-top:100px">
+   <form action="vahvistaTilaus" method="post" style="padding-top:100px ">
   
 
     <span class="pizzalista">
@@ -103,15 +87,65 @@ media="only screen and (min-width: 771px)">
 
     <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
 		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
-  		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
+		
+		
+		<div class="yhteystiedot" align="center" margin-right="100px">
+		
+		<p style="color:white;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
+		<p style="color:white;">Sukunimi:<input type="text" name="snimi" size="40" pattern=".{2,40}" required></p>
+		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
+		<input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
+		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
+		
+		<div class="reveal-if-active">
+  		<p style="color:white;">Toimitusosoite:
+  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
+  		</div>
+  		  </div>
+  </div>
+  
+<script>
+var FormStuff = {
+		  
+		  init: function() {
+		    this.applyConditionalRequired();
+		    this.bindUIActions();
+		  },
+		  
+		  bindUIActions: function() {
+		    $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
+		  },
+		  
+		  applyConditionalRequired: function() {
+		  	
+		    $(".require-if-active").each(function() {
+		      var el = $(this);
+		      if ($(el.data("require-pair")).is(":checked")) {
+		        el.prop("required", true);
+		      } else {
+		        el.prop("required", false);
+		      }
+		    });
+		    
+		  }
+		  
+		};
+
+		FormStuff.init();
+</script>
+		</div> 
+		
+		
+		
+		
+		
 		<tr>
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
 			<th style="border-bottom: solid 1px grey;">OREGANO</th>
 			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
-			<th style="border-bottom: solid 1px grey;">KAPPALEMÄÄRÄ</th>
+			<th style="border-bottom: solid 1px grey;">KPL</th>
 			<th></th>
 			
 			

@@ -35,7 +35,16 @@ header img {
 		background-color: white;
 		}
 		
-article {text-align: center;}
+article {background-image: url("Kuvia/Taustakuva.jpg"); 
+		 background-repeat: no-repeat; 
+		 background-size: 100% 100%;
+		 text-align: center;
+		 min-height:900px;
+		 margin-top:0px;
+		 padding-top:100px;
+		 
+		 }
+
 		
 		
 .kielet a {
@@ -85,7 +94,12 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 	background-color: #ADB96E;
 	color:  white;
 }
-
+#flag {  height: 20px; width:auto; float: right;
+		 display: inline-block; padding: 0px;
+		 margin-top: -20px;
+		 margin-right: 25px;
+	
+}
 
 .dropdown {
 	background-color: #ff0000;
@@ -112,7 +126,7 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 .pizzalista{ text-align:center; 
 }
 
-.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none;
+.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
 } 
 
 
@@ -128,4 +142,16 @@ footer {
 	color: white;
 	text-align: center;
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
-}        
+}  
+
+/*tilaus*/
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px; /* little bit of a magic number :( */
+  overflow: visible;
+} 

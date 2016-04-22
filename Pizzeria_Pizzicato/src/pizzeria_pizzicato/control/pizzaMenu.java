@@ -18,6 +18,8 @@ import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
+import pizzeria_pizzicato.model.dao.JuomaDAO;
+import pizzeria_pizzicato.model.Juoma;
 
 
 @WebServlet("/pizzaMenu")
@@ -45,6 +47,20 @@ public class pizzaMenu extends HttpServlet {
 				}
 			}
 			
+			JuomaDAO juomadao = new JuomaDAO();
+			ArrayList<Juoma> JuomaLista = juomadao.findAll();
+			ArrayList<Juoma> juomaNakyy = new ArrayList<Juoma>();
+			
+			for(int i=0;i<JuomaLista.size();i++){
+				
+				if(JuomaLista.get(i).getNakyy()==1){
+					Juoma juoma = new Juoma();
+	        	
+					juoma = JuomaLista.get(i);
+					juomaNakyy.add(juoma);
+				}
+			}
+			
 			HttpSession session = request.getSession();
 			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 			if(ostoskori == null){
@@ -54,6 +70,7 @@ public class pizzaMenu extends HttpServlet {
 			}
 			
 			request.setAttribute("pizzat", pizzaNakyy);
+			request.setAttribute("juomat", juomaNakyy);
 			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);

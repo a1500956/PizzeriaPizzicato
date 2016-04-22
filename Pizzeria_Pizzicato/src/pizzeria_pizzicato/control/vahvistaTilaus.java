@@ -52,7 +52,10 @@ public class vahvistaTilaus extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		TilausDAO TDAO = new TilausDAO();				   // vied‰‰n tilaus kantaan
+		
+		TilausDAO TDAO = new TilausDAO();
+		String enimi = request.getParameter("enimi");
+		String snimi = request.getParameter("snimi");
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
 		Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
@@ -61,6 +64,7 @@ public class vahvistaTilaus extends HttpServlet {
 		Tilaus T = new Tilaus();
 		
 		T.setKayttaja(valiaikainen);
+		
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
 		request.getSession().removeAttribute("ostoskori");
