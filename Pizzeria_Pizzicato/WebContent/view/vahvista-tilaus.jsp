@@ -3,10 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzeria_pizzicato.model.TilattuTuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
-
-
-<jsp:useBean id="tilauslista" type="java.util.ArrayList<TilattuTuote> "
-scope="request" />
+<%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
+<%@ page import="java.util.ArrayList"%>
 
 
 <%@ page import="java.text.NumberFormat" %>
@@ -15,6 +13,11 @@ scope="request" />
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
     nf.setMinimumFractionDigits(2);
+%>
+
+<%
+Ostoskori ostoskori = new Ostoskori();
+ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 %>
 
 <html>
@@ -43,11 +46,6 @@ media="only screen and (min-width: 771px)">
 <![endif]--></head>
 </head>
 	<body>
-	
-	  <%
-  	session.setAttribute("tilauslista", tilauslista);
-  
-  %>
 	
 	<div class="container">
 <nav class=isoruutu>
@@ -96,36 +94,54 @@ media="only screen and (min-width: 771px)">
 
     <span class="pizzalista">
      <h1 class=hMode2>TILAUKSENNE</h1>
-    <div class=button><a href="tilaaPizza">Takaisin</a></div><br><br>
+    <div class=button><a href="pizzaMenu">Takaisin</a></div><br><br>
+    
+    <%double summa=0;%>
+    <%if(ostoskori.getOstoskori() != null){ %>
 		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
   		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{10,10}" required></p><br>
+  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
 		<tr>
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
-			<th style="border-bottom: solid 1px grey;">LUKUMÄÄRÄ</th>
+			<th style="border-bottom: solid 1px grey;">OREGANO</th>
+			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
+			<th style="border-bottom: solid 1px grey;">KAPPALEMÄÄRÄ</th>
+			
 			
 			<!--  <th>TOIMINNOT</th>-->
 			
 		</tr>
-		<%double summa=0;%>
 
-			<%for(int i = 0; i < tilauslista.size(); i++) {%>
+			<%for(int i = 0; i <ostoskori.getKoko(); i++) {%>
 			<tr>
-				<td><div class=""><%=tilauslista.get(i).getTuote().getNimi()%></div></td>
-				<td><div class="tilauslista"><%=nf.format(tilauslista.get(i).getTuote().getHinta())%>&euro;</div></td>
-				<%summa+=(tilauslista.get(i).getTuote().getHinta()*tilauslista.get(i).getLkm());%>
-				<td><div class="tilauslista"><%=tilauslista.get(i).getLkm()%> kpl</div></td>
+				<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
+				<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
+					<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
+					<%String oregano = "kyllä";
+					if(ostoskori.getTuote(i).getOregano() == 0){
+						oregano = "ei";
+					}%>
+				<td><div class="tilauslista"><%=oregano%></div></td>
+					<%String vSipuli = "kyllä";
+					if(ostoskori.getTuote(i).getvSipuli() == 0){
+						vSipuli = "ei";
+					}%>
+				<td><div class="tilauslista"><%=vSipuli%></div></td>
+				<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
 				<td>
 				</td>								
 			</tr>
-			<% } %>
+			<%}%>
+			
 		
 		</table><br>
 		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
 					class="submit-button" value="Vahvista Tilaus" />
-		
+		<%}else{%>
+		<p>Ostoskori on tyhjä</p>
+		<%} %>
 		
     </span>
     </form>

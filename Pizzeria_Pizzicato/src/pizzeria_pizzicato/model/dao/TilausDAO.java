@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 
 import pizzeria_pizzicato.model.Kayttaja;
+import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 import pizzeria_pizzicato.model.Tuote;
@@ -15,7 +16,7 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TilausDAO extends DataAccessObject {
 
-	public void addTilaus(Tilaus Tilaus, ArrayList<TilattuTuote> tuotelista) throws SQLException {
+	public void addTilaus(Tilaus Tilaus, Ostoskori ostoskori) throws SQLException {
 
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
@@ -40,8 +41,8 @@ public class TilausDAO extends DataAccessObject {
 			
 			TilattuTuote TX;
 			
-			for (int i = 0; i < tuotelista.size(); i++) {
-					TX = tuotelista.get(i);
+			for (int i = 0; i < ostoskori.getKoko(); i++) {
+					TX = ostoskori.getTuote(i);
 					stmtInsert = connection.prepareStatement(sqlInsert2);
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
 					stmtInsert.setInt(1, tilauksenID);
@@ -90,6 +91,38 @@ public class TilausDAO extends DataAccessObject {
 			close(stmtUpdate, connection); 
 		}
 	}
+	
+	//Päivittää tilauksen statuksen kokilta.
+	
+	public void updateTilausOk(int tilaus_id) throws SQLException {
+		Connection connection = null;
+		
+		PreparedStatement stmtUpdate = null;
+		
+		int tRivi = tilaus_id;
+		int sId = 3;
+
+		try {
+			
+			connection = getConnection();
+			
+			String sqlUpdate = "UPDATE Tilaus SET status_id =? WHERE tilaus_id =?";
+			stmtUpdate = connection.prepareStatement(sqlUpdate);
+			stmtUpdate.setInt(1, sId);
+			stmtUpdate.setInt(2, tRivi);
+			
+			
+
+			stmtUpdate.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtUpdate, connection); 
+		}
+	}
+
 	
 	//Tämä toiminto asettaa tilauksen 'peruutettu'-tilaan arkistointia varten.
 	public void peruutaTilaus(int tilausID) throws SQLException {
