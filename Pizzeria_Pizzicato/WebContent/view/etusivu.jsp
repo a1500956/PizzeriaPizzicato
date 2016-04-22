@@ -5,6 +5,7 @@
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -26,6 +27,9 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
            uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
+scope="request" />
+
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma> "
 scope="request" />
 
 <html>
@@ -131,7 +135,32 @@ media="only screen and (min-width: 771px)">
 		</table><br>
     </span>
 
-     
+     <span class="juomalista">
+		<table class="listaa-juomat" width="auto" border="1" align="center">
+		<tr>
+			<th>JUOMAT</th>
+			<th>HINTA</th>
+			<th> </th>
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+			<%for(int i = 0; i < juomat.size(); i++) {%>
+			
+			<tr>
+				
+				<td><div class="juomat"><%out.print(i+1);%>. <b><%=juomat.get(i).getNimi()%></b></div></td>
+				<td><div class="juomat"><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
+				<td>
+				<form style="width: 350px;" method="post">
+				<input type="hidden" name="juomaID" value="<%=juomat.get(i).getId()%>">
+				<input type="submit" value="Koriin">
+				</form></td>			
+			</tr>
+			<% } %>
+			
+		</table><br>
+    </span>
+    
     </section>
     
    
