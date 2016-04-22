@@ -89,7 +89,7 @@ media="only screen and (min-width: 771px)">
  
     <section>
    
-   <form action="vahvistaTilaus" method="post" style="padding-top:100px">
+   <form action="vahvistaTilaus" method="post" style="padding-top:100px ">
   
 
     <span class="pizzalista">
@@ -99,8 +99,26 @@ media="only screen and (min-width: 771px)">
     <%double summa=0;%>
     <%if(ostoskori.getOstoskori() != null){ %>
 		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
-  		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
+		
+		
+		<div class="yhteystiedot" align="center" margin-right="100px">
+		
+		<p style="color:white;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
+		<p style="color:white;">Sukunimi:<input type="text" name="snimi" size="40" pattern=".{2,40}" required></p>
+		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
+		<p style="color:white;"><input type="radio" name="toimitustapa" value="nouto" checked> Nouto
+		<input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" onclick="if(this.checked){myFunction()}">>Kotiinkuljetus</p>
+		<script>
+function myFunction() {
+  		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p><br>
+}
+</script>
+		</div> 
+		
+		
+		
+		
+		
 		<tr>
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
