@@ -2,6 +2,8 @@ package pizzeria_pizzicato.model;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 public class Ostoskori {
 	
 	ArrayList<TilattuTuote> ostoskori;
@@ -43,7 +45,6 @@ public class Ostoskori {
 		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
 			ArrayList<TilattuTuote> kori = this.ostoskori;
 			for(int i = 0; i < kori.size();i++){
-				TilattuTuote sArvo = vertaa(kori.get(i));
 				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
 				   && kori.get(i).getOregano() == tuote.getOregano() 
 				   && kori.get(i).getvSipuli() == tuote.getvSipuli()){
@@ -65,10 +66,43 @@ public class Ostoskori {
 		
 	}
 	
-	public TilattuTuote vertaa(TilattuTuote vertaa){
-		TilattuTuote verrattu = new TilattuTuote();
+	public void removePizza(Pizza pizza, int oregano, int VSipuli){
+		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
+		Tuote t = new Tuote(); //Luodaan tuote
 		
-		return verrattu;
+		if(pizza != null){ //Jos tullut pizza ei ole tyhjä luodaan liisä TilattuTuote olio
+			t.setId(pizza.getId());
+			t.setNimi(pizza.getNimi());
+			t.setHinta(pizza.getHinta());
+			tuote.setTuote(t);
+			tuote.setOregano(oregano);
+			tuote.setvSipuli(VSipuli);
+			tuote.setHinta(tuote.getTuote().getHinta());
+			tuote.setLkm(1);
+		}
+		if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
+			ArrayList<TilattuTuote> kori = this.ostoskori;
+			for(int i = 0; i < kori.size();i++){
+				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
+				   && kori.get(i).getOregano() == tuote.getOregano() 
+				   && kori.get(i).getvSipuli() == tuote.getvSipuli()){
+					int luku = kori.get(i).getLkm();
+					if(luku > 1) { // katsotaan tuotteen lkm
+						luku -= 1;	// jos tuotetta on enemmän kuin 1 korissa vähennetään lukumäärää
+						kori.get(i).setLkm(luku);
+					}else{	// jos tuotteita on 1 poistetaan tuote korista
+						kori.remove(i);
+						this.koko --;
+					}
+					this.ostoskori = kori; //viedään muutettu tieto koriin
+					break; //ja lopetetaan for loop
+				}
+			}
+		}
+		if(this.ostoskori.isEmpty()){
+			this.ostoskori = null;
+		}
+		
 	}
 	
 	public TilattuTuote getTuote(int index) {

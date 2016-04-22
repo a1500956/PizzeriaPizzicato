@@ -52,8 +52,7 @@ public class vahvistaTilaus extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		TilausDAO TDAO = new TilausDAO();
+		TilausDAO TDAO = new TilausDAO();				   // vied‰‰n tilaus kantaan
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
 		Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
@@ -71,9 +70,7 @@ public class vahvistaTilaus extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		response.sendRedirect("pizzaMenu");
-		
 		
 		
 	}

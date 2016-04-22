@@ -18,6 +18,9 @@
 <%
 Ostoskori ostoskori = new Ostoskori();
 ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+String osoite=null, puhnro=null;
+session.setAttribute("osoite", osoite);
+session.setAttribute("puhnro", puhnro);
 %>
 
 <html>
@@ -97,7 +100,8 @@ media="only screen and (min-width: 771px)">
     <div class=button><a href="pizzaMenu">Takaisin</a></div><br><br>
     
     <%double summa=0;%>
-    <%if(ostoskori.getOstoskori() != null){ %>
+
+    <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
 		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
   		<p style="color:white;">Toimitusosoite:<input type="text" name="osoite" size="40" pattern=".{6,40}" required></p>
   		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
@@ -108,6 +112,7 @@ media="only screen and (min-width: 771px)">
 			<th style="border-bottom: solid 1px grey;">OREGANO</th>
 			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEMÄÄRÄ</th>
+			<th></th>
 			
 			
 			<!--  <th>TOIMINNOT</th>-->
@@ -130,8 +135,9 @@ media="only screen and (min-width: 771px)">
 					}%>
 				<td><div class="tilauslista"><%=vSipuli%></div></td>
 				<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-				<td>
-				</td>								
+				<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+				<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+				</a></td>								
 			</tr>
 			<%}%>
 			
@@ -139,6 +145,7 @@ media="only screen and (min-width: 771px)">
 		</table><br>
 		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
 					class="submit-button" value="Vahvista Tilaus" />
+		
 		<%}else{%>
 		<p>Ostoskori on tyhjä</p>
 		<%} %>
