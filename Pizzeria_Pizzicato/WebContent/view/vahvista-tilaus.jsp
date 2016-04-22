@@ -49,42 +49,29 @@ media="only screen and (min-width: 771px)">
 	
 	<div class="container">
 <nav class=isoruutu>
+<img src="Kuvia/pizzamies.png" id="logo" />
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
-   
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	
- 	
-	<li><a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
-    <form action="kirjautuminen" method="post">
-      <div class="loginrow2">
-        <input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="25">
-        <input class="textField" type="password" name="password" maxlength="30" id="login-password" placeholder="salasana" />&nbsp;
-        <input class="textField" type="text" name="username" maxlength="30" id="login-username" placeholder="käyttäjätunnus" />&nbsp;
-       
-       
-      </div>
-    </form>
-
- 	
-</ul>
-
-
-	
-</nav>
-
- <div class="dropdown">
  
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="25" height="25"></button>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+       <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
-    <ul>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Palaa takaisin etusivulle</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
- 	<li>	<a href ="/Pizzeria_Pizzicato/listaaPizzat"> Omistajan sivut</a></li>
- 	
+  <form action="kirjautuminen" method="post">
+    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
+</ul>
+  </div>
+</div>
+
  	
 </ul>
-
-  </div>
+<p class="p1">${message3}</p>
+		<c:remove var="message3" scope="session" />
+</nav>
   <article>
  
     <section>
@@ -157,7 +144,7 @@ var FormStuff = {
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
 			<th style="border-bottom: solid 1px grey;">OREGANO</th>
 			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
-			<th style="border-bottom: solid 1px grey;">KAPPALEMÄÄRÄ</th>
+			<th style="border-bottom: solid 1px grey;">KPL</th>
 			
 			
 			<!--  <th>TOIMINNOT</th>-->
