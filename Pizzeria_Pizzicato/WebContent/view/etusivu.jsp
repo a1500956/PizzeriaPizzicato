@@ -51,55 +51,61 @@ media="only screen and (min-width: 771px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]--></head>
 </head>
-	<body>
+		<body>
 	<div class="container">
 <nav class=isoruutu>
+<img src="Kuvia/pizzamies.png" id="logo" />
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
-    <form action="kirjautuminen" method="post">
-      <div class="loginrow2">
-      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
-       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
-       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-       	 
-      </div>
-    </form>
+       <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
+  <div id="myDropdown" class="dropdown-content">
+  <form action="kirjautuminen" method="post">
+    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
+</ul>
+  </div>
+</div>
 
  	
 </ul>
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
 </nav>
-
+<!--
+<nav class="puhelin">
  <div class="dropdown">
- 
-  <button onclick="myFunction()" class="dropbtn"> <img src="http://www.teleliban.com.lb/images/hamburger.png" width="15" height="15"></button>
+ <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+  
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
-    <ul>
- 	<li>		<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
- 	<li>	<a href ="#"> Juomat</a></li>
+  <form action="kirjautuminen" method="post">
+    <ul>	
+    <li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
 </ul>
   </div>
 </div>
+</nav>
+ !-->
 
 
-  <header>   
-  <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
-  <div class="kielet"> 
-  <a href="/Pizzeria_Pizzicato/pizzaMenuEng">ENG</a>
-  </div>
-  </header>
   <article>
-  
-  <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizza" class="tilaa"><font size="1">TILAA TÄSTÄ!</font></a>
+
+  <h1><br>PIZZA MENU</h1>
   
     <section>
    
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>
+		<tr>	
 			<th>PIZZAT</th>
 			<th>HINTA</th>
 			<th> </th>
@@ -130,8 +136,7 @@ media="only screen and (min-width: 771px)">
 			
 		</table><br>
     </span>
-
-     
+        
     </section>
     
    

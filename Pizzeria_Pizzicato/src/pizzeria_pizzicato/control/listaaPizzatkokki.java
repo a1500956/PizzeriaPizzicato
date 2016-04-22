@@ -51,7 +51,7 @@ public class listaaPizzatkokki extends HttpServlet {
 			dispather.forward(request, response);
 			
 		}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			
@@ -82,6 +82,5 @@ public class listaaPizzatkokki extends HttpServlet {
 						
 		}
 		
-
 
 }
