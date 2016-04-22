@@ -4,14 +4,27 @@
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
-<%@ page import="java.text.NumberFormat"%>
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
+<%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
+
+
 
 <%
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
     nf.setMinimumFractionDigits(2);
 %>
+
+<%
+Ostoskori ostoskori = new Ostoskori();
+ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+%>
+
+
+
+
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 	scope="request" />
@@ -37,51 +50,38 @@ and (max-width: 770px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
-<body>
+		<body>
 	<div class="container">
-		<nav class=isoruutu>
-		<ul> <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img src="Kuvia/FI_lippu.png" class="lippu"alt="suomi" id="flag"/></a>
-			<li><a href="#"> Frontpage</a></li>
-	<form action="kirjautuminenEN" method="post">
-      <div class="loginrow2">
-      	<input type="image" class="submitImage" src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
-       	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
-       	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
-      </div>
-    </form>
- </ul>
- <p class="p1">${message4}</p>
-		<c:remove var="message4" scope="session" />
-		</nav>
-
-		<div class="dropdown">
-
-			<button onclick="myFunction()" class="dropbtn">
-				<img src="http://www.teleliban.com.lb/images/hamburger.png"
-					width="25" height="25">
-			</button>
-			<div id="myDropdown" class="dropdown-content">
-				<ul>
-				
-					<li><a href="#"> Frontpage</a></li>
-					<li><a href="#"> Drinks</a></li>
-					
-				</ul>
-
-				
-			</div>
-		</div>
-  <header>
-   <img src="Kuvia/pizzamies.png" id="logo" width="300" height="250"/> <br>  
-  <div class="kielet"> 
- <a href="/Pizzeria_Pizzicato/pizzaMenu"> FIN</a>
-  </div>
-	
-  </header>
+<nav class=isoruutu>
+<img src="Kuvia/pizzamies.png" id="logo" />
+ <h4>Pizzeria Pizzicato is located in Meilahti, Helsinki.</h4> 
+<ul>
+   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img  src="Kuvia/FI_lippu.png" alt="english" id="flag" /></a>
  
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shoppingcart(<%=ostoskori.getMaara()%>)</a> </li>
+       <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> Login</button>
+  <div id="myDropdown" class="dropdown-content">
+  <form action="kirjautuminen" method="post">
+    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </button>
+</ul>
+  </div>
+</div>
+
+ 	
+</ul>
+<p class="p1">${message3}</p>
+		<c:remove var="message3" scope="session" />
+</nav>
+
+
+
   <article>
   
-    <h1><br>PIZZA MENU</h1><a href ="/Pizzeria_Pizzicato/tilaaPizzaEn" class="tilaa">ORDER HERE!</a>
+    <h1><br>PIZZA MENU</h1>
     
     
     <section>
@@ -92,6 +92,8 @@ and (max-width: 770px)">
 			
 			<th>PIZZAS</th>
 			<th>PRICE</th>
+		
+			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
 		</tr>
@@ -101,8 +103,14 @@ and (max-width: 770px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-										
-			</tr>
+				<td>
+				<form method="post">
+				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				 Garlic   <input type="checkbox" name="vSipuli" value="1">
+				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+				<input type="submit" value="Select">
+				</form></td>			
+			</tr>							
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>

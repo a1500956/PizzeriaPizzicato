@@ -85,8 +85,10 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 	background-color: #ADB96E;
 	color:  white;
 }
-#flag {  height: 20px; width:auto; float: left;
-		 display: inline-block; padding: 2px;
+#flag {  height: 20px; width:auto; float: right;
+		 display: inline-block; padding: 0px;
+		 margin-top: -20px;
+		 margin-right: 25px;
 	
 }
 
