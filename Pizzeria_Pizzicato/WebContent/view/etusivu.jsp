@@ -105,11 +105,9 @@ media="only screen and (min-width: 771px)">
    
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>
-			
+		<tr>	
 			<th>PIZZAT</th>
 			<th>HINTA</th>
-		
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
@@ -121,7 +119,7 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 				<td>
-				<form method="post">
+				<form style="width: 350px;" method="post">
 				 Oregano<input type="checkbox" name="oregano" value="1"> 
 				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">

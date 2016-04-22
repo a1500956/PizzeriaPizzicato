@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Ostoskori {
 	
 	ArrayList<TilattuTuote> ostoskori;
+	int koko = 0;
 	
-	public Ostoskori(ArrayList<TilattuTuote> ostoskori) {
+	public Ostoskori(ArrayList<TilattuTuote> ostoskori, int koko) {
 		super();
 		this.ostoskori = ostoskori;
+		this.koko =  koko;
 	}
 
 	public Ostoskori() {
@@ -35,6 +37,7 @@ public class Ostoskori {
 		if(ostoskori == null){ //Katsotaan onko ostoskori tyhj‰, jos on lis‰t‰‰n TilattuTuote ostoskoriin
 			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
 			this.ostoskori.add(tuote);
+			this.koko++; // lis‰t‰‰n korin kokoa
 			loytyy = true;
 			return;
 		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhj‰ katsotaan lˆytyykˆ sielt‰ jo vastaava TilattuTuote olio
@@ -57,20 +60,53 @@ public class Ostoskori {
 		}
 		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei lˆydy lis‰t‰‰n ostoskoriin uusi TilattuTuote
 			this.ostoskori.add(tuote);
+			this.koko++;
 		}
 		
 	}
-
+	
 	public TilattuTuote vertaa(TilattuTuote vertaa){
 		TilattuTuote verrattu = new TilattuTuote();
 		
 		return verrattu;
 	}
+	
+	public TilattuTuote getTuote(int index) {
+		TilattuTuote tuote = null;
+		if(index>=0 && index < ostoskori.size() ){
+		tuote = ostoskori.get(index);
+		}
+		return tuote;
+	}
+	
+	public ArrayList<TilattuTuote> getOstoskori() {
+		return ostoskori;
+	}
+
+	public void setOstoskori(ArrayList<TilattuTuote> ostoskori) {
+		this.ostoskori = ostoskori;
+	}
+	
+	public int getMaara() {
+		int lkm = 0;
+		for(int i = 0; i<this.koko; i++){
+			lkm += this.ostoskori.get(i).getLkm();
+		}
+		return lkm;
+	}
+
+	public int getKoko() {
+		return koko;
+	}
+
+	public void setKoko(int koko) {
+		this.koko = koko;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Ostoskori [ostoskori=" + ostoskori + "]";
+		return "Ostoskori [koko=" + koko + " ostoskori=" + ostoskori + "]";
 	}
 	
 	

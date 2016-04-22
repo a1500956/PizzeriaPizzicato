@@ -55,7 +55,6 @@ public class pizzaMenu extends HttpServlet {
 			
 			request.setAttribute("pizzat", pizzaNakyy);
 			
-			
 			String jsp = "/view/etusivu.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
@@ -81,7 +80,11 @@ public class pizzaMenu extends HttpServlet {
 		}
 		
 		Pizza pizza = new Pizza();
-		pizza = pizzaLista.get(sArvo); //luodaan pizzaID mukaan 
+		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
+			if(pizzaLista.get(i).getId() == sArvo){
+				pizza = pizzaLista.get(i);
+			}
+		}
 		
 		HttpSession session = request.getSession(); //haetaan session
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
