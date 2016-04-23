@@ -27,6 +27,8 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
+<jsp:useBean id="pizzaFantasia" type="java.util.ArrayList<Pizza> "
+scope="request" />
 
 <html>
 <head>
@@ -132,6 +134,40 @@ media="only screen and (min-width: 771px)">
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
+												 
+			</div></td></tr>
+			<% } %>
+			
+		</table><br>
+    </span>
+    
+    <span class="pizzalista">
+		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		<tr>	
+			<th>FANTASIAPIZZAT</th>
+			<th>HINTA</th>
+			<th> </th>
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
+			
+			<tr>
+				
+				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td>
+				<form style="width: 350px;" method="post">
+				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
+				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<input type="submit" value="Koriin">
+				</form></td>			
+			</tr>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
+												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
+												<%  }%>
+												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=i+2%> kpl valitsemaasi täytettä.
 												 
 			</div></td></tr>
 			<% } %>

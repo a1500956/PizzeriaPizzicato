@@ -31,18 +31,25 @@ public class pizzaMenuEng extends HttpServlet {
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
+			ArrayList<Pizza> pizzaFantasia = new ArrayList<Pizza>();
 			
 			for(int i=0;i<pizzaLista.size();i++){
 				
-				if(pizzaLista.get(i).getNakyy()==1){
+				if(pizzaLista.get(i).getNakyy()==1 && !pizzaLista.get(i).getNimi().contains("Fantasia")){
 					Pizza pizza = new Pizza();
 	        	
 					pizza = pizzaLista.get(i);
 					pizzaNakyy.add(pizza);
+				}if(pizzaLista.get(i).getNakyy()==1 && pizzaLista.get(i).getNimi().contains("Fantasia")){
+					Pizza pizza = new Pizza();
+	        	
+					pizza = pizzaLista.get(i);
+					pizzaFantasia.add(pizza);
 				}
 			}
 			
 			request.setAttribute("pizzat", pizzaNakyy);
+			request.setAttribute("pizzaFantasia", pizzaFantasia);
 			
 			
 			String jsp = "/view/frontpage.jsp"; 
