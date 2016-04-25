@@ -19,7 +19,8 @@
 Ostoskori ostoskori = new Ostoskori();
 ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 %>
-
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -62,6 +63,7 @@ media="only screen and (min-width: 771px)">
     <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ </form>
  </button>
 </ul>
   </div>
@@ -69,8 +71,7 @@ media="only screen and (min-width: 771px)">
 
  	
 </ul>
-<p class="p1">${message3}</p>
-		<c:remove var="message3" scope="session" />
+
 </nav>
   <article>
  
@@ -90,10 +91,15 @@ media="only screen and (min-width: 771px)">
 		
 		
 		<div class="yhteystiedot" align="center" margin-right="100px">
+		<p>${message4}</p>
+		<c:remove var="message4" scope="session" /> 
 		
-		<p style="color:white; align:right;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
+		
+		<p style="color:white; align:right;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" value="" required></p>
 		<p style="color:white;">Sukunimi:<input type="text" name="snimi" size="40" pattern=".{2,40}" required></p>
+		
 		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
+		
 		<input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
 		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
 		

@@ -80,6 +80,19 @@ h3{color:white;
 
 
 .taytteet{width:90%;
+		margin-right:140px;
+	
+}
+
+.taytteet2{width:100%;
+		
+	
+	
+}
+
+.nimet{width:100%;
+		margin-right:595px;
+		
 	
 }
 
@@ -227,9 +240,10 @@ table { width:auto, text-aling_ center;
 	
 }
 .pizzalista{ text-align:center; padding-bottom: 30%;
+			
 }
 
-.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
+.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white; margin-left:160px;
 }
 
 
@@ -274,6 +288,7 @@ footer {
 }
 
 .listaa-pizzat2{width:30%;
+				margin-left:33%;
 			
 }
 
