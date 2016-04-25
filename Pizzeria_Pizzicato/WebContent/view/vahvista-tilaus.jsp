@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzeria_pizzicato.model.TilattuTuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
@@ -29,7 +29,7 @@ scope="request" />
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Vahvista Tilaus</title>
 </head>
 <body>
@@ -52,31 +52,55 @@ media="only screen and (min-width: 771px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]--></head>
 </head>
+<%
+//allow access only if session exists
+String user = (String) session.getAttribute("kayttaja");
+String userName = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}else{
+    sessionID = session.getId();
+}
+%>
+
 	<body>
 	
 	<div class="container">
 <nav class=isoruutu>
 <img src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, HelsingissÃ¤.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
-       <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
+
+          <% if (user!=null){%>
+  <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+
+      </div>
+    </form> <% }else{%> 
+    <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisÃ¤Ã¤n</button>
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
-    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
- 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+    <ul>
+    	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="kÃ¤yttÃ¤jÃ¤tunnus" />
+ 		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+ 		</button>
+	</ul>
   </form>
- </button>
-</ul>
   </div>
-</div>
-
- 	
+</div> <% }%>
 </ul>
+
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
 </nav>
@@ -89,29 +113,29 @@ media="only screen and (min-width: 771px)">
 
     <span class="pizzalista">
      <h1 class=hMode2>TILAUKSENNE</h1>
-    <div class=button><a href="pizzaMenu">Takaisin</a></div><br><br>
+    <div class=button><a href="kirjautuminenOk">Takaisin</a></div><br><br>
     
     <%double summa=0;%>
 
     <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
-		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
-		
-		
-		<div class="yhteystiedot" align="center" margin-right="100px">
-		
-		<p style="color:white; align:right;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
-		<p style="color:white;">Sukunimi:<input type="text" name="snimi" size="40" pattern=".{2,40}" required></p>
-		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
-		<input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
+	<table width="auto" border="1" align="center">
+		<tr><td style="text-align:right;">
+		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}"  required></td></tr>
+		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" required></td></tr>
+		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" required></td></tr>
+		 
+		<tr><td colspan="2"><input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
 		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
 		
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
-  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
+  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p>
+  		<p style="color:white; margin-left: 27px;">SÃ¤hkÃ¶posti:
+  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p></td></tr>
   		</div>
   		  </div>
-  </div>
-  
+  </table>
+ 
 <script>
 var FormStuff = {
 		  
@@ -141,8 +165,8 @@ var FormStuff = {
 
 		FormStuff.init();
 </script>
-		</div> 
 		
+	<table class="listaa-pizzat2" width="auto" border="1" align="center">		
 		
 		
 		
@@ -167,12 +191,12 @@ var FormStuff = {
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
-							<%String oregano = "kyllä";
+							<%String oregano = "kyllÃ¤";
 							if(ostoskori.getTuote(i).getOregano() == 0){
 								oregano = "ei";
 							}%>
 						<td><div class="tilauslista"><%=oregano%></div></td>
-							<%String vSipuli = "kyllä";
+							<%String vSipuli = "kyllÃ¤";
 							if(ostoskori.getTuote(i).getvSipuli() == 0){
 								vSipuli = "ei";
 							}%>
@@ -223,7 +247,7 @@ var FormStuff = {
 					class="submit-button" value="Vahvista Tilaus" />
 		
 		<%}else{%>
-		<p>Ostoskori on tyhjä</p>
+		<p>Ostoskori on tyhjÃ¤</p>
 		<%} %>
 		
     </span>

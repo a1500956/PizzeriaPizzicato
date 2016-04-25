@@ -1,11 +1,9 @@
+
 @-webkit-viewport   { width: auto; }
 @-moz-viewport      { width: auto; }
 @-ms-viewport       { width: auto; }
 @-o-viewport        { width: auto; }
 @viewport           { width: auto; }
-
-
-
 
 
 
@@ -62,8 +60,6 @@ header {
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
 }
 
-.isoruutu {
-}
 nav {background-color: black; margint-top: -20px;}
 nav ul{border-style:none;
 	list-style: none;
@@ -160,3 +156,14 @@ footer {
 	text-align: center;
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
 }        
+/*tilaus*/
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px; /* little bit of a magic number :( */
+  overflow: visible;
+} 
