@@ -3,6 +3,10 @@
 @-ms-viewport       { width: auto; }
 @-o-viewport        { width: auto; }
 @viewport           { width: auto; }
+@webkit-max-logical-height
+@webkit-max-logical-width
+@webkit-min-logical-height
+@webkit-min-logical-width
 
 
 
@@ -102,7 +106,7 @@ button {background-color: black; color: white; border: none;}
 
 
 .dropdown {
-	background-color: black;
+	background-color: black, initial;
     position: right;
     display: inline-block;
     margin-top: 10px;
@@ -113,10 +117,10 @@ button {background-color: black; color: white; border: none;}
     display: none;
     position: absolute; 
     background-color: black;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
+    //*box-shadow: 0px 8px 16px 0px rgba(0,0,0);
+    padding: 12px 16px; *//
     color: black;
-     //*margin-left: -120px;*//
+    margin-left: -50px;
      align: center;
      
 }
@@ -140,6 +144,7 @@ button {background-color: black; color: white; border: none;}
 } 
 
 .taytteet {margin-top: -35px;}
+.taytteet2 {margin-top: -35px;}
 
 .postii {}
 .vsoregano {font-size: 75%;}

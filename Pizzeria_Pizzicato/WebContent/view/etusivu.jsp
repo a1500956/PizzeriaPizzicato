@@ -38,6 +38,7 @@ scope="request" />
 <link href="puhelin.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 0px)
 and (max-width: 770px)" >
+<style type="text/css"></style>
 
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 771px)">
@@ -45,13 +46,13 @@ media="only screen and (min-width: 771px)">
 
 
 
-</style><!--[if lt IE 9]>
+</style>
 
 
 
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]--></head>
+</head>
 </head>
 		<body>
 	<div class="container">
@@ -60,8 +61,9 @@ media="only screen and (min-width: 771px)">
  <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
  
- 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
   <div id="myDropdown" class="dropdown-content">
@@ -71,12 +73,12 @@ media="only screen and (min-width: 771px)">
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
  		</button>
+ 		
+ 	
 	</ul>
   </form>
   </div>
 </div>
-
- 	
 </ul>
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
@@ -103,7 +105,7 @@ media="only screen and (min-width: 771px)">
 
   <article>
 
-  <h1><br>PIZZA MENU</h1>
+  <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
    
@@ -143,28 +145,22 @@ media="only screen and (min-width: 771px)">
     
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>	
-			<th>FANTASIAPIZZAT</th>
-			<th>HINTA</th>
-			<th> </th>
-			<!--  <th>TOIMINNOT</th>-->
-				
-		</tr>
+
 			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
 			
 			<tr>
 				
-				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td>
-				<form style="width: 350px;" method="post">
-				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				<td class="vsoregano">
+				<form class="postii" method="post">
+				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Koriin">
 				</form></td>			
 			</tr>
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet2"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=i+2%> kpl valitsemaasi täytettä.

@@ -113,7 +113,7 @@ and (max-width: 770px)">
 				<input type="submit" value="Select">
 				</form></td>			
 			</tr>							
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet2"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>
@@ -125,22 +125,16 @@ and (max-width: 770px)">
     
     <span class="pizzalista">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>	
-			<th>FANTASIAPIZZAS</th>
-			<th>PRICE</th>
-			<th> </th>
-			<!--  <th>TOIMINNOT</th>-->
-				
-		</tr>
+	
 			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
 			
 			<tr>
 				
-				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>.<b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td>
-				<form style="width: 350px;" method="post">
-				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				<td class="vsoregano">
+				<form class="postii" method="post">
+				 Oregano<input class="mauste"  type="checkbox" name="oregano" value="1"> 
 				 Garlic<input type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Select">
