@@ -71,7 +71,6 @@ public class vahvistaTilaus extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		TilausDAO TDAO = new TilausDAO();
 		String enimi = request.getParameter("enimi");
 		String snimi = request.getParameter("snimi");
