@@ -67,7 +67,7 @@ public class listaaPizzatkokki extends HttpServlet {
 						
 			TilausDAO tilausdao = new TilausDAO();
 						
-			tilausdao.updateTilausOk(tilaus_id);
+			tilausdao.updateTilausOk(tilaus_id, 3);
 		
 			
 			}

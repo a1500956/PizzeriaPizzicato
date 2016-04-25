@@ -1,5 +1,4 @@
-
-	package pizzeria_pizzicato.control;
+package pizzeria_pizzicato.control;
 
 	import java.io.IOException;
 import java.io.PrintWriter;
@@ -109,4 +108,3 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 	
 	}
 	
-
