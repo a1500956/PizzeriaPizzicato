@@ -55,7 +55,7 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <img src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+ <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
@@ -118,12 +118,12 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td>
-				<form style="width: 350px;" method="post">
-				 Oregano<input type="checkbox" name="oregano" value="1"> 
+				<td class="vsoregano">
+				<form class="postii" method="post">
+				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-				<input type="submit" value="Koriin">
+				<input  type="submit" value="Koriin">
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -144,7 +144,8 @@ media="only screen and (min-width: 771px)">
  	
   <footer>
      
-  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
+  <p>Ratapihantie 13, 00100 Helsinki.  
+  <p>Puh. (09) 123 123 12</p>
     <address>
       
     </address>

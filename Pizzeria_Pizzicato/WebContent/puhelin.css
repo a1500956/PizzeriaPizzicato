@@ -10,18 +10,28 @@
 
 
 html, body {height:100%;}
+			
 
-body {font-family:tahoma, arial, sans-serif;   
-	  background-image: url("Kuvia/ruokaa.jpg"); 
+body { font-family:tahoma, arial, sans-serif;   
+	background-image: url("Kuvia/ruokaa.jpg"); 
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	background-position: left top;
 	background-attachment: fixed;
+	
 	margin: 0;
-	padding: 0;
-
+	padding: 0; }
       
-      }
+article { 
+background-image: url("Kuvia/Taustakuva.jpg"); 
+		 background-repeat: no-repeat; 
+		 background-size: 100% 100%;
+		 text-align: center;
+	     margin-top:0px;
+		 padding-top:0px; 
+		 }      
+      
+      
 
 h4{ position: block; 
 	color: white;
@@ -32,8 +42,7 @@ h1{ color: white;}
 
 
 
-		
-article {text-align: center;}
+
 		
 
 
@@ -48,7 +57,7 @@ header {
 
 	
 .container {
-	width: 90%;
+	width: 100%;
 	background-color: black;
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
 }
@@ -97,7 +106,7 @@ button {background-color: black; color: white; border: none;}
     position: right;
     display: inline-block;
     margin-top: 10px;
-    
+    align: center;
 }
 
 .dropdown-content {
@@ -107,7 +116,9 @@ button {background-color: black; color: white; border: none;}
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     color: black;
-      margin-left: -120px;
+     //*margin-left: -120px;*//
+     align: center;
+     
 }
 
 .dropdown-content a {
@@ -121,21 +132,21 @@ button {background-color: black; color: white; border: none;}
 
 
     
-.pizzalista{ text-align:center; 
+.pizzalista{ text-align:center; position: relative;
 }
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color: white;
 								margin-left: 10px;
 } 
 
-article {
-background-image: url("Kuvia/Taustakuva.jpg"); 
-		 background-repeat: no-repeat; 
-		 background-size: 100% 100%;
-		 text-align: center;
-		
-		 margin-top:0px;
-		 padding-top:0px; }
+.taytteet {margin-top: -35px;}
+
+.postii {}
+.vsoregano {font-size: 75%;}
+.mauste {margin-top: 40px; size: 10;}
+
+
+
 
 .tilaa {position: center;
 		text-align: center;
