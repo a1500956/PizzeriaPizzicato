@@ -86,24 +86,24 @@ media="only screen and (min-width: 771px)">
     <%double summa=0;%>
 
     <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
-		<table class="listaa-pizzat2" width="auto" border="1" align="center">	
-		
-		
-		<div class="yhteystiedot" align="center" margin-right="100px">
-		
-		<p style="color:white; align:right;">Etunimi:<input type="text" name="enimi" size="40" pattern=".{2,40}" required></p>
-		<p style="color:white;">Sukunimi:<input type="text" name="snimi" size="40" pattern=".{2,40}" required></p>
-		<p style="color:white;">Puhelinnumero:<input type="text" name="puhnro" size="40" pattern=".{9,10}" required></p><br>
-		<input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
+	<table width="auto" border="1" align="center">
+		<tr><td style="text-align:right;">
+		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" required></td></tr>
+		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" required></td></tr>
+		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" required></td></tr>
+		 
+		<tr><td colspan="2"><input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
 		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
 		
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
-  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
+  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p>
+  		<p style="color:white; margin-left: 27px;">Sähköposti:
+  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p></td></tr>
   		</div>
   		  </div>
-  </div>
-  
+  </table>
+ 
 <script>
 var FormStuff = {
 		  
@@ -133,8 +133,8 @@ var FormStuff = {
 
 		FormStuff.init();
 </script>
-		</div> 
 		
+	<table class="listaa-pizzat2" width="auto" border="1" align="center">		
 		
 		
 		
