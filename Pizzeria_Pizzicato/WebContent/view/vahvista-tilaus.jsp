@@ -122,7 +122,7 @@ for(Cookie cookie : cookies){
 
     <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
 
-<table width="auto" border="1" align="center">
+<table class="listaa-pizzat2" width="auto" border="1" align="left">
 		<tr><td style="text-align:right;">
 		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}"  required></td></tr>
 		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" required></td></tr>
@@ -134,7 +134,7 @@ for(Cookie cookie : cookies){
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
   		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white; margin-left: 27px;">Sähköposti:
+  		<p style="color:white;">Sähköposti:
   		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p></td></tr>
   		</div>
   		  </div>
