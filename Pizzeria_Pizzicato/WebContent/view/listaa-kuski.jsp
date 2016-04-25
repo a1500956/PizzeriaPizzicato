@@ -28,7 +28,7 @@ scope="request" />
 	
 	
 	<%
-	int ryhma= 2;
+	int ryhma= 4;
 	String userName = null;
 	//allow access only if session exists
 	if(session.getAttribute("ryhma").equals(ryhma)){
