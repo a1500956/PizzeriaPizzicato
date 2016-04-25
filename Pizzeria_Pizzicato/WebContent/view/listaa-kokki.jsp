@@ -4,6 +4,7 @@
 
 
 <%@ page import="pizzeria_pizzicato.model.Tilaus"%>
+<%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="java.text.NumberFormat" %>
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -12,6 +13,8 @@
 %>
 
 <jsp:useBean id="tilaukset" type="java.util.ArrayList<Tilaus> "
+scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 <html>
 <head>
@@ -52,6 +55,8 @@ response.setIntHeader("Refresh", 5);
 
 
 <header>
+
+
 <div class="login">
     <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
@@ -60,13 +65,48 @@ response.setIntHeader("Refresh", 5);
       </div>
     </form>
 </div>
+
 </header>
-		
-		<h1>TILAUKSET</h1>
-		
+
+<div class="dropdown">
+ 
+  <button onclick="myFunction()" class="button"> Näytä pizzat</button>
+  <div id="myDropdown" class="dropdown-content">	
+	
+	<h1>PIZZALISTA</h1>
 	
 		
-		<form action="" method="post">
+		
+		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		<tr>
+			
+			<td><h4>PIZZAT</h4></td>
+			
+			<td><h4>TÄYTTEET</h4></td>
+			
+				
+			<%for(int i = 0; i < pizzat.size(); i++) {%>
+			<tr>
+				
+				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
+				
+				<td><div class="taytteet"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
+												<%  }%>
+												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
+												 </div></td>
+					
+			</tr>
+			<% } %>
+		</table><br>
+		</div>
+		
+		</div>
+		
+		<h1>TILAUKSET</h1>
+	
+		 <div class="listaa-tilaukset">
+		<form class="kokki" action="" method="post">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			<td><h4>Tilausnumero</h4></td>
@@ -97,9 +137,10 @@ response.setIntHeader("Refresh", 5);
 					
 		</table>
 </form>
-	<p>Valmiiden tilauksien kuittaus</p>
-	
+</div>	
+	<div class="listaa-tilaukset2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		<p>Valmiiden tilauksien kuittaus</p>
 		<tr>
 			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Valmis</h4></td>
@@ -108,7 +149,7 @@ response.setIntHeader("Refresh", 5);
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
 					<tr>
-					<td><form action="" method="post">
+					<td><form class="kokki2" action="" method="post">
 						<input type="hidden" name="valmis" value="<%=tilaukset.get(i).getId() %>"><%=tilaukset.get(i).getId() %></td>						
   						<td><input type="submit" value="Kyllä">
 						</form></td>
@@ -117,5 +158,6 @@ response.setIntHeader("Refresh", 5);
 					
 				<% } %>
 		</table>
+		</div>
 	</body>
 </html>

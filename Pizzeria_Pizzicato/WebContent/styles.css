@@ -100,3 +100,61 @@ input[type=submit]{
 	
 }
 
+.dropdown {
+	
+    position: relative;
+   
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;
+   
+}
+
+.dropdown-content a {
+    color: white;
+   
+}
+.dropdown:hover .dropdown-content {
+    display:block;
+    
+}
+
+.listaa-tilaukset{ 
+					
+					margin-left:20%;
+					float:left;
+					
+					
+					
+					
+					
+					
+					
+	
+}
+
+.listaa-tilaukset2{
+					
+					float:left;
+					margin-left:20px;
+					
+					
+					
+					
+					
+					
+	
+}
+
+.kokki{padding:0;
+
+}
+
+.kokki2{padding:0;
+
+	
+}
+

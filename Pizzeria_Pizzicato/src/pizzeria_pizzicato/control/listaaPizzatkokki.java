@@ -40,6 +40,10 @@ public class listaaPizzatkokki extends HttpServlet {
 		
 			TilausDAO tilausdao = new TilausDAO();
 			ArrayList<Tilaus> tilaukset = new ArrayList<Tilaus>(tilausdao.haeAktiivisetTilaukset());
+			PizzaDAO pizzadao = new PizzaDAO();
+			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
+
+			request.setAttribute("pizzat", pizzaLista);
 			request.setAttribute("tilaukset", tilaukset);
 			
 			String jsp = "/view/listaa-kokki.jsp"; 
