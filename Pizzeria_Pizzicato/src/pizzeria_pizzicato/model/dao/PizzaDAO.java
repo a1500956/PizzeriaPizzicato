@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import pizzeria_pizzicato.control.Vertailija;
+import pizzeria_pizzicato.control.VertailijaTuote;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
@@ -139,7 +139,7 @@ public class PizzaDAO extends DataAccessObject {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT y.tuote_nimi, p.tuote_id, t.tayte_id, y.tuote_hinta, p.pizza_nakyy, x.tayte_nimi, x.tayte_nimi_en FROM Tuote y JOIN Pizza p ON p.tuote_id = y.tuote_id JOIN PizzaTayte t ON t.tuote_id = p.tuote_id JOIN Tayte x ON x.tayte_id = t.tayte_id;";
+			String sqlSelect = "SELECT y.tuote_nimi, p.tuote_id, t.tayte_id, y.tuote_hinta, p.pizza_nakyy, x.tayte_nimi, x.tayte_nimi_en FROM Tuote y INNER JOIN Pizza p ON p.tuote_id = y.tuote_id JOIN PizzaTayte t ON t.tuote_id = p.tuote_id JOIN Tayte x ON x.tayte_id = t.tayte_id;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
@@ -160,7 +160,7 @@ public class PizzaDAO extends DataAccessObject {
 		} finally {
 			close(rs, stmt, conn);
 		}
-		Collections.sort(pizzat, new Vertailija());
+		Collections.sort(pizzat, new VertailijaTuote());
 		return pizzat;
 	}
 

@@ -54,6 +54,8 @@ public class vahvistaTilaus extends HttpServlet {
 		
 		
 		TilausDAO TDAO = new TilausDAO();
+		String enimi = request.getParameter("enimi");
+		String snimi = request.getParameter("snimi");
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
 		Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
@@ -62,6 +64,7 @@ public class vahvistaTilaus extends HttpServlet {
 		Tilaus T = new Tilaus();
 		
 		T.setKayttaja(valiaikainen);
+		
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
 		request.getSession().removeAttribute("ostoskori");
@@ -71,9 +74,7 @@ public class vahvistaTilaus extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		response.sendRedirect("pizzaMenu");
-		
 		
 		
 	}

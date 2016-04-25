@@ -10,64 +10,73 @@
 
 
 html, body {height:100%;}
-			
 
-body { font-family:tahoma, arial, sans-serif;   
-	background-image: url("Kuvia/ruokaa.jpg"); 
+body {font-family:tahoma, arial, sans-serif;   
+	  background-image: url("Kuvia/ruokaa.jpg"); 
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	background-position: left top;
 	background-attachment: fixed;
-	
-	margin: 0;
-	padding: 0; }
+
       
-article { 
-background-image: url("Kuvia/Taustakuva.jpg"); 
+      }
+
+h4{ position: block; 
+	background-color: white;}
+	
+header img {
+     width:150px}
+
+.kielet{position: right;
+	
+		display: inline;
+		text-decoration: none;
+		border-style:none;
+		background-color: white;
+		}
+		
+article {background-image: url("Kuvia/Taustakuva.jpg"); 
 		 background-repeat: no-repeat; 
 		 background-size: 100% 100%;
 		 text-align: center;
-	     margin-top:0px;
-		 padding-top:0px; 
-		 }      
-      
-      
-
-h4{ position: block; 
-	color: white;
-	margin-top: 3px;}
-	
-h1{ color: white;}
-	
-
-
-
+		 min-height:900px;
+		 margin-top:0px;
+		 padding-top:100px;
+		 
+		 }
 
 		
-
+		
+.kielet a {
+		color: black;
+		text-decoration: none;
+		display: inline-block;
+		background-color: white;
+		border-style: none;
+		position: top;
+		
+		}
 
 header {
-	margin-top:0px;
+	margin-top:1px;
 	background-color: white;
 	text-align:center;
-	padding: 0px;
+	padding: 2px;
 	
 	}
 	
-
-	
 .container {
-	width: 100%;
-	background-color: black;
+	width: 90%;
+	background-color:white;
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
 }
 
-.isoruutu {
+.isoruutu {display:none;}
 }
-nav {background-color: black; margint-top: -20px;}
+nav {background-color: #ADB96E;}
 nav ul{border-style:none;
 	list-style: none;
-	margin-bottom: opx; 
+	margin-bottom: 15px; 
 }
 
 nav li {border-style:none; 
@@ -82,7 +91,7 @@ nav a, nav a:visited { /* grouping these selectors makes sure that your links re
 	color: white;
 }
 nav a:hover, nav a:active, nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
-	background-color: black;
+	background-color: #ADB96E;
 	color:  white;
 }
 #flag {  height: 20px; width:auto; float: right;
@@ -92,33 +101,19 @@ nav a:hover, nav a:active, nav a:focus { /* this changes the background and text
 	
 }
 
-#logo {float: left;
-		margin-top: 0px;
-		width:auto; height:135px;}
-
-button {background-color: black; color: white; border: none;}
-
-
-
-
 .dropdown {
-	background-color: black;
-    position: right;
+	background-color: #ff0000;
+    position: relative;
     display: inline-block;
-    margin-top: 10px;
-    align: center;
 }
 
 .dropdown-content {
     display: none;
-    position: absolute; 
+    position: absolute;
     background-color: black;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     color: black;
-     //*margin-left: -120px;*//
-     align: center;
-     
 }
 
 .dropdown-content a {
@@ -126,25 +121,13 @@ button {background-color: black; color: white; border: none;}
 }
 .dropdown:hover .dropdown-content {
     display: block;
-
-   
 }
-
-
     
-.pizzalista{ text-align:center; position: relative;
+.pizzalista{ text-align:center; 
 }
 
-.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color: white;
-								margin-left: 10px;
+.pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
 } 
-
-.taytteet {margin-top: -35px;}
-
-.postii {}
-.vsoregano {font-size: 75%;}
-.mauste {margin-top: 40px; size: 10;}
-
 
 
 
@@ -159,4 +142,16 @@ footer {
 	color: white;
 	text-align: center;
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
-}        
+}  
+
+/*tilaus*/
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px; /* little bit of a magic number :( */
+  overflow: visible;
+} 
