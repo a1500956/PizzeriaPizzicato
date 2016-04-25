@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzeria_pizzicato.model.TilattuTuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
@@ -29,7 +29,7 @@ scope="request" />
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Vahvista Tilaus</title>
 </head>
 <body>
@@ -72,15 +72,27 @@ for(Cookie cookie : cookies){
 	<div class="container">
 <nav class=isoruutu>
 <img src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, HelsingissÃ¤.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+
           <% if (user!=null){%>
   <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
       <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+
+     <% if (user!=null){%>
+        <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+
+      </div>
+    </form> <% }%> 
+</ul>
+  </div>
+</div>
 
       </div>
     </form> <% }%> 
@@ -115,7 +127,7 @@ for(Cookie cookie : cookies){
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
   		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p>
-  		<p style="color:white; margin-left: 27px;">Sähköposti:
+  		<p style="color:white; margin-left: 27px;">SÃ¤hkÃ¶posti:
   		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p></td></tr>
   		</div>
   		  </div>
@@ -176,12 +188,12 @@ var FormStuff = {
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
-							<%String oregano = "kyllä";
+							<%String oregano = "kyllÃ¤";
 							if(ostoskori.getTuote(i).getOregano() == 0){
 								oregano = "ei";
 							}%>
 						<td><div class="tilauslista"><%=oregano%></div></td>
-							<%String vSipuli = "kyllä";
+							<%String vSipuli = "kyllÃ¤";
 							if(ostoskori.getTuote(i).getvSipuli() == 0){
 								vSipuli = "ei";
 							}%>
@@ -232,7 +244,7 @@ var FormStuff = {
 					class="submit-button" value="Vahvista Tilaus" />
 		
 		<%}else{%>
-		<p>Ostoskori on tyhjä</p>
+		<p>Ostoskori on tyhjÃ¤</p>
 		<%} %>
 		
     </span>

@@ -78,9 +78,9 @@ response.setIntHeader("Refresh", 5);
 			<td><h4>Aika</h4></td>
 			<td><h4>Status</h4></td>
 			<td><h4>Tuote</h4></td>	
+			<td><h4>Lukumäärä</h4></td>	
 			<td><h4>Valkosipuli</h4></td>
 			<td><h4>Oregano</h4></td>	
-			<td><h4>Lukumäärä</h4></td>	
 			<td><h4>Osoite</h4></td>
 			<td><h4>Puhnro</h4></td>
 		</tr>
