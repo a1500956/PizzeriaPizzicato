@@ -67,6 +67,7 @@ for(Cookie cookie : cookies){
     sessionID = session.getId();
 }
 %>
+
 	<body>
 	
 	<div class="container">
@@ -82,17 +83,6 @@ for(Cookie cookie : cookies){
   <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
       <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
-
-     <% if (user!=null){%>
-        <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
-      <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
-
-      </div>
-    </form> <% }%> 
-</ul>
-  </div>
-</div>
 
       </div>
     </form> <% }%> 
@@ -117,7 +107,7 @@ for(Cookie cookie : cookies){
     <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
 	<table width="auto" border="1" align="center">
 		<tr><td style="text-align:right;">
-		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" required></td></tr>
+		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" <%if(userName.isEmpty() == false){%> value="<%=userName %>" <%}%> required></td></tr>
 		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" required></td></tr>
 		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" required></td></tr>
 		 
