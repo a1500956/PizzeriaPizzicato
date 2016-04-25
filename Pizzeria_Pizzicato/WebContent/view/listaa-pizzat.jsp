@@ -70,6 +70,7 @@ for(Cookie cookie : cookies){
 		<a href="<%=response.encodeURL("listaa-taytteet") %>">Näytä täytteet</a>
 		<a href="<%=response.encodeURL("listaaJuomat") %>">Näytä juomat</a>
 		<a href="<%=response.encodeURL("listaaAktiivisetTilaukset") %>">Näytä aktiiviset tilaukset</a>
+		<a href="<%=response.encodeURL("listaaArkisto") %>">Arkistoidut tilaukset & tilasto</a>
 		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">

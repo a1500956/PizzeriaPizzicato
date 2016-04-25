@@ -158,7 +158,7 @@ media="only screen and (min-width: 771px)">
 			<tr>
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>â¬ </div></td>
 				<td>
 				<form style="width: 350px;" method="post">
 				 Oregano<input type="checkbox" name="oregano" value="1"> 
