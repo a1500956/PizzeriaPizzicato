@@ -83,8 +83,8 @@ public class Juoma extends Tuote{
 
 	@Override
 	public String toString() {
-		return "Juoma [nimi=" + nimi + ", litrakoko=" + litrakoko + ", hinta="
-				+ hinta + ", nakyy=" + nakyy + "]";
+		return "Juoma [id=" + id + ", nimi=" + nimi + ", litrakoko="
+				+ litrakoko + ", hinta=" + hinta + ", nakyy=" + nakyy + "]";
 	}
 	
 	
