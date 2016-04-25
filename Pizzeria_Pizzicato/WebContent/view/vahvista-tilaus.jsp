@@ -77,15 +77,13 @@ for(Cookie cookie : cookies){
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
-       <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sis‰‰n</button>
-  <div id="myDropdown" class="dropdown-content">
-  <form action="kirjautuminen" method="post">
-    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="k‰ytt‰j‰tunnus" />
- 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
-       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
-  </form>
- </button>
+          <% if (user!=null){%>
+  <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+
+      </div>
+    </form> <% }%> 
 </ul>
 
 <p class="p1">${message3}</p>
