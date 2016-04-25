@@ -2,8 +2,6 @@ package pizzeria_pizzicato.model;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
-
 public class Ostoskori {
 	
 	ArrayList<TilattuTuote> ostoskori;
@@ -36,7 +34,7 @@ public class Ostoskori {
 		}
 		
 		boolean loytyy = false;
-		if(ostoskori == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
+		if(this.ostoskori == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
 			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
 			this.ostoskori.add(tuote);
 			this.koko++; // lisätään korin kokoa
@@ -66,14 +64,12 @@ public class Ostoskori {
 		
 	}
 	
-	public void removePizza(Pizza pizza, int oregano, int VSipuli){
+	public void removeTuote(int id, int oregano, int VSipuli){
 		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
 		Tuote t = new Tuote(); //Luodaan tuote
 		
-		if(pizza != null){ //Jos tullut pizza ei ole tyhjä luodaan liisä TilattuTuote olio
-			t.setId(pizza.getId());
-			t.setNimi(pizza.getNimi());
-			t.setHinta(pizza.getHinta());
+		if(id > 0){ //Jos tullut pizza ei ole tyhjä luodaan liisä TilattuTuote olio
+			t.setId(id);
 			tuote.setTuote(t);
 			tuote.setOregano(oregano);
 			tuote.setvSipuli(VSipuli);
@@ -103,6 +99,46 @@ public class Ostoskori {
 			this.ostoskori = null;
 		}
 		
+	}
+	
+	public void addJuoma(Juoma juoma){
+		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
+		Tuote t = new Tuote(); //Luodaan tuote
+		boolean loytyy = false;
+		
+		if(juoma != null){ //Jos tullut juoma ei ole tyhjä luodaan TilattuTuote olio
+			t.setId(juoma.getId());
+			t.setNimi(juoma.getNimi());
+			t.setHinta(juoma.getHinta());
+			tuote.setTuote(t);
+			tuote.setHinta(tuote.getTuote().getHinta());
+			tuote.setLkm(1);
+		}
+		if(this.ostoskori == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
+			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
+			this.ostoskori.add(tuote);
+			this.koko++; // lisätään korin kokoa
+			loytyy = true;
+			return;
+		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
+			ArrayList<TilattuTuote> kori = this.ostoskori;
+			for(int i = 0; i < kori.size();i++){
+				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId()){ // katsotaan
+					int luku = kori.get(i).getLkm();
+						luku += 1;	// nostetaan lukumäärä yhdellä
+						kori.get(i).setLkm(luku);
+					this.ostoskori = kori; //viedään muutettu tieto koriin
+					loytyy = true;
+					break; //ja lopetetaan for loop
+				}else{
+					loytyy = false; //jos tuotetta ei löytynyt pidetään loytyy falsena
+				}
+			}
+		}
+		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei löydy lisätään ostoskoriin uusi TilattuTuote
+			this.ostoskori.add(tuote);
+			this.koko++;
+		}
 	}
 	
 	public TilattuTuote getTuote(int index) {

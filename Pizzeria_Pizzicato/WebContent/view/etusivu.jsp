@@ -33,12 +33,17 @@ scope="request" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pizzeria Pizzicato</title>
 
-<link href="puhelin.css" rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
+media="only screen and (min-device-width: 0px)
+and (max-device-width: 770px)" href="puhelin.css" >
+
+<link rel="stylesheet" type="text/css"
 media="only screen and (min-width: 0px)
-and (max-width: 770px)" >
+and (max-width: 770px)" href="puhelin.css" >
 
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 771px)">
+
 <style type="text/css">
 
 

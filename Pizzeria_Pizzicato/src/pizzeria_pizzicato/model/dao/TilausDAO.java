@@ -121,13 +121,13 @@ public class TilausDAO extends DataAccessObject {
 	
 	//P‰ivitt‰‰ tilauksen statuksen kokilta.
 	
-	public void updateTilausOk(int tilaus_id) throws SQLException {
+	public void updateTilausOk(int tilaus_id, int uusistatus) throws SQLException {
 		Connection connection = null;
 		
 		PreparedStatement stmtUpdate = null;
 		
 		int tRivi = tilaus_id;
-		int sId = 3;
+		int sId = uusistatus;
 
 		try {
 			
@@ -149,6 +149,8 @@ public class TilausDAO extends DataAccessObject {
 			close(stmtUpdate, connection); 
 		}
 	}
+	
+	
 
 	
 	//T‰m‰ toiminto asettaa tilauksen 'peruutettu'-tilaan arkistointia varten.

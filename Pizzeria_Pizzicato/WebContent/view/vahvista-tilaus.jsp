@@ -4,6 +4,8 @@
 <%@ page import="pizzeria_pizzicato.model.TilattuTuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
+<%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="java.util.ArrayList"%>
 
 
@@ -19,6 +21,11 @@
 Ostoskori ostoskori = new Ostoskori();
 ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 %>
+
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma>"
+scope="request" />
+<jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza>"
+scope="request" />
 
 <html>
 <head>
@@ -70,13 +77,15 @@ for(Cookie cookie : cookies){
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
  	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
-     <% if (user!=null){%>
-  <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
-      <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
-
-      </div>
-    </form> <% }%> 
+       <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sis‰‰n</button>
+  <div id="myDropdown" class="dropdown-content">
+  <form action="kirjautuminen" method="post">
+    <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="k‰ytt‰j‰tunnus" />
+ 	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+       	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+  </form>
+ </button>
 </ul>
 
 <p class="p1">${message3}</p>
@@ -162,28 +171,62 @@ var FormStuff = {
 			<!--  <th>TOIMINNOT</th>-->
 			
 		</tr>
-
+		<%for(int j = 0; j<pizzat.size();j++){%>
 			<%for(int i = 0; i <ostoskori.getKoko(); i++) {%>
-			<tr>
-				<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
-				<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
-					<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
-					<%String oregano = "kyll‰";
-					if(ostoskori.getTuote(i).getOregano() == 0){
-						oregano = "ei";
-					}%>
-				<td><div class="tilauslista"><%=oregano%></div></td>
-					<%String vSipuli = "kyll‰";
-					if(ostoskori.getTuote(i).getvSipuli() == 0){
-						vSipuli = "ei";
-					}%>
-				<td><div class="tilauslista"><%=vSipuli%></div></td>
-				<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-				<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
-				<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
-				</a></td>								
-			</tr>
-			<%}%>
+				<%if(pizzat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
+					<tr>
+						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
+						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
+							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
+							<%String oregano = "kyll‰";
+							if(ostoskori.getTuote(i).getOregano() == 0){
+								oregano = "ei";
+							}%>
+						<td><div class="tilauslista"><%=oregano%></div></td>
+							<%String vSipuli = "kyll‰";
+							if(ostoskori.getTuote(i).getvSipuli() == 0){
+								vSipuli = "ei";
+							}%>
+						<td><div class="tilauslista"><%=vSipuli%></div></td>
+						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
+						<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+						</a></td>								
+					</tr>
+				<%}%>
+			<%} %>
+		<%} %>
+		
+		<tr style="width=350px;">
+			
+			<th style="border-bottom: solid 1px grey;">JUOMAT</th>
+			<th style="border-bottom: solid 1px grey;">KOKO</th>
+			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
+			<th style="border-bottom: solid 1px grey;">KPL</th>
+			<th></th>
+			
+			
+			<!--  <th>TOIMINNOT</th>-->
+			
+		</tr>
+		
+		
+		<%for(int j = 0; j<juomat.size();j++){%>
+			<%for(int i = 0; i <ostoskori.getKoko(); i++) {%>
+				<%if(juomat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
+					<tr>
+						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
+						<td><div class=""><%=juomat.get(j).getLitrakoko() + "l"%></div></td>
+						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
+						<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
+						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
+						<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+						</a></td>								
+					</tr>
+				<%}%>
+			<%} %>
+		<%} %>
 			
 		
 		</table><br>

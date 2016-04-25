@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import pizzeria_pizzicato.model.Juoma;
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.dao.JuomaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
@@ -34,6 +36,7 @@ public class vahvistaTilaus extends HttpServlet {
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 		
+		
 		HttpSession session = request.getSession();
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 		if(ostoskori == null){
@@ -41,6 +44,22 @@ public class vahvistaTilaus extends HttpServlet {
 			session.setAttribute("ostoskori", ostoskori);
 			session.setMaxInactiveInterval(60*60);
 		}
+		
+		JuomaDAO juomadao = new JuomaDAO();
+		ArrayList<Juoma> JuomaLista = juomadao.findAll();
+		ArrayList<Juoma> juomaNakyy = new ArrayList<Juoma>();
+		
+		for(int i=0;i<JuomaLista.size();i++){
+			
+			if(JuomaLista.get(i).getNakyy()==1){
+				Juoma juoma = new Juoma();
+        	
+				juoma = JuomaLista.get(i);
+				juomaNakyy.add(juoma);
+			}
+		}
+		request.setAttribute("juomat", juomaNakyy);
+		request.setAttribute("pizzat", pizzaLista);
 		
 		String jsp = "/view/vahvista-tilaus.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);

@@ -38,6 +38,7 @@ public class pizzaMenu extends HttpServlet {
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 			ArrayList<Pizza> pizzaFantasia = new ArrayList<Pizza>();
 			
+			
 			for(int i=0;i<pizzaLista.size();i++){
 				
 				if(pizzaLista.get(i).getNakyy()==1 && !pizzaLista.get(i).getNimi().contains("Fantasia")){

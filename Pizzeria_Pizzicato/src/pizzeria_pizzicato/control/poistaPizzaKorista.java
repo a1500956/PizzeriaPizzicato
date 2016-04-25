@@ -35,16 +35,16 @@ public class poistaPizzaKorista extends HttpServlet {
 		oregano = Integer.parseInt(request.getParameter("oregano"));
 		vSipuli = Integer.parseInt(request.getParameter("vSipuli"));
 		
-		Pizza pizza = new Pizza();
+		/*Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
 			if(pizzaLista.get(i).getId() == sArvo){
 				pizza = pizzaLista.get(i);
 			}
-		}
+		}*/
 		
 		HttpSession session = request.getSession(); //haetaan session
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
-		ostoskori.removePizza(pizza, oregano, vSipuli); //poistetaan pizza ostoskorista
+		ostoskori.removeTuote(sArvo, oregano, vSipuli); //poistetaan pizza ostoskorista
 
 		session.setAttribute("ostoskori", ostoskori); // viedään ostoskorin muutokset sessioniin
 		response.sendRedirect("vahvistaTilaus");
