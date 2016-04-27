@@ -141,14 +141,9 @@ media="only screen and (min-width: 771px)">
 			</div></td></tr>
 			<% } %>
 			
-		</table><br>
-    </span>
-    
-    <span class="pizzalista">
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>	
-			<th>FANTASIAPIZZAT</th>
-			<th>HINTA</th>
+			<tr>	
+			<th><br>FANTASIAPIZZAT</th>
+			<th><br>HINTA</th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
@@ -158,11 +153,11 @@ media="only screen and (min-width: 771px)">
 			<tr>
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>â¬ </div></td>
+				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td>
 				<form style="width: 350px;" method="post">
-				 Oregano<input type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
+				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
+				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Koriin">
 				</form></td>			

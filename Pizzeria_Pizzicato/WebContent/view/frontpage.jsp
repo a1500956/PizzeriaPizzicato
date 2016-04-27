@@ -121,14 +121,11 @@ and (max-width: 770px)">
 												 
 			</div></td></tr>
 			<% } %>
-		</table><br>
-    </span>
-    
-    <span class="pizzalista">
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>	
-			<th>FANTASIAPIZZAS</th>
-			<th>PRICE</th>
+		
+		<tr>
+		
+			<th><br>FANTASIAPIZZAS</th>
+			<th><br>PRICE</th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
@@ -137,7 +134,7 @@ and (max-width: 770px)">
 			
 			<tr>
 				
-				<td><div class="nimet"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td>
 				<form style="width: 350px;" method="post">

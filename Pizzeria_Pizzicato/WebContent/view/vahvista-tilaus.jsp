@@ -151,7 +151,7 @@ osoite = (String) session.getAttribute("osoite");
   		<p style="color:white;">Toimitusosoite:
   		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %> required></p>
   		<p style="color:white;">Sähköposti:
-  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p></td></tr>
+  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p>
   		</div>
   		  </div>
   </table>
