@@ -68,6 +68,7 @@ and (max-width: 770px)">
     <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
  	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
        	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+  </form>
  </button>
 </ul>
   </div>
@@ -88,7 +89,7 @@ and (max-width: 770px)">
     
     <section>
    
-    <span class="pizzalista">
+    <span class="pizzalista2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			
@@ -113,34 +114,37 @@ and (max-width: 770px)">
 				<input type="submit" value="Select">
 				</form></td>			
 			</tr>							
-			<tr><td><div class="taytteet2"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi_en()%>
 												 
 			</div></td></tr>
 			<% } %>
-		</table><br>
-    </span>
-    
-    <span class="pizzalista">
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
-	
+		
+		<tr>
+		
+			<th><br>FANTASIAPIZZAS</th>
+			<th><br>PRICE</th>
+			<th> </th>
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
 			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
 			
 			<tr>
 				
-				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>.<b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
-				<form class="postii" method="post">
-				 Oregano<input class="mauste"  type="checkbox" name="oregano" value="1"> 
+				<td>
+				<form style="width: 350px;" method="post">
+				 Oregano<input type="checkbox" name="oregano" value="1"> 
 				 Garlic<input type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Select">
 				</form></td>			
 			</tr>
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet2"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%> + <%=i+2%> toppings of your choice.

@@ -1,15 +1,9 @@
+
 @-webkit-viewport   { width: auto; }
 @-moz-viewport      { width: auto; }
 @-ms-viewport       { width: auto; }
 @-o-viewport        { width: auto; }
 @viewport           { width: auto; }
-@webkit-max-logical-height
-@webkit-max-logical-width
-@webkit-min-logical-height
-@webkit-min-logical-width
-
-
-
 
 
 
@@ -66,8 +60,6 @@ header {
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
 }
 
-.isoruutu {
-}
 nav {background-color: black; margint-top: -20px;}
 nav ul{border-style:none;
 	list-style: none;
@@ -106,7 +98,7 @@ button {background-color: black; color: white; border: none;}
 
 
 .dropdown {
-	background-color: black, initial;
+	background-color: black;
     position: right;
     display: inline-block;
     margin-top: 10px;
@@ -117,10 +109,10 @@ button {background-color: black; color: white; border: none;}
     display: none;
     position: absolute; 
     background-color: black;
-    //*box-shadow: 0px 8px 16px 0px rgba(0,0,0);
-    padding: 12px 16px; *//
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
     color: black;
-    margin-left: -50px;
+     //*margin-left: -120px;*//
      align: center;
      
 }
@@ -144,7 +136,6 @@ button {background-color: black; color: white; border: none;}
 } 
 
 .taytteet {margin-top: -35px;}
-.taytteet2 {margin-top: -35px;}
 
 .postii {}
 .vsoregano {font-size: 75%;}
@@ -165,3 +156,14 @@ footer {
 	text-align: center;
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
 }        
+/*tilaus*/
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px; /* little bit of a magic number :( */
+  overflow: visible;
+} 

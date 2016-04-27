@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import pizzeria_pizzicato.model.Juoma;
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.dao.JuomaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
@@ -30,7 +32,7 @@ public class vahvistaTilaus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 		
@@ -42,6 +44,22 @@ public class vahvistaTilaus extends HttpServlet {
 			session.setMaxInactiveInterval(60*60);
 		}
 		
+		JuomaDAO juomadao = new JuomaDAO();
+		ArrayList<Juoma> JuomaLista = juomadao.findAll();
+		ArrayList<Juoma> juomaNakyy = new ArrayList<Juoma>();
+		
+		for(int i=0;i<JuomaLista.size();i++){
+			
+			if(JuomaLista.get(i).getNakyy()==1){
+				Juoma juoma = new Juoma();
+        	
+				juoma = JuomaLista.get(i);
+				juomaNakyy.add(juoma);
+			}
+		}
+		request.setAttribute("juomat", juomaNakyy);
+		request.setAttribute("pizzat", pizzaLista);
+		
 		String jsp = "/view/vahvista-tilaus.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
@@ -50,15 +68,40 @@ public class vahvistaTilaus extends HttpServlet {
 		
 	}
 	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		boolean ok = true;
+		String virhe = null;
+		HttpSession session = request.getSession();
 		
 		TilausDAO TDAO = new TilausDAO();
 		String enimi = request.getParameter("enimi");
+		session.setAttribute("eNimi", enimi);
 		String snimi = request.getParameter("snimi");
+		session.setAttribute("sNimi", snimi);
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
-		Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
+		
+		if(enimi.isEmpty() || snimi.isEmpty()){
+			virhe = "Nimi kentät ovat pakollisia!";
+			ok = false;
+			request.getSession().setAttribute("message4", virhe);
+			response.sendRedirect("vahvistaTilaus");
+		
+		
+		}else if(osoite.isEmpty()){
+		virhe = "Osoite kenttä on pakollinen!";
+		ok = false;
+		request.getSession().setAttribute("message4", virhe);
+		response.sendRedirect("vahvistaTilaus");
+		}else if(puhnro.matches("\\w{9,10}") == false && puhnro.isEmpty() && ok == true){
+			ok = false;
+			virhe = "Puhelinnumero on virheellinen!";
+			request.getSession().setAttribute("message4", virhe);
+			response.sendRedirect("vahvistaTilaus");
+		}else if(ok == true){
+			Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
+		
 		Kayttaja valiaikainen = new Kayttaja();
 		valiaikainen.setKayttaja_id(404);
 		Tilaus T = new Tilaus();
@@ -67,16 +110,37 @@ public class vahvistaTilaus extends HttpServlet {
 		
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
-		request.getSession().removeAttribute("ostoskori");
+		
 		try {
 			TDAO.addTilaus(T, tuotteet);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		
 		}
+		session.removeAttribute("eNimi");
+		session.removeAttribute("sNimi");
+		session.removeAttribute("ostoskori");
 		response.sendRedirect("pizzaMenu");
 		
+		}else{
+		
+		request.getSession().setAttribute("message4", virhe);
+		response.sendRedirect("vahvistaTilaus");
+		
+	}
+		
+		}
 		
 	}
 
-}
+
+
+
+
+
+
+
+
+
+
