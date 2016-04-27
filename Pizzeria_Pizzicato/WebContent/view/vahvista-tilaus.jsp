@@ -128,7 +128,7 @@ osoite = (String) session.getAttribute("osoite");
    <form action="vahvistaTilaus" method="post" style="padding-top:100px ">
   
 
-    <span class="pizzalista">
+    
      <h1 class=hMode2>TILAUKSENNE</h1>
     <div class=button><a href="kirjautuminenOk">Takaisin</a></div><br><br>
     <p>${message4}</p>
@@ -138,7 +138,7 @@ osoite = (String) session.getAttribute("osoite");
 
     <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
 
-<table class="listaa-pizzat3" width="auto" border="1" align="left">
+<table class="" width="auto" border="1" align="center">
 		<tr><td style="text-align:right;">
 		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" <%if(eNimi != null){ %> value="<%=eNimi%>" <%} %> required></td></tr>
 		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" <%if(sNimi != null){ %> value="<%=sNimi%>" <%} %>  required></td></tr>
@@ -150,9 +150,9 @@ osoite = (String) session.getAttribute("osoite");
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
   		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %> required></p>
-  		<p style="color:white;">Sähköposti:<br>
+  		<p style="color:white;">Sähköposti:
   		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
-  		</div><br><br>
+  		</div><br>
   		  </div>
   </table>
  
@@ -186,7 +186,7 @@ var FormStuff = {
 		FormStuff.init();
 </script>
 		
-	<table class="listaa-pizzat2" width="auto" border="1" align="center">		
+	<table class="" width="auto" border="1" align="center">		
 		
 		
 		
