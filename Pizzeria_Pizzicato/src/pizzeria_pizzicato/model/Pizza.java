@@ -61,6 +61,14 @@ public class Pizza extends Tuote {
 	public ArrayList<Tayte> getTaytteet() {
 		return taytteet;
 	}
+	
+	public ArrayList<Integer> getIDT() { // T‰ll‰ haetaan lista pizzan taytteiden id:st‰!
+		ArrayList<Integer> tayteIdT = new ArrayList<>(); // Tarvitaan pizzan lis‰‰misess‰ ostoskoriin!
+		for(int i = 0; i<this.taytteet.size(); i++){
+			tayteIdT.add(this.getTayte(i).getTayte_id());
+		}
+		return tayteIdT;
+	}
 
 	@Override
 	public String toString() {

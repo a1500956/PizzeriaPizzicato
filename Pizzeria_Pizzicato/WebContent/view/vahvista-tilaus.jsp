@@ -222,7 +222,7 @@ var FormStuff = {
 							}%>
 						<td><div class="tilauslista"><%=vSipuli%></div></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
 						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
 						</a></td>								
 					</tr>
@@ -253,7 +253,7 @@ var FormStuff = {
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 						<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
 						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
 						</a></td>								
 					</tr>

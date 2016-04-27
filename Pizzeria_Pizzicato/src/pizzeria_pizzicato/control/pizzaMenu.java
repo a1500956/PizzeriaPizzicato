@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.JuomaDAO;
