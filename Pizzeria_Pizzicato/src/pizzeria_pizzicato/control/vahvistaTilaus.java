@@ -89,16 +89,18 @@ public class vahvistaTilaus extends HttpServlet {
 			response.sendRedirect("vahvistaTilaus");
 		
 		
-		}else if(osoite.isEmpty()){
-		virhe = "Osoite kenttä on pakollinen!";
-		ok = false;
-		request.getSession().setAttribute("message4", virhe);
-		response.sendRedirect("vahvistaTilaus");
 		}else if(puhnro.matches("\\w{9,10}") == false && puhnro.isEmpty() && ok == true){
 			ok = false;
 			virhe = "Puhelinnumero on virheellinen!";
 			request.getSession().setAttribute("message4", virhe);
 			response.sendRedirect("vahvistaTilaus");
+			
+		}else if(osoite.isEmpty()){
+			virhe = "Osoite kenttä on pakollinen!";
+			ok = false;
+			request.getSession().setAttribute("message4", virhe);
+			response.sendRedirect("vahvistaTilaus");
+			
 		}else if(ok == true){
 			Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
 		

@@ -28,7 +28,9 @@ header, section, footer, aside, article, figure {
 
 .loginRow {border: none;}
 
-
+#viesti{color: #db1b51;
+	
+}
 
 .puhelin{diplay:none;}
 
