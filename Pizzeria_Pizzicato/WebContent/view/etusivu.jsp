@@ -143,7 +143,7 @@ media="only screen and (min-width: 771px)">
 			
 			<tr>	
 			<th><br>FANTASIAPIZZAT</th>
-			<th><br>HINTA</th>
+			<th><br></th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
