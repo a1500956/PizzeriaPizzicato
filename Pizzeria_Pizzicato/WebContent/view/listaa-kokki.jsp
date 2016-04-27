@@ -69,12 +69,14 @@ response.setIntHeader("Refresh", 5);
 
 </header>
 
-<div class="dropdown">
- 
-  <button onclick="myFunction()" class="button"> Näytä pizzat</button>
-  <div id="myDropdown" class="dropdown-content">	
-	
-	<h1>PIZZALISTA</h1>
+
+		
+		 <p>Pizzalista</p> 
+		<tr><td colspan="2"><input type="radio" name="lista" value="Piilossa" checked>  <label for="lista" style="color:black;">Piilossa</label>
+		<div><input type="radio" id="koti" name="lista" value="Näkyvissä" required><label for="lista" style="color:black;">Näkyvissä</label>
+		<br><br>
+		<div class="reveal-if-active">
+  		<h1>PIZZALISTA</h1>
 	
 		
 		
@@ -99,10 +101,43 @@ response.setIntHeader("Refresh", 5);
 					
 			</tr>
 			<% } %>
-		</table><br>
-		</div>
-		
-		</div>
+</table>		
+</div>
+</div>
+</table>		  
+  
+ 
+  
+
+<script>
+var FormStuff = {
+		  
+		  init: function() {
+		    this.applyConditionalRequired();
+		    this.bindUIActions();
+		  },
+		  
+		  bindUIActions: function() {
+		    $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
+		  },
+		  
+		  applyConditionalRequired: function() {
+		  	
+		    $(".require-if-active").each(function() {
+		      var el = $(this);
+		      if ($(el.data("require-pair")).is(":checked")) {
+		        el.prop("required", true);
+		      } else {
+		        el.prop("required", false);
+		      }
+		    });
+		    
+		  }
+		  
+		};
+
+		FormStuff.init();
+</script>
 		
 		<h1>TILAUKSET</h1>
 	

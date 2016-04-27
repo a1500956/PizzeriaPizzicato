@@ -146,8 +146,12 @@ media="only screen and (min-width: 771px)">
 			
 			<tr>	
 			<th><br>FANTASIAPIZZAT</th>
+<<<<<<< HEAD
 			<th><br>HINTA</th>
 			<th><br>LISÄTÄYTTEET</th>
+=======
+			<th><br></th>
+>>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				

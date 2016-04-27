@@ -79,7 +79,6 @@ for(Cookie cookie : cookies){
 
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <ul>
- <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  	<li style{text-align; right}>
  	<a href="/Pizzeria_Pizzicato/vahvistaTilaus">
  	<img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>
@@ -105,7 +104,7 @@ for(Cookie cookie : cookies){
   
     <section>
    
-    <span class="pizzalista">
+    <span class="pizzalista2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>	
 			<th>PIZZAT</th>
@@ -136,11 +135,7 @@ for(Cookie cookie : cookies){
 			</div></td></tr>
 			<% } %>
 			
-		</table><br>
-    </span>
-    
-    <span class="pizzalista">
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
+		
 		<tr>	
 			<th>FANTASIAPIZZAT</th>
 			<th>HINTA</th>

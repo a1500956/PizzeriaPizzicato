@@ -6,6 +6,10 @@
 @viewport           { width: auto; }
 
 
+.bookshakalaka{
+	hola amigos;
+}
+
 h1{color:#db1b51;
 	font-family: Georgia;
 	
@@ -28,7 +32,9 @@ header, section, footer, aside, article, figure {
 
 .loginRow {border: none;}
 
-
+#viesti{color: #db1b51;
+	
+}
 
 .puhelin{diplay:none;}
 

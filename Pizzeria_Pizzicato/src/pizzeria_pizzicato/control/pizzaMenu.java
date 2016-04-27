@@ -81,6 +81,8 @@ public class pizzaMenu extends HttpServlet {
 				session.setMaxInactiveInterval(60*60);
 			}
 			
+			session.removeAttribute("message4");
+			
 			request.setAttribute("pizzat", pizzaNakyy);
 			request.setAttribute("pizzaFantasia", pizzaFantasia);
 			request.setAttribute("juomat", juomaNakyy);

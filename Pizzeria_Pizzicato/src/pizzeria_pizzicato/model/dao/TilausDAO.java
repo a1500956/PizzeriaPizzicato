@@ -27,11 +27,12 @@ public class TilausDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-			String sqlInsert = "INSERT INTO Tilaus(tilaus_osoite, kayttaja_id, tilaus_puhnro) VALUES (?, ?, ?)";
+			String sqlInsert = "INSERT INTO Tilaus(tilaus_osoite, kayttaja_id, tilaus_puhnro, status_id) VALUES (?, ?, ?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
 			stmtInsert.setString(1, Tilaus.getOsoite());
 			stmtInsert.setInt(2, Tilaus.getKayttaja().getKayttaja_id());
 			stmtInsert.setString(3, Tilaus.getPuhnro());
+			stmtInsert.setInt(4, Tilaus.getStatusID());
 			
 
 			stmtInsert.executeUpdate();
