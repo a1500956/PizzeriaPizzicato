@@ -149,9 +149,9 @@ osoite = (String) session.getAttribute("osoite");
 		<br><br>
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
-  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %> required></p>
+  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" ></p>
   		<p style="color:white;">Sähköposti:
-  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
+  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" ></p><br>
   		</div><br>
   		  </div>
   </table>
@@ -174,6 +174,7 @@ var FormStuff = {
 		      var el = $(this);
 		      if ($(el.data("require-pair")).is(":checked")) {
 		        el.prop("required", true);
+		        <%if(osoite != null){ %> value="<%=osoite%>" <%} %> 
 		      } else {
 		        el.prop("required", false);
 		      }
