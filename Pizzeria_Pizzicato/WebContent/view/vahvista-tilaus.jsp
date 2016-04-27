@@ -83,6 +83,14 @@ String osoite=null;
 if(session.getAttribute("osoite") != null){
 osoite = (String) session.getAttribute("osoite");
 }
+String puhnro=null;
+if(session.getAttribute("puhnro") != null){
+puhnro = (String) session.getAttribute("puhnro");
+}
+String sposti=null;
+if(session.getAttribute("sposti") != null){
+sposti = (String) session.getAttribute("sposti");
+}
 %>
 
 	<body>
@@ -148,16 +156,16 @@ osoite = (String) session.getAttribute("osoite");
 		<tr><td style="text-align:right;">
 		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" <%if(eNimi != null){ %> value="<%=eNimi%>" <%} %> required></td></tr>
 		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" <%if(sNimi != null){ %> value="<%=sNimi%>" <%} %>  required></td></tr>
-		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" required></td></tr>
+		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" <%if(puhnro != null){ %> value="<%=puhnro%>" <%} %> required></td></tr>
 		 
 		<tr><td colspan="2"><input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
 		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
 		<br><br>
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
-  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %> required></p>
+  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %>></p>
   		<p style="color:white;">Sähköposti:
-  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
+  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}"  <%if(sposti != null){ %> value="<%=sposti%>" <%} %>></p><br>
   		</div><br>
   		  </div>
   </table>
@@ -176,12 +184,14 @@ var FormStuff = {
 		  
 		  applyConditionalRequired: function() {
 		  	
-		    $(".require-if-active").each(function() {
+		    $(".require-if-active1").each(function() {
+		    	
 		      var el = $(this);
 		      if ($(el.data("require-pair")).is(":checked")) {
 		        el.prop("required", true);
 		      } else {
 		        el.prop("required", false);
+		        el.prop("value=null")
 		      }
 		    });
 		    
