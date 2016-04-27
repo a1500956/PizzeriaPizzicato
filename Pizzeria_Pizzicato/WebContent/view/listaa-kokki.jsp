@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tilaus"%>
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
+<%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="java.text.NumberFormat" %>
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -112,7 +113,8 @@ response.setIntHeader("Refresh", 5);
 			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Aika</h4></td>
 			<td><h4>Status</h4></td>
-			<td><h4>Tuote</h4></td>		
+			<td><h4>Tuote</h4></td>
+			<td><h4>Täytteet</h4></td>			
 			<td><h4>Lukumäärä</h4></td>
 			<td><h4>Valkosipuli</h4></td>
 			<td><h4>Oregano</h4></td>		
@@ -127,6 +129,14 @@ response.setIntHeader("Refresh", 5);
 						<td><%=tilaukset.get(i).getAika()%></td>
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
+						<%Tuote t = tilaukset.get(i).getTilattuTuote(j).getTuote(); Pizza p = null;
+						if(Tuote.class.isAssignableFrom(p.getClass())){ %>
+							<%p = (Pizza) tilaukset.get(i).getTilattuTuote(j).getTuote();%>
+								<td><%for(int k = 0; k<p.getTaytteet().size(); k++){%>
+								<%=p.getTayte(k).getTayte_nimi()%> ,
+								</td>
+							<%} %>
+						<%}else{ %><td>asdf</td><%} %>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
 						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
 						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>

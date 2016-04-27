@@ -83,4 +83,12 @@ public class Pizza extends Tuote {
 		
 	}
 
+	public void addTaytteita(ArrayList<Tayte> taytteita) {
+		for (int i = 0; i < taytteita.size(); i++) {
+			addTayte(taytteita.get(i));
+			
+		}
+		
+	}
+
 }

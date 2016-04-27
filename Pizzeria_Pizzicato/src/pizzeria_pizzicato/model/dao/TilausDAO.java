@@ -9,9 +9,11 @@ import java.sql.Timestamp;
 
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Ostoskori;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 import pizzeria_pizzicato.model.Tuote;
+import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TilausDAO extends DataAccessObject {
@@ -36,10 +38,12 @@ public class TilausDAO extends DataAccessObject {
 			
 			//Valmistellaan tilattujen tuotteiden lisäys
 			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano) VALUES (?,?,?,?,?,?,?)";
+			String inserttaaLisataytteet = "INSERT INTO LisaTayte(tilaus_id, tilaus_rivi, tayte_id) VALUES(?,?,?);";
 			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
 			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttaja().getKayttaja_id());
 			
 			TilattuTuote TX;
+			Pizza p;
 			
 			for (int i = 0; i < ostoskori.getKoko(); i++) {
 					TX = ostoskori.getTuote(i);
@@ -52,7 +56,29 @@ public class TilausDAO extends DataAccessObject {
 					stmtInsert.setDouble(5, TX.getLkm());
 					stmtInsert.setInt(6, TX.getvSipuli());
 					stmtInsert.setInt(7, TX.getOregano());
-					stmtInsert.executeUpdate();	
+					stmtInsert.executeUpdate();
+					
+				
+				if(TX.getTuote() instanceof Pizza){
+					p = (Pizza) TX.getTuote();
+					
+					PizzaTayteDAO PTdao = new PizzaTayteDAO();
+					ArrayList<Tayte> alkupPizzanTaytteet = PTdao.haePizzanTaytteet(p.getId());
+					
+					for (int j = 0; j < p.getTaytteet().size(); j++) {
+						if(!alkupPizzanTaytteet.contains(p.getTaytteet().get(i))){
+							stmtInsert = connection.prepareStatement(inserttaaLisataytteet);
+							stmtInsert.setInt(1, tilauksenID);
+							stmtInsert.setInt(2, TX.getTilausRivi());
+							stmtInsert.setInt(3, p.getTayte(j).getTayte_id());
+							stmtInsert.executeUpdate();
+						}
+						
+					}
+					
+					
+				}
+					
 				}
 				
 					
@@ -411,7 +437,7 @@ public class TilausDAO extends DataAccessObject {
 			rs = stmtSelect.executeQuery(sqlSelect);
 
 			if (rs.next()) {
-			tilattuTuote = TuDAO.readTilatutTuotteet(rs);
+			tilattuTuote = TuDAO.readTilatutTuotteet(rs, TID);
 			tilatutTuotteet.add(tilattuTuote);
 			}
 			

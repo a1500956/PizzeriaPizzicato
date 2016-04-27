@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,6 +27,8 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 <jsp:useBean id="pizzaFantasia" type="java.util.ArrayList<Pizza> "
+scope="request" />
+<jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 
 <html>
@@ -144,11 +147,13 @@ media="only screen and (min-width: 771px)">
 			<tr>	
 			<th><br>FANTASIAPIZZAT</th>
 			<th><br>HINTA</th>
+			<th><br>LISÄTÄYTTEET</th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
 		</tr>
 			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
+			<%int taytemaara = i+2; %>
 			
 			<tr>
 				
@@ -160,14 +165,26 @@ media="only screen and (min-width: 771px)">
 				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Koriin">
+				<%int k=0; for(k=0; k<taytemaara; k++) {%>
+												<select name="lisatayte">
+												<option selected disabled>Valitse täyte <%=k+1%></option>
+													<%for(int l=0; l<kaikkitaytteet.size();l++){ %>
+														 <option value=<%=kaikkitaytteet.get(l).getTayte_id() %>><%=kaikkitaytteet.get(l).getTayte_nimi() %></option>
+													<%} %>
+												</select>
+												<%} %>
+												
+												 
 				</form></td>			
 			</tr>
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
+
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
-												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=i+2%> kpl valitsemaasi täytettä.
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + 3 kpl valitsemaasi täytettä.
 												 
 			</div></td></tr>
+			
 			<% } %>
 			
 		</table><br>

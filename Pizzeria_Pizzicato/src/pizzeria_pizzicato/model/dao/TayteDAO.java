@@ -185,5 +185,64 @@ public class TayteDAO extends DataAccessObject {
 		
 		
 	}
+	
+	public ArrayList<Tayte> haeLisataytteet(int tilausID, int tilausrivi){
+		ArrayList<Integer> lisatayteIDt = new ArrayList<Integer>();
+		ArrayList<Tayte> palautettava = new ArrayList<Tayte>();
+		Tayte tayte;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		String sqlSelect;
+		
+		try {
+	
+			conn = getConnection();
+			
+			sqlSelect = "SELECT tayte_id FROM LisaTayte WHERE tilaus_id=? AND tilaus_rivi=?;";
+			stmt = conn.prepareStatement(sqlSelect);
+			stmt.setInt(1, tilausID);
+			stmt.setInt(2, tilausrivi);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				lisatayteIDt.add(readLisatayte(rs));
+			}
+			
+			
+			for (int i = 0; i < lisatayteIDt.size(); i++) {
+				tayte = getTayte(lisatayteIDt.get(i));	
+				
+			}
+
+			rs = stmt.executeQuery(sqlSelect);
+
+			while (rs.next()) {
+				tayte = readTayte(rs);
+
+				palautettava.add(tayte);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+
+		
+		
+		return palautettava;
+		
+	}
+	
+	public int readLisatayte(ResultSet rs){
+		int palaute = -1;
+		try {
+			palaute = rs.getInt("tayte_id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return palaute;
+	}
 
 }

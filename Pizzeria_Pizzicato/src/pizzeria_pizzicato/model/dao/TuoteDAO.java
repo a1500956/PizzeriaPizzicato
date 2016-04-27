@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import pizzeria_pizzicato.control.VertailijaTuote;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
@@ -86,7 +87,7 @@ public class TuoteDAO extends DataAccessObject{
 		rs = stmt.executeQuery();
 		
 		while (rs.next()) {
-			TilattuTuote tilattuTuote = readTilatutTuotteet(rs);
+			TilattuTuote tilattuTuote = readTilatutTuotteet(rs, TilausID);
 			tilaukset.add(tilattuTuote);
 		}
 		
@@ -104,7 +105,7 @@ public class TuoteDAO extends DataAccessObject{
 	
 	
 	
-	public TilattuTuote readTilatutTuotteet(ResultSet rs) {
+	public TilattuTuote readTilatutTuotteet(ResultSet rs, int tilaus_id) {
 		
 		try {
 			
@@ -117,12 +118,19 @@ public class TuoteDAO extends DataAccessObject{
 			int TID = rs.getInt("tuote_id");
 			
 			Tuote tuote = haeTuoteIDnAvulla(TID);
+			if(tuote instanceof Pizza){
+				Pizza p = (Pizza) tuote;
+				TayteDAO TDAO = new TayteDAO();
+				p.addTaytteita(TDAO.haeLisataytteet(tilaus_id, tilausrivi));;
+				tuote = p;
+			}
 
 			return new TilattuTuote(tilausrivi, lkm, oregano, valkosipuli, tuote ,hinta);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	
 	
 	public Tuote readTuote(ResultSet rs) {
