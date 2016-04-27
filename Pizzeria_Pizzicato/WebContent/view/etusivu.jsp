@@ -36,9 +36,16 @@ scope="request" />
 <title>Pizzeria Pizzicato</title>
 
 <link href="puhelin.css" rel="stylesheet" type="text/css"
-media="only screen and (min-width: 0px)
-and (max-width: 770px)" >
+media="only screen and (min-device-width: 0px)
+and (max-device-width: 770px)" >
 <style type="text/css"></style>
+
+<link href="tabletti.css" rel="stylesheet" type="text/css"
+media="only screen and (min-device-width: 0px)
+and (max-device-width: 770px)" >
+<style type="text/css"></style>
+
+
 
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 771px)">
