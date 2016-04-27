@@ -91,6 +91,7 @@ public class TilausDAO extends DataAccessObject {
 			close(stmtUpdate, connection); 
 		}
 	}
+	
 	public void updateTilausStatus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;
 		
@@ -116,6 +117,53 @@ public class TilausDAO extends DataAccessObject {
 		} finally {
 			close(stmtUpdate, connection); 
 		}
+	}
+	
+	public ArrayList<TilattuTuote> haeTilastot() throws SQLException {
+		
+		
+			Connection connection = null;
+		
+			PreparedStatement stmtSelect = null;
+			ArrayList<TilattuTuote> lista = new ArrayList<TilattuTuote>(); 
+			ResultSet rs = null;
+		try {
+			connection = getConnection();
+			
+			String sqlSelect = "SELECT tu.tuote_nimi, SUM(tx.lkm) AS 'lkm', SUM(tu.tuote_hinta) AS 'myyntisumma' FROM Tilaus ti JOIN TilattuTuote tx ON ti.tilaus_id = tx.tilaus_id JOIN Tuote tu ON tu.tuote_id=tx.tuote_id WHERE ti.status_id>=5 GROUP BY tu.tuote_nimi ORDER BY lkm DESC;";
+			stmtSelect = connection.prepareStatement(sqlSelect);
+			
+			rs = stmtSelect.executeQuery(sqlSelect);
+			
+			while (rs.next()) {
+				TilattuTuote tilattuTuote = readTilasto(rs);
+				lista.add(tilattuTuote);
+			}
+			
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtSelect, connection); 
+		}
+		
+		return lista;
+	}
+	
+	public TilattuTuote readTilasto(ResultSet rs) throws SQLException {
+		
+		try {
+			Tuote Tu = new Tuote();
+			String nimi = rs.getString("tuote_nimi");
+			Tu.setNimi(nimi);
+			int lkm = rs.getInt("lkm");
+			double myyntisumma = rs.getDouble("myyntisumma");
+			return new TilattuTuote(0, lkm, 0, 0,Tu, myyntisumma);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 	
 	

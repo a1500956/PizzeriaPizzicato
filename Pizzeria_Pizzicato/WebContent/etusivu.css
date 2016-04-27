@@ -80,6 +80,19 @@ h3{color:white;
 
 
 .taytteet{width:90%;
+		margin-right:140px;
+	
+}
+
+.taytteet2{width:100%;
+		
+	
+	
+}
+
+.nimet{width:100%;
+		margin-right:595px;
+		
 	
 }
 
@@ -227,7 +240,12 @@ table { width:auto, text-aling_ center;
 }
 	
 }
-.pizzalista{ text-align:center; padding-bottom: 30%;
+.pizzalista{ text-align:center; padding-bottom: 30%; float:left; margin-left:28%;
+			
+}
+
+.pizzalista2{ text-align:center;
+			
 }
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
@@ -271,13 +289,20 @@ footer {
 
 .listaa-pizzat{
 	width:80%;
-	padding-left: 5%;
+	margin-left:15%;
 	
 	
 }
 
 .listaa-pizzat2{width:30%;
 			
+			
+}
+
+.listaa-pizzat3{width:30%;
+				margin-left:5%;
+				clear:right;
+	
 }
 
 .tilauslista{text-align: right;

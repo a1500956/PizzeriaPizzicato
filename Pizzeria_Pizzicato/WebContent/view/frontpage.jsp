@@ -68,6 +68,7 @@ and (max-width: 770px)">
     <ul><li>	<input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
  	<li>	<input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
        	 	 	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
+  </form>
  </button>
 </ul>
   </div>
@@ -88,7 +89,7 @@ and (max-width: 770px)">
     
     <section>
    
-    <span class="pizzalista">
+    <span class="pizzalista2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			
@@ -120,14 +121,11 @@ and (max-width: 770px)">
 												 
 			</div></td></tr>
 			<% } %>
-		</table><br>
-    </span>
-    
-    <span class="pizzalista">
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>	
-			<th>FANTASIAPIZZAS</th>
-			<th>PRICE</th>
+		
+		<tr>
+		
+			<th><br>FANTASIAPIZZAS</th>
+			<th><br>PRICE</th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
@@ -146,7 +144,7 @@ and (max-width: 770px)">
 				<input type="submit" value="Select">
 				</form></td>			
 			</tr>
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
+			<tr><td><div class="taytteet2"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%> + <%=i+2%> toppings of your choice.
