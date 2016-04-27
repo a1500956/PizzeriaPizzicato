@@ -20,13 +20,9 @@ public class Ostoskori {
 
 	public void addPizza(Pizza pizza, int oregano, int VSipuli){ // Lisätään ostoskoriin Pizza
 		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
-		Tuote t = new Tuote(); //Luodaan tuote
 		
 		if(pizza != null){ //Jos tullut pizza ei ole tyhjä luodaan liisä TilattuTuote olio
-			t.setId(pizza.getId());
-			t.setNimi(pizza.getNimi());
-			t.setHinta(pizza.getHinta());
-			tuote.setTuote(t);
+			tuote.setTuote(pizza);
 			tuote.setOregano(oregano);
 			tuote.setvSipuli(VSipuli);
 			tuote.setHinta(tuote.getTuote().getHinta());
@@ -43,9 +39,13 @@ public class Ostoskori {
 		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
 			ArrayList<TilattuTuote> kori = this.ostoskori;
 			for(int i = 0; i < kori.size();i++){
-				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
-				   && kori.get(i).getOregano() == tuote.getOregano() 
-				   && kori.get(i).getvSipuli() == tuote.getvSipuli()){
+				if(kori.get(i).getTuote() instanceof Pizza){
+					Pizza p = (Pizza) kori.get(i).getTuote(); // haetaan korista tuote pizzaolioksi
+					Pizza tp = (Pizza) tuote.getTuote(); // tehdään tulleesta tuotteesta pizza olio
+					if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
+					   && kori.get(i).getOregano() == tuote.getOregano() 
+					   && kori.get(i).getvSipuli() == tuote.getvSipuli()
+					   && p.getIDT().equals(tp.getIDT()) == true){ // katsotaan ovatko tuotteet samat
 					int luku = kori.get(i).getLkm();
 					luku += 1;
 					kori.get(i).setLkm(luku);
@@ -54,6 +54,7 @@ public class Ostoskori {
 					break; //ja lopetetaan for loop
 				}else{
 					loytyy = false; //jos tuotetta ei löytynyt pidetään loytyy falsena
+				}
 				}
 			}
 		}
@@ -64,35 +65,21 @@ public class Ostoskori {
 		
 	}
 	
-	public void removeTuote(int id, int oregano, int VSipuli){
-		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
-		Tuote t = new Tuote(); //Luodaan tuote
+	public void removeTuote(int paikka){
+		int p = paikka;
 		
-		if(id > 0){ //Jos tullut pizza ei ole tyhjä luodaan liisä TilattuTuote olio
-			t.setId(id);
-			tuote.setTuote(t);
-			tuote.setOregano(oregano);
-			tuote.setvSipuli(VSipuli);
-			tuote.setHinta(tuote.getTuote().getHinta());
-			tuote.setLkm(1);
-		}
-		if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
-			ArrayList<TilattuTuote> kori = this.ostoskori;
-			for(int i = 0; i < kori.size();i++){
-				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
-				   && kori.get(i).getOregano() == tuote.getOregano() 
-				   && kori.get(i).getvSipuli() == tuote.getvSipuli()){
-					int luku = kori.get(i).getLkm();
-					if(luku > 1) { // katsotaan tuotteen lkm
-						luku -= 1;	// jos tuotetta on enemmän kuin 1 korissa vähennetään lukumäärää
-						kori.get(i).setLkm(luku);
-					}else{	// jos tuotteita on 1 poistetaan tuote korista
-						kori.remove(i);
-						this.koko --;
-					}
-					this.ostoskori = kori; //viedään muutettu tieto koriin
-					break; //ja lopetetaan for loop
+		if(p >= 0){ //Jos tullut id ei ole alle 0 mennään eteenpäin
+			if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
+				ArrayList<TilattuTuote> kori = this.ostoskori;
+				int luku = kori.get(p).getLkm();
+				if(luku > 1) { // katsotaan tuotteen lkm
+					luku -= 1;	// jos tuotetta on enemmän kuin 1 korissa vähennetään lukumäärää
+					kori.get(p).setLkm(luku);
+				}else{	// jos tuotteita on 1 poistetaan tuote korista
+					kori.remove(p);
+					this.koko --;
 				}
+					this.ostoskori = kori; //viedään muutettu tieto koriin
 			}
 		}
 		if(this.ostoskori.isEmpty()){
@@ -103,14 +90,10 @@ public class Ostoskori {
 	
 	public void addJuoma(Juoma juoma){
 		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
-		Tuote t = new Tuote(); //Luodaan tuote
 		boolean loytyy = false;
 		
 		if(juoma != null){ //Jos tullut juoma ei ole tyhjä luodaan TilattuTuote olio
-			t.setId(juoma.getId());
-			t.setNimi(juoma.getNimi());
-			t.setHinta(juoma.getHinta());
-			tuote.setTuote(t);
+			tuote.setTuote(juoma);
 			tuote.setHinta(tuote.getTuote().getHinta());
 			tuote.setLkm(1);
 		}
