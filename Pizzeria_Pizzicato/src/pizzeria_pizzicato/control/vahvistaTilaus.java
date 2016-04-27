@@ -81,6 +81,12 @@ public class vahvistaTilaus extends HttpServlet {
 		session.setAttribute("sNimi", snimi);
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
+		String toimitus = request.getParameter("toimitustapa");
+		System.out.println("Toimitus! " + toimitus);
+		if(toimitus.equals("nouto")){
+			osoite = toimitus;
+		}
+		
 		
 		if(enimi.isEmpty() || snimi.isEmpty()){
 			virhe = "Nimi kentät ovat pakollisia!";
@@ -89,7 +95,7 @@ public class vahvistaTilaus extends HttpServlet {
 			response.sendRedirect("vahvistaTilaus");
 		
 		
-		}else if(osoite.isEmpty()){
+		}else if(osoite.isEmpty() && toimitus.equals("kotiinkuljetus")){
 		virhe = "Osoite kenttä on pakollinen!";
 		ok = false;
 		request.getSession().setAttribute("message4", virhe);
@@ -110,6 +116,11 @@ public class vahvistaTilaus extends HttpServlet {
 		
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
+		if(toimitus.equals("nouto")){
+			T.setStatusID(10);
+		}else if(toimitus.equals("kotiinkuljetus")){
+			T.setStatusID(1);
+		}
 		
 		try {
 			TDAO.addTilaus(T, tuotteet);
