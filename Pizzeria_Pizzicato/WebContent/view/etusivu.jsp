@@ -110,7 +110,7 @@ media="only screen and (min-width: 771px)">
   
     <section>
    
-    <span class="pizzalista">
+    <span class="pizzalista2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>	
 			<th>PIZZAT</th>

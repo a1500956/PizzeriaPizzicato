@@ -89,7 +89,7 @@ and (max-width: 770px)">
     
     <section>
    
-    <span class="pizzalista">
+    <span class="pizzalista2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
 			

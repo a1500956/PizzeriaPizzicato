@@ -240,7 +240,11 @@ table { width:auto, text-aling_ center;
 }
 	
 }
-.pizzalista{ text-align:center; padding-bottom: 30%;
+.pizzalista{ text-align:center; padding-bottom: 30%; float:left; margin-left:28%;
+			
+}
+
+.pizzalista2{ text-align:center;
 			
 }
 
@@ -285,7 +289,7 @@ footer {
 
 .listaa-pizzat{
 	width:80%;
-	padding-left: 5%;
+	margin-left:15%;
 	
 	
 }
@@ -293,6 +297,12 @@ footer {
 .listaa-pizzat2{width:30%;
 			
 			
+}
+
+.listaa-pizzat3{width:30%;
+				margin-left:5%;
+				clear:right;
+	
 }
 
 .tilauslista{text-align: right;
