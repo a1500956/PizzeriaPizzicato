@@ -82,7 +82,6 @@ public class vahvistaTilaus extends HttpServlet {
 		String osoite = request.getParameter("osoite");
 		String puhnro = request.getParameter("puhnro");
 		String toimitus = request.getParameter("toimitustapa");
-		System.out.println("Toimitus! " + toimitus);
 		if(toimitus.equals("nouto")){
 			osoite = toimitus;
 		}

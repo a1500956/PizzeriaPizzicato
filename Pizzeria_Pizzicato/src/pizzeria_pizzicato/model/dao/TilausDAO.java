@@ -22,6 +22,7 @@ public class TilausDAO extends DataAccessObject {
 
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
+		TuoteDAO tdao = new TuoteDAO();
 
 		try {
 
@@ -47,7 +48,7 @@ public class TilausDAO extends DataAccessObject {
 			Pizza p;
 			
 			for (int i = 0; i < ostoskori.getKoko(); i++) {
-					TX = ostoskori.getTuote(i);
+					TX = ostoskori.getOstoskori().get(i);
 					stmtInsert = connection.prepareStatement(sqlInsert2);
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
 					stmtInsert.setInt(1, tilauksenID);
@@ -58,9 +59,9 @@ public class TilausDAO extends DataAccessObject {
 					stmtInsert.setInt(6, TX.getvSipuli());
 					stmtInsert.setInt(7, TX.getOregano());
 					stmtInsert.executeUpdate();
+
 					
-				
-				if(TX.getTuote() instanceof Pizza){
+				if(tdao.pizzaVaiJuoma(TX.getTuote().getId())){
 					p = (Pizza) TX.getTuote();
 					
 					PizzaTayteDAO PTdao = new PizzaTayteDAO();

@@ -199,10 +199,10 @@ public class TayteDAO extends DataAccessObject {
 	
 			conn = getConnection();
 			
-			sqlSelect = "SELECT tayte_id FROM LisaTayte WHERE tilaus_id=? AND tilaus_rivi=?;";
+			sqlSelect = "SELECT tayte_id FROM LisaTayte WHERE tilaus_id="+tilausID+" AND tilaus_rivi="+tilausrivi+";";
 			stmt = conn.prepareStatement(sqlSelect);
-			stmt.setInt(1, tilausID);
-			stmt.setInt(2, tilausrivi);
+			//stmt.setInt(1, tilausID);
+			//stmt.setInt(2, tilausrivi);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()){

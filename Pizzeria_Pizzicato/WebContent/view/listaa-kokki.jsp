@@ -6,7 +6,10 @@
 <%@ page import="pizzeria_pizzicato.model.Tilaus"%>
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="pizzeria_pizzicato.model.dao.TayteDAO"%>
+<%@ page import="pizzeria_pizzicato.model.dao.TuoteDAO"%>
 <%@ page import="java.text.NumberFormat" %>
+<%@page import="java.util.ArrayList" %>
 <%
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -164,11 +167,12 @@ var FormStuff = {
 						<td><%=tilaukset.get(i).getAika()%></td>
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
-						<%Tuote t = tilaukset.get(i).getTilattuTuote(j).getTuote(); Pizza p = null;
-						if(Tuote.class.isAssignableFrom(p.getClass())){ %>
-							<%p = (Pizza) tilaukset.get(i).getTilattuTuote(j).getTuote();%>
-								<td><%for(int k = 0; k<p.getTaytteet().size(); k++){%>
-								<%=p.getTayte(k).getTayte_nimi()%> ,
+						<%Tuote t = tilaukset.get(i).getTilattuTuote(j).getTuote(); Pizza p = null; TayteDAO TDAO= new TayteDAO(); TuoteDAO TUDAO= new TuoteDAO();
+						if(TUDAO.pizzaVaiJuoma(t.getId())){ %>
+								<td><%
+								ArrayList<Tayte> lisataytteet = TDAO.haeLisataytteet(tilaukset.get(i).getId(), tilaukset.get(i).getTilattuTuote(j).getTilausRivi());
+								for(int k = 0; k<lisataytteet.size(); k++){%>
+								<%=lisataytteet.get(k).getTayte_nimi()%> ,
 								</td>
 							<%} %>
 						<%}else{ %><td>asdf</td><%} %>

@@ -131,6 +131,42 @@ public class TuoteDAO extends DataAccessObject{
 		}
 	}
 	
+public boolean pizzaVaiJuoma(int tuoteID) {
+		
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			ArrayList<Tuote> pizzalista = new ArrayList<Tuote>();
+			boolean palaute = false;
+	
+		try {
+			//hakee, lukee ja pizzat pizzat
+			conn = getConnection();
+			String sqlSelect = "SELECT tu.tuote_id, tu.tuote_nimi, tu.tuote_hinta FROM Tuote tu JOIN Pizza p ON p.tuote_id = tu.tuote_id;";
+			stmt = conn.prepareStatement(sqlSelect);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Tuote asd = readTuote(rs);	
+				pizzalista.add(asd);
+			}
+			
+			//vertaa id-lukuja
+			for (int i = 0; i < pizzalista.size(); i++) {
+				if(pizzalista.get(i).getId()==tuoteID){
+					palaute=true;
+				}
+			}
+			
+			return palaute;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			close(stmt, conn);
+		}
+	}
+	
 	
 	
 	public Tuote readTuote(ResultSet rs) {
