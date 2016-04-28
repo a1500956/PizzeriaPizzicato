@@ -152,7 +152,7 @@ var FormStuff = {
 			<td><h4>Aika</h4></td>
 			<td><h4>Status</h4></td>
 			<td><h4>Tuote</h4></td>
-			<td><h4>Täytteet</h4></td>			
+			<td><h4>Lisätäytteet</h4></td>			
 			<td><h4>Lukumäärä</h4></td>
 			<td><h4>Valkosipuli</h4></td>
 			<td><h4>Oregano</h4></td>		
@@ -167,15 +167,21 @@ var FormStuff = {
 						<td><%=tilaukset.get(i).getAika()%></td>
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
-						<%Tuote t = tilaukset.get(i).getTilattuTuote(j).getTuote(); Pizza p = null; TayteDAO TDAO= new TayteDAO(); TuoteDAO TUDAO= new TuoteDAO();
-						if(TUDAO.pizzaVaiJuoma(t.getId())){ %>
-								<td><%
-								ArrayList<Tayte> lisataytteet = TDAO.haeLisataytteet(tilaukset.get(i).getId(), tilaukset.get(i).getTilattuTuote(j).getTilausRivi());
-								for(int k = 0; k<lisataytteet.size(); k++){%>
-								<%=lisataytteet.get(k).getTayte_nimi()%> ,
-								</td>
+						<%TuoteDAO TUDAO= new TuoteDAO();
+						System.out.print(tilaukset.get(i).getTilattuTuote(j).getLisataytteet()+"kokkisivu");
+						if(TUDAO.pizzaVaiJuoma(tilaukset.get(i).getTilattuTuote(j).getTuote().getId())){
+							if(tilaukset.get(i).getTilattuTuote(j).getLisataytteet().isEmpty()){
+								 %><td></td><%
+							}else{
+								
+								%><td><% 
+								for(int k=0; k<tilaukset.get(i).getTilattuTuote(j).getLisataytteet().size(); k++){%>
+									<%=tilaukset.get(i).getTilattuTuote(j).getLisatayte(k).getTayte_nimi()%>,
+							<% }%></td>
 							<%} %>
-						<%}else{ %><td>asdf</td><%} %>
+							
+							
+						<%}else{ %><td></td><%} %>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
 						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
 						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>

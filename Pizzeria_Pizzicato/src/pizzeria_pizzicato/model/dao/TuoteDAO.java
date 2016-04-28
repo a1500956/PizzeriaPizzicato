@@ -109,7 +109,7 @@ public class TuoteDAO extends DataAccessObject{
 		
 		try {
 			
-				
+			ArrayList<Tayte> lisataytteita = new ArrayList<Tayte>();
 			int tilausrivi = rs.getInt("tilaus_rivi");
 			int lkm = rs.getInt("lkm");
 			int oregano = rs.getInt("oregano");
@@ -118,14 +118,13 @@ public class TuoteDAO extends DataAccessObject{
 			int TID = rs.getInt("tuote_id");
 			
 			Tuote tuote = haeTuoteIDnAvulla(TID);
-			if(tuote instanceof Pizza){
-				Pizza p = (Pizza) tuote;
+			
+			if(pizzaVaiJuoma(TID)){
 				TayteDAO TDAO = new TayteDAO();
-				p.addTaytteita(TDAO.haeLisataytteet(tilaus_id, tilausrivi));;
-				tuote = p;
+				lisataytteita.addAll(TDAO.haeLisataytteet(tilaus_id, tilausrivi));
 			}
 
-			return new TilattuTuote(tilausrivi, lkm, oregano, valkosipuli, tuote ,hinta);
+			return new TilattuTuote(tilausrivi, lkm, oregano, valkosipuli, tuote ,hinta, lisataytteita);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

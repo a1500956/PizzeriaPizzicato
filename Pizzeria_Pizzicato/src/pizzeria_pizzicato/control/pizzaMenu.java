@@ -121,8 +121,11 @@ public class pizzaMenu extends HttpServlet {
 				pizza = pizzaLista.get(i);
 			}
 		}
-		for(String s:lisatayte){
-			pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
+		
+		if(lisatayte!=null){
+			for(String s:lisatayte){
+				pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
+			}
 		}
 		
 		HttpSession session = request.getSession(); //haetaan session

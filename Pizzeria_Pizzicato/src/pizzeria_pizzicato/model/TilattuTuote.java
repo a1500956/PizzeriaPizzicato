@@ -7,6 +7,7 @@ public class TilattuTuote {
 	private int tilausRivi, lkm, oregano, vSipuli;
 	private Tuote tuote;
 	private double hinta;
+	private ArrayList<Tayte> lisataytteet;
 	
 	
 	
@@ -17,7 +18,7 @@ public class TilattuTuote {
 
 
 	public TilattuTuote(int tilausRivi, int lkm, int oregano, int vSipuli,
-			Tuote tuote, double hinta) {
+			Tuote tuote, double hinta, ArrayList<Tayte> lisataytteet) {
 		super();
 		this.tilausRivi = tilausRivi;
 		this.lkm = lkm;
@@ -25,6 +26,7 @@ public class TilattuTuote {
 		this.vSipuli = vSipuli;
 		this.tuote = tuote;
 		this.hinta = hinta;
+		this.lisataytteet=lisataytteet;
 	}
 
 
@@ -86,6 +88,23 @@ public class TilattuTuote {
 	public void setHinta(double hinta) {
 		this.hinta = hinta;
 	}
+
+	
+
+	public ArrayList<Tayte> getLisataytteet() {
+		return lisataytteet;
+	}
+	
+	public Tayte getLisatayte(int x) {
+		return this.lisataytteet.get(x);
+	}
+
+
+	public void setLisataytteet(ArrayList<Tayte> lisatayte) {
+		this.lisataytteet = lisatayte;
+	}
+	
+	
 
 
 	@Override

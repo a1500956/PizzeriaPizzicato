@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
@@ -187,9 +186,7 @@ public class TayteDAO extends DataAccessObject {
 	}
 	
 	public ArrayList<Tayte> haeLisataytteet(int tilausID, int tilausrivi){
-		ArrayList<Integer> lisatayteIDt = new ArrayList<Integer>();
 		ArrayList<Tayte> palautettava = new ArrayList<Tayte>();
-		Tayte tayte;
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		Connection conn = null;
@@ -199,29 +196,16 @@ public class TayteDAO extends DataAccessObject {
 	
 			conn = getConnection();
 			
-			sqlSelect = "SELECT tayte_id FROM LisaTayte WHERE tilaus_id="+tilausID+" AND tilaus_rivi="+tilausrivi+";";
+			sqlSelect = "SELECT lt.tayte_id, ta.tayte_nimi, ta.tayte_hinta, ta.tayte_nimi_en FROM LisaTayte lt JOIN Tayte ta ON lt.tayte_id=ta.tayte_id WHERE tilaus_id="+tilausID+" AND tilaus_rivi="+tilausrivi+";";
 			stmt = conn.prepareStatement(sqlSelect);
 			//stmt.setInt(1, tilausID);
 			//stmt.setInt(2, tilausrivi);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()){
-				lisatayteIDt.add(readLisatayte(rs));
-			}
-			
-			
-			for (int i = 0; i < lisatayteIDt.size(); i++) {
-				tayte = getTayte(lisatayteIDt.get(i));	
-				
+				palautettava.add(readTayte(rs));
 			}
 
-			rs = stmt.executeQuery(sqlSelect);
-
-			while (rs.next()) {
-				tayte = readTayte(rs);
-
-				palautettava.add(tayte);
-			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -234,15 +218,5 @@ public class TayteDAO extends DataAccessObject {
 		
 	}
 	
-	public int readLisatayte(ResultSet rs){
-		int palaute = -1;
-		try {
-			palaute = rs.getInt("tayte_id");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return palaute;
-	}
 
 }
