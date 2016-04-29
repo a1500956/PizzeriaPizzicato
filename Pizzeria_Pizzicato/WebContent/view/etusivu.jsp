@@ -171,13 +171,25 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
-				<form method="post">
+				
+				<form class="mauste2" method="post">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Koriin">
+				</form></td>
+				</tr>
+				
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
+
+												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
+												<%  }%>
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + 3 kpl valitsemaasi täytettä. <br>
+												 
+		
+				
 				<%int k=0; for(k=0; k<taytemaara; k++) {%>
-												<select name="lisatayte">
+												<select class="lisatayteValikko" name="lisatayte">
 												<option selected disabled>Valitse täyte <%=k+1%></option>
 													<%for(int l=0; l<kaikkitaytteet.size();l++){ %>
 														 <option value=<%=kaikkitaytteet.get(l).getTayte_id() %>><%=kaikkitaytteet.get(l).getTayte_nimi() %></option>
@@ -186,15 +198,8 @@ media="only screen and (min-width: 771px)">
 												<%} %>
 												
 												 
-				</form></td>			
-			</tr>
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
-
-												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
-												<%  }%>
-												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + 3 kpl valitsemaasi täytettä.
-												 
-			</div></td></tr>
+				
+					</div></td></tr>
 			
 			<% } %>
 			

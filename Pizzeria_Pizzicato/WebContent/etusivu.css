@@ -96,7 +96,12 @@ h3{color:white;
 		
 }
 
-.mauste { size: 20%;}
+.mauste { size: 20%; position: right;}
+ 
+ //*
+.mauste2 { text-align: right; margin-right: -50px; margin-bottomo: 40px;} *//
+
+.lisatayteValikko{align: inline-block; margin-right: 200px; margin-top: 150px; }
 
 .nimet{width:100%;
 		margin-right:595px;
@@ -254,7 +259,7 @@ table { width:auto, text-aling_ center;
 }
 
 
-.pizzalista{ text-align:center; padding-bottom: 30%; float:left; margin-left:28%;
+.pizzalista{ text-align:center; padding-bottom: 30%; float:left; margin-left:28%; margin-right: 5%;
 			
 }
 
