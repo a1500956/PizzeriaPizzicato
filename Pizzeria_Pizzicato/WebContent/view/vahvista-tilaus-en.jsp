@@ -107,14 +107,14 @@ sposti = (String) session.getAttribute("sposti");
           <% if (user!=null){%>
   <form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, , you are signed in.</h3><input type="submit" value="Uloskirjaus" >
+      <h3><%=userName %>, you are signed in.</h3><input type="submit" value="Sign out" >
 
       </div>
     </form> <% }else{%> 
     <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn"> Sign in</button>
   <div id="myDropdown" class="dropdown-content">
-  <form action="kirjautuminen" method="post">
+  <form action="kirjautuminenEN" method="post">
     <ul>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;

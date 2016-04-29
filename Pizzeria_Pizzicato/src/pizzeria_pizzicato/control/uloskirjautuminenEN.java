@@ -34,7 +34,7 @@ public class uloskirjautuminenEN extends HttpServlet {
             session.invalidate();
         }
        
-        response.sendRedirect("pizzaMenuEng");
+        response.sendRedirect("pizzaMenuEn");
     }
  
 }
