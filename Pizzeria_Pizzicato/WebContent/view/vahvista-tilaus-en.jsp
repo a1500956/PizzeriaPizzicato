@@ -97,7 +97,7 @@ sposti = (String) session.getAttribute("sposti");
 	
 	<div class="container">
 <nav class=isoruutu>
-<img src="Kuvia/pizzamies.png" id="logo" />
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
  <h4>Pizzeria Pizzicato located in Meilahti, Helsinki.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/vahvistaTilaus"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>

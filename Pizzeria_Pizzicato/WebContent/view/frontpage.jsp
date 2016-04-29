@@ -72,7 +72,7 @@ media="only screen and (min-width: 771px)">
 		<body>
 	<div class="container">
 <nav class=isoruutu>
-<img src="Kuvia/pizzamies.png" id="logo" />
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
  <h4 class="esittely">Pizzeria Pizzicato is located in Meilahti, Helsinki</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>

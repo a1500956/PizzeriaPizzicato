@@ -68,8 +68,7 @@ for(Cookie cookie : cookies){
 					value="0"> Ei</td>
 			</tr>
 			<tr>
-				<td>Täytteet:</td>
-				<td>
+				<td><br><p>Täytteet:</p><div class="taytelista">
 				<%for(int i = 0; i<kaikkitaytteet.size(); i++){ %>
 				<input type="checkbox" name="tayte" value="<%=kaikkitaytteet.get(i).getTayte_id()%>" /><%=kaikkitaytteet.get(i).getTayte_nimi()%><br />	
 				<%}%>

@@ -77,7 +77,7 @@ for(Cookie cookie : cookies){
 
 	<div class="container">
 <nav class=isoruutu>
-<img src="Kuvia/pizzamies.png" id="logo" />
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
  <h4 class="esittely">Pizzeria Pizzicato is located in Meilahti, Helsinki</h4> 
 
    <a href="/Pizzeria_Pizzicato/kirjautuminenOk"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
