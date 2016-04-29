@@ -163,8 +163,9 @@ public class PizzaDAO extends DataAccessObject {
 		Collections.sort(pizzat, new VertailijaTuote());
 		return pizzat;
 	}
+	
 
-	public Pizza readPizza(ResultSet rs) {
+	private Pizza readPizza(ResultSet rs) {
 
 		try {
 
@@ -207,7 +208,7 @@ public class PizzaDAO extends DataAccessObject {
 
 	}
 
-	public int readId(ResultSet rs) {
+	private int readId(ResultSet rs) {
 		try {
 			return rs.getInt("tuote_id");
 		} catch (SQLException e) {
@@ -236,6 +237,33 @@ public class PizzaDAO extends DataAccessObject {
 		}
 
 	}
+	
+	public ArrayList<Tayte> haePizzanTaytteet(int id){
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sqlSelect = null;
+		ArrayList<Tayte> pizzanTaytteet = new ArrayList<Tayte>();
+		Tayte t;
+		try {
+			conn= getConnection();
+			sqlSelect="SELECT ta.tayte_id, ta.tayte_nimi, ta.tayte_hinta, ta.tayte_nimi_en FROM PizzaTayte pt JOIN Tayte ta ON ta.tayte_id = pt.tayte_id WHERE pt.tuote_id = ?;";
+			stmt = conn.prepareStatement(sqlSelect);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				t = readTayte(rs);
+				pizzanTaytteet.add(t);
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return pizzanTaytteet;
+		
+	}
 
 	public String readNimi(ResultSet rs) {
 		try {
@@ -245,7 +273,7 @@ public class PizzaDAO extends DataAccessObject {
 		}
 	}
 	
-	public Tayte readTayte(ResultSet rs) {
+	private Tayte readTayte(ResultSet rs) {
 
 		try {
 
