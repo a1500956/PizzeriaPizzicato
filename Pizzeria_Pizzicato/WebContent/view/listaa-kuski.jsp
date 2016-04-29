@@ -5,6 +5,7 @@
 
 <%@ page import="pizzeria_pizzicato.model.Tilaus"%>
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
 <%@ page import="java.text.NumberFormat" %>
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -80,7 +81,7 @@ response.setIntHeader("Refresh", 5);
 			<td><h4>Tuote</h4></td>	
 			<td><h4>Lukumäärä</h4></td>	
 			<td><h4>Valkosipuli</h4></td>
-			<td><h4>Oregano</h4></td>	
+			<td><h4>Oregano</h4></td>
 			<td><h4>Osoite</h4></td>
 			<td><h4>Puhnro</h4></td>
 		</tr>
