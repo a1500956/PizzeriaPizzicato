@@ -80,8 +80,7 @@ public class lisaaJuoma extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			System.out
-					.println("Sovelluksessa tapahtui virhe " + e.getMessage());
+			System.out.println("Sovelluksessa tapahtui virhe " + e.getMessage());
 		}
 
 		if (viesti!=null){

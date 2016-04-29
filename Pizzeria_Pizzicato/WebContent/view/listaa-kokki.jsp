@@ -168,7 +168,6 @@ var FormStuff = {
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
 						<%TuoteDAO TUDAO= new TuoteDAO();
-						System.out.print(tilaukset.get(i).getTilattuTuote(j).getLisataytteet()+"kokkisivu");
 						if(TUDAO.pizzaVaiJuoma(tilaukset.get(i).getTilattuTuote(j).getTuote().getId())){
 							if(tilaukset.get(i).getTilattuTuote(j).getLisataytteet().isEmpty()){
 								 %><td></td><%
