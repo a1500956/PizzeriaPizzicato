@@ -75,7 +75,7 @@ media="only screen and (min-width: 771px)">
 <img src="Kuvia/pizzamies.png" id="logo" />
  <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
  
 
@@ -184,7 +184,7 @@ media="only screen and (min-width: 771px)">
 
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
-												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + 3 kpl valitsemaasi täytettä. <br>
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=(i +2)%> kpl valitsemaasi täytettä. <br>
 												 
 		
 				
