@@ -32,6 +32,8 @@ scope="request" />
 scope="request" />
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
+<jsp:useBean id="fantasiaTayteValintaLista" type="java.util.ArrayList<Tayte> "
+scope="request" />
 
 <html>
 <head>
@@ -193,8 +195,8 @@ media="only screen and (min-width: 771px)">
 				<%int k=0; for(k=0; k<taytemaara; k++) {%>
 												<select class="lisatayteValikko" name="lisatayte">
 												<option selected disabled>Valitse täyte <%=k+1%></option>
-													<%for(int l=0; l<kaikkitaytteet.size();l++){ %>
-														 <option value=<%=kaikkitaytteet.get(l).getTayte_id() %>><%=kaikkitaytteet.get(l).getTayte_nimi() %></option>
+													<%for(int l=0; l<fantasiaTayteValintaLista.size();l++){ %>
+														 <option value=<%=fantasiaTayteValintaLista.get(l).getTayte_id() %>><%=fantasiaTayteValintaLista.get(l).getTayte_nimi() %></option>
 													<%} %>
 												</select>
 												<%} %>

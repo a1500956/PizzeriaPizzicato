@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import pizzeria_pizzicato.control.VertailijaTuote;
-import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tuote;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TuoteDAO extends DataAccessObject{
@@ -48,7 +47,7 @@ public class TuoteDAO extends DataAccessObject{
 		return tuotteet;
 	}
 	
-	public Tuote haeTuoteIDnAvulla(int TID) {
+	private Tuote haeTuoteIDnAvulla(int TID) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -101,9 +100,6 @@ public class TuoteDAO extends DataAccessObject{
 		
 		
 	}
-	
-	
-	
 	
 	public TilattuTuote readTilatutTuotteet(ResultSet rs, int tilaus_id) {
 		
@@ -168,7 +164,7 @@ public boolean pizzaVaiJuoma(int tuoteID) {
 	
 	
 	
-	public Tuote readTuote(ResultSet rs) {
+	private Tuote readTuote(ResultSet rs) {
 
 		try {
 
