@@ -9,6 +9,7 @@
 h1{color:#db1b51;
 	font-family: Georgia;
 	
+	
 }
 
 h4{color:white;}
@@ -86,9 +87,9 @@ h3{color:white;
 
 .taytteet2{width:100%;
 		
-	
-	
 }
+
+.mauste { size: 20%;}
 
 .nimet{width:100%;
 		margin-right:595px;
@@ -239,21 +240,27 @@ a:hover, a:active, a:focus
 table { width:auto, text-aling_ center;
 }
 
-.pizzaotsikko {margin-top: 10px;}
+.postii {width: 350px;}
+
+.pizzaotsikko {margin-top: 200px;}
 	
 }
+
+
 .pizzalista{ text-align:center; padding-bottom: 30%; float:left; margin-left:28%;
 			
 }
 
-.pizzalista2{ text-align:center;
+.pizzalista2{ text-align:center;padding-bottom: 30%;margin-left:8px; 
 			
 }
+
+.pizzat2 {margin-left: -50px;}
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
 }
 
-.postii {width: 350px;}
+
 
 .clearfloat { /* this class can be placed on a <br /> or empty block element as the final element following the last floated block (within the .container) if the footer is removed or taken out of the .container */
 	clear:both;
@@ -288,6 +295,8 @@ footer {
 	
 
 }
+
+//*MIHIN NÄÄ CSS:ÄT OIKEIN ON? *//
 
 .listaa-pizzat{
 	width:80%;
