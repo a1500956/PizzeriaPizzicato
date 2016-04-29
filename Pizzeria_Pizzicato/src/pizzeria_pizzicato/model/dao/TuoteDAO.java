@@ -50,15 +50,16 @@ public class TuoteDAO extends DataAccessObject{
 	
 	public Tuote haeTuoteIDnAvulla(int TID) {
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmtSelect = null;
 		ResultSet rs = null;
 		Tuote tuote = new Tuote();
 		try {
 
 			conn = getConnection();
-			String sqlSelect = "SELECT tuote_id, tuote_nimi, tuote_hinta FROM Tuote WHERE tuote_id= "+TID+";";
-			stmt = conn.prepareStatement(sqlSelect);
-			rs = stmt.executeQuery(sqlSelect);
+			String sqlSelect = "SELECT tuote_id, tuote_nimi, tuote_hinta FROM Tuote WHERE tuote_id = ?;";
+			stmtSelect = conn.prepareStatement(sqlSelect);
+			stmtSelect.setInt(1, TID);
+			rs = stmtSelect.executeQuery();
 
 			while (rs.next()) {
 					tuote = readTuote(rs);
@@ -67,7 +68,7 @@ public class TuoteDAO extends DataAccessObject{
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(rs, stmt, conn);
+			close(rs, stmtSelect, conn);
 		}
 		return tuote;
 	}

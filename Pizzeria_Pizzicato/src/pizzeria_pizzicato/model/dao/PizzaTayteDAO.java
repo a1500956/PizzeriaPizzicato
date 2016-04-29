@@ -22,8 +22,10 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 				
 				connection = getConnection();
 				
-					String sqlInsert = "INSERT INTO PizzaTayte(tuote_id, tayte_id) VALUES ("+pizzaId+","+tayteId+")";
+					String sqlInsert = "INSERT INTO PizzaTayte(tuote_id, tayte_id) VALUES (?, ?)";
 					stmtInsert = connection.prepareStatement(sqlInsert);
+					stmtInsert.setInt(1, pizzaId);
+					stmtInsert.setInt(2, tayteId);
 					stmtInsert.executeUpdate();
 					
 				
@@ -40,15 +42,16 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 			ResultSet rs = null;
 			ArrayList<Tayte> pizzanTaytteet = new ArrayList<Tayte>();
 			Tayte pTayte = new Tayte();
+			PreparedStatement stmtSelect = null;
 			try {
 				
 				conn = getConnection();
 				
-				String sqlSelect = "SELECT tayte_id FROM PizzaTayte WHERE tuote_id="+PID+";";
-			
-				stmt = conn.prepareStatement(sqlSelect);
+				String sqlSelect = "SELECT tayte_id FROM PizzaTayte WHERE tuote_id=?";
 				
-				rs = stmt.executeQuery(sqlSelect);
+				stmtSelect = conn.prepareStatement(sqlSelect);
+				stmtSelect.setInt(1, PID);
+				rs = stmtSelect.executeQuery();
 			
 				while (rs.next()) {
 					pTayte = readTayte(rs);
@@ -101,23 +104,23 @@ import pizzeria_pizzicato.model.dao.DataAccessObject;
 		
 		public void poistaPizzaTaytelistalta(int pizzaID){
 			Connection conn = null;
-			PreparedStatement stmt = null;
+			PreparedStatement stmtDelete = null;
 			ResultSet rs = null;
 			try {
 				
 				conn = getConnection();
 				
 				
-				String sqlSelect = "DELETE FROM PizzaTayte WHERE tuote_id ='"+pizzaID+"';";
-				stmt = conn.prepareStatement(sqlSelect);
-				
-				rs = stmt.executeQuery(sqlSelect);
+				String sqlSelect = "DELETE FROM PizzaTayte WHERE tuote_id=?";
+				stmtDelete = conn.prepareStatement(sqlSelect);
+				stmtDelete.setInt(1, pizzaID);
+				rs = stmtDelete.executeQuery();
 			
 				
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			} finally {
-				close(rs, stmt, conn); 
+				close(rs, stmtDelete, conn); 
 			}
 		}
 

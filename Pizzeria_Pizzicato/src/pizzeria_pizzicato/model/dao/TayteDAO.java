@@ -196,10 +196,10 @@ public class TayteDAO extends DataAccessObject {
 	
 			conn = getConnection();
 			
-			sqlSelect = "SELECT lt.tayte_id, ta.tayte_nimi, ta.tayte_hinta, ta.tayte_nimi_en FROM LisaTayte lt JOIN Tayte ta ON lt.tayte_id=ta.tayte_id WHERE tilaus_id="+tilausID+" AND tilaus_rivi="+tilausrivi+";";
+			sqlSelect = "SELECT lt.tayte_id, ta.tayte_nimi, ta.tayte_hinta, ta.tayte_nimi_en FROM LisaTayte lt JOIN Tayte ta ON lt.tayte_id=ta.tayte_id WHERE tilaus_id= ? AND tilaus_rivi=?";
 			stmt = conn.prepareStatement(sqlSelect);
-			//stmt.setInt(1, tilausID);
-			//stmt.setInt(2, tilausrivi);
+			stmt.setInt(1, tilausID);
+			stmt.setInt(2, tilausrivi);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()){
