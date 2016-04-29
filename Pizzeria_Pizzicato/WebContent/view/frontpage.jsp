@@ -76,7 +76,7 @@ media="only screen and (min-width: 771px)">
  <h4 class="esittely">Pizzeria Pizzicato is located in Meilahti, Helsinki</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
- <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a> </li>
+ <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:20px;height:15px; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a> </li>
  
 
 <div class="dropdown">
@@ -144,7 +144,7 @@ media="only screen and (min-width: 771px)">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-				<input  type="submit" value="Koriin">
+				<input  type="submit" value="Add to Cart">
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -176,7 +176,7 @@ media="only screen and (min-width: 771px)">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
-				<input type="submit" value="Koriin">
+				<input type="submit" value="">
 				</form></td>
 				</tr>
 				
