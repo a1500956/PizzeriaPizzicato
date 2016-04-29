@@ -176,7 +176,7 @@ media="only screen and (min-width: 771px)">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
-				<input type="submit" value="">
+				<input type="submit" value="Add to cart">
 				</form></td>
 				</tr>
 				
@@ -184,13 +184,13 @@ media="only screen and (min-width: 771px)">
 
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
-												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%> + <%=(i +2)%> toppings of your chice <br>
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%> + <%=(i +2)%> toppings of your choice <br>
 												 
 		
 				
 				<%int k=0; for(k=0; k<taytemaara; k++) {%>
 												<select class="lisatayteValikko" name="lisatayte">
-												<option selected disabled>Valitse täyte <%=k+1%></option>
+												<option selected disabled>Choose topping <%=k+1%></option>
 													<%for(int l=0; l<kaikkitaytteet.size();l++){ %>
 														 <option value=<%=kaikkitaytteet.get(l).getTayte_id() %>><%=kaikkitaytteet.get(l).getTayte_nimi_en() %></option>
 													<%} %>

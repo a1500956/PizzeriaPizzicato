@@ -119,7 +119,9 @@ media="only screen and (min-width: 771px)">
 
 
   <article>
-
+ <br>
+ <br>
+ <br><br>
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
