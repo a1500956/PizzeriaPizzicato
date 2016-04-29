@@ -26,25 +26,12 @@ public class poistaPizzaKorista extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
 		
-		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
-		int oregano, vSipuli;
-		oregano = Integer.parseInt(request.getParameter("oregano"));
-		vSipuli = Integer.parseInt(request.getParameter("vSipuli"));
-		
-		/*Pizza pizza = new Pizza();
-		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
-			if(pizzaLista.get(i).getId() == sArvo){
-				pizza = pizzaLista.get(i);
-			}
-		}*/
+		int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
 		
 		HttpSession session = request.getSession(); //haetaan session
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
-		ostoskori.removeTuote(sArvo, oregano, vSipuli); //poistetaan pizza ostoskorista
+		ostoskori.removeTuote(sArvo); //poistetaan pizza ostoskorista
 
 		session.setAttribute("ostoskori", ostoskori); // viedään ostoskorin muutokset sessioniin
 		response.sendRedirect("vahvistaTilaus");

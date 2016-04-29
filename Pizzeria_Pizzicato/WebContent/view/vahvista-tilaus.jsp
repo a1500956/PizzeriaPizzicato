@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="pizzeria_pizzicato.model.TilattuTuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
@@ -83,6 +83,14 @@ String osoite=null;
 if(session.getAttribute("osoite") != null){
 osoite = (String) session.getAttribute("osoite");
 }
+String puhnro=null;
+if(session.getAttribute("puhnro") != null){
+puhnro = (String) session.getAttribute("puhnro");
+}
+String sposti=null;
+if(session.getAttribute("sposti") != null){
+sposti = (String) session.getAttribute("sposti");
+}
 %>
 
 	<body>
@@ -90,7 +98,7 @@ osoite = (String) session.getAttribute("osoite");
 	<div class="container">
 <nav class=isoruutu>
 <img src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingiss√§.</h4> 
+ <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingiss‰.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
@@ -104,11 +112,11 @@ osoite = (String) session.getAttribute("osoite");
       </div>
     </form> <% }else{%> 
     <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sis√§√§n</button>
+  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sis‰‰n</button>
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
     <ul>
-    	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="k√§ytt√§j√§tunnus" />
+    	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="k‰ytt‰j‰tunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
  		</button>
@@ -131,8 +139,14 @@ osoite = (String) session.getAttribute("osoite");
     
      <h1 class=hMode2>TILAUKSENNE</h1>
     <div class=button><a href="kirjautuminenOk">Takaisin</a></div><br><br>
+    
     <p>${message4}</p>
-		<c:remove var="message4" scope="session" /> 
+    
+    <c:remove var="message4" scope="session" />
+	
+		
+		
+
     
     <%double summa=0;%>
 
@@ -142,16 +156,16 @@ osoite = (String) session.getAttribute("osoite");
 		<tr><td style="text-align:right;">
 		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" <%if(eNimi != null){ %> value="<%=eNimi%>" <%} %> required></td></tr>
 		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" <%if(sNimi != null){ %> value="<%=sNimi%>" <%} %>  required></td></tr>
-		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" required></td></tr>
+		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" <%if(puhnro != null){ %> value="<%=puhnro%>" <%} %> required></td></tr>
 		 
 		<tr><td colspan="2"><input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
 		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
 		<br><br>
 		<div class="reveal-if-active">
   		<p style="color:white;">Toimitusosoite:
-  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %> required></p>
-  		<p style="color:white;">S√§hk√∂posti:
-  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" required></p><br>
+  		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %>></p>
+  		<p style="color:white;">S‰hkˆposti:
+  		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}"  <%if(sposti != null){ %> value="<%=sposti%>" <%} %>></p><br>
   		</div><br>
   		  </div>
   </table>
@@ -170,12 +184,14 @@ var FormStuff = {
 		  
 		  applyConditionalRequired: function() {
 		  	
-		    $(".require-if-active").each(function() {
+		    $(".require-if-active1").each(function() {
+		    	
 		      var el = $(this);
 		      if ($(el.data("require-pair")).is(":checked")) {
 		        el.prop("required", true);
 		      } else {
 		        el.prop("required", false);
+		        el.prop("value=null")
 		      }
 		    });
 		    
@@ -211,18 +227,18 @@ var FormStuff = {
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
-							<%String oregano = "kyll√§";
+							<%String oregano = "kyll‰";
 							if(ostoskori.getTuote(i).getOregano() == 0){
 								oregano = "ei";
 							}%>
 						<td><div class="tilauslista"><%=oregano%></div></td>
-							<%String vSipuli = "kyll√§";
+							<%String vSipuli = "kyll‰";
 							if(ostoskori.getTuote(i).getvSipuli() == 0){
 								vSipuli = "ei";
 							}%>
 						<td><div class="tilauslista"><%=vSipuli%></div></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
 						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
 						</a></td>								
 					</tr>
@@ -253,7 +269,7 @@ var FormStuff = {
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 						<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?pizzaID=<%=ostoskori.getTuote(i).getTuote().getId()%>&oregano=<%=ostoskori.getTuote(i).getOregano()%>&vSipuli=<%=ostoskori.getTuote(i).getvSipuli()%>&osoite=<%=ostoskori.getTuote(i).getvSipuli()%>&puhnro=<%=ostoskori.getTuote(i).getvSipuli()%>" class="submit-button">
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
 						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
 						</a></td>								
 					</tr>
@@ -267,7 +283,7 @@ var FormStuff = {
 					class="submit-button" value="Vahvista Tilaus" />
 		
 		<%}else{%>
-		<p>Ostoskori on tyhj√§</p>
+		<p>Ostoskori on tyhj‰</p>
 		<%} %>
 		
     </span>

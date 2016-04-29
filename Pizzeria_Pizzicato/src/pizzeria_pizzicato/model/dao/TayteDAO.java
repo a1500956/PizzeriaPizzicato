@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
@@ -185,5 +184,39 @@ public class TayteDAO extends DataAccessObject {
 		
 		
 	}
+	
+	public ArrayList<Tayte> haeLisataytteet(int tilausID, int tilausrivi){
+		ArrayList<Tayte> palautettava = new ArrayList<Tayte>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		String sqlSelect;
+		
+		try {
+	
+			conn = getConnection();
+			
+			sqlSelect = "SELECT lt.tayte_id, ta.tayte_nimi, ta.tayte_hinta, ta.tayte_nimi_en FROM LisaTayte lt JOIN Tayte ta ON lt.tayte_id=ta.tayte_id WHERE tilaus_id="+tilausID+" AND tilaus_rivi="+tilausrivi+";";
+			stmt = conn.prepareStatement(sqlSelect);
+			//stmt.setInt(1, tilausID);
+			//stmt.setInt(2, tilausrivi);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				palautettava.add(readTayte(rs));
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+
+		
+		
+		return palautettava;
+		
+	}
+	
 
 }

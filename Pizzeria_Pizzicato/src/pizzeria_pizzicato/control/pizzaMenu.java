@@ -16,9 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.JuomaDAO;
+import pizzeria_pizzicato.model.dao.TayteDAO;
 import pizzeria_pizzicato.model.Juoma;
 
 
@@ -34,9 +36,12 @@ public class pizzaMenu extends HttpServlet {
 		
 		
 			PizzaDAO pizzadao = new PizzaDAO();
+			TayteDAO Taytedao = new TayteDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 			ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 			ArrayList<Pizza> pizzaFantasia = new ArrayList<Pizza>();
+			ArrayList<Tayte> kaikkiTaytteet= Taytedao.findAll();
+			request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
 			
 			
 			for(int i=0;i<pizzaLista.size();i++){
@@ -76,6 +81,8 @@ public class pizzaMenu extends HttpServlet {
 				session.setMaxInactiveInterval(60*60);
 			}
 			
+			session.removeAttribute("message4");
+			
 			request.setAttribute("pizzat", pizzaNakyy);
 			request.setAttribute("pizzaFantasia", pizzaFantasia);
 			request.setAttribute("juomat", juomaNakyy);
@@ -90,7 +97,9 @@ public class pizzaMenu extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		PizzaDAO pizzadao = new PizzaDAO();
+		TayteDAO Taytedao = new TayteDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
+		String[] lisatayte;
 
 		
 		//k‰sitell‰‰n formista tullut data
@@ -104,10 +113,18 @@ public class pizzaMenu extends HttpServlet {
 			vSipuli = 1;
 		}
 		
+		lisatayte = request.getParameterValues("lisatayte");
+		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
 			if(pizzaLista.get(i).getId() == sArvo){
 				pizza = pizzaLista.get(i);
+			}
+		}
+		
+		if(lisatayte!=null){
+			for(String s:lisatayte){
+				pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
 			}
 		}
 		
