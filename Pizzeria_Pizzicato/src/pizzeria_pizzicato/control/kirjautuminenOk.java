@@ -16,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import pizzeria_pizzicato.model.Juoma;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.JuomaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
+import pizzeria_pizzicato.model.dao.TayteDAO;
 
 
 @WebServlet("/kirjautuminenOk")
@@ -39,10 +41,13 @@ public class kirjautuminenOk extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		TayteDAO Taytedao = new TayteDAO();
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 		ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 		ArrayList<Pizza> pizzaFantasia = new ArrayList<Pizza>();
+		ArrayList<Tayte> kaikkiTaytteet= Taytedao.findAll();
+		request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
 		
 		for(int i=0;i<pizzaLista.size();i++){
 			
@@ -93,9 +98,10 @@ public class kirjautuminenOk extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		TayteDAO Taytedao = new TayteDAO();
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
-
+		String[] lisatayte;
 		
 		//k‰sitell‰‰n formista tullut data
 		
@@ -108,10 +114,17 @@ public class kirjautuminenOk extends HttpServlet {
 			vSipuli = 1;
 		}
 		
+		lisatayte = request.getParameterValues("lisatayte");
+		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
 			if(pizzaLista.get(i).getId() == sArvo){
 				pizza = pizzaLista.get(i);
+			}
+		}
+		if(lisatayte!=null){
+			for(String s:lisatayte){
+				pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
 			}
 		}
 		

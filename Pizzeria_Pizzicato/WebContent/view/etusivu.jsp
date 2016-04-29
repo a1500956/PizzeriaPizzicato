@@ -50,7 +50,6 @@ and (max-device-width: 770px)" >
 <style type="text/css"></style>
 -->
 
-
 <link href="puhelin.css" rel="stylesheet" type="text/css"
 media="device" >
 <style type="text/css"></style>
@@ -76,7 +75,7 @@ media="only screen and (min-width: 771px)">
 <img src="Kuvia/pizzamies.png" id="logo" />
  <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
-   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
  
 
@@ -120,8 +119,7 @@ media="only screen and (min-width: 771px)">
 
 
   <article>
-  <br>
-  <br>
+
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
@@ -130,7 +128,7 @@ media="only screen and (min-width: 771px)">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>	
 			<th>PIZZAT</th>
-			<th class="hinta">HINTA</th>
+			<th>HINTA</th>
 			<th> </th>
 			<!--  <th>TOIMINNOT</th>-->
 				
@@ -141,8 +139,8 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td>
-				<form class="mauste2" method="post">
+				<td class="vsoregano">
+				<form class="postii" method="post">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
@@ -186,7 +184,7 @@ media="only screen and (min-width: 771px)">
 
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
-												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=(i+2)%>kpl valitsemaasi täytettä. <br>
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=(i +2)%> kpl valitsemaasi täytettä. <br>
 												 
 		
 				
