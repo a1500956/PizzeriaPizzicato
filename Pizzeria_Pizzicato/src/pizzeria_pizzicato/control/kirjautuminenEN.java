@@ -65,7 +65,7 @@ public class kirjautuminenEN extends HttpServlet {
 			
 			String viesti = "Username and/or password are incorrect.";
 			request.getSession().setAttribute("message4", viesti);
-			response.sendRedirect("pizzaMenuEng");
+			response.sendRedirect("pizzaMenuEn");
 
 		
  
