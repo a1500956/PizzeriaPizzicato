@@ -40,6 +40,10 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 	media="only screen and (min-width: 0px)
 and (max-width: 770px)">
 
+
+<link href="puhelin.css" rel="stylesheet" type="text/css"
+	media="device">
+
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 	media="only screen and (min-width: 771px)">
 <style type="text/css">
