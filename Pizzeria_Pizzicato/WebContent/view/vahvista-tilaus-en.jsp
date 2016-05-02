@@ -30,7 +30,7 @@ scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Vahvista Tilaus</title>
+<title>Confirm Order</title>
 </head>
 <body>
 
@@ -98,23 +98,23 @@ sposti = (String) session.getAttribute("sposti");
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+ <h4>Pizzeria Pizzicato located in Meilahti, Helsinki.</h4> 
 <ul>
-   <a href="/Pizzeria_Pizzicato/vahvistaTilausEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   <a href="/Pizzeria_Pizzicato/vahvistaTilaus"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
  
- 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shopping Cart(<%=ostoskori.getMaara()%>)</a> </li>
 
           <% if (user!=null){%>
-  <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+  <form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+      <h3><%=userName %>, you are signed in.</h3><input type="submit" value="Sign out" >
 
       </div>
     </form> <% }else{%> 
     <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
+  <button onclick="myFunction()" class="dropbtn"> Sign in</button>
   <div id="myDropdown" class="dropdown-content">
-  <form action="kirjautuminen" method="post">
+  <form action="kirjautuminenEN" method="post">
     <ul>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
@@ -133,12 +133,12 @@ sposti = (String) session.getAttribute("sposti");
  
     <section>
    
-   <form action="vahvistaTilaus" method="post" style="padding-top:100px ">
+   <form action="vahvistaTilausEn" method="post" style="padding-top:100px ">
   
 
     
-     <h1 class=hMode2>TILAUKSENNE</h1>
-    <div class=button><a href="kirjautuminenOk">Takaisin</a></div><br><br>
+     <h1 class=hMode2>YOUR ORDER</h1>
+    <div class=button><a href="kirjautuminenOkEN">Return</a></div><br><br>
     
     <p>${message4}</p>
     
@@ -154,17 +154,17 @@ sposti = (String) session.getAttribute("sposti");
 
 <table class="" width="auto" border="1" align="center">
 		<tr><td style="text-align:right;">
-		Etunimi:</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" <%if(eNimi != null){ %> value="<%=eNimi%>" <%} %> required></td></tr>
-		<tr><td style="text-align:right;">Sukunimi:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" <%if(sNimi != null){ %> value="<%=sNimi%>" <%} %>  required></td></tr>
-		<tr><td style="text-align:right; ">Puhelinnumero:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" <%if(puhnro != null){ %> value="<%=puhnro%>" <%} %> required></td></tr>
+		First name</td><td><input type="text" name="enimi" size="40" pattern=".{2,40}" <%if(eNimi != null){ %> value="<%=eNimi%>" <%} %> required></td></tr>
+		<tr><td style="text-align:right;">Surname:</td><td><input type="text" name="snimi" size="40" pattern=".{2,40}" <%if(sNimi != null){ %> value="<%=sNimi%>" <%} %>  required></td></tr>
+		<tr><td style="text-align:right; ">Phone number:</td><td><input type="text" name="puhnro" size="40" pattern=".{9,10}" <%if(puhnro != null){ %> value="<%=puhnro%>" <%} %> required></td></tr>
 		 
-		<tr><td colspan="2"><input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Nouto</label>
-		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Kotiinkuljetus</label>
+		<tr><td colspan="2"><input type="radio" name="toimitustapa" value="nouto" checked>  <label for="toimitustapa" style="color:white;">Pickup</label>
+		<div><input type="radio" id="koti" name="toimitustapa" value="kotiinkuljetus" required><label for="toimitustapa" style="color:white;">Delivery</label>
 		<br><br>
 		<div class="reveal-if-active">
-  		<p style="color:white;">Toimitusosoite:
+  		<p style="color:white;">Address:
   		<input type="text" name="osoite" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}" <%if(osoite != null){ %> value="<%=osoite%>" <%} %>></p>
-  		<p style="color:white;">Sähköposti:
+  		<p style="color:white;">E-mail:
   		<input type="text" name="sposti" class="require-if-active" data-require-pair="#koti" size="40" pattern=".{6,40}"  <%if(sposti != null){ %> value="<%=sposti%>" <%} %>></p><br>
   		</div><br>
   		  </div>
@@ -209,11 +209,11 @@ var FormStuff = {
 		
 		<tr style="width=350px;">
 			
-			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
-			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
+			<th style="border-bottom: solid 1px grey;">PIZZAS</th>
+			<th style="border-bottom: solid 1px grey;">PRICE</th>
 			<th style="border-bottom: solid 1px grey;">OREGANO</th>
-			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
-			<th style="border-bottom: solid 1px grey;">KPL</th>
+			<th style="border-bottom: solid 1px grey;">GARLIC</th>
+			<th style="border-bottom: solid 1px grey;">AMOUNT</th>
 			<th></th>
 			
 			
@@ -248,10 +248,10 @@ var FormStuff = {
 		
 		<tr style="width=350px;">
 			
-			<th style="border-bottom: solid 1px grey;">JUOMAT</th>
-			<th style="border-bottom: solid 1px grey;">KOKO</th>
-			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
-			<th style="border-bottom: solid 1px grey;">KPL</th>
+			<th style="border-bottom: solid 1px grey;">DRINKS</th>
+			<th style="border-bottom: solid 1px grey;">SIZE</th>
+			<th style="border-bottom: solid 1px grey;">PRICE</th>
+			<th style="border-bottom: solid 1px grey;">AMOUNT</th>
 			<th></th>
 			
 			
@@ -279,11 +279,11 @@ var FormStuff = {
 			
 		
 		</table><br>
-		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
-					class="submit-button" value="Vahvista Tilaus" />
+		<p style="color:white;"><u>SUM:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
+					class="submit-button" value="Confirm Order" />
 		
 		<%}else{%>
-		<p>Ostoskori on tyhjä</p>
+		<p>Your cart is empty</p>
 		<%} %>
 		
     </span>

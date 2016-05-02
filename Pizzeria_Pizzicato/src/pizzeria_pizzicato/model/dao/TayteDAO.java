@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
@@ -35,6 +34,25 @@ public class TayteDAO extends DataAccessObject {
 		} finally {
 			close(stmtInsert, connection);
 		}
+	}
+	
+	public ArrayList<Tayte> karsiFantasianPerustaytteet(ArrayList<Tayte> listaKaikista, int fantasiaID){
+		PizzaDAO pdao = new PizzaDAO();
+		ArrayList<Tayte> fantasianTaytteet = pdao.haePizzanTaytteet(fantasiaID);
+		ArrayList<Tayte> karsittavaLista = listaKaikista;
+		
+		for (int i = 0; i < karsittavaLista.size(); i++) {
+			for (int j = 0; j < fantasianTaytteet.size(); j++) {
+				if(karsittavaLista.get(i).getTayte_id()==fantasianTaytteet.get(j).getTayte_id()){
+					karsittavaLista.remove(i);
+				}
+			}
+			
+		}
+		return karsittavaLista;
+		
+		
+		
 	}
 	
 	public void updateTayte(Tayte tayte) throws SQLException {
@@ -118,7 +136,7 @@ public class TayteDAO extends DataAccessObject {
 		return taytteet;
 	}
 
-	public Tayte readTayte(ResultSet rs) {
+	private Tayte readTayte(ResultSet rs) {
 
 		try {
 
@@ -133,7 +151,7 @@ public class TayteDAO extends DataAccessObject {
 		}
 	}
 
-	public ArrayList<Tayte> findTayte() {
+	private ArrayList<Tayte> findTayte() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -185,5 +203,39 @@ public class TayteDAO extends DataAccessObject {
 		
 		
 	}
+	
+	public ArrayList<Tayte> haeLisataytteet(int tilausID, int tilausrivi){
+		ArrayList<Tayte> palautettava = new ArrayList<Tayte>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		String sqlSelect;
+		
+		try {
+	
+			conn = getConnection();
+			
+			sqlSelect = "SELECT lt.tayte_id, ta.tayte_nimi, ta.tayte_hinta, ta.tayte_nimi_en FROM LisaTayte lt JOIN Tayte ta ON lt.tayte_id=ta.tayte_id WHERE tilaus_id= ? AND tilaus_rivi=?";
+			stmt = conn.prepareStatement(sqlSelect);
+			stmt.setInt(1, tilausID);
+			stmt.setInt(2, tilausrivi);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				palautettava.add(readTayte(rs));
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+
+		
+		
+		return palautettava;
+		
+	}
+	
 
 }

@@ -71,10 +71,8 @@ for(Cookie cookie : cookies){
 					Ei</td>
 			</tr>
 			<tr>
-				<td>Täytteet:</td>
-				<td><br>
-				<br>
-				<td>
+				
+				<td><br><p>Täytteet:</p><div class="taytelista">
 				<%for(int i = 0; i<kaikkitaytteet.size(); i++){ %>
 				
 				
@@ -82,6 +80,7 @@ for(Cookie cookie : cookies){
 					<%if(taytteet.contains(kaikkitaytteet.get(i).getTayte_nimi())) {out.print("checked=\"checked\"");} %>
 					value="<%=kaikkitaytteet.get(i).getTayte_id() %>" /><%=kaikkitaytteet.get(i).getTayte_nimi() %><br />
 					<%}%>
+					</div>
 					</td>
 			</tr>
 			<tr>

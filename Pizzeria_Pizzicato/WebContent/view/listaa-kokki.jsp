@@ -2,10 +2,14 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
+<%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="pizzeria_pizzicato.model.Tilaus"%>
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
+<%@ page import="pizzeria_pizzicato.model.Tayte"%>
+<%@ page import="pizzeria_pizzicato.model.dao.TayteDAO"%>
+<%@ page import="pizzeria_pizzicato.model.dao.TuoteDAO"%>
 <%@ page import="java.text.NumberFormat" %>
+<%@page import="java.util.ArrayList" %>
 <%
     NumberFormat nf = NumberFormat.getInstance();
     nf.setMaximumFractionDigits(2);
@@ -147,7 +151,8 @@ var FormStuff = {
 			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Aika</h4></td>
 			<td><h4>Status</h4></td>
-			<td><h4>Tuote</h4></td>		
+			<td><h4>Tuote</h4></td>
+			<td><h4>Lisätäytteet</h4></td>			
 			<td><h4>Lukumäärä</h4></td>
 			<td><h4>Valkosipuli</h4></td>
 			<td><h4>Oregano</h4></td>		
@@ -162,6 +167,20 @@ var FormStuff = {
 						<td><%=tilaukset.get(i).getAika()%></td>
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
+						<%TuoteDAO TUDAO= new TuoteDAO();
+						if(TUDAO.pizzaVaiJuoma(tilaukset.get(i).getTilattuTuote(j).getTuote().getId())){
+							if(tilaukset.get(i).getTilattuTuote(j).getLisataytteet().isEmpty()){
+								 %><td></td><%
+							}else{
+								
+								%><td>&nbsp;&nbsp;<% 
+								for(int k=0; k<tilaukset.get(i).getTilattuTuote(j).getLisataytteet().size(); k++){%>
+									<%=tilaukset.get(i).getTilattuTuote(j).getLisatayte(k).getTayte_nimi()%>&nbsp;&nbsp;
+							<% }%></td>
+							<%} %>
+							
+							
+						<%}else{ %><td></td><%} %>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
 						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
 						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
@@ -175,7 +194,7 @@ var FormStuff = {
 </div>	
 	<div class="listaa-tilaukset2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<p>Valmiiden tilauksien kuittaus</p>
+		<p>Keskeneräiset tilaukset</p>
 		<tr>
 			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Valmis</h4></td>
@@ -183,6 +202,8 @@ var FormStuff = {
 		</tr>
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
+			
+				<%if(tilaukset.get(i).getStatusID()!=3){ %>
 					<tr>
 					<td><form class="kokki2" action="" method="post">
 						<input type="hidden" name="valmis" value="<%=tilaukset.get(i).getId() %>"><%=tilaukset.get(i).getId() %></td>						
@@ -191,6 +212,7 @@ var FormStuff = {
   						
 						</tr>				
 					
+				<% } %>
 				<% } %>
 		</table>
 		</div>

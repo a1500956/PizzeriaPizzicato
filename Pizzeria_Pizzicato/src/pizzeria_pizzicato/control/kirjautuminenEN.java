@@ -39,6 +39,7 @@ public class kirjautuminenEN extends HttpServlet {
 		
 		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1 ){
 			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 			session.setMaxInactiveInterval(30*60);
@@ -46,13 +47,34 @@ public class kirjautuminenEN extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzat");
             response.sendRedirect(encodedURL);
 			
-		}
-		
-
-		
-		else if(kirjautuja != null){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 2 ){
 			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
+			response.addCookie(userName);
+			String encodedURL = response.encodeRedirectURL("listaaPizzatkokki");
+            response.sendRedirect(encodedURL);
+			
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 4 ){
+			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
+			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
+			response.addCookie(userName);
+			String encodedURL = response.encodeRedirectURL("listaaPizzatkuski");
+            response.sendRedirect(encodedURL);
+			
+		}else if(kirjautuja != null){
+			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
+			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setAttribute("eNimi", kirjautuja.getKayttaja_enimi());
+			session.setAttribute("sNimi", kirjautuja.getKayttaja_snimi());
+			session.setAttribute("osoite", kirjautuja.getKayttaja_osoite());
+			session.setAttribute("puhnro", kirjautuja.getKayttaja_puhnro());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 			session.setMaxInactiveInterval(30*60);
 			response.addCookie(userName);
@@ -63,10 +85,10 @@ public class kirjautuminenEN extends HttpServlet {
 
 		}else{
 			
-			String viesti = "Username and/or password are incorrect.";
-			request.getSession().setAttribute("message4", viesti);
-			response.sendRedirect("pizzaMenuEng");
-
+			String viesti = "Username and/or password is incorrect!";
+			request.getSession().setAttribute("message3", viesti);
+			response.sendRedirect("pizzaMenuEn");
+			
 		
  
 		}

@@ -9,9 +9,11 @@ import java.sql.Timestamp;
 
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Ostoskori;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 import pizzeria_pizzicato.model.Tuote;
+import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TilausDAO extends DataAccessObject {
@@ -20,6 +22,7 @@ public class TilausDAO extends DataAccessObject {
 
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
+		TuoteDAO tdao = new TuoteDAO();
 
 		try {
 
@@ -40,10 +43,10 @@ public class TilausDAO extends DataAccessObject {
 			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
 			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttaja().getKayttaja_id());
 			
-			TilattuTuote TX;
 			
 			for (int i = 0; i < ostoskori.getKoko(); i++) {
-					TX = ostoskori.getTuote(i);
+					TilattuTuote TX = ostoskori.getOstoskori().get(i);
+					Pizza p;
 					stmtInsert = connection.prepareStatement(sqlInsert2);
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
 					stmtInsert.setInt(1, tilauksenID);
@@ -53,10 +56,39 @@ public class TilausDAO extends DataAccessObject {
 					stmtInsert.setDouble(5, TX.getLkm());
 					stmtInsert.setInt(6, TX.getvSipuli());
 					stmtInsert.setInt(7, TX.getOregano());
-					stmtInsert.executeUpdate();	
-				}
-				
+					stmtInsert.executeUpdate();
+
+				if(tdao.pizzaVaiJuoma(TX.getTuote().getId())){
+					p = (Pizza) TX.getTuote();
+					ArrayList<Tayte> lisataytteet = p.getTaytteet();
 					
+					PizzaTayteDAO PTdao = new PizzaTayteDAO();
+					ArrayList<Tayte> alkupPizzanTaytteet = PTdao.haePizzanTaytteet(p.getId());
+					if(alkupPizzanTaytteet.size()<lisataytteet.size()){
+						
+						//Karsii kaiken paitsi ylimääräiset lisätäytteet
+						lisataytteet = karsiTavallisetTaytteet(alkupPizzanTaytteet, lisataytteet);
+						
+						String inserttaaLisataytteet = "INSERT INTO LisaTayte(tilaus_id, tilaus_rivi, tayte_id) VALUES(?,?,?);";
+						for(Tayte t:lisataytteet){
+							stmtInsert = connection.prepareStatement(inserttaaLisataytteet);
+							stmtInsert.setInt(1, tilauksenID);
+							stmtInsert.setInt(2, i); //'i'-lukua käytetään aiemmin 'tilaus_rivi'-kohdan arvona
+							stmtInsert.setInt(3, t.getTayte_id());
+							stmtInsert.executeUpdate();
+						}
+						
+					}else{
+						//System.out.println("Ei lisätäytteitä!");
+					}
+
+					}
+					
+					
+				}
+					
+				
+			
 			
 
 		} catch (SQLException e) {
@@ -64,6 +96,21 @@ public class TilausDAO extends DataAccessObject {
 		} finally {
 			close(stmtInsert, connection);
 		}
+	}
+	
+	private ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
+		for (int j = 0; j < tavalliset.size(); j++) {
+			for (int k = 0; k < lisataytteellinen.size(); k++) {
+				//Jos 'lisätäytteet' sisältää pizzan alkuperäisiin kuuluvan täytteen, poistetaan se listalta
+				if(tavalliset.get(j).getTayte_id()==lisataytteellinen.get(k).getTayte_id()){
+					lisataytteellinen.remove(k);
+				}
+				
+			}
+			
+		}
+		return lisataytteellinen;
+		
 	}
 	
 	public void updateTilaus(Tilaus Tilaus) throws SQLException {
@@ -151,7 +198,7 @@ public class TilausDAO extends DataAccessObject {
 		return lista;
 	}
 	
-	public TilattuTuote readTilasto(ResultSet rs) throws SQLException {
+	private TilattuTuote readTilasto(ResultSet rs) throws SQLException {
 		
 		try {
 			Tuote Tu = new Tuote();
@@ -159,7 +206,7 @@ public class TilausDAO extends DataAccessObject {
 			Tu.setNimi(nimi);
 			int lkm = rs.getInt("lkm");
 			double myyntisumma = rs.getDouble("myyntisumma");
-			return new TilattuTuote(0, lkm, 0, 0,Tu, myyntisumma);
+			return new TilattuTuote(0, lkm, 0, 0,Tu, myyntisumma, new ArrayList<Tayte>());
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -228,6 +275,7 @@ public class TilausDAO extends DataAccessObject {
 
 
 	//Tämä poistaa tilauksen. Pysyvästi. Käytä harkiten!
+	@SuppressWarnings("resource")
 	public void deleteTilaus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;
 
@@ -314,7 +362,7 @@ public class TilausDAO extends DataAccessObject {
 		return tilaukset;
 	}
 
-	public Tilaus readTilaus(ResultSet rs) {
+	private Tilaus readTilaus(ResultSet rs) {
 
 		try {
 			KayttajaDAO KDAO = new KayttajaDAO();
@@ -364,7 +412,7 @@ public class TilausDAO extends DataAccessObject {
 		return tulos;
 	}
 	
-	public int haeTilauksenID(String osoite, int KID) {
+	private int haeTilauksenID(String osoite, int KID) {
 
 		Connection conn = null;
 		PreparedStatement stmtSelect = null;
@@ -412,7 +460,7 @@ public class TilausDAO extends DataAccessObject {
 			rs = stmtSelect.executeQuery(sqlSelect);
 
 			if (rs.next()) {
-			tilattuTuote = TuDAO.readTilatutTuotteet(rs);
+			tilattuTuote = TuDAO.readTilatutTuotteet(rs, TID);
 			tilatutTuotteet.add(tilattuTuote);
 			}
 			

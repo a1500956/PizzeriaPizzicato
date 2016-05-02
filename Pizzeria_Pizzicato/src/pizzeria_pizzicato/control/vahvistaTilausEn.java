@@ -27,8 +27,8 @@ import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
 
-@WebServlet("/vahvistaTilaus")
-public class vahvistaTilaus extends HttpServlet {
+@WebServlet("/vahvistaTilausEn")
+public class vahvistaTilausEn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,9 +60,7 @@ public class vahvistaTilaus extends HttpServlet {
 		request.setAttribute("juomat", juomaNakyy);
 		request.setAttribute("pizzat", pizzaLista);
 		
-		System.out.println(ostoskori);
-		
-		String jsp = "/view/vahvista-tilaus.jsp"; 
+		String jsp = "/view/vahvista-tilaus-en.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
 		
@@ -90,22 +88,22 @@ public class vahvistaTilaus extends HttpServlet {
 		
 		
 		if(enimi.isEmpty() || snimi.isEmpty()){
-			virhe = "Nimi kentät ovat pakollisia!";
+			virhe = "Name fields are required";
 			ok = false;
 			request.getSession().setAttribute("message4", virhe);
-			response.sendRedirect("vahvistaTilaus");
+			response.sendRedirect("vahvistaTilausEn");
 		
 		}else if(puhnro.matches("\\w{9,10}") == false && puhnro.isEmpty() && ok == true){
 			ok = false;
-			virhe = "Puhelinnumero on virheellinen!";
+			virhe = "Your phone number is incorrect";
 			request.getSession().setAttribute("message4", virhe);
-			response.sendRedirect("vahvistaTilaus");
+			response.sendRedirect("vahvistaTilausEn");
 			
 		}else if(osoite.isEmpty() && toimitus.equals("kotiinkuljetus")){
-			virhe = "Osoite kenttä on pakollinen!";
+			virhe = "Fill in your address";
 			ok = false;
 			request.getSession().setAttribute("message4", virhe);
-			response.sendRedirect("vahvistaTilaus");
+			response.sendRedirect("vahvistaTilausEn");
 			
 		}else if(ok == true){
 			Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
@@ -134,12 +132,12 @@ public class vahvistaTilaus extends HttpServlet {
 		session.removeAttribute("eNimi");
 		session.removeAttribute("sNimi");
 		session.removeAttribute("ostoskori");
-		response.sendRedirect("pizzaMenu");
+		response.sendRedirect("pizzaMenuEn");
 		
 		}else{
 		
 		request.getSession().setAttribute("message4", virhe);
-		response.sendRedirect("vahvistaTilaus");
+		response.sendRedirect("vahvistaTilausEn");
 		
 	}
 		
