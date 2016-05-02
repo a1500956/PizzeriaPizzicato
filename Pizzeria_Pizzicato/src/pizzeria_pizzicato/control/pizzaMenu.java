@@ -77,6 +77,10 @@ public class pizzaMenu extends HttpServlet {
 				session.setMaxInactiveInterval(60*60);
 			}
 			
+			Juoma juoma = new Juoma();
+			juoma = JuomaLista.get(0);
+			ostoskori.addJuoma(juoma);
+			
 			session.removeAttribute("message4");
 			
 			request.setAttribute("pizzat", pizzaNakyy);
