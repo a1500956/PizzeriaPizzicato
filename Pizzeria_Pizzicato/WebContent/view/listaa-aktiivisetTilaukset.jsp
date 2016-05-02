@@ -84,8 +84,8 @@ response.setIntHeader("Refresh", 5);
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm()%></td>
-						<td><%=tilaukset.get(i).getTilattuTuote(j).getvSipuli()%></td>
-						<td><%=tilaukset.get(i).getTilattuTuote(j).getOregano()%></td>
+						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
+						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
 						<td><%=tilaukset.get(i).getOsoite()%></td>
 						<td><%=tilaukset.get(i).getKayttaja().getKayttaja_ktunnus()%></td>
 						<td><%=tilaukset.get(i).getPuhnro()%></td>						
