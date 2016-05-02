@@ -83,10 +83,6 @@ public class pizzaMenu extends HttpServlet {
 				session.setMaxInactiveInterval(60*60);
 			}
 			
-			Juoma juoma = new Juoma();
-			juoma = JuomaLista.get(0);
-			ostoskori.addJuoma(juoma);
-			
 			session.removeAttribute("message4");
 			
 			request.setAttribute("pizzat", pizzaNakyy);
@@ -120,6 +116,7 @@ public class pizzaMenu extends HttpServlet {
 		}
 		
 		lisatayte = request.getParameterValues("lisatayte");
+		System.out.println("lisatayte " + lisatayte);
 		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza

@@ -181,7 +181,7 @@ media="only screen and (min-width: 771px)">
 				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Koriin">
-				</form></td>
+				</td>
 				</tr>
 				
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
@@ -190,7 +190,7 @@ media="only screen and (min-width: 771px)">
 												<%  }%>
 												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=(i +2)%> kpl valitsemaasi täytettä. <br>
 												 
-		
+				
 				
 				<%int k=0; for(k=0; k<taytemaara; k++) {%>
 												<select class="lisatayteValikko" name="lisatayte">
@@ -204,9 +204,11 @@ media="only screen and (min-width: 771px)">
 												 
 				
 					</div></td></tr>
+					</form>
+				
 			
 			<% } %>
-			
+		
 		</table><br>
     </span>
         
