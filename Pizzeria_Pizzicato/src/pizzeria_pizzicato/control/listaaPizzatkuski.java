@@ -44,7 +44,8 @@ public class listaaPizzatkuski extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-try {
+
+		try {
 			
 			String riviStr = request.getParameter("toimitettu");			
 			
