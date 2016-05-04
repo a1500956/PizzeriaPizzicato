@@ -116,6 +116,7 @@ public class pizzaMenu extends HttpServlet {
 		}
 		
 		lisatayte = request.getParameterValues("lisatayte");
+		System.out.println("lisatayte " + lisatayte);
 		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
