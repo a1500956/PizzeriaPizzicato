@@ -152,28 +152,23 @@ public class KayttajaDAO extends DataAccessObject {
 	      }
 	   }
 	   
-	   public void create(Kayttaja kayttaja)
-	   {
-	      int kayttaja_id = 0;
-	      int ryhma_id = 0;
+	   public void create(Kayttaja kayttaja){
+	      int ryhma_id = 3; //asiakkaan ryhmä-id
 	      PreparedStatement statement = null;
 	      Connection connection = null;
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "insert into Kayttajat " + "(kayttaja_id, kayttaja_ktunnus, kayttaja_enimi, kayttaja_snimi, kayttaja_salasana, kryhma_id, kayttaja_sposti, kayttaja_osoite) "
-
-	               + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	         String sql = "INSERT INTO Kayttaja(kayttaja_ktunnus, kayttaja_enimi, kayttaja_snimi, kayttaja_puhnro, kayttaja_osoite, kayttaja_sposti, kayttaja_salasana, ryhma_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 	         statement = connection.prepareStatement(sql);
-	         statement.setInt(1, kayttaja_id);
-	         statement.setString(2, kayttaja.getKayttaja_ktunnus());
-	         statement.setString(3, kayttaja.getKayttaja_enimi());
-	         statement.setString(4, kayttaja.getKayttaja_snimi());
-	         statement.setString(5, kayttaja.getKayttaja_puhnro());
-	         statement.setString(6, kayttaja.getKayttaja_salasana());
-	         statement.setInt(7, ryhma_id);
-	         statement.setString(8, kayttaja.getKayttaja_sposti());
-	         statement.setString(9, kayttaja.getKayttaja_osoite());
+	         statement.setString(1, kayttaja.getKayttaja_ktunnus());
+	         statement.setString(2, kayttaja.getKayttaja_enimi());
+	         statement.setString(3, kayttaja.getKayttaja_snimi());
+	         statement.setString(4, kayttaja.getKayttaja_puhnro());
+	         statement.setString(5, kayttaja.getKayttaja_osoite());
+	         statement.setString(6, kayttaja.getKayttaja_sposti());
+	         statement.setString(7, kayttaja.getKayttaja_salasana());
+	         statement.setInt(8, ryhma_id);
 	         statement.executeUpdate();
 	      } catch (SQLException e)
 	      {
