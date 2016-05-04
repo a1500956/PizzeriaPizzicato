@@ -86,6 +86,7 @@ media="only screen and (min-width: 771px)">
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
     <ul>
+    	<li><a href="rekisteroidy"><small>Tiliä vailla? Rekisteröidy.</small></a></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>

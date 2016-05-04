@@ -102,7 +102,7 @@ public class vahvistaTilaus extends HttpServlet {
 			response.sendRedirect("vahvistaTilaus");
 			
 		}else if(osoite.isEmpty() && toimitus.equals("kotiinkuljetus")){
-			virhe = "Osoite kenttä on pakollinen!";
+			virhe = "Osoitekenttä on pakollinen!";
 			ok = false;
 			request.getSession().setAttribute("message4", virhe);
 			response.sendRedirect("vahvistaTilaus");

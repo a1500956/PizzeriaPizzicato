@@ -8,11 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pizzeria_pizzicato.model.Kayttaja;
+import pizzeria_pizzicato.model.Ostoskori;
+import pizzeria_pizzicato.model.dao.KayttajaDAO;
 
 
-@WebServlet("/luo-kayttaja")
+@WebServlet("/rekisteroidy")
 public class luoKayttaja extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -21,13 +24,23 @@ public class luoKayttaja extends HttpServlet {
 		String jsp = "/view/luo-kayttaja.jsp";
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(
 				jsp);
+		
+		HttpSession session = request.getSession();
+		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
+		if(ostoskori == null){
+			ostoskori = new Ostoskori();
+			session.setAttribute("ostoskori", ostoskori);
+			session.setMaxInactiveInterval(60*60);
+		}
+		
 		dispather.forward(request, response);
 			
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		String viesti = null;
+		KayttajaDAO kdao = new KayttajaDAO();
 		int kID = 0;
 		String knimi = request.getParameter("Knimi");
 		String enimi = request.getParameter("Enimi");
@@ -38,7 +51,29 @@ public class luoKayttaja extends HttpServlet {
 		String sala = request.getParameter("SS");
 		int kryh = 3; //Asiakas, ei oikeuksia.
 		
-		Kayttaja kirjautunut = new Kayttaja(kID, knimi, enimi, snimi, sala, pno, kos, spos, kryh);
+		if(enimi.isEmpty() || snimi.isEmpty()){
+			viesti = "Nimikentät ovat pakollisia!";
+
+		
+		}else if(pno.matches("\\w{9,10}") == false && pno.isEmpty()){
+			viesti= "Puhelinnumero on virheellinen!";
+			response.sendRedirect("vahvistaTilaus");
+			
+		}else if(kos.isEmpty()){
+			viesti=  "Osoitekenttä on pakollinen!";
+			
+		}
+		
+		
+		if (viesti!=null){
+			request.getSession().setAttribute("message", viesti);
+			response.sendRedirect("rekisteroidy");
+
+		}else{
+			Kayttaja kirjautunut = new Kayttaja(kID, knimi, enimi, snimi, sala, pno, kos, spos, kryh);
+			kdao.create(kirjautunut);
+			response.sendRedirect("pizzaMenu");
+		}
 		
 	}
 	
