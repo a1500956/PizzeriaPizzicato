@@ -107,13 +107,14 @@ public class pizzaMenuEng extends HttpServlet {
 		//k‰sitell‰‰n formista tullut data
 		
 		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
-		int oregano = 0, vSipuli = 0;
+		int oregano = 0, vSipuli = 0, lkm = 0;
 		if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
 			oregano = 1;
 		}
 		if(request.getParameter("vSipuli") != null){ //haetaan vSipuli jos null j‰tet‰‰n 0
 			vSipuli = 1;
 		}
+		lkm = Integer.parseInt(request.getParameter("maara"));
 		
 		lisatayte = request.getParameterValues("lisatayte");
 		
@@ -132,7 +133,7 @@ public class pizzaMenuEng extends HttpServlet {
 		
 		HttpSession session = request.getSession(); //haetaan session
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
-		ostoskori.addPizza(pizza, oregano, vSipuli); //lis‰t‰‰n ostoskoriin pizza
+		ostoskori.addPizza(pizza, oregano, vSipuli, lkm); //lis‰t‰‰n ostoskoriin pizza
 		if(ostoskori != null){ //jos ostoskori ei ole tyhj‰ vied‰‰n ostoskori muutoksineen sessioniin
 			session.setAttribute("ostoskori", ostoskori);
 		}

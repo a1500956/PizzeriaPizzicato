@@ -18,7 +18,7 @@ public class Ostoskori {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void addPizza(Pizza pizza, int oregano, int VSipuli){ // Lis‰t‰‰n ostoskoriin Pizza
+	public void addPizza(Pizza pizza, int oregano, int VSipuli, int lkm){ // Lis‰t‰‰n ostoskoriin Pizza
 		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
 		
 		if(pizza != null){ //Jos tullut pizza ei ole tyhj‰ luodaan liis‰ TilattuTuote olio
@@ -26,7 +26,7 @@ public class Ostoskori {
 			tuote.setOregano(oregano);
 			tuote.setvSipuli(VSipuli);
 			tuote.setHinta(tuote.getTuote().getHinta());
-			tuote.setLkm(1);
+			tuote.setLkm(lkm);
 		}
 		
 		boolean loytyy = false;

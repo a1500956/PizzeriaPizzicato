@@ -146,6 +146,11 @@ media="only screen and (min-width: 771px)">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+				<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
 				<input  type="submit" value="Add to Cart">
 				</form></td>			
 			</tr>
@@ -178,6 +183,11 @@ media="only screen and (min-width: 771px)">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
 				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
 				<input type="submit" value="Add to cart">
 				</form></td>
 				</tr>

@@ -238,9 +238,13 @@ var FormStuff = {
 							}%>
 						<td><div class="tilauslista"><%=vSipuli%></div></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
-						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
-						</a></td>								
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=poista" class="submit-button">
+						<img src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+						</a></td>
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaa" class="submit-button">
+						<img src="Kuvia/plus.png" alt="Lisaa" style="width:15px;height:15px;" />
+						<!--Icon made by Freepik from www.flaticon.com-->
+						</a></td>							
 					</tr>
 				<%}%>
 			<%} %>

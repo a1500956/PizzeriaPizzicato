@@ -145,10 +145,15 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
 				<form class="postii" method="post">
-				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
-				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-				<input  type="submit" value="Koriin">
+					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
+					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+					<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
+					<input  type="submit" value="Koriin">
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -175,11 +180,15 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
-				
 				<form class="mauste2" method="post">
-				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
+				 <input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				 <input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<select name="maara">
+				 	<%for(int n=0; n<10;n++){%>
+				 		<option value="<%=n+1%>"><%=n+1%></option>
+				 	<%}%>
+				 </select>Kpl
 				<input type="submit" value="Koriin">
 				</td>
 				</tr>

@@ -27,14 +27,32 @@ public class poistaPizzaKorista extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
-		
-		HttpSession session = request.getSession(); //haetaan session
-		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
-		ostoskori.removeTuote(sArvo); //poistetaan pizza ostoskorista
-
-		session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
-		response.sendRedirect("vahvistaTilaus");
+		String action = request.getParameter("action");
+		System.out.println("request! " + request.getParameter("action"));
+		System.out.println("Action! " + action);
+		if(action.equalsIgnoreCase("poista")){ //jos napin action tieto oli poista
+			int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
+			
+			HttpSession session = request.getSession(); //haetaan session
+			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
+			ostoskori.removeTuote(sArvo); //poistetaan pizza ostoskorista
+			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
+			
+			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle
+			
+		}else if(action.equalsIgnoreCase("lisaa")){ // jos napin action tieto oli lisaa
+			int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
+			
+			HttpSession session = request.getSession(); //haetaan session
+			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
+			
+			Pizza pizza = new Pizza(); //Luodaan pizza olio
+			pizza = (Pizza) ostoskori.getTuote(sArvo).getTuote(); //haetaan pizza oliolle tietoa tulleen paikkaID perusteella
+			ostoskori.addPizza(pizza, ostoskori.getTuote(sArvo).getOregano(), ostoskori.getTuote(sArvo).getvSipuli(), 1); //Lis‰t‰‰n haetun tiedon perusteella yksi kappale koriin
+			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
+			
+			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle
+		}
 		
 	}
 

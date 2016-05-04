@@ -60,8 +60,6 @@ public class vahvistaTilaus extends HttpServlet {
 		request.setAttribute("juomat", juomaNakyy);
 		request.setAttribute("pizzat", pizzaLista);
 		
-		System.out.println(ostoskori);
-		
 		String jsp = "/view/vahvista-tilaus.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
