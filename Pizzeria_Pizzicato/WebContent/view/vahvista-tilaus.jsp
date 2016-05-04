@@ -210,6 +210,7 @@ var FormStuff = {
 		<tr style="width=350px;">
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
+			<th style="border-bottom: solid 1px grey;">LISÄTÄYTTEET</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
 			<th style="border-bottom: solid 1px grey;">OREGANO</th>
 			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
@@ -220,11 +221,13 @@ var FormStuff = {
 			<!--  <th>TOIMINNOT</th>-->
 			
 		</tr>
+		
 		<%for(int j = 0; j<pizzat.size();j++){%>
 			<%for(int i = 0; i <ostoskori.getKoko(); i++) {%>
 				<%if(pizzat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
 					<tr>
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
+						<td><div class=""><% for(int n = 0; n<ostoskori.getTuote(i).getLisataytteet().size(); n++){ %><%=ostoskori.getTuote(i).getLisataytteet().get(n).getTayte_nimi()%> <%}%> </div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
 							<%String oregano = "kyllä";
@@ -249,6 +252,12 @@ var FormStuff = {
 				<%}%>
 			<%} %>
 		<%} %>
+		
+		<tr></tr> <!-- Tilaa loppejen väliin! -->
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
 		
 		<tr style="width=350px;">
 			
@@ -283,8 +292,9 @@ var FormStuff = {
 			
 		
 		</table><br>
-		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
-					class="submit-button" value="Vahvista Tilaus" />
+		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p>
+		<a href="poistaPizzaKorista?action=poistaKori" class="submit-button" >Tyhjennä kori</a>
+		<input type="submit" name="submit-button"class="submit-button" value="Vahvista Tilaus" />
 		
 		<%}else{%>
 		<p>Ostoskori on tyhjä</p>

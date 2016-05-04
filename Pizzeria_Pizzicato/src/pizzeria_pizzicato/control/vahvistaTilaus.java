@@ -23,6 +23,7 @@ import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
 import pizzeria_pizzicato.model.dao.TilausDAO;
+import pizzeria_pizzicato.model.dao.TuoteDAO;
 import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tilaus;
@@ -35,6 +36,8 @@ public class vahvistaTilaus extends HttpServlet {
 
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
+		TilausDAO tdao = new TilausDAO();
+		TuoteDAO tuoteDAO = new TuoteDAO();
 		
 		HttpSession session = request.getSession();
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori");
@@ -57,6 +60,19 @@ public class vahvistaTilaus extends HttpServlet {
 				juomaNakyy.add(juoma);
 			}
 		}
+		
+		if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ 
+			for(int i = 0; i<ostoskori.getOstoskori().size(); i++){
+				if(tuoteDAO.pizzaVaiJuoma(ostoskori.getOstoskori().get(i).getTuote().getId()) == true ){
+					Pizza pizza = new Pizza();
+					pizza = (Pizza) ostoskori.getOstoskori().get(i).getTuote();
+					PizzaTayteDAO PTdao = new PizzaTayteDAO();
+					ArrayList<Tayte> taytteet = PTdao.haePizzanTaytteet(pizza.getId());
+					ostoskori.getOstoskori().get(i).setLisataytteet(tdao.karsiTavallisetTaytteet(taytteet, pizza.getTaytteet()));
+				}
+			}
+		}
+		
 		request.setAttribute("juomat", juomaNakyy);
 		request.setAttribute("pizzat", pizzaLista);
 		

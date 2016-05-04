@@ -28,23 +28,17 @@ public class poistaPizzaKorista extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action = request.getParameter("action");
-		System.out.println("request! " + request.getParameter("action"));
-		System.out.println("Action! " + action);
+		HttpSession session = request.getSession(); //haetaan session
+		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
+		
 		if(action.equalsIgnoreCase("poista")){ //jos napin action tieto oli poista
 			int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
-			
-			HttpSession session = request.getSession(); //haetaan session
-			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
 			ostoskori.removeTuote(sArvo); //poistetaan pizza ostoskorista
 			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
 			
 			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle
-			
 		}else if(action.equalsIgnoreCase("lisaa")){ // jos napin action tieto oli lisaa
 			int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
-			
-			HttpSession session = request.getSession(); //haetaan session
-			Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
 			
 			Pizza pizza = new Pizza(); //Luodaan pizza olio
 			pizza = (Pizza) ostoskori.getTuote(sArvo).getTuote(); //haetaan pizza oliolle tietoa tulleen paikkaID perusteella
@@ -52,8 +46,12 @@ public class poistaPizzaKorista extends HttpServlet {
 			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
 			
 			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle
+		}else if(action.equalsIgnoreCase("poistaKori")){
+			session.removeAttribute("ostoskori");
+			ostoskori = new Ostoskori();
+			session.setAttribute("ostoskori", ostoskori);
+			response.sendRedirect("pizzaMenu");
 		}
-		
 	}
 
 	

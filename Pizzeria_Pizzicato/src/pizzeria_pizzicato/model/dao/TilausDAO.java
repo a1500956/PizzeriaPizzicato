@@ -98,7 +98,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
-	private ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
+	public ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
 		for (int j = 0; j < tavalliset.size(); j++) {
 			for (int k = 0; k < lisataytteellinen.size(); k++) {
 				//Jos 'lisätäytteet' sisältää pizzan alkuperäisiin kuuluvan täytteen, poistetaan se listalta

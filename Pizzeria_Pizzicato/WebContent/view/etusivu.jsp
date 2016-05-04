@@ -181,8 +181,8 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
 				<form class="mauste2" method="post">
-				 <input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
-				 <input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
+				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<select name="maara">
 				 	<%for(int n=0; n<10;n++){%>
