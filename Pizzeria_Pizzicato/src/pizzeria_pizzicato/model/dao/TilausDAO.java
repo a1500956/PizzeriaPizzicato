@@ -79,7 +79,7 @@ public class TilausDAO extends DataAccessObject {
 						}
 						
 					}else{
-						System.out.println("Ei lisätäytteitä!");
+						//System.out.println("Ei lisätäytteitä!");
 					}
 
 					}
@@ -98,7 +98,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
-	public ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
+	private ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
 		for (int j = 0; j < tavalliset.size(); j++) {
 			for (int k = 0; k < lisataytteellinen.size(); k++) {
 				//Jos 'lisätäytteet' sisältää pizzan alkuperäisiin kuuluvan täytteen, poistetaan se listalta
@@ -198,7 +198,7 @@ public class TilausDAO extends DataAccessObject {
 		return lista;
 	}
 	
-	public TilattuTuote readTilasto(ResultSet rs) throws SQLException {
+	private TilattuTuote readTilasto(ResultSet rs) throws SQLException {
 		
 		try {
 			Tuote Tu = new Tuote();
@@ -275,6 +275,7 @@ public class TilausDAO extends DataAccessObject {
 
 
 	//Tämä poistaa tilauksen. Pysyvästi. Käytä harkiten!
+	@SuppressWarnings("resource")
 	public void deleteTilaus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;
 
@@ -361,7 +362,7 @@ public class TilausDAO extends DataAccessObject {
 		return tilaukset;
 	}
 
-	public Tilaus readTilaus(ResultSet rs) {
+	private Tilaus readTilaus(ResultSet rs) {
 
 		try {
 			KayttajaDAO KDAO = new KayttajaDAO();
@@ -411,7 +412,7 @@ public class TilausDAO extends DataAccessObject {
 		return tulos;
 	}
 	
-	public int haeTilauksenID(String osoite, int KID) {
+	private int haeTilauksenID(String osoite, int KID) {
 
 		Connection conn = null;
 		PreparedStatement stmtSelect = null;

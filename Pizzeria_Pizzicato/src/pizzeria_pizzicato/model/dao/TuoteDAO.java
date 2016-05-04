@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import pizzeria_pizzicato.control.VertailijaTuote;
-import pizzeria_pizzicato.model.Pizza;
-import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.TilattuTuote;
 import pizzeria_pizzicato.model.Tuote;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.DataAccessObject;
 
 public class TuoteDAO extends DataAccessObject{
@@ -48,17 +47,18 @@ public class TuoteDAO extends DataAccessObject{
 		return tuotteet;
 	}
 	
-	public Tuote haeTuoteIDnAvulla(int TID) {
+	private Tuote haeTuoteIDnAvulla(int TID) {
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmtSelect = null;
 		ResultSet rs = null;
 		Tuote tuote = new Tuote();
 		try {
 
 			conn = getConnection();
-			String sqlSelect = "SELECT tuote_id, tuote_nimi, tuote_hinta FROM Tuote WHERE tuote_id= "+TID+";";
-			stmt = conn.prepareStatement(sqlSelect);
-			rs = stmt.executeQuery(sqlSelect);
+			String sqlSelect = "SELECT tuote_id, tuote_nimi, tuote_hinta FROM Tuote WHERE tuote_id = ?;";
+			stmtSelect = conn.prepareStatement(sqlSelect);
+			stmtSelect.setInt(1, TID);
+			rs = stmtSelect.executeQuery();
 
 			while (rs.next()) {
 					tuote = readTuote(rs);
@@ -67,7 +67,7 @@ public class TuoteDAO extends DataAccessObject{
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(rs, stmt, conn);
+			close(rs, stmtSelect, conn);
 		}
 		return tuote;
 	}
@@ -101,9 +101,6 @@ public class TuoteDAO extends DataAccessObject{
 		
 		
 	}
-	
-	
-	
 	
 	public TilattuTuote readTilatutTuotteet(ResultSet rs, int tilaus_id) {
 		
@@ -168,7 +165,7 @@ public boolean pizzaVaiJuoma(int tuoteID) {
 	
 	
 	
-	public Tuote readTuote(ResultSet rs) {
+	private Tuote readTuote(ResultSet rs) {
 
 		try {
 

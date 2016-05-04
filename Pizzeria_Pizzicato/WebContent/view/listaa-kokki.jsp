@@ -168,15 +168,14 @@ var FormStuff = {
 						<td><%=tilaukset.get(i).getStatusNimi() %></td>
 						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
 						<%TuoteDAO TUDAO= new TuoteDAO();
-						System.out.print(tilaukset.get(i).getTilattuTuote(j).getLisataytteet()+"kokkisivu");
 						if(TUDAO.pizzaVaiJuoma(tilaukset.get(i).getTilattuTuote(j).getTuote().getId())){
 							if(tilaukset.get(i).getTilattuTuote(j).getLisataytteet().isEmpty()){
 								 %><td></td><%
 							}else{
 								
-								%><td><% 
+								%><td>&nbsp;&nbsp;<% 
 								for(int k=0; k<tilaukset.get(i).getTilattuTuote(j).getLisataytteet().size(); k++){%>
-									<%=tilaukset.get(i).getTilattuTuote(j).getLisatayte(k).getTayte_nimi()%>,
+									<%=tilaukset.get(i).getTilattuTuote(j).getLisatayte(k).getTayte_nimi()%>&nbsp;&nbsp;
 							<% }%></td>
 							<%} %>
 							
@@ -195,7 +194,7 @@ var FormStuff = {
 </div>	
 	<div class="listaa-tilaukset2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<p>Valmiiden tilauksien kuittaus</p>
+		<p>Keskeneräiset tilaukset</p>
 		<tr>
 			<td><h4>Tilausnumero</h4></td>
 			<td><h4>Valmis</h4></td>
@@ -203,6 +202,8 @@ var FormStuff = {
 		</tr>
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
+			
+				<%if(tilaukset.get(i).getStatusID()!=3){ %>
 					<tr>
 					<td><form class="kokki2" action="" method="post">
 						<input type="hidden" name="valmis" value="<%=tilaukset.get(i).getId() %>"><%=tilaukset.get(i).getId() %></td>						
@@ -211,6 +212,7 @@ var FormStuff = {
   						
 						</tr>				
 					
+				<% } %>
 				<% } %>
 		</table>
 		</div>

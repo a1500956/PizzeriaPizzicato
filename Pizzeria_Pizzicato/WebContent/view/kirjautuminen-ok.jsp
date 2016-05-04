@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,6 +25,8 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 <jsp:useBean id="pizzaFantasia" type="java.util.ArrayList<Pizza> "
+scope="request" />
+<jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 
 <html>
@@ -74,10 +77,10 @@ for(Cookie cookie : cookies){
 
 	<div class="container">
 <nav class=isoruutu>
-<img src="Kuvia/pizzamies.png" id="logo" />
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
  <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 
-   <a href="/Pizzeria_Pizzicato/pizzaMenuEng"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+   <a href="/Pizzeria_Pizzicato/kirjautuminenOkEN"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <ul>
  	<li style{text-align; right}>
  	<a href="/Pizzeria_Pizzicato/vahvistaTilaus">
@@ -100,7 +103,7 @@ for(Cookie cookie : cookies){
 
   <article>
 
-  <h1><br>PIZZA MENU</h1>
+  <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
    
@@ -118,11 +121,11 @@ for(Cookie cookie : cookies){
 			<tr>
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
+				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
 				<form class="postii" method="post">
 				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
+				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
 				<input  type="submit" value="Koriin">
 				</form></td>			
@@ -135,34 +138,52 @@ for(Cookie cookie : cookies){
 			</div></td></tr>
 			<% } %>
 			
-		
-		<tr>	
-			<th>FANTASIAPIZZAT</th>
-			<th>HINTA</th>
-			<th> </th>
-			<!--  <th>TOIMINNOT</th>-->
-				
-		</tr>
-			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
+		<tr>
+		<th><br>FANTASIAPIZZAT</th>
+		<th><br></th>
+		<th></th>
+
+
 			
-			<tr>
+			</tr>
 				
-				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td>
-				<form style="width: 350px;" method="post">
-				 Oregano<input type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input type="checkbox" name="vSipuli" value="1">
+			<%for(int i = 0; i < pizzaFantasia.size(); i++) {%>
+			<%int taytemaara = i+2; %>
+				<tr>
+				
+				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
+				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td class="vsoregano">
+				
+				<form class="mauste2" method="post">
+				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
+				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
 				<input type="submit" value="Koriin">
-				</form></td>			
-			</tr>
-			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) { %>
+				</form></td>
+				</tr>
+				
+			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
+
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
-												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=i+2%> kpl valitsemaasi täytettä.
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=(i +2)%> kpl valitsemaasi täytettä. <br>
 												 
-			</div></td></tr>
+		
+				
+				<%int k=0; for(k=0; k<taytemaara; k++) {%>
+												<select class="lisatayteValikko" name="lisatayte">
+												<option selected disabled>Valitse täyte <%=k+1%></option>
+													<%for(int l=0; l<kaikkitaytteet.size();l++){ %>
+														 <option value=<%=kaikkitaytteet.get(l).getTayte_id() %>><%=kaikkitaytteet.get(l).getTayte_nimi() %></option>
+													<%} %>
+												</select>
+												<%} %>
+												
+												 
+				
+					</div></td></tr>
+			
 			<% } %>
 			
 		</table><br>

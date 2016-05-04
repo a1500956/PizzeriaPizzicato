@@ -83,7 +83,6 @@ public class lisaaPizza extends HttpServlet {
 			int pId = pizzadao.getPizzaId(nimiStr);
 
 			for (int i = 0; i < taytteetStr.length; i++) {
-				System.out.println(Integer.parseInt(taytteetStr[i]));
 				pizzaTaytedao.addTayteToPizza(Integer.parseInt(taytteetStr[i]),
 						pId);
 
@@ -92,8 +91,7 @@ public class lisaaPizza extends HttpServlet {
 
 		} catch (SQLException e) {
 
-			System.out
-					.println("Sovelluksessa tapahtui virhe " + e.getMessage());
+			System.out.println("Sovelluksessa tapahtui virhe " + e.getMessage());
 		}
 
 		if (viesti!=null){
