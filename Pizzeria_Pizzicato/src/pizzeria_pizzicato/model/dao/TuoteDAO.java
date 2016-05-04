@@ -47,7 +47,7 @@ public class TuoteDAO extends DataAccessObject{
 		return tuotteet;
 	}
 	
-	private Tuote haeTuoteIDnAvulla(int TID) {
+	public Tuote haeTuoteIDnAvulla(int TID) {
 		Connection conn = null;
 		PreparedStatement stmtSelect = null;
 		ResultSet rs = null;
@@ -81,7 +81,7 @@ public class TuoteDAO extends DataAccessObject{
 		try{
 		
 		conn = getConnection();
-		String sqlSelect = "SELECT tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano FROM TilattuTuote WHERE tilaus_id = ?;";
+		String sqlSelect = "SELECT tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano, status FROM TilattuTuote WHERE tilaus_id = ?;";
 		stmt = conn.prepareStatement(sqlSelect);
 		stmt.setInt(1, TilausID);
 		rs = stmt.executeQuery();
@@ -107,11 +107,14 @@ public class TuoteDAO extends DataAccessObject{
 		try {
 			
 			ArrayList<Tayte> lisataytteita = new ArrayList<Tayte>();
+			int tuoteId = rs.getInt("tuote_id");
+			int tilausId = rs.getInt("tilaus_id");
 			int tilausrivi = rs.getInt("tilaus_rivi");
 			int lkm = rs.getInt("lkm");
 			int oregano = rs.getInt("oregano");
 			int valkosipuli = rs.getInt("valkosipuli");
 			double hinta = rs.getDouble("tuote_hinta");
+			int status = rs.getInt("status");
 			int TID = rs.getInt("tuote_id");
 			
 			Tuote tuote = haeTuoteIDnAvulla(TID);
@@ -121,7 +124,7 @@ public class TuoteDAO extends DataAccessObject{
 				lisataytteita.addAll(TDAO.haeLisataytteet(tilaus_id, tilausrivi));
 			}
 
-			return new TilattuTuote(tilausrivi, lkm, oregano, valkosipuli, tuote ,hinta, lisataytteita);
+			return new TilattuTuote(tuoteId, tilausId, tilausrivi, lkm, oregano, valkosipuli, tuote , hinta, status, lisataytteita);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

@@ -42,9 +42,12 @@ public class listaaPizzatkokki extends HttpServlet {
 			ArrayList<Tilaus> tilaukset = new ArrayList<Tilaus>(tilausdao.haeAktiivisetTilaukset());
 			PizzaDAO pizzadao = new PizzaDAO();
 			ArrayList<Pizza> pizzaLista = pizzadao.findAll();
+			ArrayList<TilattuTuote> tilatutTuotteet = new ArrayList<TilattuTuote>();
+			
 
 			request.setAttribute("pizzat", pizzaLista);
 			request.setAttribute("tilaukset", tilaukset);
+			request.setAttribute("tilatutTuotteet", tilatutTuotteet);
 			
 			String jsp = "/view/listaa-kokki.jsp"; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
@@ -59,15 +62,21 @@ public class listaaPizzatkokki extends HttpServlet {
 		
 		try {
 			
-			String riviStr = request.getParameter("valmis");			
+			String riviStr = request.getParameter("valmis");
+			String riviStr2 = request.getParameter("valmis2");
+			String riviStr3 = request.getParameter("valmis3");
+		
 			
 			if(riviStr!=null){
 				
-			int tilaus_id = Integer.parseInt(riviStr);			
+			int tilausId = Integer.parseInt(riviStr);
+			int tilausRivi = Integer.parseInt(riviStr2);
+			int tuoteId = Integer.parseInt(riviStr3);
+			int status = 0;
 						
 			TilausDAO tilausdao = new TilausDAO();
 						
-			tilausdao.updateTilausOk(tilaus_id, 3);
+			tilausdao.updateTilattuTuote(tilausRivi, tuoteId, tilausId, status);
 		
 			
 			}
