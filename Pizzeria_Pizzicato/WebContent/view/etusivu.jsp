@@ -144,17 +144,18 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
+				<td  rowspan="2" >
 				<form class="postii" method="post">
-					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
 				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
-					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>"></td>	
+					<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 					<select name="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl
-					<input  type="submit" value="Koriin">
+					</select>Kpl <br>
+					<input  type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -179,17 +180,18 @@ media="only screen and (min-width: 771px)">
 				<tr>
 				
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
+				<td  rowspan="2" style= "vertical-align: top;"><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td  rowspan="2" style= "vertical-align: top;">
 				<form class="mauste2" method="post">
-				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
 				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
-				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>"></td>
+				<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 				<select name="maara">
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
-				 </select>Kpl
+				 </select>Kpl <br>
 				<input type="submit" value="Koriin">
 				</td>
 				</tr>

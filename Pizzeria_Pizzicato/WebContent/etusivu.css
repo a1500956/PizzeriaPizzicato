@@ -109,7 +109,7 @@ h3{color:white;
 
 .lisatayteValikko{align: inline-block; margin-right: 200px; margin-top: 150px; }
 
-.vsoregano {margin-right: 200px;}
+.vsoregano {margin-right: 2px;}
 
 .nimet{width:100%;
 		margin-right:595px;
@@ -260,7 +260,7 @@ a:hover, a:active, a:focus
 table { width:auto, text-aling_ center;
 }
 
-.postii {width: 350px;}
+.postii {width: auto;}
 
 .pizzaotsikko {margin-top: 20%;}
 	
