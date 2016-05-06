@@ -179,7 +179,7 @@ public class TilausDAO extends DataAccessObject {
 		try {
 			connection = getConnection();
 			
-			String sqlSelect = "SELECT tu.tuote_nimi, SUM(tx.lkm) AS 'lkm', SUM(tu.tuote_hinta) AS 'myyntisumma' FROM Tilaus ti JOIN TilattuTuote tx ON ti.tilaus_id = tx.tilaus_id JOIN Tuote tu ON tu.tuote_id=tx.tuote_id WHERE ti.status_id>=5 GROUP BY tu.tuote_nimi ORDER BY lkm DESC;";
+			String sqlSelect = "SELECT tu.tuote_nimi, SUM(tx.lkm) AS 'lkm', tu.tuote_hinta AS 'kplhinta', ti.status_id FROM Tilaus ti JOIN TilattuTuote tx ON ti.tilaus_id = tx.tilaus_id JOIN Tuote tu ON tu.tuote_id=tx.tuote_id WHERE ti.status_id=5 OR ti.status_id=5 GROUP BY tu.tuote_nimi ORDER BY lkm DESC;";
 			stmtSelect = connection.prepareStatement(sqlSelect);
 			
 			rs = stmtSelect.executeQuery(sqlSelect);
@@ -206,9 +206,9 @@ public class TilausDAO extends DataAccessObject {
 			String nimi = rs.getString("tuote_nimi");
 			Tu.setNimi(nimi);
 			int lkm = rs.getInt("lkm");
-			
-			double myyntisumma = rs.getDouble("myyntisumma");
-			return new TilattuTuote(0,0,0, lkm, 0, 0,Tu, myyntisumma,0, new ArrayList<Tayte>());
+			int status = rs.getInt("status_id");
+			double myyntisumma = lkm*(rs.getDouble("kplhinta"));
+			return new TilattuTuote(0,0,0, lkm, 0, 0,Tu, myyntisumma, status, new ArrayList<Tayte>());
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -309,7 +309,6 @@ public class TilausDAO extends DataAccessObject {
 			
 			while(rs.next()){
 				tt = readTilattuTuote(rs);
-				System.out.println(tt);
 				tilattutuote.add(tt);
 				
 			}
@@ -327,8 +326,6 @@ public class TilausDAO extends DataAccessObject {
 			
 			if(tilattutuote.size() == tilattutuote2.size()){
 				
-				System.out.println(tilattutuote.size());
-				System.out.println(tilattutuote2.size());
 				
 			PreparedStatement stmtUpdate = null;
 			int sId = 3;

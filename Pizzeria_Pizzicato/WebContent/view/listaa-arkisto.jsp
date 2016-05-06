@@ -73,7 +73,35 @@ response.setIntHeader("Refresh", 5);
 </div>
 
 </header>
+<<<<<<< HEAD
 		
+=======
+
+	<table align="center" border="0">
+		<tr>
+	
+			<td>	
+				<form action="listaaPizzat">
+   	 				<input type="submit" value="Pizzat">
+				</form>
+			</td>
+		
+			<td>	
+				<form action="listaaJuomat">
+   	 				<input type="submit" value="Juomat">
+				</form>
+			</td>
+		
+			<td>	
+				<form action="listaaJuomat">
+   	 				<input type="submit" value="Aktiiviset tilaukset">
+				</form>
+			</td>
+
+		</tr>
+	</table>
+
+>>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
 		<h1>ARKISTOIDUT TILAUKSET</h1>
 		<div class="container">
 <a href="listaaPizzat" class="btn btn-info" role="button">Listaa pizzat</a>

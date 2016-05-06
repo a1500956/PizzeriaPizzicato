@@ -67,6 +67,7 @@ for(Cookie cookie : cookies){
 		<p>${message}</p>
 <c:remove var="message" scope="session" /> 
 
+<<<<<<< HEAD
 <div class="container">
 <a href="lisaa-pizza" class="btn btn-info" role="button">Lisää pizza</a>
 <a href="listaa-taytteet" class="btn btn-info" role="button">Täytteet</a>
@@ -75,9 +76,74 @@ for(Cookie cookie : cookies){
 <a href="listaaArkisto" class="btn btn-info" role="button">Arkisto</a>
 <a href="listaaPizzatkokki" class="btn btn-info" role="button">Kokin näkymä</a>
 </div>
+=======
+>>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
 
+<<<<<<< HEAD
 		
 		
+=======
+	<table align="center" border="0">
+	<tr>
+	
+	<td>	
+	<form action="lisaa-pizza">
+    <input type="submit" value="Lisää pizza">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaa-taytteet">
+    <input type="submit" value="Täytteet">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaJuomat">
+    <input type="submit" value="Juomat">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaAktiivisetTilaukset">
+    <input type="submit" value="Tilaukset">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaArkisto">
+    <input type="submit" value="Tilausarkisto">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaPizzatkokki">
+    <input type="submit" value="Kokin näkymä">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaPizzatkuski">
+    <input type="submit" value="Kuskin näkymä">
+	</form>
+	</td>
+	
+	
+	<td>
+	<form action="luoTyontekija">
+    <input type="submit" value="Lisää työntekijä">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaTyontekijat">
+    <input type="submit" value="Listaa työntekijät">
+	</form>
+	</td>
+	
+	</tr>
+	</table>
+>>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>

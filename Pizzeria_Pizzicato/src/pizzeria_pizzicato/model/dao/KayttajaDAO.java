@@ -227,4 +227,7 @@ public class KayttajaDAO extends DataAccessObject {
 	         close(statement, connection);
 	      }
 	   }
-	}
+}
+
+
+

@@ -63,11 +63,38 @@ for(Cookie cookie : cookies){
 		<p>${message}</p>
 <c:remove var="message" scope="session" /> 
 
+<<<<<<< HEAD
 		<div class="container">
 <a href="lisaa-juoma" class="btn btn-info" role="button">Lis‰‰ juoma</a>
 <a href="listaaPizzat" class="btn btn-info" role="button">Pizzat</a>
 <a href="listaaAktiivisetTilaukset" class="btn btn-info" role="button">Tilaukset</a>
 </div>
+=======
+		
+<table align="center" border="0">
+		<tr>
+	
+			<td>	
+				<form action="lisaa-juoma">
+   	 				<input type="submit" value="Lis‰‰ juoma">
+				</form>
+			</td>
+			
+			<td>	
+				<form action="listaaPizzat">
+   	 				<input type="submit" value="Pizzat">
+				</form>
+			</td>
+			
+			<td>	
+				<form action="listaaAktiivisetTilaukset">
+   	 				<input type="submit" value="Tilaukset">
+				</form>
+			</td>
+		</tr>
+</table>
+		
+>>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
