@@ -92,7 +92,7 @@ h3{color:white;
 .hinta {text-align: left; margin-left: -45%; margin-right: 20px;}
 
 .taytteet{width:90%;
-		margin-right:140px;
+		
 		margin-top: -4px;
 	
 }
@@ -102,7 +102,9 @@ h3{color:white;
 		
 }
 
-.mauste { size: 20%; position: right;}
+.mauste { size: 20%; position: left;}
+
+.maara {}
  
  //*
 .mauste2 { text-align: right; margin-right: -50px; margin-bottomo: 40px;} *//
@@ -112,10 +114,9 @@ h3{color:white;
 .vsoregano {margin-right: 200px;}
 
 .nimet{width:100%;
-		margin-right:595px;
+		margin-right:595px;}
 		
-	
-}
+.koriin {position: right;}
 
 .pcs{padding-left: 30px; 
 	
@@ -274,6 +275,8 @@ table { width:auto, text-aling_ center;
 .pizzalista2{ text-align:center;padding-bottom: 30%;margin-left:8px; 
 			
 }
+
+.juomalista th{text-align: left; width: 200px; margin-left: 2px}
 
 <<<<<<< HEAD
 .pizzat {}
