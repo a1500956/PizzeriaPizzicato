@@ -70,11 +70,7 @@ for(Cookie cookie : cookies){
 </div>
 		
 		
-<<<<<<< HEAD
-=======
-		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Takaisin</a></div><br>
-		<a href="lisaa-tayte" class="button">Lisää täyte</a>
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
+
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		
 		<tr>

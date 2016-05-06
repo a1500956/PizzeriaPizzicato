@@ -39,21 +39,16 @@ scope="request" />
 	
 	
 	<%
-<<<<<<< HEAD
-	int ryhma2= 2;
-	int ryhma1= 1;
-=======
+
 	int ryhma= 1;
 	int ryhma2= 2;
 	int ryhma3= 4;
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
+
 	String userName = null;
 	//allow access only if session exists
-<<<<<<< HEAD
-	if(session.getAttribute("ryhma").equals(ryhma2)||session.getAttribute("ryhma").equals(ryhma1)){
-=======
+
 	if(session.getAttribute("ryhma").equals(ryhma) || session.getAttribute("ryhma").equals(ryhma2) || session.getAttribute("ryhma").equals(ryhma3)){
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
+
 		userName = (String) session.getAttribute("kayttaja");
 		
 	}else{ response.sendRedirect("pizzaMenu");

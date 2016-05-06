@@ -60,15 +60,11 @@ response.setIntHeader("Refresh", 5);
 
 		<h1>Aktiiviset tilaukset</h1>
 		
-<<<<<<< HEAD
+
 
 		<a href="<%=response.encodeURL("listaaPizzat") %>" class="btn btn-info btn-sm" role="button">Takaisin</a><br>
-=======
-				<form action="listaaPizzat">
-   	 				<input type="submit" value="Takaisin">
-				</form>
-		
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
+
+				
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>

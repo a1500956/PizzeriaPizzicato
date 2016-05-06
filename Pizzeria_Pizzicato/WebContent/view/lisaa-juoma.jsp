@@ -52,6 +52,9 @@ for(Cookie cookie : cookies){
 				</td>
 			</tr>
 			<tr>
+			<td><p></p> </td>
+			</tr>
+			<tr>
 				<td>Juoman hinta:</td>
 				<td><input type="number" step=0.01 value="" name="hinta"
 					size="5" min="1" max="100" required
@@ -60,12 +63,18 @@ for(Cookie cookie : cookies){
 					<c:remove var="message2" scope="session" /> 
 			</tr>
 			<tr>
+			<td><p></p> </td>
+			</tr>
+			<tr>
 				<td>Juoman litrakoko:</td>
 				<td><input type="number" step=0.01 value="" name="litrakoko"
 					size="5" min="0.33" max="100" required
 					title="Arvon tulee olla väliltä 0.33 ja 100.0" />&euro;</td>
 					<p>${message2}</p>
 					<c:remove var="message2" scope="session" /> 
+			</tr>
+			<tr>
+			<td><p></p> </td>
 			</tr>
 			<tr>
 				<td>Juoma näkyy menussa:</td>
