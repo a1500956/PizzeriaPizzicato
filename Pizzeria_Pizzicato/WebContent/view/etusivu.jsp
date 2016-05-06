@@ -9,6 +9,7 @@
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="pizzeria_pizzicato.model.Juoma" %>
 
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -33,6 +34,8 @@ scope="request" />
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 <jsp:useBean id="fantasiaTayteValintaLista" type="java.util.ArrayList<Tayte> "
+scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma> "
 scope="request" />
 
 <html>
@@ -59,26 +62,24 @@ media="device" >
 
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 771px)">
-<style type="text/css">
-
-
-
-</style>
+<style type="text/css"></style>
 
 
 
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-
 </head>
-		<body>
+
+
+<body>
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
- <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+ <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4>
+
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+ <li style {text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
  
 
 <div class="dropdown">
@@ -121,6 +122,7 @@ media="only screen and (min-width: 771px)">
 !-->
 
 
+
   <article>
  <br>
  <br>
@@ -149,12 +151,12 @@ media="only screen and (min-width: 771px)">
 					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
 				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-					<select name="maara">
+					<select class="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
 					</select>Kpl
-					<input  type="submit" value="Koriin">
+					<input class="koriin"  type="submit" value="Koriin">
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -181,17 +183,17 @@ media="only screen and (min-width: 771px)">
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
-				<form class="mauste2" method="post">
+				<form class="mauste" method="post">
 				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
 				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
-				<select name="maara">
+				<select class="maara">
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
 				 </select>Kpl
 				<input type="submit" value="Koriin">
-				</td>
+				</form></td>
 				</tr>
 				
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
@@ -214,12 +216,50 @@ media="only screen and (min-width: 771px)">
 												 
 				
 					</div></td></tr>
-					</form>
+			
 				
 			
 			<% } %>
 		
 		</table><br>
+    </span>
+    <br><br><br>
+    <h1>JUOMAT</h1>
+       <span class="juomalista">
+    <table class="listaa-pizzat" border="1" align="center">
+		<tr>	
+			<th>JUOMAT</th>
+			<th>HINTA (&euro;)</th>
+		
+			
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+		<%for(int i = 0; i < juomat.size(); i++) {%>
+		<tr>
+				<td><div><%=juomat.get(i).getNimi()%></div></td>
+				<td><div><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
+				<td><div><%=nf.format(juomat.get(i).getLitrakoko())%> litraa</div></td>
+				
+				<td class="juomavalinta">
+				<form method="post">
+					<input type="hidden" name="juomaID" value="<%=juomat.get(i).getId()%>">
+					<select class="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
+					<input class="koriin"  type="submit" value="Koriin">
+				</form></td>		
+				
+			
+		 </tr>		<% } %>
+    
+    </table>
+    <br><br>
+    
+    
+    
     </span>
         
     </section>
@@ -231,10 +271,8 @@ media="only screen and (min-width: 771px)">
      
   <p>Ratapihantie 13, 00100 Helsinki.  
   <p>Puh. (09) 123 123 12</p>
-    <address>
-      
-    </address>
+  
   </footer>
-  <!-- end .container --></div>
+  <!-- end .container -->
 	</body>
 </html>
