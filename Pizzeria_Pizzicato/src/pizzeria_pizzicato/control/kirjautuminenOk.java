@@ -100,7 +100,7 @@ public class kirjautuminenOk extends HttpServlet {
 		//k‰sitell‰‰n formista tullut data
 		
 		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
-		int oregano = 0, vSipuli = 0;
+		int oregano = 0, vSipuli = 0, kpl = 0;
 		if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
 			oregano = 1;
 		}
