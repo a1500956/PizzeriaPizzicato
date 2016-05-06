@@ -13,15 +13,18 @@
 <jsp:useBean id="tilaukset" type="java.util.ArrayList<Tilaus> "
 scope="request" />
 
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Aktiiviset tilaukset</title>
 
 
 </head>
-	<body>
+	<body class="body2">
 	<%
 	String userName = null;
 	//allow access only if session exists
@@ -58,7 +61,7 @@ response.setIntHeader("Refresh", 5);
 		<h1>Aktiiviset tilaukset</h1>
 		
 
-		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
+		<a href="<%=response.encodeURL("listaaPizzat") %>" class="btn btn-info btn-sm" role="button">Takaisin</a><br>
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>

@@ -4,12 +4,12 @@
 }
 
 
-html{text-align:center;
+.html2{text-align:center;
 	background-color:#ccefff;
 	
 }
 
-body{
+.body2{background-color:#ccefff;
 	font-family: Georgia;
 	color: black;
 	
@@ -30,8 +30,6 @@ header{text-align:right;
 		font-size: 15px;
 		padding-right:190px;	
 }
-
-
 
 
 
@@ -66,6 +64,14 @@ header{text-align:right;
 	
 }
 
+.juomat{padding:10px;
+	
+}
+
+.nakyvyys{padding:10px;
+	
+}
+
 h2{
 	
 }
@@ -76,7 +82,7 @@ color: red;
 	
 }
 
-h3{margin-top:20%;
+.hclass3{margin-top:20%;
 	
 }
 
@@ -98,8 +104,13 @@ input[type=submit]{
     font-size: 13px;
 }
 
-.toiminnot{width:150px;
+.toiminnot{width:200px;
 			text-align: center;
+}
+
+.toiminnot2{margin:10px;
+			font-size: 20px;
+	
 }
 			
 .pizzat{font-size: 20px;
@@ -134,13 +145,7 @@ input[type=submit]{
 					margin-left:20%;
 					float:left;
 					
-					
-					
-					
-					
-					
-					
-	
+
 }
 
 .listaa-tilaukset2{
@@ -148,22 +153,10 @@ input[type=submit]{
 					float:left;
 					margin-left:20px;
 					
-					
-					
-					
-					
-					
+		
 	
 }
 
-.kokki{padding:0;
-
-}
-
-.kokki2{padding:0;
-
-	
-}
 
 .reveal-if-active {
   opacity: 0;

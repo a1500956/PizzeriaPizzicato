@@ -17,15 +17,18 @@
 <jsp:useBean id="taytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Täytelista</title>
 
 
 </head>
-	<body>
+	<body class="body2">
 	
 <%
 //allow access only if session exists
@@ -59,11 +62,14 @@ for(Cookie cookie : cookies){
 		<h1>TÄYTELISTA</h1>
 		
 		<p>${message}</p>
-<c:remove var="message" scope="session" /> 
+<c:remove var="message" scope="session" />
+
+<div class="container">
+<a href="<%=response.encodeURL("listaaPizzat") %>" class="btn btn-info" role="button">Takaisin</a>
+<a href="lisaa-tayte" class="btn btn-info" role="button">Lisää täyte</a>
+</div>
 		
 		
-		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
-		<a href="lisaa-tayte" class="button">Lisää täyte</a>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		
 		<tr>
@@ -80,14 +86,12 @@ for(Cookie cookie : cookies){
 				<td><div class="pizzat"><%=taytteet.get(i).getTayte_nimi_en()%></div></td>
 				<td><div class="pizzat"><%=nf.format(taytteet.get(i).getTayte_hinta())%></div></td>
 				
-				<td><div class="toiminnot"> 
-				<a href="muokkaa-tayte?id=<%=taytteet.get(i).getTayte_id()%>" class="button">
-				Muokkaa
-				</a>		
-				<a href="poista-tayte?id=<%=taytteet.get(i).getTayte_id()%>&id2=<%=taytteet.get(i).getTayte_nimi()%>" class="button">
-				Poista
-				</a></div>
-				</td>								
+				<td><div class="toiminnot"><a href="muokkaa-tayte?id=<%=taytteet.get(i).getTayte_id()%>" class="btn btn-primary btn-sm" role="button">Muokkaa</a>
+				
+				<a href="poista-tayte?id=<%=taytteet.get(i).getTayte_id()%>&id2=<%=taytteet.get(i).getTayte_nimi()%>" class="btn btn-primary btn-sm" role="button">Poista</a>
+				
+				</div>
+				</td>							
 			</tr>
 			<% } %>
 		</table><br>

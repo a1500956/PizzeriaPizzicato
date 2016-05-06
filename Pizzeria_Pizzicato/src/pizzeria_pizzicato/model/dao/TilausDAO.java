@@ -206,9 +206,9 @@ public class TilausDAO extends DataAccessObject {
 			String nimi = rs.getString("tuote_nimi");
 			Tu.setNimi(nimi);
 			int lkm = rs.getInt("lkm");
-			int status = rs.getInt("status");
+			
 			double myyntisumma = rs.getDouble("myyntisumma");
-			return new TilattuTuote(0,0,0, lkm, 0, 0,Tu, myyntisumma, status, new ArrayList<Tayte>());
+			return new TilattuTuote(0,0,0, lkm, 0, 0,Tu, myyntisumma,0, new ArrayList<Tayte>());
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

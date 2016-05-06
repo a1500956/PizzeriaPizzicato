@@ -2,15 +2,18 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="valittuNimi" type="java.lang.String" scope="request" />
-<html>
+<html class="html2">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Poista Juoma</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<title>Poista Juoma</title>
 </head>
-<body>
-<h3>
-		Oletko varma, että haluat poistaa pizzan: "
+<body class="body2">
+<h3 class="hclass3">
+		Oletko varma, että haluat poistaa juoman: "
 		<%=valittuNimi%>
 		"
 	</h3>
@@ -22,13 +25,10 @@
 
 
 				<tr>
-					<td><br>
-						<div class="button">
-							<a href="listaaPizzat">Peruuta</a>
-						</div></td>
+					<td><br><a href="listaaJuomat" class="btn btn-info" role="button">Peruuta</a>&nbsp;&nbsp;</td>
 
-					<td><br> <input type="submit" name="submit-button"
-						class="submit-button" value="Poista" /></td>
+					<td><br><input type="submit" class="btn btn-danger" value="Poista"></td>
+					
 				</tr>
 			</table>
 		</form>

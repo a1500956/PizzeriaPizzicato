@@ -24,22 +24,26 @@ scope="request" />
 <jsp:useBean id="tilatutTuotteet" type="java.util.ArrayList<TilattuTuote> "
 scope="request" />
 
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Tilaukset</title>
 
 
 </head>
-	<body>
+	<body class="body2">
 	
 	
 	<%
-	int ryhma= 2;
+	int ryhma2= 2;
+	int ryhma1= 1;
 	String userName = null;
 	//allow access only if session exists
-	if(session.getAttribute("ryhma").equals(ryhma)){
+	if(session.getAttribute("ryhma").equals(ryhma2)||session.getAttribute("ryhma").equals(ryhma1)){
 		userName = (String) session.getAttribute("kayttaja");
 		
 	}else{ response.sendRedirect("pizzaMenu");
@@ -148,7 +152,7 @@ var FormStuff = {
 		
 		<h1>KOKIN NÄKYMÄ</h1>
 	
-		 <div class="listaa-tilaukset">
+		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
@@ -169,11 +173,11 @@ var FormStuff = {
 					<% if(tilaukset.get(i).getTilattuTuote(j).getStatus()==1){%>
 	
 					<tr>
-						<td><%=tilaukset.get(i).getId() %></td>
-						<td><%=tilaukset.get(i).getTilattuTuote(j).getLkm() %></td>
-						<td><%=tilaukset.get(i).getAika()%></td>
-						<td><%if(tilaukset.get(i).getTilattuTuote(j).getStatus()==1){out.print("Tekemätön");}else{out.print("Tehty");} %></td>
-						<td><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></td>
+						<td><div class="toiminnot2"><%=tilaukset.get(i).getId() %></div></td>
+						<td><div class="toiminnot2"><%=tilaukset.get(i).getTilattuTuote(j).getLkm() %></div></td>
+						<td><div class="toiminnot2"><%=tilaukset.get(i).getAika()%></div></td>
+						<td><div class="toiminnot2"><%if(tilaukset.get(i).getTilattuTuote(j).getStatus()==1){out.print("Tekemätön");}else{out.print("Tehty");} %></div></td>
+						<td><div class="toiminnot2"><%=tilaukset.get(i).getTilattuTuote(j).getTuote().getNimi() %></div></td>
 						<%TuoteDAO TUDAO= new TuoteDAO();
 						if(TUDAO.pizzaVaiJuoma(tilaukset.get(i).getTilattuTuote(j).getTuote().getId())){
 							if(tilaukset.get(i).getTilattuTuote(j).getLisataytteet().isEmpty()){
@@ -189,12 +193,12 @@ var FormStuff = {
 							
 						<%}else{ %><td></td><%} %>
 						
-						<td><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></td>
-						<td><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></td>
-						<td><form class="kokki" action="" method="post"><input type="hidden" name="valmis" value="<%=tilaukset.get(i).getTilattuTuote(j).getTilausId() %>"/>
+						<td><div class="toiminnot2"><%if(tilaukset.get(i).getTilattuTuote(j).getvSipuli()==1){out.print("kyllä");}else{out.print("ei");} %></div></td>
+						<td><div class="toiminnot2"><%if(tilaukset.get(i).getTilattuTuote(j).getOregano()==1){out.print("kyllä");}else{out.print("ei");} %></div></td>
+						<td><div class="toiminnot2"><form class="" action="" method="post"><input type="hidden" name="valmis" value="<%=tilaukset.get(i).getTilattuTuote(j).getTilausId() %>"/>
 						<input type="hidden" name="valmis2" value="<%=tilaukset.get(i).getTilattuTuote(j).getTilausRivi() %>"/>
 						<input type="hidden" name="valmis3" value="<%=tilaukset.get(i).getTilattuTuote(j).getTuoteId() %>"/>					
-  						<input type="submit" value="Kyllä"></form></td>
+  						<input type="submit" class="btn btn-success btn-xs" value="Kyllä" /></form></div></td>
 						</tr>				
 					
 				<% } %>
@@ -203,7 +207,7 @@ var FormStuff = {
 					
 		</table>
 
-</div>	
+
 	
 	</body>
 </html>
