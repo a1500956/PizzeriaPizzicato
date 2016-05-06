@@ -284,8 +284,76 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
+	//Tarkastaa onko kaikki tilatut tuotteet valmiit, ja jos on, niin paivitt‰‰ tilauksen tehdyksi
 	
+	public void TilauksenStatusUpdate(int tilausRivi, int tuoteId, int tilausId) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement stmtSelect = null;
+		ResultSet rs = null;
+		String sqlSelect = null;
+		ArrayList<TilattuTuote> tilattutuote = new ArrayList<TilattuTuote>();
+		ArrayList<TilattuTuote> tilattutuote2 = new ArrayList<TilattuTuote>();
+		int tRivi = tilausId;
+		TilattuTuote tt;
 
+		try {
+			
+			connection = getConnection();
+			
+			sqlSelect = "SELECT tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano, status FROM TilattuTuote WHERE tilaus_id =?;";
+			stmtSelect = connection.prepareStatement(sqlSelect);
+			stmtSelect.setInt(1, tRivi);
+			
+			rs = stmtSelect.executeQuery();
+			
+			while(rs.next()){
+				tt = readTilattuTuote(rs);
+				System.out.println(tt);
+				tilattutuote.add(tt);
+				
+			}
+			
+		} finally {
+			close(stmtSelect, connection);
+		
+		
+			
+			for (int i = 0; i < tilattutuote.size(); i++) {
+				if (tilattutuote.get(i).getStatus() == 0) {
+					tilattutuote2.add(tilattutuote.get(i));
+				}
+			}
+			
+			if(tilattutuote.size() == tilattutuote2.size()){
+				
+				System.out.println(tilattutuote.size());
+				System.out.println(tilattutuote2.size());
+				
+			PreparedStatement stmtUpdate = null;
+			int sId = 3;
+				
+				try {
+					
+					connection = getConnection();
+					
+					String sqlUpdate = "UPDATE Tilaus SET status_id =? WHERE tilaus_id =?;";
+					stmtUpdate = connection.prepareStatement(sqlUpdate);
+					stmtUpdate.setInt(1, sId);
+					stmtUpdate.setInt(2, tRivi);	
+
+					stmtUpdate.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			
+			close(stmtUpdate, connection); 
+	}
+}
+}
+}
+	
 	
 	//T‰m‰ toiminto asettaa tilauksen 'peruutettu'-tilaan arkistointia varten.
 	public void peruutaTilaus(int tilausID) throws SQLException {
