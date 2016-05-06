@@ -102,7 +102,9 @@ h3{color:white;
 		
 }
 
-.mauste { size: 20%; position: right;}
+.mauste { size: 20%; position: left;}
+
+.maara {position: right;}
  
  //*
 .mauste2 { text-align: right; margin-right: -50px; margin-bottomo: 40px;} *//
@@ -112,10 +114,9 @@ h3{color:white;
 .vsoregano {margin-right: 200px;}
 
 .nimet{width:100%;
-		margin-right:595px;
+		margin-right:595px;}
 		
-	
-}
+.koriin {position: right;}
 
 .pcs{padding-left: 30px; 
 	
