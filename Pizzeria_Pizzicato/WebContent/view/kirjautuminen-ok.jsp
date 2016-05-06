@@ -28,6 +28,8 @@ scope="request" />
 scope="request" />
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
+<jsp:useBean id="fantasiaTayteValintaLista" type="java.util.ArrayList<Tayte> "
+scope="request" />
 
 <html>
 <head>
@@ -101,8 +103,10 @@ for(Cookie cookie : cookies){
 	
 </nav>
 
-  <article>
-
+    <article>
+ <br>
+ <br>
+ <br><br>
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
@@ -124,10 +128,15 @@ for(Cookie cookie : cookies){
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
 				<form class="postii" method="post">
-				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
-				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-				<input  type="submit" value="Koriin">
+					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
+					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+					<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
+					<input  type="submit" value="Koriin">
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -154,13 +163,17 @@ for(Cookie cookie : cookies){
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
 				<td class="vsoregano">
-				
 				<form class="mauste2" method="post">
-				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Valkosipuli<input class="mauste" type="checkbox" name="vSipuli" value="1">
+				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<select name="maara">
+				 	<%for(int n=0; n<10;n++){%>
+				 		<option value="<%=n+1%>"><%=n+1%></option>
+				 	<%}%>
+				 </select>Kpl
 				<input type="submit" value="Koriin">
-				</form></td>
+				</td>
 				</tr>
 				
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
@@ -169,13 +182,13 @@ for(Cookie cookie : cookies){
 												<%  }%>
 												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi()%> + <%=(i +2)%> kpl valitsemaasi täytettä. <br>
 												 
-		
+				
 				
 				<%int k=0; for(k=0; k<taytemaara; k++) {%>
 												<select class="lisatayteValikko" name="lisatayte">
 												<option selected disabled>Valitse täyte <%=k+1%></option>
-													<%for(int l=0; l<kaikkitaytteet.size();l++){ %>
-														 <option value=<%=kaikkitaytteet.get(l).getTayte_id() %>><%=kaikkitaytteet.get(l).getTayte_nimi() %></option>
+													<%for(int l=0; l<fantasiaTayteValintaLista.size();l++){ %>
+														 <option value=<%=fantasiaTayteValintaLista.get(l).getTayte_id() %>><%=fantasiaTayteValintaLista.get(l).getTayte_nimi() %></option>
 													<%} %>
 												</select>
 												<%} %>
@@ -183,9 +196,11 @@ for(Cookie cookie : cookies){
 												 
 				
 					</div></td></tr>
+					</form>
+				
 			
 			<% } %>
-			
+		
 		</table><br>
     </span>
         

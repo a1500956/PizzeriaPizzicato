@@ -70,9 +70,31 @@ response.setIntHeader("Refresh", 5);
 </div>
 
 </header>
-		<a href="<%=response.encodeURL("listaaPizzat") %>">Listaa pizzat</a>
-		<a href="<%=response.encodeURL("listaaJuomat") %>">Näytä juomat</a>
-		<a href="<%=response.encodeURL("listaaAktiivisetTilaukset") %>">Näytä aktiiviset tilaukset</a>
+
+	<table align="center" border="0">
+		<tr>
+	
+			<td>	
+				<form action="listaaPizzat">
+   	 				<input type="submit" value="Pizzat">
+				</form>
+			</td>
+		
+			<td>	
+				<form action="listaaJuomat">
+   	 				<input type="submit" value="Juomat">
+				</form>
+			</td>
+		
+			<td>	
+				<form action="listaaJuomat">
+   	 				<input type="submit" value="Aktiiviset tilaukset">
+				</form>
+			</td>
+
+		</tr>
+	</table>
+
 		<h1>ARKISTOIDUT TILAUKSET</h1>
 	
 	

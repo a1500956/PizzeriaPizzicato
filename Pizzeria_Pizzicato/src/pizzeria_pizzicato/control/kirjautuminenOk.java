@@ -16,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import pizzeria_pizzicato.model.Juoma;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
+import pizzeria_pizzicato.model.Tayte;
 import pizzeria_pizzicato.model.dao.JuomaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
+import pizzeria_pizzicato.model.dao.TayteDAO;
 
 
 @WebServlet("/kirjautuminenOk")
@@ -39,10 +41,16 @@ public class kirjautuminenOk extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		TayteDAO Taytedao = new TayteDAO();
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
 		ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 		ArrayList<Pizza> pizzaFantasia = new ArrayList<Pizza>();
+		ArrayList<Tayte> kaikkiTaytteet= Taytedao.findAll();
+		ArrayList<Tayte> fantasiaTayteValintaLista= Taytedao.karsiFantasianPerustaytteet(kaikkiTaytteet, pizzadao.getPizzaId("Fantasia 2"));
+		request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
+		request.setAttribute("fantasiaTayteValintaLista", fantasiaTayteValintaLista);
+		
 		
 		for(int i=0;i<pizzaLista.size();i++){
 			
@@ -93,14 +101,15 @@ public class kirjautuminenOk extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		TayteDAO Taytedao = new TayteDAO();
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
-
+		String[] lisatayte;
 		
 		//k‰sitell‰‰n formista tullut data
 		
 		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
-		int oregano = 0, vSipuli = 0, kpl = 0;
+		int oregano = 0, vSipuli = 0, kpl=0;
 		if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
 			oregano = 1;
 		}
@@ -109,10 +118,17 @@ public class kirjautuminenOk extends HttpServlet {
 		}
 		kpl = Integer.parseInt(request.getParameter("maara"));
 		
+		lisatayte = request.getParameterValues("lisatayte");
+		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
 			if(pizzaLista.get(i).getId() == sArvo){
 				pizza = pizzaLista.get(i);
+			}
+		}
+		if(lisatayte!=null){
+			for(String s:lisatayte){
+				pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
 			}
 		}
 		
