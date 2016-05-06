@@ -17,13 +17,16 @@
 <jsp:useBean id="juomat" type="java.util.ArrayList<Juoma> "
 scope="request" />
 
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Juomalista</title>
 </head>
-	<body>
+	<body class="body2">
 	<%
 	int ryhma= 1;
 	String userName = null;
@@ -60,20 +63,20 @@ for(Cookie cookie : cookies){
 		<p>${message}</p>
 <c:remove var="message" scope="session" /> 
 
-		
 
-		<a href="<%=response.encodeURL("lisaa-juoma") %>">Lis‰‰ juoma</a>
-		<a href="<%=response.encodeURL("listaaPizzat") %>">N‰yt‰ pizzat</a>
-		<a href="<%=response.encodeURL("listaaAktiivisetTilaukset") %>">N‰yt‰ aktiiviset tilaukset</a>
-		
-		
+		<div class="container">
+<a href="lisaa-juoma" class="btn btn-info" role="button">Lis‰‰ juoma</a>
+<a href="listaaPizzat" class="btn btn-info" role="button">Pizzat</a>
+<a href="listaaAktiivisetTilaukset" class="btn btn-info" role="button">Tilaukset</a>
+</div>
+
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			<td><h4>MENUSSA</h4></td>
-			<td><h4>JUOMAT</h4></td>
-			<td><h4>HINTA (&euro;)</h4></td>
-			<td><h4>LITRAKOKO</h4></td>
-			<td><h4>TOIMINNOT</h4></td>
+			<td><div class="toiminnot2"><h4>MENUSSA</h4></div></td>
+			<td><div class="toiminnot2"><h4>JUOMAT</h4></div></td>
+			<td><div class="toiminnot2"><h4>HINTA (&euro;)</h4></div></td>
+			<td><div class="toiminnot2"><h4>LITRAKOKO</h4></div></td>
+			<td><div class="toiminnot2"><h4>TOIMINNOT</h4></div></td>
 				
 			<%for(int i = 0; i < juomat.size(); i++) {%>
 			<tr>
@@ -81,14 +84,12 @@ for(Cookie cookie : cookies){
 				<td><div class="juomat"><%=juomat.get(i).getNimi()%></div></td>
 				<td><div class="juomat"><%=nf.format(juomat.get(i).getHinta())%></div></td>
 				<td><div class="juomat"><%=nf.format(juomat.get(i).getLitrakoko())%></div></td>
-				<td><div class="toiminnot"> 
-				<a href="muokkaa-juoma?id=<%=juomat.get(i).getId()%>" class="button">
-				Muokkaa
-				</a>		
-				<a href="poista-juoma?id=<%=juomat.get(i).getId()%>&id2=<%=juomat.get(i).getNimi()%>" class="button">
-				Poista
-				</a></div>
-				</td>								
+				<td><div class="toiminnot2"><a href="muokkaa-juoma?id=<%=juomat.get(i).getId()%>" class="btn btn-primary btn-sm" role="button">Muokkaa</a>
+				
+				<a href="poista-juoma?id=<%=juomat.get(i).getId()%>&id2=<%=juomat.get(i).getNimi()%>" class="btn btn-primary btn-sm" role="button">Poista</a>
+				
+				</div>
+				</td>					
 			</tr>
 			<% } %>
 		</table><br>

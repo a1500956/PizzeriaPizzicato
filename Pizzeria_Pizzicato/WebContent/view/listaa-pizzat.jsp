@@ -19,15 +19,18 @@
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
 
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Pizzalista</title>
 
 
 </head>
-	<body>
+	<body class="body2">
 	<%
 	int ryhma= 1;
 	String userName = null;
@@ -65,41 +68,18 @@ for(Cookie cookie : cookies){
 <c:remove var="message" scope="session" /> 
 
 
-	<table align="center" border="0">
-	<tr>
+<div class="container">
+<a href="lisaa-pizza" class="btn btn-info" role="button">Lisää pizza</a>
+<a href="listaa-taytteet" class="btn btn-info" role="button">Täytteet</a>
+<a href="listaaJuomat" class="btn btn-info" role="button">Juomat</a>
+<a href="listaaAktiivisetTilaukset" class="btn btn-info" role="button">Tilaukset</a>
+<a href="listaaArkisto" class="btn btn-info" role="button">Arkisto</a>
+<a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
+<a href="luoTyontekija" class="btn btn-info" role="button">Lisää työntekijä</a>
+<a href="listaaTyontekijat" class="btn btn-info" role="button">Työntekijät</a>
+</div>
+
 	
-	<td>	
-	<form action="lisaa-pizza">
-    <input type="submit" value="Lisää pizza">
-	</form>
-	</td>
-	
-	<td>
-	<form action="listaa-taytteet">
-    <input type="submit" value="Täytteet">
-	</form>
-	</td>
-	
-	<td>
-	<form action="listaaJuomat">
-    <input type="submit" value="Juomat">
-	</form>
-	</td>
-	
-	<td>
-	<form action="listaaAktiivisetTilaukset">
-    <input type="submit" value="Tilaukset">
-	</form>
-	</td>
-	
-	<td>
-	<form action="listaaArkisto">
-    <input type="submit" value="Tilausarkisto">
-	</form>
-	</td>
-	
-	</tr>
-	</table>
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
@@ -119,13 +99,11 @@ for(Cookie cookie : cookies){
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
 												 </div></td>
-				<td><div class="toiminnot"> 
-				<a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="button">
-				Muokkaa
-				</a>		
-				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>&id2=<%=pizzat.get(i).getNimi()%>" class="button">
-				Poista
-				</a></div>
+				<td><div class="toiminnot"><a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="btn btn-primary btn-sm" role="button">Muokkaa</a>
+				
+				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>&id2=<%=pizzat.get(i).getNimi()%>" class="btn btn-primary btn-sm" role="button">Poista</a>
+				
+				</div>
 				</td>								
 			</tr>
 			<% } %>

@@ -19,15 +19,18 @@ scope="request" />
 scope="request" />
 <jsp:useBean id="tilasto" type="java.util.ArrayList<TilattuTuote> "
 scope="request" />
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Arkistoidut Tilaukset</title>
 
 
 </head>
-	<body>
+	<body class="body2">
 	
 	
 	<%
@@ -71,31 +74,16 @@ response.setIntHeader("Refresh", 5);
 
 </header>
 
-	<table align="center" border="0">
-		<tr>
-	
-			<td>	
-				<form action="listaaPizzat">
-   	 				<input type="submit" value="Pizzat">
-				</form>
-			</td>
-		
-			<td>	
-				<form action="listaaJuomat">
-   	 				<input type="submit" value="Juomat">
-				</form>
-			</td>
-		
-			<td>	
-				<form action="listaaJuomat">
-   	 				<input type="submit" value="Aktiiviset tilaukset">
-				</form>
-			</td>
 
-		</tr>
-	</table>
+	
+
 
 		<h1>ARKISTOIDUT TILAUKSET</h1>
+		<div class="container">
+<a href="listaaPizzat" class="btn btn-info" role="button">Listaa pizzat</a>
+<a href="listaaJuomat" class="btn btn-info" role="button">Juomat</a>
+<a href="listaaAktiivisetTilaukset" class="btn btn-info" role="button">Tilaukset</a>
+</div>
 	
 	
 		 <div class="listaa-tilaukset">

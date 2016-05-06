@@ -6,14 +6,17 @@
            uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte>" scope="request" />
 
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <title>Lis‰‰ pizza</title>
 </head>
-<body>
+<body class="body2">
 
 <%
 int ryhma= 1;
@@ -54,12 +57,18 @@ for(Cookie cookie : cookies){
 				</td>
 			</tr>
 			<tr>
+			<td><p></p> </td>
+			</tr>
+			<tr>
 				<td>Pizzan hinta:</td>
 				<td><input type="number" step=0.01 value="" name="hinta"
 					size="5" min="6" max="100" required
 					title="Arvon tulee olla v‰lilt‰ 0.0 ja 100.0" />&euro;</td>
 					<p>${message2}</p>
 					<c:remove var="message2" scope="session" /> 
+			</tr>
+			<tr>
+			<td><p></p> </td>
 			</tr>
 			<tr>
 				<td>Pizza n‰kyy menussa:</td>
@@ -75,12 +84,12 @@ for(Cookie cookie : cookies){
 				</td>
 				
 			<tr>
+				
 				<td><br>
-				<div class="button">
-						<a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a>
-					</div></td>
-				<td><br> <input type="submit" name="submit-button"
-					class="submit-button" value="Tallenna" /></td>
+				<a href="<%=response.encodeURL("listaaPizzat") %>" class="btn btn-info btn-sm" role="button">Takaisin</a>&nbsp;&nbsp;
+  				
+				</td>
+				<td><br> <input type="submit" class="btn btn-success btn-md" value="Tallenna" /></td>
 			</tr>
 		</table>
 	</form>

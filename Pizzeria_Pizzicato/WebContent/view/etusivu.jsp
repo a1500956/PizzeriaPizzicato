@@ -6,10 +6,10 @@
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="pizzeria_pizzicato.model.Juoma" %>
 
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -62,24 +62,26 @@ media="device" >
 
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 771px)">
-<style type="text/css"></style>
+<style type="text/css">
+
+
+
+</style>
 
 
 
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
 </head>
-
-
-<body>
+		<body>
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
- <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4>
-
+ <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- <li style {text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
+ <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
  
 
 <div class="dropdown">
@@ -122,7 +124,6 @@ media="only screen and (min-width: 771px)">
 !-->
 
 
-
   <article>
  <br>
  <br>
@@ -146,17 +147,18 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
+				<td  rowspan="2" >
 				<form class="postii" method="post">
-					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
 				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+					<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 					<select name="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl
-					<input class="koriin"  type="submit" value="Koriin">
+					</select>Kpl <br>
+					<input  class="koriin" type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -181,17 +183,18 @@ media="only screen and (min-width: 771px)">
 				<tr>
 				
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
-				<form class="mauste" method="post">
-				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				<td  rowspan="2" style= "vertical-align: top;"><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td  rowspan="2" style= "vertical-align: top;">
+				<form class="mauste2" method="post">
+				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
 				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 				<select name="maara">
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
-				 </select>Kpl
+				 </select>Kpl <br>
 				<input type="submit" value="Koriin">
 				</td>
 				</tr>
@@ -216,11 +219,10 @@ media="only screen and (min-width: 771px)">
 												 
 				
 					</div></td></tr>
-				
+					</form>
 				
 			
 			<% } %>
-		</form>
 		</table><br>
     </span>
     <br><br><br>
@@ -271,8 +273,10 @@ media="only screen and (min-width: 771px)">
      
   <p>Ratapihantie 13, 00100 Helsinki.  
   <p>Puh. (09) 123 123 12</p>
-  
+    <address>
+      
+    </address>
   </footer>
-  <!-- end .container -->
+  <!-- end .container --></div>
 	</body>
 </html>

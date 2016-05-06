@@ -85,13 +85,13 @@ for(Cookie cookie : cookies){
  	<li style{text-align; right}>
  	<a href="/Pizzeria_Pizzicato/vahvistaTilausEn">
  	<img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>
- 	Shopping Cart(<%=ostoskori.getMaara()%>)</a>
+ 	Cart(<%=ostoskori.getMaara()%>)</a>
  	 </li>
 
  	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, you are signed in.</h3><input type="submit" value="Sign out" >
+      <h3>Welcome, <%=userName %>!</h3><input type="submit" value="Sign out" >
 
       </div>
     </form>

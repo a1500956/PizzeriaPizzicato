@@ -87,7 +87,7 @@ public class muokkaaPizza extends HttpServlet {
 
 			// Pizzan tiedot p‰ivitet‰‰n
 			pizzadao.updatePizza(pizza);
-
+			viesti = "Pizzan muokkaaminen onnistui!";
 			// Pizzan t‰ytteet h‰vitet‰‰n warppiin PizzaT‰yte-taulukosta,
 			// toistaiseksi voimassaolevuudesta huolimatta
 			PTdao.poistaPizzaTaytelistalta(id);
@@ -97,7 +97,7 @@ public class muokkaaPizza extends HttpServlet {
 			for (int i = 0; i < taytteetStr.length; i++) {
 				PTdao.addTayteToPizza(Integer.parseInt(taytteetStr[i]), id);
 			}
-			viesti = "Pizzan muokkaaminen onnistui!";
+			
 
 		} catch (SQLException e) {
 
