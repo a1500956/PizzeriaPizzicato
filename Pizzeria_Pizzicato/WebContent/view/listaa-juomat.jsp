@@ -61,10 +61,28 @@ for(Cookie cookie : cookies){
 <c:remove var="message" scope="session" /> 
 
 		
-
-		<a href="<%=response.encodeURL("lisaa-juoma") %>">Lis‰‰ juoma</a>
-		<a href="<%=response.encodeURL("listaaPizzat") %>">N‰yt‰ pizzat</a>
-		<a href="<%=response.encodeURL("listaaAktiivisetTilaukset") %>">N‰yt‰ aktiiviset tilaukset</a>
+<table align="center" border="0">
+		<tr>
+	
+			<td>	
+				<form action="lisaa-juoma">
+   	 				<input type="submit" value="Lis‰‰ juoma">
+				</form>
+			</td>
+			
+			<td>	
+				<form action="listaaPizzat">
+   	 				<input type="submit" value="Pizzat">
+				</form>
+			</td>
+			
+			<td>	
+				<form action="listaaAktiivisetTilaukset">
+   	 				<input type="submit" value="Tilaukset">
+				</form>
+			</td>
+		</tr>
+</table>
 		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">

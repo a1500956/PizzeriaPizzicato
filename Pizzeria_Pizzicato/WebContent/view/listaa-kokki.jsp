@@ -36,10 +36,12 @@ scope="request" />
 	
 	
 	<%
-	int ryhma= 2;
+	int ryhma= 1;
+	int ryhma2= 2;
+	int ryhma3= 4;
 	String userName = null;
 	//allow access only if session exists
-	if(session.getAttribute("ryhma").equals(ryhma)){
+	if(session.getAttribute("ryhma").equals(ryhma) || session.getAttribute("ryhma").equals(ryhma2) || session.getAttribute("ryhma").equals(ryhma3)){
 		userName = (String) session.getAttribute("kayttaja");
 		
 	}else{ response.sendRedirect("pizzaMenu");
@@ -76,7 +78,22 @@ response.setIntHeader("Refresh", 5);
 
 </header>
 
-
+		<table align="center" border="0">
+		<tr>
+		<%if(session.getAttribute("ryhma").equals(1)){ %>
+		<td>
+		<form action="listaaPizzat">
+   	 				<input type="submit" value="Takaisin">
+		</form>
+		</td>
+		<%} %>
+		<td>
+		<form action="listaaPizzatkuski">
+   	 				<input type="submit" value="Kuskin näkymä">
+		</form>
+		</td>
+		</tr>
+		</table>
 		
 		 <p>Pizzalista</p> 
 		<tr><td colspan="2"><input type="radio" name="lista" value="Piilossa" checked>  <label for="lista" style="color:black;">Piilossa</label>
