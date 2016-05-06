@@ -224,9 +224,9 @@ media="only screen and (min-width: 771px)">
 		</table><br>
     </span>
     <br><br><br>
-    <h1>JUOMAT</h1>
-       <span class="juomalista">
-    <table class="listaa-pizzat" border="1" align="center">
+    <h1 class="pizzaotsikko">JUOMAT</h1>
+       <span>
+    <table class="juomalista" border="1" align="center">
 		<tr>	
 			<th>JUOMAT</th>
 			<th>HINTA (&euro;)</th>
@@ -237,8 +237,8 @@ media="only screen and (min-width: 771px)">
 		</tr>
 		<%for(int i = 0; i < juomat.size(); i++) {%>
 		<tr>
-				<td><div><%=juomat.get(i).getNimi()%></div></td>
-				<td><div><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
+				<td><div class="pizzat"><%=juomat.get(i).getNimi()%></div></td>
+				<td><div class="pizzat2"><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
 				<td><div><%=nf.format(juomat.get(i).getLitrakoko())%> litraa</div></td>
 				
 				<td class="juomavalinta">
