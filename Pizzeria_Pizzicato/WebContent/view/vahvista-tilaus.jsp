@@ -212,8 +212,7 @@ var FormStuff = {
 			<th style="border-bottom: solid 1px grey;">PIZZAT</th>
 			<th style="border-bottom: solid 1px grey;">LISÄTÄYTTEET</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
-			<th style="border-bottom: solid 1px grey;">OREGANO</th>
-			<th style="border-bottom: solid 1px grey;">V.SIPULI</th>
+			<th style="border-bottom: solid 1px grey;">MAUSTEET</th>
 			<th style="border-bottom: solid 1px grey;">KPL</th>
 			<th></th>
 			
@@ -230,23 +229,23 @@ var FormStuff = {
 						<td><div class=""><% for(int n = 0; n<ostoskori.getTuote(i).getLisataytteet().size(); n++){ %><%=ostoskori.getTuote(i).getLisataytteet().get(n).getTayte_nimi()%> <%}%> </div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
-							<%String oregano = "kyllä";
-							if(ostoskori.getTuote(i).getOregano() == 0){
-								oregano = "ei";
-							}%>
-						<td><div class="tilauslista"><%=oregano%></div></td>
-							<%String vSipuli = "kyllä";
-							if(ostoskori.getTuote(i).getvSipuli() == 0){
-								vSipuli = "ei";
-							}%>
-						<td><div class="tilauslista"><%=vSipuli%></div></td>
+						<td style="text-align: center;"><div class="">
+							<%if(ostoskori.getTuote(i).getOregano() != 0){%>
+								<img src="Kuvia/oregano.png" title="Oregano" alt="Oregano" style="width:16px;height:16px;" />
+								<!--Icon made by Freepik from www.flaticon.com-->
+							<%}%>
+							<%if(ostoskori.getTuote(i).getvSipuli() != 0){%>
+								<img src="Kuvia/garlic.png" title="Valkosipuli" alt="Valkosipuli" style="width:16px;height:16px;" />
+								<!--Icon made by Madebyoliver from www.flaticon.com-->
+							<%}%>
+						</div></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
 						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=poista" class="submit-button">
-						<img src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+						<img src="Kuvia/minus2.png" title="Poista" alt="Poista" style="width:16px;height:16px;" />
 						</a></td>
 						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaa" class="submit-button">
-						<img src="Kuvia/plus.png" alt="Lisaa" style="width:15px;height:15px;" />
-						<!--Icon made by Freepik from www.flaticon.com-->
+						<img src="Kuvia/plus.png" title="Lisää" alt="Lisaa" style="width:16px;height:16px;" />
+						<!--Icon made by Dave Gandy from www.flaticon.com-->
 						</a></td>							
 					</tr>
 				<%}%>
