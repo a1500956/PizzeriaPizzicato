@@ -17,15 +17,18 @@
 scope="request" />
 <jsp:useBean id="pizzat" type="java.util.ArrayList<Pizza> "
 scope="request" />
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
-<title>Tilaukset</title>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<title>Kuskin näkymä</title>
 
 
 </head>
-	<body>
+	<body class="body2">
 	
 	
 	<%
@@ -72,38 +75,36 @@ response.setIntHeader("Refresh", 5);
 </header>	
 
 
+		
+		
+		<h1>TOIMITETTAVAT</h1>
+		
 		<table align="center" border="0">
 		<tr>
 		<%if(session.getAttribute("ryhma").equals(1)){ %>
 		<td>
-		<form action="listaaPizzat">
-   	 				<input type="submit" value="Takaisin">
-		</form>
+		<a href="listaaPizzat" class="btn btn-info" role="button">Takaisin</a>&nbsp;&nbsp;
 		</td>
 		<%} %>
 		<td>
-		<form action="listaaPizzatkokki">
-   	 				<input type="submit" value="Kokin näkymä">
-		</form>
+		<a href="listaaPizzatkokki" class="btn btn-info" role="button">Kokin näkymä</a>
 		</td>
 		</tr>
 		</table>
-		
-		<h1>TOIMITETTAVAT</h1>
 	
 		 <div class="listaa-tilaukset">
 		<form class="kuski" action="" method="post">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			<td><h4>Tilausnumero</h4></td>
-			<td><h4>Aika</h4></td>
-			<td><h4>Status</h4></td>
-			<td><h4>Tuote</h4></td>	
-			<td><h4>Lukumäärä</h4></td>	
-			<td><h4>Valkosipuli</h4></td>
-			<td><h4>Oregano</h4></td>
-			<td><h4>Osoite</h4></td>
-			<td><h4>Puhnro</h4></td>
+			<td><div class="toiminnot2"><h4>Tilausnumero</h4></div></td>
+			<td><div class="toiminnot2"><h4>Aika</h4></div></td>
+			<td><div class="toiminnot2"><h4>Status</h4></div></td>
+			<td><div class="toiminnot2"><h4>Tuote</h4></div></td>	
+			<td><div class="toiminnot2"><h4>Lukumäärä</h4></div></td>	
+			<td><div class="toiminnot2"><h4>Valkosipuli</h4></div></td>
+			<td><div class="toiminnot2"><h4>Oregano</h4></div></td>
+			<td><div class="toiminnot2"><h4>Osoite</h4></div></td>
+			<td><div class="toiminnot2"><h4>Puhnro</h4></div></td>
 		</tr>
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
@@ -141,10 +142,10 @@ response.setIntHeader("Refresh", 5);
 			<%if(tilaukset.get(i).getStatusID()==3){%>
 			
 					<tr>
-					<td><form class="kuski2" action="" method="post">
+					<td><div class="toiminnot2"><form class="kuski2" action="" method="post">
 						<input type="hidden" name="toimitettu" value="<%=tilaukset.get(i).getId() %>"><%=tilaukset.get(i).getId() %></td>						
-  						<td><input type="submit" value="Kyllä">
-						</form></td>
+  						<td><input type="submit" class="btn btn-success btn-xs" value="Kyllä" />
+						</form></div></td>
   						
 						</tr>				
 					<% }%>

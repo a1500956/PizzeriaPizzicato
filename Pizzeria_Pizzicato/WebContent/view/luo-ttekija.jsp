@@ -4,14 +4,17 @@
 
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html class="html2">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="styles.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <title>Lisää työntekijä</title>
 </head>
-<body>
+<body class="body2">
 
 <%
 	int ryhma= 1;
@@ -49,7 +52,9 @@ for(Cookie cookie : cookies){
  <br>
  <br>
  <br><br>
-  <h1 class="pizzaotsikko"><br>REKISTERÖI TYÖNTEKIJÄ</h1>
+  <h1 class="pizzaotsikko">REKISTERÖI TYÖNTEKIJÄ</h1>
+  <br>
+  <br>
   
   <p>${message}</p>
 <c:remove var="message" scope="session" /> 
@@ -64,41 +69,61 @@ for(Cookie cookie : cookies){
 					</td>					
 				</tr>
 				<tr>
+			<td><p></p> </td>
+			</tr>
+				<tr>
 					<td>Etunimi:</td>
 					<td><input type="text" value="" name="Enimi" size="20" pattern=".{3,20}" required title="Pituuden tulee olla 3-20 merkkiä" />
 					</td>					
 				</tr>
+				<tr>
+			<td><p></p> </td>
+			</tr>
 				<tr>
 					<td>Sukunimi:</td>
 					<td><input type="text" value="" name="Snimi" size="20" pattern=".{3,20}" required title="Pituuden tulee olla 3-20 merkkiä" />
 					</td>					
 				</tr>
 				<tr>
+			<td><p></p> </td>
+			</tr>
+				<tr>
 				<td>Katuosoite:</td>
 					<td><input type="text" value="" name="KatuOs" size="20" pattern=".{3,20}" required title="Pituuden tulee olla 3-20 merkkiä" />
 				</td>	
 				</tr>
+				<tr>
+			<td><p></p> </td>
+			</tr>
 				<tr>
 				<td>Puhelinnumero:</td>
 					<td><input type="text" value="" name="Puhno" size="20" pattern=".{3,20}" required title="Pituuden tulee olla 3-20 merkkiä" />
 				</td>	
 				</tr>
 				<tr>
+			<td><p></p> </td>
+			</tr>
+				<tr>
 				<td>Sähköposti:</td>
 					<td><input type="text" value="" name="Sposti" size="20" pattern=".{6,20}" required title="Pituuden tulee olla 6-20 merkkiä" />
 				</td>
 				</tr>
+				<tr>
+			<td><p></p> </td>
+			</tr>
 				<tr>
 				<td>Salasana:</td>
 					<td><input type="text" value="" name="SS" size="20" pattern=".{3,20}" required title="Pituuden tulee olla 3-20 merkkiä" />
 				</td>
 				</tr>
 				<tr>
-					<td><br><div class ="button"><a href="listaaPizzat">Palaa pizzalistaan</a></div></td>
-					<td><br>
-						<input type="submit" name="submit-button" class="submit-button" value="Tallenna" />
-					</td>
-				</tr>	
+				
+				<td><br>
+				<a href="<%=response.encodeURL("listaaTyontekijat") %>" class="btn btn-info btn-sm" role="button">Takaisin</a>&nbsp;&nbsp;
+  				
+				</td>
+				<td><br> <input type="submit" class="btn btn-success btn-md" value="Tallenna" /></td>
+			</tr>
 			</table>
 			</form>	
     </section>
