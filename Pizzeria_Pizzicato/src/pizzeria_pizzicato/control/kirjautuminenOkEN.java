@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+import javax.servlet.http.HttpSession;
+
+import pizzeria_pizzicato.model.Juoma;
+import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 

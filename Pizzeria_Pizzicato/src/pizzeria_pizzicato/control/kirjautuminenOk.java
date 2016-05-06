@@ -107,6 +107,7 @@ public class kirjautuminenOk extends HttpServlet {
 		if(request.getParameter("vSipuli") != null){ //haetaan vSipuli jos null j‰tet‰‰n 0
 			vSipuli = 1;
 		}
+		kpl = Integer.parseInt(request.getParameter("maara"));
 		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
@@ -117,7 +118,7 @@ public class kirjautuminenOk extends HttpServlet {
 		
 		HttpSession session = request.getSession(); //haetaan session
 		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
-		ostoskori.addPizza(pizza, oregano, vSipuli); //lis‰t‰‰n ostoskoriin pizza
+		ostoskori.addPizza(pizza, oregano, vSipuli, kpl); //lis‰t‰‰n ostoskoriin pizza
 		if(ostoskori != null){ //jos ostoskori ei ole tyhj‰ vied‰‰n ostoskori muutoksineen sessioniin
 			session.setAttribute("ostoskori", ostoskori);
 		}

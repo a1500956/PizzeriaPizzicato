@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Timestamp;
 
+import pizzeria_pizzicato.control.lisaaJuoma;
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Tayte;
@@ -98,7 +99,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
-	private ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
+	public ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
 		for (int j = 0; j < tavalliset.size(); j++) {
 			for (int k = 0; k < lisataytteellinen.size(); k++) {
 				//Jos 'lis‰t‰ytteet' sis‰lt‰‰ pizzan alkuper‰isiin kuuluvan t‰ytteen, poistetaan se listalta
@@ -171,7 +172,7 @@ public class TilausDAO extends DataAccessObject {
 		
 		
 			Connection connection = null;
-		
+			
 			PreparedStatement stmtSelect = null;
 			ArrayList<TilattuTuote> lista = new ArrayList<TilattuTuote>(); 
 			ResultSet rs = null;
@@ -205,15 +206,16 @@ public class TilausDAO extends DataAccessObject {
 			String nimi = rs.getString("tuote_nimi");
 			Tu.setNimi(nimi);
 			int lkm = rs.getInt("lkm");
+			int status = rs.getInt("status");
 			double myyntisumma = rs.getDouble("myyntisumma");
-			return new TilattuTuote(0, lkm, 0, 0,Tu, myyntisumma, new ArrayList<Tayte>());
+			return new TilattuTuote(0,0,0, lkm, 0, 0,Tu, myyntisumma, status, new ArrayList<Tayte>());
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+			
 		}
 
 	}
-	
 	
 	//P‰ivitt‰‰ tilauksen statuksen kokilta.
 	
@@ -233,6 +235,42 @@ public class TilausDAO extends DataAccessObject {
 			stmtUpdate = connection.prepareStatement(sqlUpdate);
 			stmtUpdate.setInt(1, sId);
 			stmtUpdate.setInt(2, tRivi);
+			
+			
+
+			stmtUpdate.executeUpdate();
+				
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(stmtUpdate, connection); 
+		}
+	}
+	
+	//P‰ivitt‰‰ tilatun tuotteen statuksen kokilta.
+	
+	public void updateTilattuTuote(int tilausRivi, int tuoteId, int tilausId, int status) throws SQLException {
+		
+		Connection connection = null;
+		
+		PreparedStatement stmtUpdate = null;
+		
+		int tRivi = tilausRivi;
+		int tRivi2 = tuoteId;
+		int tRivi3 = tilausId;
+		int sId = status;
+
+		try {
+			
+			connection = getConnection();
+			
+			String sqlUpdate = "UPDATE TilattuTuote SET status =? WHERE tilaus_id =? AND tuote_id =? AND tilaus_rivi =?;";
+			stmtUpdate = connection.prepareStatement(sqlUpdate);
+			stmtUpdate.setInt(1, sId);
+			stmtUpdate.setInt(2, tRivi3);
+			stmtUpdate.setInt(3, tRivi2);
+			stmtUpdate.setInt(4, tRivi);
 			
 			
 
@@ -474,7 +512,67 @@ public class TilausDAO extends DataAccessObject {
 		
 	}
 	
+	public ArrayList<TilattuTuote> findAllTT() {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArrayList<TilattuTuote> tilatutTuotteet = new ArrayList<TilattuTuote>();
+		TilattuTuote tilattuTuote = null;
+		try {
+
+			conn = getConnection();
+
+			String sqlSelect = "SELECT tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano, status FROM TilattuTuote";
+
+			stmt = conn.prepareStatement(sqlSelect);
+
+			rs = stmt.executeQuery(sqlSelect);
+
+			while (rs.next()) {
+				tilattuTuote = readTilattuTuote(rs);
+
+				tilatutTuotteet.add(tilattuTuote);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(rs, stmt, conn);
+		}
+
+		return tilatutTuotteet;
+	}
+	
+	private TilattuTuote readTilattuTuote(ResultSet rs) {
+
+		try {
+
+			ArrayList<Tayte> lisataytteita = new ArrayList<Tayte>();
+			int tilausId = rs.getInt("tilaus_id");
+			int tuoteId = rs.getInt("tuote_id");
+			int tilausRivi = rs.getInt("tilaus_rivi");
+			double hinta = rs.getDouble("tuote_hinta");
+			int lkm = rs.getInt("lkm");
+			int valkosipuli = rs.getInt("valkosipuli");
+			int oregano = rs.getInt("oregano");
+			int status = rs.getInt("status");
+			int TID = rs.getInt("tuote_id");
+			
+			TuoteDAO TTDAO = new TuoteDAO();
+			Tuote tuote = TTDAO.haeTuoteIDnAvulla(TID);
+			
+			if(TTDAO.pizzaVaiJuoma(TID)){
+				TayteDAO TDAO = new TayteDAO();
+				lisataytteita.addAll(TDAO.haeLisataytteet(tilausId, tilausRivi));
+			}
+			
+
+			return new TilattuTuote(tuoteId, tilausId, tilausRivi, lkm, oregano, valkosipuli, tuote , hinta, status, lisataytteita);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+		
+	}
 
 	
-
-}
