@@ -85,30 +85,14 @@ response.setIntHeader("Refresh", 5);
 
 </header>
 
-		<table align="center" border="0">
-		<tr>
-		<%if(session.getAttribute("ryhma").equals(1)){ %>
-		<td>
-		<form action="listaaPizzat">
-   	 				<input type="submit" value="Takaisin">
-		</form>
-		</td>
-		<%} %>
-		<td>
-		<form action="listaaPizzatkuski">
-   	 				<input type="submit" value="Kuskin näkymä">
-		</form>
-		</td>
-		</tr>
-		</table>
 		
-		 <p>Pizzalista</p> 
+		 <p>Pizzalista</p>
+		 
 		<tr><td colspan="2"><input type="radio" name="lista" value="Piilossa" checked>  <label for="lista" style="color:black;">Piilossa</label>
 		<div><input type="radio" id="koti" name="lista" value="Näkyvissä" required><label for="lista" style="color:black;">Näkyvissä</label>
 		<br><br>
 		<div class="reveal-if-active">
   		<h1>PIZZALISTA</h1>
-	
 		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
@@ -171,20 +155,33 @@ var FormStuff = {
 </script>
 		
 		<h1>KOKIN NÄKYMÄ</h1>
+		
+		<table align="center" border="0">
+		<tr>
+		<%if(session.getAttribute("ryhma").equals(1)){ %>
+		<td>
+		<a href="listaaPizzat" class="btn btn-info" role="button">Takaisin</a>
+		</td>
+		<%} %>
+		<td>
+		<a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
+		</td>
+		</tr>
+		</table>
 	
 		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			<td><h4>Tilausnumero</h4></td>
-			<td><h4>Lukumäärä</h4></td>
-			<td><h4>Aika</h4></td>
-			<td><h4>Status</h4></td>
-			<td><h4>Tuote</h4></td>
-			<td><h4>Lisätäytteet</h4></td>			
-			<td><h4>Valkosipuli</h4></td>
-			<td><h4>Oregano</h4></td>
-			<td><h4>Tehty</h4></td>	
+			<td><div class="toiminnot2"><h4>Tilausnumero</h4></div></td>
+			<td><div class="toiminnot2"><h4>Lukumäärä</h4></div></td>
+			<td><div class="toiminnot2"><h4>Aika</h4></div></td>
+			<td><div class="toiminnot2"><h4>Status</h4></div></td>
+			<td><div class="toiminnot2"><h4>Tuote</h4></div></td>
+			<td><div class="toiminnot2"><h4>Lisätäytteet</h4></div></td>			
+			<td><div class="toiminnot2"><h4>Valkosipuli</h4></div></td>
+			<td><div class="toiminnot2"><h4>Oregano</h4></div></td>
+			<td><div class="toiminnot2"><h4>Tehty</h4></div></td>	
 		</tr>
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
