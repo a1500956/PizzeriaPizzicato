@@ -47,7 +47,10 @@ public class kirjautuminenOk extends HttpServlet {
 		ArrayList<Pizza> pizzaNakyy = new ArrayList<Pizza>();
 		ArrayList<Pizza> pizzaFantasia = new ArrayList<Pizza>();
 		ArrayList<Tayte> kaikkiTaytteet= Taytedao.findAll();
+		ArrayList<Tayte> fantasiaTayteValintaLista= Taytedao.karsiFantasianPerustaytteet(kaikkiTaytteet, pizzadao.getPizzaId("Fantasia 2"));
 		request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
+		request.setAttribute("fantasiaTayteValintaLista", fantasiaTayteValintaLista);
+		
 		
 		for(int i=0;i<pizzaLista.size();i++){
 			
