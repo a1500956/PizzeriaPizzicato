@@ -155,7 +155,7 @@ media="only screen and (min-width: 771px)">
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
 					</select>Kpl <br>
-					<input  type="submit" value="Koriin" >
+					<input  class="koriin" type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>

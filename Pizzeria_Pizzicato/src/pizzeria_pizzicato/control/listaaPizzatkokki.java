@@ -77,6 +77,7 @@ public class listaaPizzatkokki extends HttpServlet {
 			TilausDAO tilausdao = new TilausDAO();
 						
 			tilausdao.updateTilattuTuote(tilausRivi, tuoteId, tilausId, status);
+			tilausdao.TilauksenStatusUpdate(tilausRivi, tuoteId, tilausId);
 		
 			
 			}
