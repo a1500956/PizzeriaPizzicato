@@ -69,7 +69,7 @@ media="only screen and (min-width: 771px)">
 
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-</head>
+
 </head>
 		<body>
 	<div class="container">
