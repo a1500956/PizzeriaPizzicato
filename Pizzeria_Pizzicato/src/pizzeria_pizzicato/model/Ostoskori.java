@@ -47,9 +47,9 @@ public class Ostoskori {
 					   && kori.get(i).getvSipuli() == tuote.getvSipuli()
 					   && p.getIDT().equals(tp.getIDT()) == true){ // katsotaan ovatko tuotteet samat
 					int luku = kori.get(i).getLkm();
-					luku += 1;
-					kori.get(i).setLkm(luku);
-					this.ostoskori = kori; //Jos lˆytyy lis‰t‰‰n lukum‰‰r‰‰
+					luku += tuote.getLkm(); // nostetaan lukum‰‰r‰ tulleella kpl m‰‰r‰ll‰
+					kori.get(i).setLkm(luku); // ostoskorin lukum‰‰r‰ksi asetetaan vanha lkm+tullut lkm
+					this.ostoskori = kori; //tuotteisiin vied‰‰n muokattu lista tuotteita
 					loytyy = true; // vaihdetaan loytyy arvo trueksi
 					break; //ja lopetetaan for loop
 				}else{
@@ -88,14 +88,14 @@ public class Ostoskori {
 		
 	}
 	
-	public void addJuoma(Juoma juoma){
+	public void addJuoma(Juoma juoma, int lkm){
 		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
 		boolean loytyy = false;
 		
 		if(juoma != null){ //Jos tullut juoma ei ole tyhj‰ luodaan TilattuTuote olio
 			tuote.setTuote(juoma);
 			tuote.setHinta(tuote.getTuote().getHinta());
-			tuote.setLkm(1);
+			tuote.setLkm(lkm);
 		}
 		if(this.ostoskori == null){ //Katsotaan onko ostoskori tyhj‰, jos on lis‰t‰‰n TilattuTuote ostoskoriin
 			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
@@ -108,7 +108,7 @@ public class Ostoskori {
 			for(int i = 0; i < kori.size();i++){
 				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId()){ // katsotaan
 					int luku = kori.get(i).getLkm();
-						luku += 1;	// nostetaan lukum‰‰r‰ yhdell‰
+						luku += tuote.getLkm();	// nostetaan lukum‰‰r‰ tulleella kpl m‰‰r‰ll‰
 						kori.get(i).setLkm(luku);
 					this.ostoskori = kori; //vied‰‰n muutettu tieto koriin
 					loytyy = true;
