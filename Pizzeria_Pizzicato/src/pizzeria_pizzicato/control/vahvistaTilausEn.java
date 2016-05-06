@@ -109,7 +109,16 @@ public class vahvistaTilausEn extends HttpServlet {
 			Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
 		
 		Kayttaja valiaikainen = new Kayttaja();
-		valiaikainen.setKayttaja_id(404);
+		
+		int id = (int) session.getAttribute("kayttajaID");
+		if(id<0)
+        {
+			valiaikainen.setKayttaja_id(404);
+        }
+		else {
+			valiaikainen.setKayttaja_id(id);
+		}
+		
 		Tilaus T = new Tilaus();
 		
 		T.setKayttaja(valiaikainen);

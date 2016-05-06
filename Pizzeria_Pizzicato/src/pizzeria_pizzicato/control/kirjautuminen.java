@@ -75,6 +75,7 @@ public class kirjautuminen extends HttpServlet {
 			session.setAttribute("sNimi", kirjautuja.getKayttaja_snimi());
 			session.setAttribute("osoite", kirjautuja.getKayttaja_osoite());
 			session.setAttribute("puhnro", kirjautuja.getKayttaja_puhnro());
+			session.setAttribute("kayttajaID", kirjautuja.getKayttaja_id());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 			session.setMaxInactiveInterval(30*60);
 			response.addCookie(userName);
