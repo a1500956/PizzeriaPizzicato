@@ -309,7 +309,6 @@ public class TilausDAO extends DataAccessObject {
 			
 			while(rs.next()){
 				tt = readTilattuTuote(rs);
-				System.out.println(tt);
 				tilattutuote.add(tt);
 				
 			}
@@ -327,8 +326,6 @@ public class TilausDAO extends DataAccessObject {
 			
 			if(tilattutuote.size() == tilattutuote2.size()){
 				
-				System.out.println(tilattutuote.size());
-				System.out.println(tilattutuote2.size());
 				
 			PreparedStatement stmtUpdate = null;
 			int sId = 3;
