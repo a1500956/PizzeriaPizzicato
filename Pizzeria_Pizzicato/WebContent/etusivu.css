@@ -92,7 +92,7 @@ h3{color:white;
 .hinta {text-align: left; margin-left: -45%; margin-right: 20px;}
 
 .taytteet{width:90%;
-		margin-right:140px;
+		
 		margin-top: -4px;
 	
 }
@@ -104,7 +104,7 @@ h3{color:white;
 
 .mauste { size: 20%; position: left;}
 
-.maara {position: right;}
+.maara {}
  
  //*
 .mauste2 { text-align: right; margin-right: -50px; margin-bottomo: 40px;} *//
