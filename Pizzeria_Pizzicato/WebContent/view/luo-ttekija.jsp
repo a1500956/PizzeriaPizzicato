@@ -12,6 +12,39 @@
 <title>Lisää työntekijä</title>
 </head>
 <body>
+
+<%
+	int ryhma= 1;
+	String userName = null;
+	//allow access only if session exists
+	if(session.getAttribute("ryhma").equals(ryhma)){
+		userName = (String) session.getAttribute("kayttaja");
+		
+	}else{ response.sendRedirect("pizzaMenu");
+}	
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("kayttaja")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}else{
+   sessionID = session.getId();
+}
+%>
+<header>
+<div class="login">
+    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
+      <div class="loginrow2">
+      <h4><%=userName %>, olet kirjautuneena.</h4>
+	<input type="submit" value="Uloskirjaus" >
+      </div>
+    </form>
+</div>
+</header>
+
+
  		 <article>
  <br>
  <br>

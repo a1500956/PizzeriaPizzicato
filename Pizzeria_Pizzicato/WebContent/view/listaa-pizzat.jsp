@@ -98,6 +98,18 @@ for(Cookie cookie : cookies){
 	</form>
 	</td>
 	
+	<td>
+	<form action="luoTyontekija">
+    <input type="submit" value="Lisää työntekijä">
+	</form>
+	</td>
+	
+	<td>
+	<form action="listaaTyontekijat">
+    <input type="submit" value="Listaa työntekijät">
+	</form>
+	</td>
+	
 	</tr>
 	</table>
 		
