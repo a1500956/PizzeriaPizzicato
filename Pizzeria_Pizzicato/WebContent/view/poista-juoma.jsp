@@ -11,17 +11,11 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Poista Juoma</title>
 </head>
-<<<<<<< HEAD
+
 <body class="body2">
 <h3 class="hclass3">
-		Oletko varma, että haluat poistaa juoman: "
-=======
-<body>
-<h3>
-		Oletko varma, että haluat poistaa juoma: "
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
-		<%=valittuNimi%>
-		"
+		
+		Oletko varma, että haluat poistaa juoma: " <%=valittuNimi%> "
 	</h3>
 	<div class="lomake">
 
