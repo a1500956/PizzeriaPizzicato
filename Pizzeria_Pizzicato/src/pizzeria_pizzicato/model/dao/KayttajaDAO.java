@@ -153,7 +153,6 @@ public class KayttajaDAO extends DataAccessObject {
 	   }
 	   
 	   public void create(Kayttaja kayttaja){
-	      int ryhma_id = 3; //asiakkaan ryhmä-id
 	      PreparedStatement statement = null;
 	      Connection connection = null;
 	      try
@@ -168,7 +167,7 @@ public class KayttajaDAO extends DataAccessObject {
 	         statement.setString(5, kayttaja.getKayttaja_osoite());
 	         statement.setString(6, kayttaja.getKayttaja_sposti());
 	         statement.setString(7, kayttaja.getKayttaja_salasana());
-	         statement.setInt(8, ryhma_id);
+	         statement.setInt(8, kayttaja.getRyhma_id());
 	         statement.executeUpdate();
 	      } catch (SQLException e)
 	      {
