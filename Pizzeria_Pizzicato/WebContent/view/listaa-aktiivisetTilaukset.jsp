@@ -57,8 +57,10 @@ response.setIntHeader("Refresh", 5);
 
 		<h1>Aktiiviset tilaukset</h1>
 		
-
-		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
+				<form action="listaaPizzat">
+   	 				<input type="submit" value="Takaisin">
+				</form>
+		
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>

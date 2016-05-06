@@ -93,7 +93,7 @@ for(Cookie cookie : cookies){
  	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+      <h3>Tervetuloa <%=userName %>! </h3><input type="submit" value="Uloskirjaus" >
 
       </div>
     </form>

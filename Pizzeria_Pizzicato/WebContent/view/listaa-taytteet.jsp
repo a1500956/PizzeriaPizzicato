@@ -62,7 +62,7 @@ for(Cookie cookie : cookies){
 <c:remove var="message" scope="session" /> 
 		
 		
-		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Palaa pizzalistaan</a></div><br>
+		<div class ="button"><a href="<%=response.encodeURL("listaaPizzat") %>">Takaisin</a></div><br>
 		<a href="lisaa-tayte" class="button">Lisää täyte</a>
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		
