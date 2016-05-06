@@ -100,18 +100,22 @@ public class TilausDAO extends DataAccessObject {
 	}
 	
 	public ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
-		for (int j = 0; j < tavalliset.size(); j++) {
-			for (int k = 0; k < lisataytteellinen.size(); k++) {
-				//Jos 'lisätäytteet' sisältää pizzan alkuperäisiin kuuluvan täytteen, poistetaan se listalta
-				if(tavalliset.get(j).getTayte_id()==lisataytteellinen.get(k).getTayte_id()){
-					lisataytteellinen.remove(k);
+		ArrayList<Tayte> lisaTaytteet = new ArrayList<Tayte>();
+		for (int j = 0; j < lisataytteellinen.size(); j++) {
+			boolean loytyy = true;
+			for (int k = 0; k < tavalliset.size(); k++) {
+				if(lisataytteellinen.get(j).getTayte_id() == tavalliset.get(k).getTayte_id()){
+					loytyy = true;
+					break;
+				}else{
+					loytyy = false;
 				}
-				
 			}
-			
+			if(loytyy == false){
+				lisaTaytteet.add(lisataytteellinen.get(j));
+			}
 		}
-		return lisataytteellinen;
-		
+		return lisaTaytteet;
 	}
 	
 	public void updateTilaus(Tilaus Tilaus) throws SQLException {

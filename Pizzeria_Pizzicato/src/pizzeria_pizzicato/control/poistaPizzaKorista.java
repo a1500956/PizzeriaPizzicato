@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pizzeria_pizzicato.model.Juoma;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
@@ -37,12 +38,21 @@ public class poistaPizzaKorista extends HttpServlet {
 			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
 			
 			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle
-		}else if(action.equalsIgnoreCase("lisaa")){ // jos napin action tieto oli lisaa
+		}else if(action.equalsIgnoreCase("lisaaPizza")){ // jos napin action tieto oli lisaa
 			int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
 			
 			Pizza pizza = new Pizza(); //Luodaan pizza olio
 			pizza = (Pizza) ostoskori.getTuote(sArvo).getTuote(); //haetaan pizza oliolle tietoa tulleen paikkaID perusteella
 			ostoskori.addPizza(pizza, ostoskori.getTuote(sArvo).getOregano(), ostoskori.getTuote(sArvo).getvSipuli(), 1); //Lis‰t‰‰n haetun tiedon perusteella yksi kappale koriin
+			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
+			
+			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle
+		}else if(action.equalsIgnoreCase("lisaaJuoma")){
+			int sArvo = Integer.parseInt((String) request.getParameter("paikkaID")); //Haetaan ensin pizzaID
+			
+			Juoma juoma = new Juoma(); //Luodaan juoma olio
+			juoma = (Juoma) ostoskori.getTuote(sArvo).getTuote(); //haetaan pizza oliolle tietoa tulleen paikkaID perusteella
+			ostoskori.addJuoma(juoma, 1); //Lis‰t‰‰n haetun tiedon perusteella yksi kappale koriin
 			session.setAttribute("ostoskori", ostoskori); // vied‰‰n ostoskorin muutokset sessioniin
 			
 			response.sendRedirect("vahvistaTilaus"); // l‰hetet‰‰n takaisin vahvistussivulle

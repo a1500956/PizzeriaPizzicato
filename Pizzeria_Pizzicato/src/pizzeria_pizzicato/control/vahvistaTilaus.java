@@ -61,26 +61,31 @@ public class vahvistaTilaus extends HttpServlet {
 			}
 		}
 		
-		if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ 
+		System.out.println("ostoskori ennen " + ostoskori);
+		
+		if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){
+			Pizza pizza = new Pizza();
 			for(int i = 0; i<ostoskori.getOstoskori().size(); i++){
 				if(tuoteDAO.pizzaVaiJuoma(ostoskori.getOstoskori().get(i).getTuote().getId()) == true ){
-					Pizza pizza = new Pizza();
 					pizza = (Pizza) ostoskori.getOstoskori().get(i).getTuote();
 					PizzaTayteDAO PTdao = new PizzaTayteDAO();
-					ArrayList<Tayte> taytteet = PTdao.haePizzanTaytteet(pizza.getId());
-					ostoskori.getOstoskori().get(i).setLisataytteet(tdao.karsiTavallisetTaytteet(taytteet, pizza.getTaytteet()));
+					ArrayList<Tayte> kannanTaytteet = PTdao.haePizzanTaytteet(pizza.getId());
+					ArrayList<Tayte> nykyiset = pizza.getTaytteet();
+					
+					if(tdao.karsiTavallisetTaytteet(kannanTaytteet, nykyiset).isEmpty() == false){
+						ostoskori.getOstoskori().get(i).setLisataytteet(tdao.karsiTavallisetTaytteet(kannanTaytteet, nykyiset));
+					}
+					
 				}
-			}
+			}	
 		}
-		
+
 		request.setAttribute("juomat", juomaNakyy);
 		request.setAttribute("pizzat", pizzaLista);
 		
 		String jsp = "/view/vahvista-tilaus.jsp"; 
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 		dispather.forward(request, response);
-		
-		
 		
 	}
 	

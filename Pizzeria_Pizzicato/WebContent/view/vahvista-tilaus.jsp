@@ -226,7 +226,7 @@ var FormStuff = {
 				<%if(pizzat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
 					<tr>
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
-						<td><div class=""><% for(int n = 0; n<ostoskori.getTuote(i).getLisataytteet().size(); n++){ %><%=ostoskori.getTuote(i).getLisataytteet().get(n).getTayte_nimi()%> <%}%> </div></td>
+						<td><div class=""><% if(ostoskori.getTuote(i).getLisataytteet() != null){%><%for(int n = 0; n<ostoskori.getTuote(i).getLisataytteet().size(); n++){ %><%=ostoskori.getTuote(i).getLisataytteet().get(n).getTayte_nimi()%> <%}%><%} %> </div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
 						<td style="text-align: center;"><div class="">
@@ -242,11 +242,11 @@ var FormStuff = {
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
 						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=poista" class="submit-button">
 						<img src="Kuvia/minus2.png" title="Poista" alt="Poista" style="width:16px;height:16px;" />
-						</a></td>
-						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaa" class="submit-button">
+						</a>
+						<a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaaPizza" class="submit-button">
 						<img src="Kuvia/plus.png" title="Lisää" alt="Lisaa" style="width:16px;height:16px;" />
 						<!--Icon made by Dave Gandy from www.flaticon.com-->
-						</a></td>							
+						</a></td>
 					</tr>
 				<%}%>
 			<%} %>
@@ -258,13 +258,14 @@ var FormStuff = {
 		<tr></tr>
 		<tr></tr>
 		
-		<tr style="width=350px;">
+		<tr style="width=350px; border-bottom: solid 1px grey;">
 			
 			<th style="border-bottom: solid 1px grey;">JUOMAT</th>
 			<th style="border-bottom: solid 1px grey;">KOKO</th>
 			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
+			<th style="border-bottom: solid 1px grey;"></th>
 			<th style="border-bottom: solid 1px grey;">KPL</th>
-			<th></th>
+			
 			
 			
 			<!--  <th>TOIMINNOT</th>-->
@@ -280,9 +281,14 @@ var FormStuff = {
 						<td><div class=""><%=juomat.get(j).getLitrakoko() + "l"%></div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 						<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
+						<td></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
-						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=poista" class="submit-button">
+						<img src="Kuvia/minus2.png" title="Poista" alt="Poista" style="width:18px;height:18px;" />
+						</a>
+						<a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaaJuoma" class="submit-button">
+						<img src="Kuvia/plus.png" title="Lisää" alt="Lisaa" style="width:18px;height:18px;" />
+						<!--Icon made by Dave Gandy from www.flaticon.com-->
 						</a></td>								
 					</tr>
 				<%}%>
@@ -292,7 +298,7 @@ var FormStuff = {
 		
 		</table><br>
 		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p>
-		<a href="poistaPizzaKorista?action=poistaKori" class="submit-button" >Tyhjennä kori</a>
+		<a href="poistaPizzaKorista?action=poistaKori" style="text-decoration: underline;" class="submit-button" >Tyhjennä kori</a>
 		<input type="submit" name="submit-button"class="submit-button" value="Vahvista Tilaus" />
 		
 		<%}else{%>

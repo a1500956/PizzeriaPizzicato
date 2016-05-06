@@ -151,7 +151,7 @@ media="only screen and (min-width: 771px)">
 					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
 				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-					<select class="maara">
+					<select name="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
@@ -187,13 +187,13 @@ media="only screen and (min-width: 771px)">
 				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
 				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
-				<select class="maara">
+				<select name="maara">
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
 				 </select>Kpl
 				<input type="submit" value="Koriin">
-				</form></td>
+				</td>
 				</tr>
 				
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
@@ -216,11 +216,11 @@ media="only screen and (min-width: 771px)">
 												 
 				
 					</div></td></tr>
-			
+				
 				
 			
 			<% } %>
-		
+		</form>
 		</table><br>
     </span>
     <br><br><br>
@@ -244,12 +244,12 @@ media="only screen and (min-width: 771px)">
 				<td class="juomavalinta">
 				<form method="post">
 					<input type="hidden" name="juomaID" value="<%=juomat.get(i).getId()%>">
-					<select class="maara">
+					<select name="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
 					</select>Kpl
-					<input class="koriin"  type="submit" value="Koriin">
+					<input class="koriin" type="submit" value="Koriin">
 				</form></td>		
 				
 			

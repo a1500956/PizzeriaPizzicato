@@ -42,10 +42,12 @@ public class Ostoskori {
 				if(kori.get(i).getTuote() instanceof Pizza){
 					Pizza p = (Pizza) kori.get(i).getTuote(); // haetaan korista tuote pizzaolioksi
 					Pizza tp = (Pizza) tuote.getTuote(); // tehd‰‰n tulleesta tuotteesta pizza olio
+					System.out.println("tp " + tp);
 					if(kori.get(i).getTuote().getId() == tuote.getTuote().getId() // katsotaan tuoteid, oregano ja vSipuli
 					   && kori.get(i).getOregano() == tuote.getOregano() 
 					   && kori.get(i).getvSipuli() == tuote.getvSipuli()
 					   && p.getIDT().equals(tp.getIDT()) == true){ // katsotaan ovatko tuotteet samat
+					System.out.println("on jo ");
 					int luku = kori.get(i).getLkm();
 					luku += tuote.getLkm(); // nostetaan lukum‰‰r‰ tulleella kpl m‰‰r‰ll‰
 					kori.get(i).setLkm(luku); // ostoskorin lukum‰‰r‰ksi asetetaan vanha lkm+tullut lkm
