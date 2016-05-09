@@ -19,7 +19,8 @@ h1{color:#db1b51;
 	
 }
 
-h4{color:white;}
+h4{color:white; margin-left: -60px;}
+h6 {color:white; margin-top: -5px; size: 120%; margin-left: -80px;}
 p{color: #db1b51;}
 
 header {

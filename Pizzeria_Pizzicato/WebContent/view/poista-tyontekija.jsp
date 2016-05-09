@@ -12,6 +12,7 @@
 <title>Poista työntekijä</title>
 <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
+
 <body class="body2">
 	<h3 class="hclass3">
 		Oletko varma, että haluat poistaa työntekijän: "

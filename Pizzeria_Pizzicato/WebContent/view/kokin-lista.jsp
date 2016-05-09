@@ -32,10 +32,11 @@ scope="request" />
 </head>
 	<body class="body2">
 	<%
-	int ryhma= 1;
+	int ryhma1= 1;
+	int ryhma2= 2;
 	String userName = null;
 	//allow access only if session exists
-	if(session.getAttribute("ryhma").equals(ryhma)){
+	if(session.getAttribute("ryhma").equals(ryhma1)||session.getAttribute("ryhma").equals(ryhma2)){
 		userName = (String) session.getAttribute("kayttaja");
 		
 	}else{ response.sendRedirect("pizzaMenu");
@@ -51,33 +52,11 @@ for(Cookie cookie : cookies){
    sessionID = session.getId();
 }
 %>
-<header>
-<div class="login">
-    <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
-      <div class="loginrow2">
-      <h4><%=userName %>, olet kirjautuneena.</h4>
-	<input type="submit" value="Uloskirjaus" >
-      </div>
-    </form>
-</div>
-</header>
+
 
 		<h1>PIZZALISTA</h1>
 		
-		<p>${message}</p>
-<c:remove var="message" scope="session" /> 
 
-
-<div class="container">
-<a href="lisaa-pizza" class="btn btn-info" role="button">Lisää pizza</a>
-<a href="listaa-taytteet" class="btn btn-info" role="button">Täytteet</a>
-<a href="listaaJuomat" class="btn btn-info" role="button">Juomat</a>
-<a href="listaaAktiivisetTilaukset" class="btn btn-info" role="button">Tilaukset</a>
-<a href="listaaArkisto" class="btn btn-info" role="button">Arkisto</a>
-<a href="listaaPizzatkokki" class="btn btn-info" role="button">Kokin näkymä</a>
-<a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
-<a href="listaaTyontekijat" class="btn btn-info" role="button">Työntekijät</a>
-</div>
 
 	
 		
@@ -85,26 +64,18 @@ for(Cookie cookie : cookies){
 		<tr>
 			<td><div class="toiminnot2"><h4>MENUSSA</h4></div></td>
 			<td><div class="toiminnot2"><h4>PIZZAT</h4></div></td>
-			<td><div class="toiminnot2"><h4>HINTA (&euro;)</h4></div></td>
 			<td><h4>TÄYTTEET</h4></td>
-			<td><h4>TOIMINNOT</h4></td>
 				
 			<%for(int i = 0; i < pizzat.size(); i++) {%>
 			<tr>
 				<td><div class="nakyvyys"><%if (pizzat.get(i).getNakyy()==1){out.print("kyllä");}else{out.print("ei");}%></div></td>
 				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
-				<td><div class="pizzat"><%=nf.format(pizzat.get(i).getHinta())%></div></td>
 				<td><div class="taytteet"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
 												<%  }%>
 												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
 												 </div></td>
-				<td><div class="toiminnot"><a href="muokkaa-pizza?id=<%=pizzat.get(i).getId()%>" class="btn btn-primary btn-sm" role="button">Muokkaa</a>
-				
-				<a href="poista-pizza?id=<%=pizzat.get(i).getId()%>&id2=<%=pizzat.get(i).getNimi()%>" class="btn btn-primary btn-sm" role="button">Poista</a>
-				
-				</div>
-				</td>								
+							
 			</tr>
 			<% } %>
 		</table><br>

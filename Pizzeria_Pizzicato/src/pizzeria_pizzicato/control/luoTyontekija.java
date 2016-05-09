@@ -66,7 +66,7 @@ public class luoTyontekija extends HttpServlet {
 		}else{
 			Kayttaja kirjautunut = new Kayttaja(kID, knimi, enimi, snimi, sala, pno, kos, spos, kryh);
 			tdao.create(kirjautunut);
-			response.sendRedirect("luoTyontekija");
+			response.sendRedirect("listaaTyontekijat");
 		}
 		
 	}

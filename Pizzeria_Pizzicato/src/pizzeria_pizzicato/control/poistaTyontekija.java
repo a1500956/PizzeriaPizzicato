@@ -46,7 +46,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     			HttpServletResponse response) throws ServletException, IOException {
 				
 			String strID = request.getParameter("id");
-			
+			String viesti = null;
 			
 			
 			int id = new Integer(strID);
@@ -55,11 +55,15 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			
 			Kayttaja tyontekija = new Kayttaja (id, null, null, null, null, null, null, null, id);
 			KayttajaDAO tyontekijadao = new KayttajaDAO();
-						
+					
+			
 			tyontekijadao.delete(tyontekija);
-
+			viesti = "Työntekijän poistaminen onnistui!";
+			
+			
+			request.getSession().setAttribute("message", viesti);
 			response.sendRedirect("listaaTyontekijat");
-						
+
 		}
 		}
 
