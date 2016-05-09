@@ -33,6 +33,8 @@ scope="request" />
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title>Tilaukset</title>
 
+<SCRIPT TYPE="text/javascript">  function popup(mylink, windowname) { if (! window.focus)return true; var href; if (typeof(mylink) == 'string') href=mylink; else href=mylink.href; window.open(href, windowname, 'width=600,height=800,left=50,top=100scrollbars=yes'); return false; } </SCRIPT>
+
 
 </head>
 	<body class="body2">
@@ -84,75 +86,6 @@ response.setIntHeader("Refresh", 5);
 </div>
 
 </header>
-
-		
-		 <p>Pizzalista</p>
-		 
-		<tr><td colspan="2"><input type="radio" name="lista" value="Piilossa" checked>  <label for="lista" style="color:black;">Piilossa</label>
-		<div><input type="radio" id="koti" name="lista" value="Näkyvissä" required><label for="lista" style="color:black;">Näkyvissä</label>
-		<br><br>
-		<div class="reveal-if-active">
-  		<h1>PIZZALISTA</h1>
-		
-		
-		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<tr>
-			
-			<td><h4>PIZZAT</h4></td>
-			
-			<td><h4>TÄYTTEET</h4></td>
-			
-				
-			<%for(int i = 0; i < pizzat.size(); i++) {%>
-			<tr>
-				
-				<td><div class="pizzat"><%=pizzat.get(i).getNimi()%></div></td>
-				
-				<td><div class="taytteet"><%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
-												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>, 
-												<%  }%>
-												 <%= pizzat.get(i).getTaytteet().get(j).getTayte_nimi()%>
-												 </div></td>
-					
-			</tr>
-			<% } %>
-</table>		
-</div>
-</div>
-</table>		  
-  
- 
-  
-
-<script>
-var FormStuff = {
-		  
-		  init: function() {
-		    this.applyConditionalRequired();
-		    this.bindUIActions();
-		  },
-		  
-		  bindUIActions: function() {
-		    $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
-		  },
-		  
-		  applyConditionalRequired: function() {
-		  	
-		    $(".require-if-active").each(function() {
-		      var el = $(this);
-		      if ($(el.data("require-pair")).is(":checked")) {
-		        el.prop("required", true);
-		      } else {
-		        el.prop("required", false);
-		      }
-		    });
-		    
-		  }
-		  
-		};
-
-		FormStuff.init();
-</script>
 		
 		<h1>KOKIN NÄKYMÄ</h1>
 		
@@ -165,6 +98,7 @@ var FormStuff = {
 		<%} %>
 		<td>
 		<a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
+		<a href="kokinLista2" class="btn btn-info" role="button" onClick="return popup(this, 'notes')">Pizzalista</a>
 		</td>
 		</tr>
 		</table>
