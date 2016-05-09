@@ -160,7 +160,7 @@ var FormStuff = {
 		<tr>
 		<%if(session.getAttribute("ryhma").equals(1)){ %>
 		<td>
-		<a href="listaaPizzat" class="btn btn-info" role="button">Takaisin</a>
+		<a href="listaaPizzat" class="btn btn-info" role="button">Takaisin</a>&nbsp;&nbsp;
 		</td>
 		<%} %>
 		<td>

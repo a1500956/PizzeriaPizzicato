@@ -74,6 +74,7 @@ for(Cookie cookie : cookies){
 <a href="listaaJuomat" class="btn btn-info" role="button">Juomat</a>
 <a href="listaaAktiivisetTilaukset" class="btn btn-info" role="button">Tilaukset</a>
 <a href="listaaArkisto" class="btn btn-info" role="button">Arkisto</a>
+<a href="listaaPizzatkokki" class="btn btn-info" role="button">Kokin näkymä</a>
 <a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
 <a href="luoTyontekija" class="btn btn-info" role="button">Lisää työntekijä</a>
 <a href="listaaTyontekijat" class="btn btn-info" role="button">Työntekijät</a>
@@ -83,9 +84,9 @@ for(Cookie cookie : cookies){
 		
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
 		<tr>
-			<td><h4>MENUSSA</h4></td>
-			<td><h4>PIZZAT</h4></td>
-			<td><h4>HINTA (&euro;)</h4></td>
+			<td><div class="toiminnot2"><h4>MENUSSA</h4></div></td>
+			<td><div class="toiminnot2"><h4>PIZZAT</h4></div></td>
+			<td><div class="toiminnot2"><h4>HINTA (&euro;)</h4></div></td>
 			<td><h4>TÄYTTEET</h4></td>
 			<td><h4>TOIMINNOT</h4></td>
 				

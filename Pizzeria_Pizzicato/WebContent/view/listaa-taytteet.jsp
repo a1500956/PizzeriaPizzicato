@@ -76,7 +76,7 @@ for(Cookie cookie : cookies){
 		<tr>
 			<td><h4>TÄYTE</h4></td>
 			<td><h4>TÄYTE ENG</h4></td>
-			<td><h4>HINTA/KG</h4></td>
+			<td><div class="toiminnot2"><h4>HINTA/KG</h4></div></td>
 			<td><h4>TOIMINNOT</h4></td>
 				
 		</tr>
