@@ -78,7 +78,8 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
- <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+ <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Puh. (09) 300 300 30</h4>
+ <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
@@ -125,9 +126,18 @@ media="only screen and (min-width: 771px)">
 
 
   <article>
+  <br> <br>
  <br>
  <br>
- <br><br>
+ <br>
+
+
+
+ <div class="pizzat">
+
+ <br>
+ <br>
+ <br>
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
@@ -224,8 +234,9 @@ media="only screen and (min-width: 771px)">
 			
 			<% } %>
 		</table><br>
-    </span>
+    </span></div>
     <br><br><br>
+    <div a name="juomat">
     <h1>JUOMAT</h1>
        <span class="juomalista">
     <table class="listaa-pizzat" border="1" align="center">
@@ -262,7 +273,7 @@ media="only screen and (min-width: 771px)">
     
     
     
-    </span>
+    </span></div>
         
     </section>
     
