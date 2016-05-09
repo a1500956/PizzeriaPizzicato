@@ -3,6 +3,7 @@ package pizzeria_pizzicato.control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,8 +62,6 @@ public class vahvistaTilaus extends HttpServlet {
 			}
 		}
 		
-		System.out.println("ostoskori ennen " + ostoskori);
-		
 		if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){
 			Pizza pizza = new Pizza();
 			for(int i = 0; i<ostoskori.getOstoskori().size(); i++){
@@ -79,6 +78,7 @@ public class vahvistaTilaus extends HttpServlet {
 				}
 			}	
 		}
+		System.out.println("ostoskori jälkeen " + ostoskori);
 
 		request.setAttribute("juomat", juomaNakyy);
 		request.setAttribute("pizzat", pizzaLista);
