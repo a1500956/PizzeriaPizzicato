@@ -83,8 +83,8 @@ for(Cookie cookie : cookies){
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
- <h4 class="esittely">Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
-
+  <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Puh. (09) 300 300 30</h4>
+ <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
    <a href="/Pizzeria_Pizzicato/kirjautuminenOkEN"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <ul>
  	<li style{text-align; right}>

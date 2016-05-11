@@ -98,11 +98,12 @@ sposti = (String) session.getAttribute("sposti");
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato located in Meilahti, Helsinki.</h4> 
+<h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Phone: (09) 300 300 30</h4>
+ <h6>Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6> 
 <ul>
    <a href="/Pizzeria_Pizzicato/vahvistaTilaus"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
  
- 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shopping Cart(<%=ostoskori.getMaara()%>)</a> </li>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shopping Cart(<%=ostoskori.getMaara()%>)</a> </li>
 
           <% if (user!=null){%>
   <form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
