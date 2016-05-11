@@ -86,7 +86,7 @@ for(Cookie cookie : cookies){
 				<td><div class="tyontekijat"><%=tyontekijat.get(i).getKayttaja_puhnro()%></div></td>
 				<td><div class="tyontekijat"><%=tyontekijat.get(i).getKayttaja_ktunnus()%></div></td>
 				
-				<td><div class="toiminnot2"><a href="muokkaa-tyontekija?id=<%=tyontekijat.get(i).getKayttaja_id()%>" class="btn btn-primary btn-sm" role="button">Muokkaa</a>
+				<td><div class="toiminnot2">
 				
 				<a href="poistaTyontekija?id=<%=tyontekijat.get(i).getKayttaja_id()%>&id2=<%=tyontekijat.get(i).getKayttaja_snimi()%>" class="btn btn-primary btn-sm" role="button">Poista</a>
 				

@@ -98,7 +98,8 @@ sposti = (String) session.getAttribute("sposti");
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato sijaitsee Meilahdessa, Helsingissä.</h4> 
+<h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Puh. (09) 300 300 30</h4>
+ <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
 <ul>
    <a href="/Pizzeria_Pizzicato/vahvistaTilausEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  
@@ -107,7 +108,7 @@ sposti = (String) session.getAttribute("sposti");
           <% if (user!=null){%>
   <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+      <h3>Tervetuloa, <%=userName %>!</h3><input type="submit" value="Uloskirjaus" >
 
       </div>
     </form> <% }else{%> 
@@ -116,6 +117,7 @@ sposti = (String) session.getAttribute("sposti");
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
     <ul>
+    <li><a href="rekisteroidy"><small>Tiliä vailla? Rekisteröidy.</small></a></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
