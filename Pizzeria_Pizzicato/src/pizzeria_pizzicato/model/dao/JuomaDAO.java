@@ -12,7 +12,7 @@ import pizzeria_pizzicato.model.Juoma;
 
 public class JuomaDAO extends DataAccessObject {
 
-	
+	//Lis‰‰ juoma-objektin tiedot tietokantaan.
 	public void addJuoma(Juoma juoma) throws SQLException {
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
@@ -22,7 +22,7 @@ public class JuomaDAO extends DataAccessObject {
 
 			connection = getConnection();
 
-
+			//Lis‰‰ juoman tiedot tuote-tauluun
 			String sqlInsert = "INSERT INTO Tuote(tuote_nimi, tuote_hinta) VALUES (?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
 			
@@ -34,6 +34,7 @@ public class JuomaDAO extends DataAccessObject {
 			
 			String iidee = Integer.toString(getJuomaId(juoma.getNimi()));
 
+			//Lis‰‰ loput tiedot juoma-tauluun
 			String sqlInsert2 = "INSERT INTO Juoma(tuote_id, juoma_nakyy, juoma_litrakoko) VALUES (?, ?, ?)";
 			stmtInsert2 = connection.prepareStatement(sqlInsert2);
 
@@ -51,6 +52,7 @@ public class JuomaDAO extends DataAccessObject {
 		}
 	}
 	
+	//Hakee juoman ID:n nimen perusteella.
 	public int getJuomaId(String nimi) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -87,7 +89,7 @@ public class JuomaDAO extends DataAccessObject {
 		}
 	}
 	
-	
+	//Hakee kaikkien juomien tiedot, kasaten ne juoma-objekteja sis‰lt‰v‰‰n listaan.
 	public ArrayList<Juoma> findAll() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -122,6 +124,7 @@ public class JuomaDAO extends DataAccessObject {
 		return juomat;
 	}
 	
+	//Tulkitsee juoman tiedot, luo juoma-objektin.
 	public Juoma readJuoma(ResultSet rs) {
 
 		try {
@@ -204,6 +207,7 @@ public class JuomaDAO extends DataAccessObject {
 		}
 	}
 	
+	//Hakee juoman tiedot sen ID:n perusteella.
 	public Juoma getJuoma(int id){
 		Connection conn = null;
 		PreparedStatement stmt = null;
