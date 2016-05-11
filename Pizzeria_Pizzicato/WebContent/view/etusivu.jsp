@@ -41,6 +41,7 @@ scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Pizzeria Pizzicato</title>
 
 <link href="puhelin.css" rel="stylesheet" type="text/css"
@@ -126,18 +127,19 @@ media="only screen and (min-width: 771px)">
 
 
   <article>
-  <br> <br>
+  <br> <br> <br>
  <br>
- <br>
- <br>
+ <div class="column row">
 
+<ul class="tabs" data-tabs id="example-tabs" style = "list-style-type: none;">
+<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Pizzat</a></li>
+<li class="tabs-title"><a href="#panel2">Juomat</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+<div class="tabs-panel is-active" id="panel1">
 
+<div class="pizzat">
 
- <div class="pizzat">
-
- <br>
- <br>
- <br>
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
@@ -235,8 +237,13 @@ media="only screen and (min-width: 771px)">
 			<% } %>
 		</table><br>
     </span></div>
-    <br><br><br>
-    <div a name="juomat">
+
+
+</div>
+<div class="tabs-panel" id="panel2">
+<div class="row medium-up-3 large-up-5">
+
+<div a name="juomat">
     <h1>JUOMAT</h1>
        <span class="juomalista">
     <table class="listaa-pizzat" border="1" align="center">
@@ -274,6 +281,19 @@ media="only screen and (min-width: 771px)">
     
     
     </span></div>
+
+
+</div>
+</div>
+</div>
+</div>
+ 
+ 
+
+
+ 
+    <br><br><br>
+    
         
     </section>
     
@@ -290,4 +310,9 @@ media="only screen and (min-width: 771px)">
   </footer>
   <!-- end .container --></div>
 	</body>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+      $(document).foundation();
+    </script>
 </html>

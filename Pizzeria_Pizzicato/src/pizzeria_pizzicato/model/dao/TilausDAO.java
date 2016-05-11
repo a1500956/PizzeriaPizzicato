@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.sql.Timestamp;
 
-import pizzeria_pizzicato.control.lisaaJuoma;
 import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Ostoskori;
 import pizzeria_pizzicato.model.Tayte;
@@ -100,6 +98,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
+	//Vertaa tilatun pizzan täytelistaa (johon on lisätty lisätäytteet) alkuperäisen pizzan täytteisiin, poistaen kaikki 'tavanomaiset'.
 	public ArrayList<Tayte> karsiTavallisetTaytteet(ArrayList<Tayte> tavalliset, ArrayList<Tayte> lisataytteellinen){
 		ArrayList<Tayte> lisaTaytteet = new ArrayList<Tayte>();
 		for (int j = 0; j < lisataytteellinen.size(); j++) {
@@ -118,7 +117,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 		return lisaTaytteet;
 	}
-	
+
 	public void updateTilaus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;
 		
@@ -173,6 +172,8 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
+	//Listaa kaikki tilatut tuotteet, laskee yksittäisen tuotetyypin tilatut kappalemäärät. Kertoo lukumäärän kplhinnan perusteella, jotta saisimme tietää tuotteen arvoidun voittosumman.
+	//HUOM! Tämä EI ole korvike hyvälle kirjanpidolle, myytyjen pizzojen voitot ovat pelkästään arvioita, sillä tuotteen hinta on voinut muuttua aikojen saatossa. Tämä on pelkästään suuntaa-antava, yleiskuvaava arvio.
 	public ArrayList<TilattuTuote> haeTilastot() throws SQLException {
 		
 		
@@ -204,6 +205,7 @@ public class TilausDAO extends DataAccessObject {
 		return lista;
 	}
 	
+	//Lukee tilastot, laskee arvioidut myyntitulot haeTilastot()-metodia varten.
 	private TilattuTuote readTilasto(ResultSet rs) throws SQLException {
 		
 		try {
@@ -383,7 +385,6 @@ public class TilausDAO extends DataAccessObject {
 
 
 	//Tämä poistaa tilauksen. Pysyvästi. Käytä harkiten!
-	@SuppressWarnings("resource")
 	public void deleteTilaus(Tilaus Tilaus) throws SQLException {
 		Connection connection = null;
 
@@ -411,6 +412,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
+	//Hakee KAIKKI aktiiviset tilaukset
 	public ArrayList<Tilaus> haeAktiivisetTilaukset() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -494,7 +496,7 @@ public class TilausDAO extends DataAccessObject {
 		}
 	}
 	
-	
+	//Hakee tilauksen tiedot sen ID:n perusteella.
 	public Tilaus haeTilaus(int ID) {
 
 		Connection conn = null;
@@ -520,6 +522,7 @@ public class TilausDAO extends DataAccessObject {
 		return tulos;
 	}
 	
+	//Hakee tilauksen ID:n sen osoitteen ja tilaajan käyttäjä id:n perusteella
 	private int haeTilauksenID(String osoite, int KID) {
 
 		Connection conn = null;
@@ -549,6 +552,7 @@ public class TilausDAO extends DataAccessObject {
 		return tulos;
 	}
 	
+	//Palauttaa listan tilauksen tilatuista tuotteista, hakee tilauksen ID:n perusteella
 	public ArrayList<TilattuTuote> haeTilatutTuotteetIDnPerusteella(int TID) {
 		Connection conn = null;
 		PreparedStatement stmtSelect = null;

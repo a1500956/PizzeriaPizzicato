@@ -98,11 +98,12 @@ sposti = (String) session.getAttribute("sposti");
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
- <h4>Pizzeria Pizzicato located in Meilahti, Helsinki.</h4> 
+<h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Phone: (09) 300 300 30</h4>
+ <h6>Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6> 
 <ul>
    <a href="/Pizzeria_Pizzicato/vahvistaTilaus"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
  
- 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shopping Cart(<%=ostoskori.getMaara()%>)</a> </li>
+ 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shopping Cart(<%=ostoskori.getMaara()%>)</a> </li>
 
           <% if (user!=null){%>
   <form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
@@ -210,9 +211,9 @@ var FormStuff = {
 		<tr style="width=350px;">
 			
 			<th style="border-bottom: solid 1px grey;">PIZZAS</th>
+			<th style="border-bottom: solid 1px grey;">EXTRA TOPPINGS</th>
 			<th style="border-bottom: solid 1px grey;">PRICE</th>
-			<th style="border-bottom: solid 1px grey;">OREGANO</th>
-			<th style="border-bottom: solid 1px grey;">GARLIC</th>
+			<th style="border-bottom: solid 1px grey;">CONDIMENTS</th>
 			<th style="border-bottom: solid 1px grey;">AMOUNT</th>
 			<th></th>
 			
@@ -225,34 +226,46 @@ var FormStuff = {
 				<%if(pizzat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
 					<tr>
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
+						<td><div class=""><% if(ostoskori.getTuote(i).getLisataytteet() != null){%><%for(int n = 0; n<ostoskori.getTuote(i).getLisataytteet().size(); n++){ %><%=ostoskori.getTuote(i).getLisataytteet().get(n).getTayte_nimi_en()%> <%}%><%} %> </div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 							<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
-							<%String oregano = "kyllä";
-							if(ostoskori.getTuote(i).getOregano() == 0){
-								oregano = "ei";
-							}%>
-						<td><div class="tilauslista"><%=oregano%></div></td>
-							<%String vSipuli = "kyllä";
-							if(ostoskori.getTuote(i).getvSipuli() == 0){
-								vSipuli = "ei";
-							}%>
-						<td><div class="tilauslista"><%=vSipuli%></div></td>
+						<td style="text-align: center;"><div class="">
+							<%if(ostoskori.getTuote(i).getOregano() != 0){%>
+								<img src="Kuvia/oregano.png" title="Oregano" alt="Oregano" style="width:16px;height:16px;" />
+								<!--Icon made by Freepik from www.flaticon.com-->
+							<%}%>
+							<%if(ostoskori.getTuote(i).getvSipuli() != 0){%>
+								<img src="Kuvia/garlic.png" title="Valkosipuli" alt="Valkosipuli" style="width:16px;height:16px;" />
+								<!--Icon made by Madebyoliver from www.flaticon.com-->
+							<%}%>
+						</div></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
-						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
-						</a></td>								
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=poista" class="submit-button">
+						<img src="Kuvia/minus2.png" title="Poista" alt="Poista" style="width:16px;height:16px;" />
+						</a>
+						<a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaaPizza" class="submit-button">
+						<img src="Kuvia/plus.png" title="Lisää" alt="Lisaa" style="width:16px;height:16px;" />
+						<!--Icon made by Dave Gandy from www.flaticon.com-->
+						</a></td>
 					</tr>
 				<%}%>
 			<%} %>
 		<%} %>
 		
-		<tr style="width=350px;">
+		<tr></tr> <!-- Tilaa loppejen väliin! -->
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		
+		<tr style="width=350px; border-bottom: solid 1px grey;">
 			
-			<th style="border-bottom: solid 1px grey;">DRINKS</th>
-			<th style="border-bottom: solid 1px grey;">SIZE</th>
-			<th style="border-bottom: solid 1px grey;">PRICE</th>
-			<th style="border-bottom: solid 1px grey;">AMOUNT</th>
-			<th></th>
+			<th style="border-bottom: solid 1px grey;">JUOMAT</th>
+			<th style="border-bottom: solid 1px grey;">KOKO</th>
+			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
+			<th style="border-bottom: solid 1px grey;"></th>
+			<th style="border-bottom: solid 1px grey;">KPL</th>
+			
 			
 			
 			<!--  <th>TOIMINNOT</th>-->
@@ -268,15 +281,20 @@ var FormStuff = {
 						<td><div class=""><%=juomat.get(j).getLitrakoko() + "l"%></div></td>
 						<td><div class="tilauslista"><%=nf.format(ostoskori.getTuote(i).getHinta())%>&euro;</div></td>
 						<%summa+=(ostoskori.getTuote(i).getHinta()*ostoskori.getTuote(i).getLkm());%>
+						<td></td>
 						<td><div class="tilauslista"><%=ostoskori.getTuote(i).getLkm()%> kpl</div></td>
-						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>" class="submit-button">
-						<img  src="Kuvia/miinusICON.png" alt="Poista" style="width:17px;height:17px;" />
+						<td><a href="poistaPizzaKorista?paikkaID=<%=i%>&action=poista" class="submit-button">
+						<img src="Kuvia/minus2.png" title="Poista" alt="Poista" style="width:18px;height:18px;" />
+						</a>
+						<a href="poistaPizzaKorista?paikkaID=<%=i%>&action=lisaaJuoma" class="submit-button">
+						<img src="Kuvia/plus.png" title="Lisää" alt="Lisaa" style="width:18px;height:18px;" />
+						<!--Icon made by Dave Gandy from www.flaticon.com-->
 						</a></td>								
 					</tr>
 				<%}%>
 			<%} %>
 		<%} %>
-			
+		
 		
 		</table><br>
 		<p style="color:white;"><u>SUM:</u> <%=nf.format(summa) %>&euro;</p><input type="submit" name="submit-button"
@@ -287,13 +305,9 @@ var FormStuff = {
 		<%} %>
 		
     </span>
-    </form>
-
-     
+    </form>  
     </section>
-    
-
-    
+   
   <!-- end .content --></article>
  	
   <footer>

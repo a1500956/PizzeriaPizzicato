@@ -6,6 +6,7 @@
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
@@ -15,14 +16,10 @@
     nf.setMaximumFractionDigits(2);
     nf.setMinimumFractionDigits(2);
 %>
-
 <%
 Ostoskori ostoskori = new Ostoskori();
 ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 %>
-
-
-
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -33,6 +30,8 @@ scope="request" />
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 <jsp:useBean id="fantasiaTayteValintaLista" type="java.util.ArrayList<Tayte> "
+scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma> "
 scope="request" />
 
 <html>
@@ -69,12 +68,14 @@ media="only screen and (min-width: 771px)">
 
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
 </head>
 		<body>
 	<div class="container">
 <nav class=isoruutu>
-<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
- <h4 class="esittely">Pizzeria Pizzicato is located in Meilahti, Helsinki</h4> 
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
+ <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Phone: (09) 300 300 30</h4>
+ <h6>Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6> 
 <ul>
    <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
  <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:20px;height:15px; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a> </li>
@@ -85,6 +86,7 @@ media="only screen and (min-width: 771px)">
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminenEN" method="post">
     <ul>
+   		 <li><a href="rekisteroidy"><small>Tiliä vailla? Rekisteröidy.</small></a></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
@@ -119,7 +121,21 @@ media="only screen and (min-width: 771px)">
 !-->
 
 
-  <article>
+   <article>
+  <br> <br>
+ <br>
+ <br>
+ <br>
+ <div class="column row">
+
+<ul class="tabs" data-tabs id="example-tabs" style = "list-style-type: none;">
+<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Pizzas</a></li>
+<li class="tabs-title"><a href="#panel2">Drinks</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+<div class="tabs-panel is-active" id="panel1">
+
+<div class="pizzat">
 
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
@@ -140,17 +156,18 @@ media="only screen and (min-width: 771px)">
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
+				<td  rowspan="2" >
 				<form class="postii" method="post">
-				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
-				<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
-				<select name="maara">
+					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
+				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Garlic
+					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+					<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
+					<select name="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl
-				<input  type="submit" value="Add to Cart">
+					</select>Pcs <br>
+					<input  class="koriin" type="submit" value="Add to Cart" >
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -175,47 +192,105 @@ media="only screen and (min-width: 771px)">
 				<tr>
 				
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
-				
+				<td  rowspan="2" style= "vertical-align: top;"><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td  rowspan="2" style= "vertical-align: top;">
 				<form class="mauste2" method="post">
-				 Oregano<input class="mauste" type="checkbox" name="oregano" value="1"> 
-				 Garlic<input class="mauste" type="checkbox" name="vSipuli" value="1">
+				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
+				<input class="mauste" type="checkbox" name="vSipuli" value="1">Garlic
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 				<select name="maara">
-				 		<%for(int n=0; n<10;n++){%>
-				 			<option value="<%=n+1%>"><%=n+1%></option>
-				 		<%}%>
-					</select>Kpl
-				<input type="submit" value="Add to cart">
-				</form></td>
+				 	<%for(int n=0; n<10;n++){%>
+				 		<option value="<%=n+1%>"><%=n+1%></option>
+				 	<%}%>
+				 </select>Pcs <br>
+				<input type="submit" value="Add to Cart">
+				</td>
 				</tr>
 				
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzaFantasia.get(i).getTaytteet().size()-1;j++) {%>
 
 												 <%= pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%>, 
 												<%  }%>
-												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%> + <%=(i +2)%> toppings of your choice <br>
+												 <%=pizzaFantasia.get(i).getTaytteet().get(j).getTayte_nimi_en()%> + <%=(i +2)%> toppings of your choice. <br>
 												 
-		
 				
-				<%int k=0; for(k=0; k<taytemaara; k++) {%>
+				
+											<%int k=0; for(k=0; k<taytemaara; k++) {%>
 												<select class="lisatayteValikko" name="lisatayte">
-												<option selected disabled>Choose topping <%=k+1%></option>
+												<option selected disabled>Topping <%=k+1%></option>
 													<%for(int l=0; l<fantasiaTayteValintaLista.size();l++){ %>
 														 <option value=<%=fantasiaTayteValintaLista.get(l).getTayte_id() %>><%=fantasiaTayteValintaLista.get(l).getTayte_nimi_en() %></option>
 													<%} %>
 												</select>
-												<%} %>
+											<%} %>
 												
 												 
 				
 					</div></td></tr>
+					</form>
+				
 			
 			<% } %>
-			
 		</table><br>
-    </span>
+    </span></div>
+
+
+</div>
+<div class="tabs-panel" id="panel2">
+<div class="row medium-up-3 large-up-5">
+
+<div a name="juomat">
+    <h1>DRINKS</h1>
+       <span class="juomalista">
+    <table class="listaa-pizzat" border="1" align="center">
+		<tr>	
+			<th>DRINKS</th>
+			<th>PRICE (&euro;)</th>
+		
+			
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+		<%for(int i = 0; i < juomat.size(); i++) {%>
+		<tr>
+				<td><div><%=juomat.get(i).getNimi()%></div></td>
+				<td><div><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
+				<td><div><%=nf.format(juomat.get(i).getLitrakoko())%> litres</div></td>
+				
+				<td class="juomavalinta">
+				<form method="post">
+					<input type="hidden" name="juomaID" value="<%=juomat.get(i).getId()%>">
+					<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Pcs
+					<input class="koriin" type="submit" value="Add to Cart">
+				</form></td>		
+				
+			
+		 </tr>		<% } %>
+    
+    </table>
+    <br><br>
+    
+    
+    
+    </span></div>
+
+
+</div>
+</div>
+</div>
+</div>
+ 
+ 
+
+
+ 
+    <br><br><br>
+    
         
     </section>
     
@@ -231,5 +306,11 @@ media="only screen and (min-width: 771px)">
     </address>
   </footer>
   <!-- end .container --></div>
+	</body>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+      $(document).foundation();
+    </script>
 	</body>
 </html>

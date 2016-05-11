@@ -152,6 +152,7 @@ public class KayttajaDAO extends DataAccessObject {
 	      }
 	   }
 	   
+	   //Lis‰‰ k‰ytt‰j‰n tietokantaan, kaikkine tietoineen, joita on paljon.
 	   public void create(Kayttaja kayttaja){
 	      PreparedStatement statement = null;
 	      Connection connection = null;
