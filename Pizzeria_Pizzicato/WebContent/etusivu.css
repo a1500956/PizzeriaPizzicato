@@ -278,11 +278,9 @@ table { width:auto, text-aling_ center;
 
 .juomalista th{text-align: left; width: 200px; margin-left: 2px}
 
-<<<<<<< HEAD
+
 .pizzat {}
 
-=======
->>>>>>> branch 'master' of https://github.com/a1500956/PizzeriaPizzicato.git
 .pizzat2 {margin-left: 0px;}
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
@@ -364,3 +362,91 @@ input[type="checkbox"]:checked ~ .reveal-if-active {
   max-height: 100px; /* little bit of a magic number :( */
   overflow: visible;
 } 
+
+/*välilehti kamaa*/
+.tabs, .tabs-content {
+	border: none
+}
+.tabs {
+
+	margin: 0;
+}
+
+.tabs::after, .tabs::before {
+	content: ' ';
+	display: table
+}
+
+.tabs.simple>li>a {
+	padding: 0;
+	
+}
+
+.tabs.simple>li>a:hover {
+	background: #580000 ;
+}
+
+.tabs.vertical>li {
+	width: auto;
+	float: none;
+	display: block
+}
+
+.tabs-title, .title-bar-left {
+	float: left
+}
+
+.tabs.primary {
+	background: #980000  ;
+}
+
+.tabs.primary>li>a {
+	color: #fefefe
+}
+
+.tabs.primary>li>a:focus, .tabs.primary>li>a:hover {
+	
+}
+
+.tabs-title>a {
+	display: block;
+	padding: 1.25rem 1.5rem;
+	line-height: 1;
+	font-size: 18px;
+	color: white;
+}
+
+.tabs-title>a:focus, .tabs-title>a:hover, .tabs-title>a[aria-selected=true]
+	{
+background: #980000  ; 
+}
+
+.tabs-content {
+	transition: all .5s ease;
+	border-top: 0
+}
+
+.tabs-content.vertical {
+	border: none;
+	border-left: 0
+}
+
+.tabs-panel {
+	display: none;
+	padding: 1rem
+}
+
+.tabs-panel.is-active {
+	display: block
+}
+.tabs::after{
+	clear: both
+	
+}
+.tabs ul {
+	list-style-type: none;
+}
+ 
+
+
+
