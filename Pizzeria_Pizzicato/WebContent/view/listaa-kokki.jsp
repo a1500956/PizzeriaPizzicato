@@ -45,11 +45,12 @@ scope="request" />
 	int ryhma= 1;
 	int ryhma2= 2;
 	int ryhma3= 4;
+	int ryhma4= 5;
 
 	String userName = null;
 	//allow access only if session exists
 
-	if(session.getAttribute("ryhma").equals(ryhma) || session.getAttribute("ryhma").equals(ryhma2) || session.getAttribute("ryhma").equals(ryhma3)){
+	if(session.getAttribute("ryhma").equals(ryhma) || session.getAttribute("ryhma").equals(ryhma2) || session.getAttribute("ryhma").equals(ryhma3) || session.getAttribute("ryhma").equals(ryhma4)){
 
 		userName = (String) session.getAttribute("kayttaja");
 		
@@ -96,6 +97,9 @@ response.setIntHeader("Refresh", 5);
 		<a href="listaaPizzat" class="btn btn-info" role="button">Takaisin</a>&nbsp;&nbsp;
 		</td>
 		<%} %>
+		<td>
+		<a href="listaaTilauksettarjoilija" class="btn btn-info" role="button" style="margin-right:6px;">Tarjoilijan näkymä</a>
+		</td>
 		<td>
 		<a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
 		<a href="kokinLista2" class="btn btn-info" role="button" onClick="return popup(this, 'notes')">Pizzalista</a>

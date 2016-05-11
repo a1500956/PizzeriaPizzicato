@@ -105,7 +105,7 @@ for(Cookie cookie : cookies){
 			</tr>
 				<tr>
 				<td>Sähköposti:</td>
-					<td><input type="text" value="" name="Sposti" size="20" pattern=".{6,20}" required title="Pituuden tulee olla 6-20 merkkiä" />
+					<td><input type="email" value="" name="Sposti" size="20" pattern=".{6,20}" required title="Pituuden tulee olla 6-20 merkkiä" />
 				</td>
 				</tr>
 				<tr>

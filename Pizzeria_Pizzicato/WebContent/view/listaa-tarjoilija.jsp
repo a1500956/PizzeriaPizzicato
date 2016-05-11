@@ -24,7 +24,7 @@ scope="request" />
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Kuskin näkymä</title>
+<title>Tarjoilijan näkymä</title>
 
 
 </head>
@@ -78,7 +78,7 @@ response.setIntHeader("Refresh", 5);
 
 		
 		
-		<h1>TOIMITETTAVAT</h1>
+		<h1>NOUDETTAVAT</h1>
 		
 		<table align="center" border="0">
 		<tr>
@@ -88,10 +88,11 @@ response.setIntHeader("Refresh", 5);
 		</td>
 		<%} %>
 		<td>
-		<a href="listaaTilauksettarjoilija" class="btn btn-info" role="button" style="margin-right:6px;">Tarjoilijan näkymä</a>
+		<a href="listaaPizzatkokki" class="btn btn-info" role="button" style="margin-right:6px;">Kokin näkymä</a>
 		</td>
+		
 		<td>
-		<a href="listaaPizzatkokki" class="btn btn-info" role="button">Kokin näkymä</a>
+		<a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuljettajan näkymä</a>
 		</td>
 		</tr>
 		</table>
@@ -116,7 +117,7 @@ response.setIntHeader("Refresh", 5);
 			
 	
 					<tr>
-					<%if(tilaukset.get(i).getStatusID()==3 && !tilaukset.get(i).getOsoite().contains("nouto")){%>
+					<%if(tilaukset.get(i).getStatusID()==3 && tilaukset.get(i).getOsoite().contains("nouto")){%>
 						<td><%=tilaukset.get(i).getId() %></td>
 						<td><%=tilaukset.get(i).getAika()%></td>
 						<td><%=tilaukset.get(i).getStatusNimi()%></td>
@@ -135,15 +136,15 @@ response.setIntHeader("Refresh", 5);
 </div>
 <div class="listaa-tilaukset2">
 		<table class="listaa-pizzat" width="auto" border="1" align="center">
-		<p>Toimitettujen tilauksien kuittaus</p>
+		<p>Noudettujen tilauksien kuittaus</p>
 		<tr>
 			<td><h4>Tilausnumero</h4></td>
-			<td><h4>Toimitettu</h4></td>
+			<td><h4>Noudettu</h4></td>
 				
 		</tr>
 		
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
-			<%if(tilaukset.get(i).getStatusID()==3 && !tilaukset.get(i).getOsoite().contains("nouto")){%>
+			<%if(tilaukset.get(i).getStatusID()==3 && tilaukset.get(i).getOsoite().contains("nouto")){%>
 			
 					<tr>
 					<td><div class="toiminnot2"><form class="kuski2" action="" method="post">

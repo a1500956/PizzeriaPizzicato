@@ -66,6 +66,16 @@ public class kirjautuminen extends HttpServlet {
 			response.addCookie(userName);
 			String encodedURL = response.encodeRedirectURL("listaaPizzatkuski");
             response.sendRedirect(encodedURL);
+            
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 5 ){
+			HttpSession session = request.getSession();
+			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
+			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
+			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
+			session.setMaxInactiveInterval(30*60);
+			response.addCookie(userName);
+			String encodedURL = response.encodeRedirectURL("listaaTilauksettarjoilija");
+            response.sendRedirect(encodedURL);
 			
 		}else if(kirjautuja != null){
 			HttpSession session = request.getSession();
