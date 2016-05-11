@@ -107,7 +107,7 @@ sposti = (String) session.getAttribute("sposti");
           <% if (user!=null){%>
   <form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, olet kirjautuneena.</h3><input type="submit" value="Uloskirjaus" >
+      <h3>Tervetuloa, <%=userName %>!</h3><input type="submit" value="Uloskirjaus" >
 
       </div>
     </form> <% }else{%> 
@@ -116,6 +116,7 @@ sposti = (String) session.getAttribute("sposti");
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminen" method="post">
     <ul>
+    <li><a href="rekisteroidy"><small>Tiliä vailla? Rekisteröidy.</small></a></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
