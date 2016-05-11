@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="pizzeria_pizzicato.model.Pizza"%>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
 <%@ page import="pizzeria_pizzicato.model.Tayte"%>
 <%@ page import="pizzeria_pizzicato.model.Tuote"%>
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
@@ -29,6 +30,8 @@ scope="request" />
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 <jsp:useBean id="fantasiaTayteValintaLista" type="java.util.ArrayList<Tayte> "
+scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma> "
 scope="request" />
 
 <html>
@@ -104,9 +107,21 @@ for(Cookie cookie : cookies){
 </nav>
 
     <article>
+  <br> <br>
  <br>
  <br>
- <br><br>
+ <br>
+ <div class="column row">
+
+<ul class="tabs" data-tabs id="example-tabs" style = "list-style-type: none;">
+<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Pizzat</a></li>
+<li class="tabs-title"><a href="#panel2">Juomat</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+<div class="tabs-panel is-active" id="panel1">
+
+<div class="pizzat">
+
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
@@ -126,17 +141,18 @@ for(Cookie cookie : cookies){
 				
 				<td><div class="pizzat"><%out.print(i+1);%>. <b><%=pizzat.get(i).getNimi()%></b></div></td>
 				<td><div class="pizzat2"><%=nf.format(pizzat.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
+				<td  rowspan="2" >
 				<form class="postii" method="post">
-					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+					<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
 				 	<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 					<input type="hidden" name="pizzaID" value="<%=pizzat.get(i).getId()%>">
+					<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 					<select name="maara">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl
-					<input  type="submit" value="Koriin">
+					</select>Kpl <br>
+					<input  class="koriin" type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
 			<tr><td><div class="taytteet"> <%int j=0; for(j = 0; j<pizzat.get(i).getTaytteet().size()-1;j++) { %>
@@ -161,17 +177,18 @@ for(Cookie cookie : cookies){
 				<tr>
 				
 				<td><div class="pizzat"><%out.print(i+(pizzat.size()+1));%>. <b><%=pizzaFantasia.get(i).getNimi()%></b></div></td>
-				<td><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
-				<td class="vsoregano">
+				<td  rowspan="2" style= "vertical-align: top;"><div class="pizzat2"><%=nf.format(pizzaFantasia.get(i).getHinta())%>€ </div></td>
+				<td  rowspan="2" style= "vertical-align: top;">
 				<form class="mauste2" method="post">
-				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano 
+				<input class="mauste" type="checkbox" name="oregano" value="1">Oregano <br>
 				<input class="mauste" type="checkbox" name="vSipuli" value="1">Valkosipuli
 				<input type="hidden" name="pizzaID" value="<%=pizzaFantasia.get(i).getId()%>">
+				<td  rowspan="2" style="padding-left: 10px; vertical-align: top;">
 				<select name="maara">
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
-				 </select>Kpl
+				 </select>Kpl <br>
 				<input type="submit" value="Koriin">
 				</td>
 				</tr>
@@ -184,14 +201,14 @@ for(Cookie cookie : cookies){
 												 
 				
 				
-				<%int k=0; for(k=0; k<taytemaara; k++) {%>
+											<%int k=0; for(k=0; k<taytemaara; k++) {%>
 												<select class="lisatayteValikko" name="lisatayte">
 												<option selected disabled>Valitse täyte <%=k+1%></option>
 													<%for(int l=0; l<fantasiaTayteValintaLista.size();l++){ %>
 														 <option value=<%=fantasiaTayteValintaLista.get(l).getTayte_id() %>><%=fantasiaTayteValintaLista.get(l).getTayte_nimi() %></option>
 													<%} %>
 												</select>
-												<%} %>
+											<%} %>
 												
 												 
 				
@@ -200,9 +217,65 @@ for(Cookie cookie : cookies){
 				
 			
 			<% } %>
-		
 		</table><br>
-    </span>
+    </span></div>
+
+
+</div>
+<div class="tabs-panel" id="panel2">
+<div class="row medium-up-3 large-up-5">
+
+<div a name="juomat">
+    <h1>JUOMAT</h1>
+       <span class="juomalista">
+    <table class="listaa-pizzat" border="1" align="center">
+		<tr>	
+			<th>JUOMAT</th>
+			<th>HINTA (&euro;)</th>
+		
+			
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+		<%for(int i = 0; i < juomat.size(); i++) {%>
+		<tr>
+				<td><div><%=juomat.get(i).getNimi()%></div></td>
+				<td><div><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
+				<td><div><%=nf.format(juomat.get(i).getLitrakoko())%> litraa</div></td>
+				
+				<td class="juomavalinta">
+				<form method="post">
+					<input type="hidden" name="juomaID" value="<%=juomat.get(i).getId()%>">
+					<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
+					<input class="koriin" type="submit" value="Koriin">
+				</form></td>		
+				
+			
+		 </tr>		<% } %>
+    
+    </table>
+    <br><br>
+    
+    
+    
+    </span></div>
+
+
+</div>
+</div>
+</div>
+</div>
+ 
+ 
+
+
+ 
+    <br><br><br>
+    
         
     </section>
     
@@ -218,5 +291,11 @@ for(Cookie cookie : cookies){
     </address>
   </footer>
   <!-- end .container --></div>
+	</body>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+      $(document).foundation();
+    </script>
 	</body>
 </html>
