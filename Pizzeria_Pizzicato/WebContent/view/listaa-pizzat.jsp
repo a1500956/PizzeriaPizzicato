@@ -76,7 +76,6 @@ for(Cookie cookie : cookies){
 <a href="listaaArkisto" class="btn btn-info" role="button">Arkisto</a>
 <a href="listaaPizzatkokki" class="btn btn-info" role="button">Kokin näkymä</a>
 <a href="listaaPizzatkuski" class="btn btn-info" role="button">Kuskin näkymä</a>
-<a href="luoTyontekija" class="btn btn-info" role="button">Lisää työntekijä</a>
 <a href="listaaTyontekijat" class="btn btn-info" role="button">Työntekijät</a>
 </div>
 

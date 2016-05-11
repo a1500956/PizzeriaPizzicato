@@ -134,9 +134,13 @@ sposti = (String) session.getAttribute("sposti");
  
     <section>
    
-   <form action="vahvistaTilaus" method="post" style="padding-top:100px ">
-  
-
+   <form id="vahvista" action="vahvistaTilaus" method="post" style="padding-top:100px">
+   
+	<script>
+		function vahvistaTilaus(){
+			alert("Tilaus lähetetty!");
+		}
+	</script>
     
      <h1 class=hMode2>TILAUKSENNE</h1>
     <div class=button><a href="kirjautuminenOk">Takaisin</a></div><br><br>
@@ -295,24 +299,29 @@ var FormStuff = {
 				<%}%>
 			<%} %>
 		<%} %>
-			
+		
 		
 		</table><br>
 		<p style="color:white;"><u>SUMMA:</u> <%=nf.format(summa) %>&euro;</p>
 		<a href="poistaPizzaKorista?action=poistaKori" style="text-decoration: underline;" class="submit-button" >Tyhjennä kori</a>
 		<input type="submit" name="submit-button"class="submit-button" value="Vahvista Tilaus" />
 		
-		<%}else{%>
-		<p>Ostoskori on tyhjä</p>
-		<%} %>
+		
 		
     </span>
     </form>
-
+    <script>
+		document.getElementById("vahvista").onsubmit = function() {myFunction()};
+		
+		function myFunction() {
+		    alert("Tilaus lähetetty");
+		}
+	</script>
+		<%}else{%>
+		<p>Ostoskori on tyhjä</p>
+		<%} %>
      
     </section>
-    
-
     
   <!-- end .content --></article>
  	
