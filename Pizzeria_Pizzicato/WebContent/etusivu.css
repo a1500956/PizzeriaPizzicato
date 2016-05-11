@@ -6,7 +6,7 @@
 @viewport           { width: auto; }
 
 
-.bookshakalaka{
+.boomshakalaka{
 	hola amigos;
 }
 
@@ -320,7 +320,7 @@ footer {
 
 }
 
-//*MIHIN NÄÄ CSS:ÄT OIKEIN ON? *//
+//*MIHIN NÃ„Ã„ CSS:Ã„T OIKEIN ON? *//
 
 .listaa-pizzat{
 	width:80%;
@@ -347,7 +347,7 @@ footer {
 	text-decoration: none;
 }
 
- /* tilaa pizza css:ät!
+ /* tilaa pizza css:Ã¤t!
  
 /*tilaus*/
 .reveal-if-active {
@@ -361,7 +361,7 @@ input[type="checkbox"]:checked ~ .reveal-if-active {
   overflow: visible;
 } 
 
-/*välilehti kamaa*/
+/*vÃ¤lilehti kamaa*/
 .tabs, .tabs-content {
 	border: none
 }
