@@ -9,6 +9,7 @@
 <%@ page import="pizzeria_pizzicato.model.Ostoskori"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="pizzeria_pizzicato.model.Juoma"%>
 
 <%
     NumberFormat nf = NumberFormat.getInstance();
@@ -33,6 +34,8 @@ scope="request" />
 <jsp:useBean id="kaikkitaytteet" type="java.util.ArrayList<Tayte> "
 scope="request" />
 <jsp:useBean id="fantasiaTayteValintaLista" type="java.util.ArrayList<Tayte> "
+scope="request" />
+<jsp:useBean id="juomat" type="java.util.ArrayList<Juoma> "
 scope="request" />
 
 <html>
@@ -215,7 +218,46 @@ media="only screen and (min-width: 771px)">
 			<% } %>
 			
 		</table><br>
-    </span>
+    </span></div>
+   <br><br><br>
+ <div a name="juomat">
+    <h1>JUOMAT</h1>
+       <span class="juomalista">
+    <table class="listaa-pizzat" border="1" align="center">
+		<tr>	
+			<th>DRINKS</th>
+			<th>PRICE (&euro;)</th>
+		
+			
+			<!--  <th>TOIMINNOT</th>-->
+				
+		</tr>
+		<%for(int i = 0; i < juomat.size(); i++) {%>
+		<tr>
+				<td><div><%=juomat.get(i).getNimi()%></div></td>
+				<td><div><%=nf.format(juomat.get(i).getHinta())%>€ </div></td>
+				<td><div><%=nf.format(juomat.get(i).getLitrakoko())%> litres</div></td>
+				
+				<td class="juomavalinta">
+				<form method="post">
+					<input type="hidden" name="juomaID" value="<%=juomat.get(i).getId()%>">
+					<select name="maara">
+				 		<%for(int n=0; n<10;n++){%>
+				 			<option value="<%=n+1%>"><%=n+1%></option>
+				 		<%}%>
+					</select>Kpl
+					<input class="koriin" type="submit" value="Add to cart">
+				</form></td>		
+				
+			
+		 </tr>		<% } %>
+    
+    </table>
+    <br><br>
+    
+    
+    
+    </span></div>
         
     </section>
     
