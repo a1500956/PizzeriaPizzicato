@@ -41,6 +41,7 @@ scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Pizzeria Pizzicato</title>
 
 <link href="puhelin.css" rel="stylesheet" type="text/css"
@@ -126,9 +127,7 @@ media="only screen and (min-width: 771px)">
 
 
   <article>
-  <br> <br>
- <br>
- <br>
+  <br> <br> <br>
  <br>
  <div class="column row">
 

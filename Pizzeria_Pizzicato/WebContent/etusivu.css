@@ -14,14 +14,14 @@
 	
 }
 
-h1{color:#db1b51;
+h1{color:	#e1d800;
 	font-family: Georgia;
 	
 }
 
 h4{color:white; margin-left: -60px;}
 h6 {color:white; margin-top: -5px; size: 120%; margin-left: -80px;}
-p{color: #db1b51;}
+p{color: white;}
 
 header {
 	background-color: black; margin-top:0px
@@ -279,8 +279,6 @@ table { width:auto, text-aling_ center;
 .juomalista th{text-align: left; width: 200px; margin-left: 2px}
 
 
-.pizzat {}
-
 .pizzat2 {margin-left: 0px;}
 
 .pizzalista tr, th, td, table  {text-align:left; border-style:none; border:none; color:white;
@@ -404,10 +402,6 @@ input[type="checkbox"]:checked ~ .reveal-if-active {
 	color: #fefefe
 }
 
-.tabs.primary>li>a:focus, .tabs.primary>li>a:hover {
-	
-}
-
 .tabs-title>a {
 	display: block;
 	padding: 1.25rem 1.5rem;
@@ -446,6 +440,7 @@ background: #980000  ;
 .tabs ul {
 	list-style-type: none;
 }
+
  
 
 
