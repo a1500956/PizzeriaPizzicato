@@ -76,7 +76,6 @@ media="only screen and (min-width: 771px)">
 
 	<script>
 	var tilausLapi = "${tilausLapi}";
-	document.write(tilausLapi);
 	if(tilausLapi == "true"){
 		$(function() {
 		$( "#dialog" ).dialog();
