@@ -18,10 +18,12 @@ import pizzeria_pizzicato.model.Kayttaja;
 import pizzeria_pizzicato.model.Lukija;
 import pizzeria_pizzicato.model.Pizza;
 import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.KayttajaDAO;
 import pizzeria_pizzicato.model.dao.PizzaDAO;
 import pizzeria_pizzicato.model.dao.PizzaTayteDAO;
 import pizzeria_pizzicato.model.dao.TayteDAO;
+import pizzeria_pizzicato.model.dao.TuoteDAO;
 
 @WebServlet("/lisaa-pizza")
 public class lisaaPizza extends HttpServlet {
@@ -31,8 +33,10 @@ public class lisaaPizza extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		TayteDAO TDAO = new TayteDAO(); 
+		TayteDAO TDAO = new TayteDAO();
+		
 		ArrayList<Tayte> kaikkiTaytteet = TDAO.findAll();
+		
 		request.setAttribute("kaikkitaytteet", kaikkiTaytteet);
 		String jsp = "/view/lisaa-pizza.jsp";
 		
@@ -41,20 +45,52 @@ public class lisaaPizza extends HttpServlet {
 		dispather.forward(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 	
+		TuoteDAO TDAO = new TuoteDAO();
+		ArrayList<Tuote> tuoteLista = TDAO.findAll();
+		
+		String nimiStr = request.getParameter("nimi");
+		String nimi = new String(nimiStr);
+	
 		String viesti = null;
+		String viesti3 = null;
+		String nimiDB = null;
+		
+		
+		boolean loytyy = false;
+		
+		for(int j = 0; j < tuoteLista.size(); j++){
+			
+			if(nimi.equalsIgnoreCase(tuoteLista.get(j).getNimi())){
+				loytyy = true;
+				nimiDB = tuoteLista.get(j).getNimi();
+				System.out.println(nimiDB);		
+				viesti3 = nimiDB+ " niminen pizza on jo tietokannassa!";
+				
+				
+				
+		
+				}
+			}
+			
+	if(loytyy == false){
+			
 
 		try {
+			
+			
 			int id = 0;
-
-			String nimiStr = request.getParameter("nimi");
-			String nimi = new String(nimiStr);
+			
 
 			String eka = nimi.substring(0, 1).toUpperCase();
 			String loput = nimi.substring(1).toLowerCase();
 			nimi = eka + loput;
+			
+		
+			
 
 			String hintaStr = request.getParameter("hinta");
 			double hinta = lukija.lueDesimaaliluku(hintaStr);
@@ -87,8 +123,10 @@ public class lisaaPizza extends HttpServlet {
 						pId);
 
 			}
-			}
-
+			
+			
+			}	
+			
 		} catch (SQLException e) {
 
 			System.out.println("Sovelluksessa tapahtui virhe " + e.getMessage());
@@ -97,10 +135,41 @@ public class lisaaPizza extends HttpServlet {
 		if (viesti!=null){
 		request.getSession().setAttribute("message", viesti);
 		response.sendRedirect("listaaPizzat");
-
 		
+		
+		}
+		}
+	
+	
+	if (viesti3!=null){
+	request.getSession().setAttribute("message", viesti3);
+	response.sendRedirect("lisaa-pizza");
 
 	}
+	}
 }
-}
+	
+
+
+
+		
+	
+
+	
+
+
+
+
+
+						
+		
+		
+		
+		
+
+
+
+
+	
+
 

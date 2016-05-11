@@ -84,12 +84,15 @@ public class pizzaMenu extends HttpServlet {
 			}
 			
 			session.removeAttribute("message4");
-			
+			String tilausLapi = "false";
+			if(session.getAttribute("tilausLapi") == null){
+				session.setAttribute("tilausLapi", tilausLapi);
+			}
 			request.setAttribute("pizzat", pizzaNakyy);
 			request.setAttribute("pizzaFantasia", pizzaFantasia);
 			request.setAttribute("juomat", juomaNakyy);
 			
-			String jsp = "/view/etusivu.jsp"; 
+			String jsp = "/view/etusivu.jsp?tilaus="+tilausLapi; 
 			RequestDispatcher dispather = getServletContext().getRequestDispatcher(jsp);
 			dispather.forward(request, response);
 

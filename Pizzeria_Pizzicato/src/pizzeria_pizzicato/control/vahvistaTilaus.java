@@ -156,9 +156,11 @@ public class vahvistaTilaus extends HttpServlet {
 			e.printStackTrace();
 		
 		}
+		String tilausLapi = "true";
 		session.removeAttribute("eNimi");
 		session.removeAttribute("sNimi");
 		session.removeAttribute("ostoskori");
+		session.setAttribute("tilausLapi", tilausLapi);
 		response.sendRedirect("pizzaMenu");
 		
 		}else{

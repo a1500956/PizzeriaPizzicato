@@ -23,7 +23,6 @@ ostoskori = (Ostoskori) session.getAttribute("ostoskori");
 %>
 
 
-
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -41,6 +40,7 @@ scope="request" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Pizzeria Pizzicato</title>
 
 <link href="puhelin.css" rel="stylesheet" type="text/css"
@@ -62,19 +62,46 @@ media="device" >
 
 <link href="etusivu.css" rel="stylesheet" type="text/css"
 media="only screen and (min-width: 771px)">
-<style type="text/css">
+<style type="text/css"></style>
 
-
-
-</style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
 
 
 
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 
+	<script>
+	var tilausLapi = "${tilausLapi}";
+	if(tilausLapi == "true"){
+		$(function() {
+		$( "#dialog" ).dialog();
+		});
+	}
+	</script>
+
 </head>
 		<body>
+	<%if((String) session.getAttribute("tilausLapi") == "true") {%>	
+	<div id="dialog" title="Tilaus lähetetty">
+  		<p style="color:black;">Tilaus lähetetty eteenpäin!<br>
+  		Tilauksenne on valmis tunnin sisällä (kiirevarauksella)</p>
+	</div>
+	
+	<script>
+	$(function(){
+		$("dialog").focus();
+		
+	});
+	</script>
+	<%}%>
+	
+	
+	<c:remove var="tilausLapi" scope="session" />
+	
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
@@ -126,18 +153,19 @@ media="only screen and (min-width: 771px)">
 
 
   <article>
-  <br> <br>
+  <br> <br> <br>
  <br>
- <br>
- <br>
+ <div class="column row">
 
+<ul class="tabs" data-tabs id="example-tabs" style = "list-style-type: none;">
+<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Pizzat</a></li>
+<li class="tabs-title"><a href="#panel2">Juomat</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+<div class="tabs-panel is-active" id="panel1">
 
+<div class="pizzat">
 
- <div class="pizzat">
-
- <br>
- <br>
- <br>
   <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
   
     <section>
@@ -235,8 +263,13 @@ media="only screen and (min-width: 771px)">
 			<% } %>
 		</table><br>
     </span></div>
-    <br><br><br>
-    <div a name="juomat">
+
+
+</div>
+<div class="tabs-panel" id="panel2">
+<div class="row medium-up-3 large-up-5">
+
+<div a name="juomat">
     <h1>JUOMAT</h1>
        <span class="juomalista">
     <table class="listaa-pizzat" border="1" align="center">
@@ -274,6 +307,19 @@ media="only screen and (min-width: 771px)">
     
     
     </span></div>
+
+
+</div>
+</div>
+</div>
+</div>
+ 
+ 
+
+
+ 
+    <br><br><br>
+    
         
     </section>
     
@@ -290,4 +336,9 @@ media="only screen and (min-width: 771px)">
   </footer>
   <!-- end .container --></div>
 	</body>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+      $(document).foundation();
+    </script>
 </html>

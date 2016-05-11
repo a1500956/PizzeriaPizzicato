@@ -46,6 +46,9 @@ for(Cookie cookie : cookies){
 </div>
 </header>
 	<h1>Lis‰‰ pizza</h1>
+	
+	<p>${message}</p>
+<c:remove var="message" scope="session" />
 		
 	<form action="" method="post">
 		<table class="lisaa-pizza" align=center>
