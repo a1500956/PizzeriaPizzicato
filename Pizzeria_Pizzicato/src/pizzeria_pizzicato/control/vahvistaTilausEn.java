@@ -110,14 +110,12 @@ public class vahvistaTilausEn extends HttpServlet {
 		
 		Kayttaja valiaikainen = new Kayttaja();
 		
-		int id = (int) session.getAttribute("kayttajaID");
-		if(id<0)
-        {
-			valiaikainen.setKayttaja_id(404);
-        }
-		else {
-			valiaikainen.setKayttaja_id(id);
-		}
+		if(session.getAttribute("kayttajaID")!=null){
+			valiaikainen.setKayttaja_id((int) session.getAttribute("kayttajaID"));
+			}
+			else {
+				valiaikainen.setKayttaja_id(404);
+			}
 		
 		Tilaus T = new Tilaus();
 		
