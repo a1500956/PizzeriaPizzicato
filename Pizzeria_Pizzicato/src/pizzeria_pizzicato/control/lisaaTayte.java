@@ -2,6 +2,8 @@ package pizzeria_pizzicato.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import pizzeria_pizzicato.model.Lukija;
 import pizzeria_pizzicato.model.Tayte;
+import pizzeria_pizzicato.model.Tuote;
 import pizzeria_pizzicato.model.dao.TayteDAO;
 
 @WebServlet("/lisaa-tayte")
@@ -29,14 +33,36 @@ public class lisaaTayte extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		String nimiStr = request.getParameter("nimi");
+		String tayte_nimi = new String(nimiStr);
 
+		TayteDAO TDAO = new TayteDAO();
+		ArrayList<Tayte> tayteLista = TDAO.findAll();
 		String viesti = null;
+		String viesti3 = null;
+		String nimiDB = null;
+		
+		
+		boolean loytyy = false;
+		
+		for(int j = 0; j < tayteLista.size(); j++){
+			
+			if(tayte_nimi.equalsIgnoreCase(tayteLista.get(j).getTayte_nimi())){
+				loytyy = true;
+				nimiDB = tayteLista.get(j).getTayte_nimi();	
+				viesti3 = nimiDB+ " niminen täyte on jo tietokannassa!";
+	
+		
+				}
+			}
+			
+	if(loytyy == false){
+			
 
 		try {
 			int tayte_id = 0;
 
-			String nimiStr = request.getParameter("nimi");
-			String tayte_nimi = new String(nimiStr);
 			
 			String tayte_nimi_en = new String(request.getParameter("nimi_en"));
 
@@ -63,5 +89,17 @@ public class lisaaTayte extends HttpServlet {
 		response.sendRedirect("listaa-taytteet");
 
 	}
+		
+	}
+	
+	
+	if (viesti3!=null){
+	request.getSession().setAttribute("message", viesti3);
+	response.sendRedirect("listaa-taytteet");
+
+	}else{
+
+		response.sendRedirect("listaa-taytteet");
+}
 }
 }
