@@ -35,9 +35,18 @@ public class kirjautuminen extends HttpServlet {
 		
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kirjautuja = new Kayttaja();
+		ArrayList <Kayttaja> kayttajat = new ArrayList <Kayttaja>();
 		kirjautuja = kayttajadao.login(kayttaja_ktunnus, kayttaja_salasana);
 		
-		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1 ){
+		for (int i = 0; i < kayttajat.size(); ++i){
+			if(kirjautuja.getKayttaja_ktunnus().equals(kayttaja_ktunnus)){
+				System.out.println(kirjautuja.getKayttaja_ktunnus());
+			}
+		}
+			
+		
+		
+		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
