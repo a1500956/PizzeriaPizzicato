@@ -82,18 +82,14 @@ for(Cookie cookie : cookies){
 
 	<div class="container">
 <nav class=isoruutu>
-<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
-  <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Puh. (09) 300 300 30</h4>
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
+ <h4 class="esittely">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Puh. (09) 300 300 30</h4>
  <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
-   <a href="/Pizzeria_Pizzicato/kirjautuminenOkEN"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- <ul class="lippukori">
- 	<li style{text-align; right}>
- 	<a href="/Pizzeria_Pizzicato/vahvistaTilaus">
- 	<img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>
- 	Ostoskori(<%=ostoskori.getMaara()%>)</a>
- 	 </li>
+<ul class="lippukori">
+   <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
+ <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
 
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
+ 	<li></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
       <h3>Tervetuloa <%=userName %>! </h3><input type="submit" value="Uloskirjaus" >
