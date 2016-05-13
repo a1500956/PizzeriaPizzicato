@@ -201,6 +201,11 @@ nav a:hover, nav a:active, nav a:focus {
 	color: #3AEE58;
 }
 
+.lippukori {
+	position: relative;
+    top: -70px;
+}
+
 button {background-color: black; color: white; border: none;}
 
 
@@ -396,6 +401,7 @@ input[type="checkbox"]:checked ~ .reveal-if-active {
 }
 
 .tabs.primary {
+	opacity: 0.6;
 	background: #980000  ;
 }
 
