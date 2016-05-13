@@ -92,7 +92,7 @@ for(Cookie cookie : cookies){
  	<img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>
  	Ostoskori(<%=ostoskori.getMaara()%>)</a>
  	 </li>
-
+	<li></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
       <h3>Tervetuloa <%=userName %>! </h3><input type="submit" value="Uloskirjaus" >
