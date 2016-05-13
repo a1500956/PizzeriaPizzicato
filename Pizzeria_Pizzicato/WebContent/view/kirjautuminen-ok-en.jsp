@@ -93,7 +93,6 @@ for(Cookie cookie : cookies){
  	Cart(<%=ostoskori.getMaara()%>)</a>
  	 </li>
 
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
       <h3>Welcome, <%=userName %>!</h3><input type="submit" value="Sign out" >
