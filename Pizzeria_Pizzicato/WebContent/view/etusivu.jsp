@@ -81,15 +81,17 @@ and (max-device-width: 770px)" >
 	<%} %>
 	
 	
-	<div class="container">
+<div class="container">
 <nav class=isoruutu>
+<a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
- <h4 class="esittely">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Puh. (09) 300 300 30</h4>
- <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
-<ul class="lippukori">
-   <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
- 
+<div class="nav2">
+<div class="nav1">
+ <h4 class="h4c">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Puh. (09) 300 300 30</h4>
+ <h6 class="h6c">Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6>
+ </div>
+ <div class="ostos">
+<a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:20%; height:20%; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a>
 
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn"> Kirjaudu sisään</button>
@@ -97,8 +99,9 @@ and (max-device-width: 770px)" >
   <form action="kirjautuminen" method="post">
     <ul>
     	<li><a href="rekisteroidy"><small>Tiliä vailla? Rekisteröidy.</small></a></li>
+    	<li></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
- 		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
+ 		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
  		</button>
  		
@@ -107,9 +110,11 @@ and (max-device-width: 770px)" >
   </form>
   </div>
 </div>
-</ul>
+</div>
+ </div>
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
+		
 </nav>
 <!--
 <nav class="puhelin">
@@ -137,7 +142,7 @@ and (max-device-width: 770px)" >
  <div class="column row">
 
 <ul class="tabs" data-tabs id="example-tabs" style = "list-style-type: none;">
-<li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Pizzat</a></li>
+<li class="tabs-title is-active" ><a href="#panel1" aria-selected="true" >Pizzat</a></li>
 <li class="tabs-title"><a href="#panel2">Juomat</a></li>
 </ul>
 <div class="tabs-content" data-tabs-content="example-tabs">

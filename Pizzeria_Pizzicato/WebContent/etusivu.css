@@ -10,6 +10,7 @@
 }
 
 .pizzamies{margin-left:20px;
+			;
 	
 }
 
@@ -58,13 +59,13 @@ body {
 
 #flag {  height: 20px; width:auto; float: right;
 		  padding: 0px;
-		 margin-top: 2px;
-		 margin-right: 35px;
+		
 }
 
 #logo {float: left;
-		margin-top: 0px;
-		width:auto; height:135px;}
+		margin-top:20px;
+		width:auto; height:135px;
+		}
 
 .p1{
 	font-size: 15px;
@@ -168,10 +169,44 @@ aside {
 
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 
+.nav1{text-align:center;
+	width:70%;
+	margin-left:15%;
+	margin-top:20px
+	
+}
+
+.nav2{
+	width:100%;
+	height:140px;
+	
+}
+
+.ostos{float:right;
+		width:150px;
+		height:60px;
+		
+	
+}
+
+.h4c{margin:0;
+	padding:0;
+	
+}
+
+.h6c{margin:0;
+	padding:0;
+	
+}
+
+.dropbtn2{margin-right:50px;
+	
+}
+
 nav {
-	background-color: black;   text-align:center;
-	display:inline-block; position: fixed; width:70%; height: 200px;
-	margin-left: 20; margin-top:0px; 
+	background-color: black;
+	display:inline-block; position: fixed; width:70%; height: 230px;
+	margin-top:0px; 
 	
 }
 nav ul{border-style:none;
@@ -212,7 +247,8 @@ button {background-color: black; color: white; border: none;}
 	background-color: black;
     position: relative;
     display: inline-block;
-    margin-top: 35px;
+    float:right;
+    margin-right:15px;
 }
 
 .dropdown-content {
@@ -220,9 +256,11 @@ button {background-color: black; color: white; border: none;}
     position: absolute;
     background-color: black;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
+    padding: 30px 30px;
     color: black;
-    margin-left: -32px;
+    margin-left: -120px;
+    text-align:left;
+    
 }
 
 .dropdown-content a {
@@ -232,7 +270,10 @@ button {background-color: black; color: white; border: none;}
     display: block;
 }
 
-#LoginLogo { background-color: black;}
+#LoginLogo {background-color: black;
+			padding-left:40px;
+			padding-top:10px;
+}
 
 
 /* puhelin jutut piiloitettu*/
@@ -302,8 +343,7 @@ article {background-image: url("Kuvia/Taustakuva.jpg");
 		 background-size: 100% 100%;
 		 text-align: center;
 		 min-height:900px;
-		 margin-top:0px;
-		 padding-top:110px;
+		 padding-top:142px;
 		 
 		 }
 
@@ -371,7 +411,7 @@ input[type="checkbox"]:checked ~ .reveal-if-active {
 }
 .tabs {
 
-	margin: 0;
+	margin-left:40px;
 }
 
 .tabs::after, .tabs::before {
@@ -395,8 +435,12 @@ input[type="checkbox"]:checked ~ .reveal-if-active {
 }
 
 .tabs-title, .title-bar-left {
-	float: left
+	float:left;
+	
+	
 }
+
+
 
 .tabs.primary {
 	background: #980000  ;
@@ -446,6 +490,8 @@ background: #980000  ;
 .tabs ul {
 	list-style-type: none;
 }
+
+
 
  
 

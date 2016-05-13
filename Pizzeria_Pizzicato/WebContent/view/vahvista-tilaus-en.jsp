@@ -95,41 +95,58 @@ sposti = (String) session.getAttribute("sposti");
 
 	<body>
 	
-	<div class="container">
+<div class="container">
 <nav class=isoruutu>
-<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
-<h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Phone: (09) 300 300 30</h4>
- <h6>Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6> 
-<ul>
-   <a href="/Pizzeria_Pizzicato/vahvistaTilaus"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
+<a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
+<img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
+<div class="nav2">
+<div class="nav1">
  
- 	<li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Shopping Cart(<%=ostoskori.getMaara()%>)</a> </li>
 
-          <% if (user!=null){%>
-  <form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
+ <h4 class="h4c">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Phone: (09) 300 300 30</h4>
+ <h6 class="h6c">Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6>
+ </div>
+ <% if (user!=null){%>
+<div class="ostos">
+<a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/icon-cart.png" alt="X" style="width:20%; height:20%; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a>
+
+<form action="<%=response.encodeURL("uloskirjautuminenEN") %>" method="post">
       <div class="loginrow2">
-      <h3><%=userName %>, you are signed in.</h3><input type="submit" value="Sign out" >
-
+      <h3>Welcome <%=userName %>! </h3><input type="submit" value="Sign out" >
       </div>
-    </form> <% }else{%> 
-    <div class="dropdown">
+    </form>
+ </div>
+
+<% }else{%> 
+<div class="ostos">
+<a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:20%; height:20%; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a>
+
+<div class="dropdown">
   <button onclick="myFunction()" class="dropbtn"> Sign in</button>
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminenEN" method="post">
     <ul>
+    	<li><a href="rekisteroidy"><small>Without account? Please register.</small></a></li>
+    	<li></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="käyttäjätunnus" />
  		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="salasana" />&nbsp;
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
  		</button>
+ 		
+ 	
 	</ul>
   </form>
   </div>
-</div> <% }%>
-</ul>
-
+</div>
+</div>
+ </div> <% }%>
+ 
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
+		
 </nav>
+
+
   <article>
  
     <section>

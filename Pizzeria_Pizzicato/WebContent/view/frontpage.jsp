@@ -70,25 +70,34 @@ media="only screen and (min-width: 771px)">
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 
 </head>
-		<body>
-	<div class="container">
+<body>
+<div class="container">
 <nav class=isoruutu>
+<a href="/Pizzeria_Pizzicato/pizzaMenu"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag"  /></a>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
- <h4 class="esittely">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki<br> Phone: (09) 300 300 30</h4>
- <h6>Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6> 
-<ul class="lippukori">
-   <a href="/Pizzeria_Pizzicato/pizzaMenu"> <img  src="Kuvia/FI_lippu.png" alt="suomeksi" id="flag" /></a>
- <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:20px;height:15px; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a> </li>
+<div class="nav2">
+<div class="nav1">
+ <h4 class="h4c">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Phone: (09) 300 300 30</h4>
+ <h6 class="h6c">Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6>
+ </div>
+ <div class="ostos">
+<a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:20%; height:20%; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a>
+
+ 
+
+   
+ 
  
 
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"> Sign in</button>
+  <button onclick="myFunction()" class="dropbtn2" > Sign in</button>
   <div id="myDropdown" class="dropdown-content">
   <form action="kirjautuminenEN" method="post">
     <ul>
-   		 <li><a href="rekisteroidy"><small>Tiliä vailla? Rekisteröidy.</small></a></li>
+    	<li><a href="rekisteroidy"><small>Without account? Please register.</small></a></li>
+    	<li></li>
     	<li><input class="textField" type="text" name="kayttaja" maxlength="30" id="kayttaja" placeholder="username" />
- 		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />&nbsp;
+ 		<li><input class="textField" type="password" name="salasana" maxlength="30" id="salasana" placeholder="password" />
        	<button onclick="myFunction()" class="submitImage"><img src="Kuvia/loginbutton.png" id="LoginLogo" width="auto" height="22"/>
  		</button>
  		
@@ -97,10 +106,13 @@ media="only screen and (min-width: 771px)">
   </form>
   </div>
 </div>
-</ul>
+</div>
+ </div>
 <p class="p1">${message3}</p>
 		<c:remove var="message3" scope="session" />
+		
 </nav>
+
 <!--
 <nav class="puhelin">
  <div class="dropdown">
