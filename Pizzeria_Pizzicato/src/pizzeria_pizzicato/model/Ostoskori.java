@@ -8,12 +8,12 @@ import pizzeria_pizzicato.control.VertailijaTuote;
 
 public class Ostoskori {
 	
-	ArrayList<TilattuTuote> ostoskori;
+	ArrayList<TilattuTuote> tuotteet;
 	int koko = 0;
 	
 	public Ostoskori(ArrayList<TilattuTuote> ostoskori, int koko) {
 		super();
-		this.ostoskori = ostoskori;
+		this.tuotteet = ostoskori;
 		this.koko =  koko;
 	}
 
@@ -34,14 +34,14 @@ public class Ostoskori {
 		}
 		
 		boolean loytyy = false;
-		if(this.ostoskori == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
-			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
-			this.ostoskori.add(tuote);
+		if(this.tuotteet == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
+			this.tuotteet = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
+			this.tuotteet.add(tuote);
 			this.koko++; // lisätään korin kokoa
 			loytyy = true;
 			return;
-		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
-			ArrayList<TilattuTuote> kori = this.ostoskori;
+		}else if(this.tuotteet != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
+			ArrayList<TilattuTuote> kori = this.tuotteet;
 			for(int i = 0; i < kori.size();i++){
 				if(kori.get(i).getTuote() instanceof Pizza){
 					Pizza p = (Pizza) kori.get(i).getTuote(); // haetaan korista tuote pizzaolioksi
@@ -54,7 +54,7 @@ public class Ostoskori {
 					int luku = kori.get(i).getLkm();
 					luku += tuote.getLkm(); // nostetaan lukumäärä tulleella kpl määrällä
 					kori.get(i).setLkm(luku); // ostoskorin lukumääräksi asetetaan vanha lkm+tullut lkm
-					this.ostoskori = kori; //tuotteisiin viedään muokattu lista tuotteita
+					this.tuotteet = kori; //tuotteisiin viedään muokattu lista tuotteita
 					loytyy = true; // vaihdetaan loytyy arvo trueksi
 					break; //ja lopetetaan for loop
 				}else{
@@ -64,7 +64,7 @@ public class Ostoskori {
 			}
 		}
 		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei löydy lisätään ostoskoriin uusi TilattuTuote
-			this.ostoskori.add(tuote);
+			this.tuotteet.add(tuote);
 			this.koko++;
 		}
 		
@@ -74,8 +74,8 @@ public class Ostoskori {
 		int p = paikka;
 		
 		if(p >= 0){ //Jos tullut id ei ole alle 0 mennään eteenpäin
-			if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
-				ArrayList<TilattuTuote> kori = this.ostoskori;
+			if(this.tuotteet != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
+				ArrayList<TilattuTuote> kori = this.tuotteet;
 				int luku = kori.get(p).getLkm();
 				if(luku > 1) { // katsotaan tuotteen lkm
 					luku -= 1;	// jos tuotetta on enemmän kuin 1 korissa vähennetään lukumäärää
@@ -84,11 +84,11 @@ public class Ostoskori {
 					kori.remove(p);
 					this.koko --;
 				}
-					this.ostoskori = kori; //viedään muutettu tieto koriin
+					this.tuotteet = kori; //viedään muutettu tieto koriin
 			}
 		}
-		if(this.ostoskori.isEmpty()){
-			this.ostoskori = null;
+		if(this.tuotteet.isEmpty()){
+			this.tuotteet = null;
 		}
 		
 	}
@@ -102,20 +102,20 @@ public class Ostoskori {
 			tuote.setHinta(tuote.getTuote().getHinta());
 			tuote.setLkm(lkm);
 		}
-		if(this.ostoskori == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
-			this.ostoskori = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
-			this.ostoskori.add(tuote);
+		if(this.tuotteet == null){ //Katsotaan onko ostoskori tyhjä, jos on lisätään TilattuTuote ostoskoriin
+			this.tuotteet = (ArrayList<TilattuTuote>) new ArrayList<TilattuTuote>();
+			this.tuotteet.add(tuote);
 			this.koko++; // lisätään korin kokoa
 			loytyy = true;
 			return;
-		}else if(this.ostoskori != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
-			ArrayList<TilattuTuote> kori = this.ostoskori;
+		}else if(this.tuotteet != null){ //Jos ostoskori ei ole tyhjä katsotaan löytyykö sieltä jo vastaava TilattuTuote olio
+			ArrayList<TilattuTuote> kori = this.tuotteet;
 			for(int i = 0; i < kori.size();i++){
 				if(kori.get(i).getTuote().getId() == tuote.getTuote().getId()){ // katsotaan
 					int luku = kori.get(i).getLkm();
 						luku += tuote.getLkm();	// nostetaan lukumäärä tulleella kpl määrällä
 						kori.get(i).setLkm(luku);
-					this.ostoskori = kori; //viedään muutettu tieto koriin
+					this.tuotteet = kori; //viedään muutettu tieto koriin
 					loytyy = true;
 					break; //ja lopetetaan for loop
 				}else{
@@ -124,31 +124,31 @@ public class Ostoskori {
 			}
 		}
 		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei löydy lisätään ostoskoriin uusi TilattuTuote
-			this.ostoskori.add(tuote);
+			this.tuotteet.add(tuote);
 			this.koko++;
 		}
 	}
 	
 	public TilattuTuote getTuote(int index) {
 		TilattuTuote tuote = null;
-		if(index>=0 && index < ostoskori.size() ){
-		tuote = ostoskori.get(index);
+		if(index>=0 && index < tuotteet.size() ){
+		tuote = tuotteet.get(index);
 		}
 		return tuote;
 	}
 	
-	public ArrayList<TilattuTuote> getOstoskori() {
-		return ostoskori;
+	public ArrayList<TilattuTuote> getTuotteet() {
+		return tuotteet;
 	}
 
-	public void setOstoskori(ArrayList<TilattuTuote> ostoskori) {
-		this.ostoskori = ostoskori;
+	public void setTuotteet(ArrayList<TilattuTuote> ostoskori) {
+		this.tuotteet = ostoskori;
 	}
 	
 	public int getMaara() {
 		int lkm = 0;
 		for(int i = 0; i<this.koko; i++){
-			lkm += this.ostoskori.get(i).getLkm();
+			lkm += this.tuotteet.get(i).getLkm();
 		}
 		return lkm;
 	}
@@ -164,7 +164,7 @@ public class Ostoskori {
 
 	@Override
 	public String toString() {
-		return "Ostoskori [koko=" + koko + " ostoskori=" + ostoskori + "]";
+		return "Ostoskori [koko=" + koko + " tuotteet=" + tuotteet + "]";
 	}
 	
 	

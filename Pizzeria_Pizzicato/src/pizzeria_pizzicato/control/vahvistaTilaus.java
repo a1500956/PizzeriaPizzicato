@@ -62,17 +62,17 @@ public class vahvistaTilaus extends HttpServlet {
 			}
 		}
 		
-		if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){
+		if(ostoskori.getTuotteet() != null || ostoskori.getKoko() != 0){
 			Pizza pizza = new Pizza();
-			for(int i = 0; i<ostoskori.getOstoskori().size(); i++){
-				if(tuoteDAO.pizzaVaiJuoma(ostoskori.getOstoskori().get(i).getTuote().getId()) == true ){
-					pizza = (Pizza) ostoskori.getOstoskori().get(i).getTuote();
+			for(int i = 0; i<ostoskori.getTuotteet().size(); i++){
+				if(tuoteDAO.pizzaVaiJuoma(ostoskori.getTuotteet().get(i).getTuote().getId()) == true ){
+					pizza = (Pizza) ostoskori.getTuotteet().get(i).getTuote();
 					PizzaTayteDAO PTdao = new PizzaTayteDAO();
 					ArrayList<Tayte> kannanTaytteet = PTdao.haePizzanTaytteet(pizza.getId());
 					ArrayList<Tayte> nykyiset = pizza.getTaytteet();
 					
 					if(tdao.karsiTavallisetTaytteet(kannanTaytteet, nykyiset).isEmpty() == false){
-						ostoskori.getOstoskori().get(i).setLisataytteet(tdao.karsiTavallisetTaytteet(kannanTaytteet, nykyiset));
+						ostoskori.getTuotteet().get(i).setLisataytteet(tdao.karsiTavallisetTaytteet(kannanTaytteet, nykyiset));
 					}
 					
 				}
