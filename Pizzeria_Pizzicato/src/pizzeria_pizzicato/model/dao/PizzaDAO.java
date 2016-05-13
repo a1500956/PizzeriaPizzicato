@@ -131,28 +131,23 @@ public class PizzaDAO extends DataAccessObject {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		Tayte tayte = new Tayte();
 		ArrayList<Pizza> pizzat = new ArrayList<Pizza>();
 		Pizza pizza = new Pizza();
-		int edellinenPizzaId = 0;
 		try {
 
 			conn = getConnection();
 
-			String sqlSelect = "SELECT y.tuote_nimi, p.tuote_id, t.tayte_id, y.tuote_hinta, p.pizza_nakyy, x.tayte_nimi, x.tayte_nimi_en FROM Tuote y INNER JOIN Pizza p ON p.tuote_id = y.tuote_id JOIN PizzaTayte t ON t.tuote_id = p.tuote_id JOIN Tayte x ON x.tayte_id = t.tayte_id;";
+			String sqlSelect = "SELECT t.tuote_id, t.tuote_nimi, t.tuote_hinta, p.pizza_nakyy FROM Tuote t JOIN Pizza p ON t.tuote_id=p.tuote_id;";
 
 			stmt = conn.prepareStatement(sqlSelect);
 
 			rs = stmt.executeQuery(sqlSelect);
 
 			while (rs.next()) {
-				if(rs.getInt("tuote_id") != edellinenPizzaId ){
-					pizza = readPizza(rs);
-					pizzat.add(pizza);
-					edellinenPizzaId = pizza.getId();
-				}
-				tayte = readTayte(rs); //luodaan t‰yteolio
-				pizza.addTayte(tayte);//lis‰‰ t‰yte pizzan t‰ytelistaan
+				pizza = readPizza(rs);
+				pizza.addTaytteita(haePizzanTaytteet(pizza.getId()));
+				pizzat.add(pizza);
+				pizza = null;
 			}			
 			
 		} catch (SQLException e) {
