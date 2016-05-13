@@ -105,9 +105,9 @@ media="only screen and (min-width: 771px)">
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
- <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Puh. (09) 300 300 30</h4>
+ <h4 class="esittely">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Puh. (09) 300 300 30</h4>
  <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
-<ul>
+<ul class="lippukori">
    <a href="/Pizzeria_Pizzicato/pizzaMenuEn"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
  <li style{text-align; right}><a href="/Pizzeria_Pizzicato/vahvistaTilaus"><img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>Ostoskori(<%=ostoskori.getMaara()%>)</a> </li>
  
@@ -166,7 +166,7 @@ media="only screen and (min-width: 771px)">
 
 <div class="pizzat">
 
-  <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
+  <h1 class="pizzaotsikko">PIZZA MENU</h1>
   
     <section>
    
@@ -195,7 +195,7 @@ media="only screen and (min-width: 771px)">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl <br>
+					</select>Kpl
 					<input  class="koriin" type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
@@ -232,7 +232,7 @@ media="only screen and (min-width: 771px)">
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
-				 </select>Kpl <br>
+				 </select>Kpl 
 				<input type="submit" value="Koriin">
 				</td>
 				</tr>

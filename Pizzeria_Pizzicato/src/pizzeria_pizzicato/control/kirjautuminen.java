@@ -35,9 +35,12 @@ public class kirjautuminen extends HttpServlet {
 		
 		KayttajaDAO kayttajadao = new KayttajaDAO();
 		Kayttaja kirjautuja = new Kayttaja();
+		ArrayList <Kayttaja> kayttajat = new ArrayList <Kayttaja>();
 		kirjautuja = kayttajadao.login(kayttaja_ktunnus, kayttaja_salasana);
 		
-		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1 ){
+	
+		
+		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -47,7 +50,7 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzat");
             response.sendRedirect(encodedURL);
 			
-		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 2 ){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 2){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -57,7 +60,7 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzatkokki");
             response.sendRedirect(encodedURL);
 			
-		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 4 ){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 4){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -67,7 +70,7 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzatkuski");
             response.sendRedirect(encodedURL);
             
-		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 5 ){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 5){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -85,13 +88,15 @@ public class kirjautuminen extends HttpServlet {
 			session.setAttribute("sNimi", kirjautuja.getKayttaja_snimi());
 			session.setAttribute("osoite", kirjautuja.getKayttaja_osoite());
 			session.setAttribute("puhnro", kirjautuja.getKayttaja_puhnro());
+			session.setAttribute("kayttajaID", kirjautuja.getKayttaja_id());
 			Cookie userName = new Cookie("kayttaja", kirjautuja.getKayttaja_enimi());
 			session.setMaxInactiveInterval(30*60);
 			response.addCookie(userName);
 			String encodedURL = response.encodeRedirectURL("kirjautuminenOk");
             response.sendRedirect(encodedURL);
 			
-
+		
+		
 
 		}else{
 			
@@ -102,7 +107,13 @@ public class kirjautuminen extends HttpServlet {
 		
  
 		}
-		
-	}
+			}
+		}
+	
 
-	}
+		
+	
+
+	
+
+

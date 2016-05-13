@@ -83,17 +83,15 @@ for(Cookie cookie : cookies){
 	<div class="container">
 <nav class=isoruutu>
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo" />
-  <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1, 00210 Helsinki. Puh. (09) 300 300 30</h4>
+  <h4 class="esittely">Pizzeria Pizzicato, Meilahdentie 1<br> 00210 Helsinki<br> Puh (09) 300 300 30</h4>
  <h6>Avoinna ma-to klo 11-21, pe-la klo 12-23, su klo 12-21</h6> 
    <a href="/Pizzeria_Pizzicato/kirjautuminenOkEN"> <img  src="Kuvia/UK_lippu.png" alt="english" id="flag" /></a>
- <ul>
+ <ul class="lippukori">
  	<li style{text-align; right}>
  	<a href="/Pizzeria_Pizzicato/vahvistaTilaus">
  	<img src="Kuvia/ostoskori.png" alt="X" style="width:15px;height:15px; padding-right:2px"/>
  	Ostoskori(<%=ostoskori.getMaara()%>)</a>
  	 </li>
-
- 	<li>	<a href ="/Pizzeria_Pizzicato/pizzaMenu"> Etusivu</a></li>
  	<form action="<%=response.encodeURL("uloskirjautuminen") %>" method="post">
       <div class="loginrow2">
       <h3>Tervetuloa <%=userName %>! </h3><input type="submit" value="Uloskirjaus" >
@@ -110,7 +108,6 @@ for(Cookie cookie : cookies){
   <br> <br>
  <br>
  <br>
- <br>
  <div class="column row">
 
 <ul class="tabs" data-tabs id="example-tabs" style = "list-style-type: none;">
@@ -122,7 +119,7 @@ for(Cookie cookie : cookies){
 
 <div class="pizzat">
 
-  <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
+  <h1 class="pizzaotsikko">PIZZA MENU</h1>
   
     <section>
    
@@ -151,7 +148,7 @@ for(Cookie cookie : cookies){
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl <br>
+					</select>Kpl
 					<input  class="koriin" type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
@@ -188,7 +185,7 @@ for(Cookie cookie : cookies){
 				 	<%for(int n=0; n<10;n++){%>
 				 		<option value="<%=n+1%>"><%=n+1%></option>
 				 	<%}%>
-				 </select>Kpl <br>
+				 </select>Kpl
 				<input type="submit" value="Koriin">
 				</td>
 				</tr>

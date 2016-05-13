@@ -187,7 +187,7 @@ public class KayttajaDAO extends DataAccessObject {
 	      try
 	      {
 	         connection = getConnection();
-	         String sql = "SELECT * from Kayttaja where kayttaja_ktunnus=? AND kayttaja_salasana=?";
+	         String sql = "SELECT * from Kayttaja where kayttaja_ktunnus=? COLLATE utf8_bin AND kayttaja_salasana=? COLLATE utf8_bin ";
 	         statement = connection.prepareStatement(sql);
 	         statement.setString(1, kayttaja_ktunnus);
 	         statement.setString(2, kayttaja_salasana);
