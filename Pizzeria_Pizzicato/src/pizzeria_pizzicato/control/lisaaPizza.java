@@ -66,12 +66,9 @@ public class lisaaPizza extends HttpServlet {
 			
 			if(nimi.equalsIgnoreCase(tuoteLista.get(j).getNimi())){
 				loytyy = true;
-				nimiDB = tuoteLista.get(j).getNimi();
-				System.out.println(nimiDB);		
+				nimiDB = tuoteLista.get(j).getNimi();	
 				viesti3 = nimiDB+ " niminen pizza on jo tietokannassa!";
-				
-				
-				
+	
 		
 				}
 			}
@@ -88,9 +85,6 @@ public class lisaaPizza extends HttpServlet {
 			String eka = nimi.substring(0, 1).toUpperCase();
 			String loput = nimi.substring(1).toLowerCase();
 			nimi = eka + loput;
-			
-		
-			
 
 			String hintaStr = request.getParameter("hinta");
 			double hinta = lukija.lueDesimaaliluku(hintaStr);
