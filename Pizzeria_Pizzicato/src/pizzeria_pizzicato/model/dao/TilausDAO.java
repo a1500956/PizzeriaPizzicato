@@ -45,7 +45,7 @@ public class TilausDAO extends DataAccessObject {
 			
 			
 			for (int i = 0; i < ostoskori.getKoko(); i++) {
-					TilattuTuote TX = ostoskori.getOstoskori().get(i);
+					TilattuTuote TX = ostoskori.getTuotteet().get(i);
 					Pizza p;
 					stmtInsert = connection.prepareStatement(sqlInsert2);
 					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
