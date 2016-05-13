@@ -150,7 +150,7 @@ sposti = (String) session.getAttribute("sposti");
     
     <%double summa=0;%>
 
-    <%if(ostoskori.getOstoskori() != null || ostoskori.getKoko() != 0){ %>
+    <%if(ostoskori.getTuotteet() != null || ostoskori.getKoko() != 0){ %>
 
 <table class="" width="auto" border="1" align="center">
 		<tr><td style="text-align:right;">
@@ -223,7 +223,7 @@ var FormStuff = {
 		
 		<%for(int j = 0; j<pizzat.size();j++){%>
 			<%for(int i = 0; i <ostoskori.getKoko(); i++) {%>
-				<%if(pizzat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
+				<%if(pizzat.get(j).getId() == ostoskori.getTuotteet().get(i).getTuote().getId()){ %>
 					<tr>
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
 						<td><div class=""><% if(ostoskori.getTuote(i).getLisataytteet() != null){%><%for(int n = 0; n<ostoskori.getTuote(i).getLisataytteet().size(); n++){ %><%=ostoskori.getTuote(i).getLisataytteet().get(n).getTayte_nimi()%> <%}%><%} %> </div></td>
@@ -275,7 +275,7 @@ var FormStuff = {
 		
 		<%for(int j = 0; j<juomat.size();j++){%>
 			<%for(int i = 0; i <ostoskori.getKoko(); i++) {%>
-				<%if(juomat.get(j).getId() == ostoskori.getOstoskori().get(i).getTuote().getId()){ %>
+				<%if(juomat.get(j).getId() == ostoskori.getTuotteet().get(i).getTuote().getId()){ %>
 					<tr>
 						<td><div class=""><%=ostoskori.getTuote(i).getTuote().getNimi()%></div></td>
 						<td><div class=""><%=juomat.get(j).getLitrakoko() + "l"%></div></td>
