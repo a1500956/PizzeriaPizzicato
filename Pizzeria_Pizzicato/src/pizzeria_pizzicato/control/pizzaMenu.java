@@ -84,10 +84,13 @@ public class pizzaMenu extends HttpServlet {
 			}
 			
 			session.removeAttribute("message4");
+			System.out.println("ennen " + session.getAttribute("tilausLapi"));
 			String tilausLapi = "false";
 			if(session.getAttribute("tilausLapi") == null){
 				session.setAttribute("tilausLapi", tilausLapi);
 			}
+			System.out.println("jälkeen " + session.getAttribute("tilausLapi"));
+			
 			request.setAttribute("pizzat", pizzaNakyy);
 			request.setAttribute("pizzaFantasia", pizzaFantasia);
 			request.setAttribute("juomat", juomaNakyy);

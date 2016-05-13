@@ -55,52 +55,31 @@ and (max-device-width: 770px)" >
 <style type="text/css"></style>
 -->
 
-<link href="puhelin.css" rel="stylesheet" type="text/css"
-media="device" >
+<link href="puhelin.css" rel="stylesheet" type="text/css" media="device" >
 <style type="text/css"></style>
 
 
-<link href="etusivu.css" rel="stylesheet" type="text/css"
-media="only screen and (min-width: 771px)">
+<link href="etusivu.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 771px)">
 <style type="text/css"></style>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
-
-
-
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-
-	<script>
-	var tilausLapi = "${tilausLapi}";
-	if(tilausLapi == "true"){
-		$(function() {
-		$( "#dialog" ).dialog();
-		});
-	}
-	</script>
+	
 
 </head>
-		<body>
+<body>
+
+	
 	<%if((String) session.getAttribute("tilausLapi") == "true") {%>	
 	<div id="dialog" title="Tilaus lähetetty">
-  		<p style="color:black;">Tilaus lähetetty eteenpäin!<br>
+  		<p style="color:black;" autofocus>Tilaus lähetetty eteenpäin!<br>
   		Tilauksenne on valmis tunnin sisällä (kiirevarauksella)</p>
 	</div>
+	<%} %>
 	
-	<script>
-	$(function(){
-		$("dialog").focus();
-		
-	});
-	</script>
-	<%}%>
-	
-	
-	<c:remove var="tilausLapi" scope="session" />
 	
 	<div class="container">
 <nav class=isoruutu>
@@ -336,9 +315,19 @@ media="only screen and (min-width: 771px)">
   </footer>
   <!-- end .container --></div>
 	</body>
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script>
+		var tilausLapi = "${tilausLapi}";
+		if(tilausLapi == "true"){
+			$(function() {
+				$(" #dialog ").dialog();
+			});
+		}
+	</script>
+	<c:remove var="tilausLapi" scope="session" />
+	
 	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
 	<script>
       $(document).foundation();
     </script>
+	
 </html>
