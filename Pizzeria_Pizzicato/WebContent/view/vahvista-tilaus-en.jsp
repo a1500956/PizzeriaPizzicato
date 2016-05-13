@@ -260,11 +260,11 @@ var FormStuff = {
 		
 		<tr style="width=350px; border-bottom: solid 1px grey;">
 			
-			<th style="border-bottom: solid 1px grey;">JUOMAT</th>
-			<th style="border-bottom: solid 1px grey;">KOKO</th>
-			<th style="border-bottom: solid 1px grey;">KAPPALEHINTA</th>
+			<th style="border-bottom: solid 1px grey;">DRINKS</th>
+			<th style="border-bottom: solid 1px grey;">SIZE</th>
+			<th style="border-bottom: solid 1px grey;">PRICE</th>
 			<th style="border-bottom: solid 1px grey;"></th>
-			<th style="border-bottom: solid 1px grey;">KPL</th>
+			<th style="border-bottom: solid 1px grey;">PCS</th>
 			
 			
 			

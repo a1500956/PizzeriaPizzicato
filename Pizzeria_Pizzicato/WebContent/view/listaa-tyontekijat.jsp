@@ -80,7 +80,7 @@ for(Cookie cookie : cookies){
 				
 			<%for(int i = 0; i < tyontekijat.size(); i++) {%>
 			<tr>
-				<%if(tyontekijat.get(i).getRyhma_id()==2 || tyontekijat.get(i).getRyhma_id()==4) { %>
+				<%if(tyontekijat.get(i).getRyhma_id()==2 || tyontekijat.get(i).getRyhma_id()==4 || tyontekijat.get(i).getRyhma_id()==5) { %>
 				<td><div class="tyontekijat"><%=tyontekijat.get(i).getKayttaja_enimi()%></div></td>
 				<td><div class="tyontekijat"><%=tyontekijat.get(i).getKayttaja_snimi()%></div></td>
 				<td><div class="tyontekijat"><%=tyontekijat.get(i).getKayttaja_puhnro()%></div></td>
