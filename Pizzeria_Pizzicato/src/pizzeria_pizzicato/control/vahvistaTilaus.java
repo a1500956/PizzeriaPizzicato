@@ -62,11 +62,11 @@ public class vahvistaTilaus extends HttpServlet {
 			}
 		}
 		
-		if(ostoskori.getTuotteet() != null || ostoskori.getKoko() != 0){
+		if(ostoskori.getTuotteet() != null || ostoskori.getKoko() != 0){ //t‰ss‰ k‰yd‰‰n l‰pi onko tuotteilla lis‰t‰ytteit‰
 			Pizza pizza = new Pizza();
 			for(int i = 0; i<ostoskori.getTuotteet().size(); i++){
-				if(tuoteDAO.pizzaVaiJuoma(ostoskori.getTuotteet().get(i).getTuote().getId()) == true ){
-					pizza = (Pizza) ostoskori.getTuotteet().get(i).getTuote();
+				if(tuoteDAO.pizzaVaiJuoma(ostoskori.getTuotteet().get(i).getTuote().getId()) == true ){ //katsotaan onko ostoskorin tuote pizza vai juoma
+					pizza = (Pizza) ostoskori.getTuotteet().get(i).getTuote(); // jos on pizza tehd‰‰n siit‰ pizzo olio 
 					PizzaTayteDAO PTdao = new PizzaTayteDAO();
 					ArrayList<Tayte> kannanTaytteet = PTdao.haePizzanTaytteet(pizza.getId());
 					ArrayList<Tayte> nykyiset = pizza.getTaytteet();
@@ -94,7 +94,7 @@ public class vahvistaTilaus extends HttpServlet {
 		String virhe = null;
 		HttpSession session = request.getSession();
 		
-		TilausDAO TDAO = new TilausDAO();
+		TilausDAO TDAO = new TilausDAO();  //Haetaan formin tiedot
 		String enimi = request.getParameter("enimi");
 		session.setAttribute("eNimi", enimi);
 		String snimi = request.getParameter("snimi");
@@ -107,39 +107,37 @@ public class vahvistaTilaus extends HttpServlet {
 		}
 		
 		
-		if(enimi.isEmpty() || snimi.isEmpty()){
+		if(enimi.isEmpty() || snimi.isEmpty()){ //tarkistetaan etunimi
 			virhe = "Nimi kent‰t ovat pakollisia!";
 			ok = false;
 			request.getSession().setAttribute("message4", virhe);
-			response.sendRedirect("vahvistaTilaus");
+			response.sendRedirect("vahvistaTilaus"); //palataan takaisin virheen kera jos puuttuu
 		
-		}else if(puhnro.matches("\\w{9,10}") == false && puhnro.isEmpty() && ok == true){
+		}else if(puhnro.matches("\\w{9,10}") == false && puhnro.isEmpty() && ok == true){ // tarkistetaan ett‰ puhelinnumero on oikeaa muotoa ja ei puutu
 			ok = false;
 			virhe = "Puhelinnumero on virheellinen!";
 			request.getSession().setAttribute("message4", virhe);
-			response.sendRedirect("vahvistaTilaus");
+			response.sendRedirect("vahvistaTilaus"); //palataan takaisin virheen kera jos puuttuu tai on virheellinen
 			
-		}else if(osoite.isEmpty() && toimitus.equals("kotiinkuljetus")){
+		}else if(osoite.isEmpty() && toimitus.equals("kotiinkuljetus")){ // katsotaan onko kotiinkuljetus jos on tarkistetaan, ett‰ osoite ei puutu
 			virhe = "Osoitekentt‰ on pakollinen!";
 			ok = false;
 			request.getSession().setAttribute("message4", virhe);
-			response.sendRedirect("vahvistaTilaus");
+			response.sendRedirect("vahvistaTilaus"); //palataan takaisin virheen kera jos puuttuu
 			
-		}else if(ok == true){
+		}else if(ok == true){ // jos kaikki ok l‰hetet‰‰n tilaus eteenp‰in
 			Ostoskori tuotteet = (Ostoskori) request.getSession().getAttribute("ostoskori");
-		
-		Kayttaja valiaikainen = new Kayttaja();
-		if(session.getAttribute("kayttajaID")!=null){
-		valiaikainen.setKayttaja_id((int) session.getAttribute("kayttajaID"));
+			
+			Kayttaja valiaikainen = new Kayttaja();
+		if(session.getAttribute("kayttajaID")!=null){ // jos k‰ytt‰j‰ on kirjautunut sis‰‰n haetaan kayttajaID tilaukseen
+			valiaikainen.setKayttaja_id((int) session.getAttribute("kayttajaID"));
+		}else {
+			valiaikainen.setKayttaja_id(404); //jos ei ole kirjautunut sis‰‰n laitetaan vieras tunnukselle
 		}
-		else {
-			valiaikainen.setKayttaja_id(404);
-		}
 		
-		Tilaus T = new Tilaus();
+		Tilaus T = new Tilaus(); // alustetaan tilaus
 		
-		T.setKayttaja(valiaikainen);
-		
+		T.setKayttaja(valiaikainen); // laitetaan tilaukselle tiedot
 		T.setOsoite(osoite);
 		T.setPuhnro(puhnro);
 		if(toimitus.equals("nouto")){
@@ -149,23 +147,22 @@ public class vahvistaTilaus extends HttpServlet {
 		}
 		
 		try {
-			TDAO.addTilaus(T, tuotteet);
+			TDAO.addTilaus(T, tuotteet); //l‰hetet‰‰n tilaus DAOon
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		
 		}
-		String tilausLapi = "true";
-		session.removeAttribute("eNimi");
+		String tilausLapi = "true"; //otetaan tieto tilauksen l‰pimenemisest‰ talteen
+		session.removeAttribute("eNimi"); //poistetaan sessiosta formi tiedot
 		session.removeAttribute("sNimi");
-		session.removeAttribute("ostoskori");
-		session.setAttribute("tilausLapi", tilausLapi);
-		response.sendRedirect("pizzaMenu");
+		session.removeAttribute("ostoskori"); // tyhjennet‰‰n ostoskori
+		session.setAttribute("tilausLapi", tilausLapi); //vied‰‰n tieto tilauksen l‰pimenemisest‰ session
+		response.sendRedirect("pizzaMenu"); // l‰hetet‰‰n etusivulle
 		
 		}else{
-		
-		request.getSession().setAttribute("message4", virhe);
-		response.sendRedirect("vahvistaTilaus");
+			request.getSession().setAttribute("message4", virhe); //jos tarkistuksiisa on tullut virhe vied‰‰n virheviesti sessioon
+			response.sendRedirect("vahvistaTilaus"); //l‰hetet‰‰n asiakas takaisin vahvistussivulle
 		
 	}
 		

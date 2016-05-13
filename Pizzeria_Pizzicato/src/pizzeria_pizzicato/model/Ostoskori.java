@@ -25,13 +25,13 @@ public class Ostoskori {
 	public void addPizza(Pizza pizza, int oregano, int VSipuli, int lkm){ // Lis‰t‰‰n ostoskoriin Pizza
 		TilattuTuote tuote = new TilattuTuote(); //Luodaan tilattuTuote
 		
-		if(pizza != null){ //Jos tullut pizza ei ole tyhj‰ luodaan liis‰ TilattuTuote olio
+		if(pizza != null){ //Jos tullut pizza ei ole tyhj‰ luodaan liis‰ TilattuTuote olio ja suoritetaan seuraavat
 			tuote.setTuote(pizza);
 			tuote.setOregano(oregano);
 			tuote.setvSipuli(VSipuli);
 			tuote.setHinta(tuote.getTuote().getHinta());
 			tuote.setLkm(lkm);
-		}
+		
 		
 		boolean loytyy = false;
 		if(this.tuotteet == null){ //Katsotaan onko ostoskori tyhj‰, jos on lis‰t‰‰n TilattuTuote ostoskoriin
@@ -66,6 +66,7 @@ public class Ostoskori {
 		if(loytyy == false){ // jos vastaavaa TilattuTuote oliota ei lˆydy lis‰t‰‰n ostoskoriin uusi TilattuTuote
 			this.tuotteet.add(tuote);
 			this.koko++;
+		}
 		}
 		
 	}

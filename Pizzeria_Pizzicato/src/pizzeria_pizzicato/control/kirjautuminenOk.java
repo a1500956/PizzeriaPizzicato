@@ -101,40 +101,63 @@ public class kirjautuminenOk extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		TayteDAO Taytedao = new TayteDAO();
 		PizzaDAO pizzadao = new PizzaDAO();
-		ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
+		TayteDAO Taytedao = new TayteDAO();
+		JuomaDAO juomadao = new JuomaDAO();
 		String[] lisatayte;
+		HttpSession session = request.getSession(); //haetaan session
+		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
+		int kpl = 0;
+		kpl = Integer.parseInt(request.getParameter("maara"));
+
 		
 		//k‰sitell‰‰n formista tullut data
 		
-		int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
-		int oregano = 0, vSipuli = 0, kpl=0;
-		if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
-			oregano = 1;
-		}
-		if(request.getParameter("vSipuli") != null){ //haetaan vSipuli jos null j‰tet‰‰n 0
-			vSipuli = 1;
-		}
-		kpl = Integer.parseInt(request.getParameter("maara"));
-		
-		lisatayte = request.getParameterValues("lisatayte");
-		
-		Pizza pizza = new Pizza();
-		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
-			if(pizzaLista.get(i).getId() == sArvo){
-				pizza = pizzaLista.get(i);
+		if(request.getParameter("pizzaID") != null){
+			ArrayList<Pizza> pizzaLista = pizzadao.findAll();// haetaan pizzat
+			int sArvo = Integer.parseInt((String) request.getParameter("pizzaID")); //Haetaan ensin pizzaID
+			int oregano = 0, vSipuli = 0;
+			if(request.getParameter("oregano") != null){ //haetaan oregano jos null j‰tet‰‰n 0
+				oregano = 1;
 			}
-		}
-		if(lisatayte!=null){
-			for(String s:lisatayte){
-				pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
+			if(request.getParameter("vSipuli") != null){ //haetaan vSipuli jos null j‰tet‰‰n 0
+				vSipuli = 1;
+			}		
+			lisatayte = request.getParameterValues("lisatayte");
+			if(lisatayte != null){
+				for(int i=0; i<lisatayte.length;i++){
+					System.out.println("lis‰t‰yte " + lisatayte.toString());
+				}
 			}
+			
+			Pizza pizza = new Pizza();
+			for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
+				if(pizzaLista.get(i).getId() == sArvo){
+					pizza = pizzaLista.get(i);
+				}
+			}
+			
+			if(lisatayte!=null){
+				for(String s:lisatayte){
+					pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
+				}
+			}
+			System.out.println("pizza " + pizza);
+			ostoskori.addPizza(pizza, oregano, vSipuli, kpl); //lis‰t‰‰n ostoskoriin pizza
+			
+		}else if(request.getParameter("juomaID") != null){
+			ArrayList<Juoma> juomaLista = juomadao.findAll(); //haetaan kaikki juomat
+			int sArvo = Integer.parseInt(request.getParameter("juomaID"));
+			
+			Juoma juoma = new Juoma();
+			for(int i = 0; i<juomaLista.size();i++){
+				if(juomaLista.get(i).getId() == sArvo){
+					juoma = juomaLista.get(i);
+				}
+			}
+			ostoskori.addJuoma(juoma, kpl);
 		}
 		
-		HttpSession session = request.getSession(); //haetaan session
-		Ostoskori ostoskori = (Ostoskori) session.getAttribute("ostoskori"); // haetaan ostoskori sessionista
-		ostoskori.addPizza(pizza, oregano, vSipuli, kpl); //lis‰t‰‰n ostoskoriin pizza
 		if(ostoskori != null){ //jos ostoskori ei ole tyhj‰ vied‰‰n ostoskori muutoksineen sessioniin
 			session.setAttribute("ostoskori", ostoskori);
 		}

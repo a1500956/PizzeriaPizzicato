@@ -84,10 +84,13 @@ public class pizzaMenu extends HttpServlet {
 			}
 			
 			session.removeAttribute("message4");
+			System.out.println("ennen " + session.getAttribute("tilausLapi"));
 			String tilausLapi = "false";
 			if(session.getAttribute("tilausLapi") == null){
 				session.setAttribute("tilausLapi", tilausLapi);
 			}
+			System.out.println("jälkeen " + session.getAttribute("tilausLapi"));
+			
 			request.setAttribute("pizzat", pizzaNakyy);
 			request.setAttribute("pizzaFantasia", pizzaFantasia);
 			request.setAttribute("juomat", juomaNakyy);
@@ -125,11 +128,11 @@ public class pizzaMenu extends HttpServlet {
 				vSipuli = 1;
 			}		
 			lisatayte = request.getParameterValues("lisatayte");
-			if(lisatayte != null){
-				for(int i=0; i<lisatayte.length;i++){
-					System.out.println("lisätäyte " + lisatayte.toString());
-				}
-			}
+			//if(lisatayte != null){
+				//for(int i=0; i<lisatayte.length;i++){
+					//System.out.println("lisätäyte " + lisatayte.toString());
+				//}
+			//}
 			
 			Pizza pizza = new Pizza();
 			for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
@@ -143,7 +146,7 @@ public class pizzaMenu extends HttpServlet {
 					pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
 				}
 			}
-			System.out.println("pizza " + pizza);
+			//System.out.println("pizza " + pizza);
 			ostoskori.addPizza(pizza, oregano, vSipuli, kpl); //lisätään ostoskoriin pizza
 			
 		}else if(request.getParameter("juomaID") != null){

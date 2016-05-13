@@ -73,7 +73,7 @@ public class lisaaJuoma extends HttpServlet {
 			JuomaDAO juomadao = new JuomaDAO();
 			
 			juomadao.addJuoma(juoma);
-			viesti = "Pizzan tallennus onnistui!";
+			viesti = "Juoman tallennus onnistui!";
 
 
 			}
