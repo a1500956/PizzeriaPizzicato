@@ -38,13 +38,7 @@ public class kirjautuminen extends HttpServlet {
 		ArrayList <Kayttaja> kayttajat = new ArrayList <Kayttaja>();
 		kirjautuja = kayttajadao.login(kayttaja_ktunnus, kayttaja_salasana);
 		
-		for (int i = 0; i < kayttajat.size(); ++i){
-			if(kirjautuja.getKayttaja_ktunnus().equals(kayttaja_ktunnus)){
-				System.out.println(kirjautuja.getKayttaja_ktunnus());
-			}
-		}
-			
-		
+	
 		
 		if(kirjautuja != null && kirjautuja.getRyhma_id() == 1){
 			HttpSession session = request.getSession();
@@ -56,7 +50,7 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzat");
             response.sendRedirect(encodedURL);
 			
-		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 2 ){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 2){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -66,7 +60,7 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzatkokki");
             response.sendRedirect(encodedURL);
 			
-		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 4 ){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 4){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -76,7 +70,7 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("listaaPizzatkuski");
             response.sendRedirect(encodedURL);
             
-		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 5 ){
+		}else if(kirjautuja != null && kirjautuja.getRyhma_id() == 5){
 			HttpSession session = request.getSession();
 			session.setAttribute("ryhma", kirjautuja.getRyhma_id());
 			session.setAttribute("kayttaja", kirjautuja.getKayttaja_enimi());
@@ -100,7 +94,8 @@ public class kirjautuminen extends HttpServlet {
 			String encodedURL = response.encodeRedirectURL("kirjautuminenOk");
             response.sendRedirect(encodedURL);
 			
-
+		
+		
 
 		}else{
 			
@@ -111,7 +106,13 @@ public class kirjautuminen extends HttpServlet {
 		
  
 		}
-		
-	}
+			}
+		}
+	
 
-	}
+		
+	
+
+	
+
+
