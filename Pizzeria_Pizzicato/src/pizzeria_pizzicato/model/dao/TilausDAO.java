@@ -403,7 +403,6 @@ public class TilausDAO extends DataAccessObject {
 			stmtDelete = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, Tilaus.getId());
 			stmtDelete.executeUpdate();
-			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
