@@ -32,7 +32,6 @@ public class listaaPizzat extends HttpServlet {
 
 		PizzaDAO pizzadao = new PizzaDAO();
 		ArrayList<Pizza> pizzaLista = pizzadao.findAll();
-
 		request.setAttribute("pizzat", pizzaLista);
 		String jsp = "/view/listaa-pizzat.jsp";
 		RequestDispatcher dispather = getServletContext().getRequestDispatcher(
