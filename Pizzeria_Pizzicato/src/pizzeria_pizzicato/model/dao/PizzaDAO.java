@@ -255,7 +255,10 @@ public class PizzaDAO extends DataAccessObject {
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally{
+			close(rs, stmt, conn);
 		}
+		
 		return pizzanTaytteet;
 		
 	}

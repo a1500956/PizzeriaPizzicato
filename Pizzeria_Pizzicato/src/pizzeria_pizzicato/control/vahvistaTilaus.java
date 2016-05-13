@@ -78,7 +78,6 @@ public class vahvistaTilaus extends HttpServlet {
 				}
 			}	
 		}
-		System.out.println("ostoskori jälkeen " + ostoskori);
 
 		request.setAttribute("juomat", juomaNakyy);
 		request.setAttribute("pizzat", pizzaLista);
