@@ -125,11 +125,11 @@ public class pizzaMenu extends HttpServlet {
 				vSipuli = 1;
 			}		
 			lisatayte = request.getParameterValues("lisatayte");
-			if(lisatayte != null){
-				for(int i=0; i<lisatayte.length;i++){
-					System.out.println("lisätäyte " + lisatayte.toString());
-				}
-			}
+			//if(lisatayte != null){
+				//for(int i=0; i<lisatayte.length;i++){
+					//System.out.println("lisätäyte " + lisatayte.toString());
+				//}
+			//}
 			
 			Pizza pizza = new Pizza();
 			for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
@@ -143,7 +143,7 @@ public class pizzaMenu extends HttpServlet {
 					pizza.addTayte(Taytedao.getTayte(Integer.parseInt(s)));
 				}
 			}
-			System.out.println("pizza " + pizza);
+			//System.out.println("pizza " + pizza);
 			ostoskori.addPizza(pizza, oregano, vSipuli, kpl); //lisätään ostoskoriin pizza
 			
 		}else if(request.getParameter("juomaID") != null){
