@@ -102,7 +102,7 @@ response.setIntHeader("Refresh", 5);
 			<%for(int i = 0; i < tilaukset.size(); i++) {%>
 				<%for(int j = 0; j < tilaukset.get(i).getTilatutTuotteet().size(); j++) {%>
 			
-					<%if(tilaukset.get(i).getStatusID()>=5){ %>
+					<%if(tilaukset.get(i).getStatusID()==5||tilaukset.get(i).getStatusID()==400||tilaukset.get(i).getStatusID()==666){ %>
 					<tr>
 						<td><%=tilaukset.get(i).getId() %></td>
 						<td><%=tilaukset.get(i).getAika()%></td>
@@ -134,7 +134,7 @@ response.setIntHeader("Refresh", 5);
 					<tr>
 					<td><%=tilasto.get(i).getTuote().getNimi() %></td>						
   					<td><%=tilasto.get(i).getLkm()%></td>
-  					<td><%=tilasto.get(i).getHinta()%></td>
+  					<td><%=nf.format(tilasto.get(i).getHinta())%></td>
   						
 						</tr>				
 					

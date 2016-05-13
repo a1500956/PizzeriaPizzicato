@@ -185,7 +185,7 @@ public class TilausDAO extends DataAccessObject {
 		try {
 			connection = getConnection();
 			
-			String sqlSelect = "SELECT tu.tuote_nimi, SUM(tx.lkm) AS 'lkm', tu.tuote_hinta AS 'kplhinta', ti.status_id FROM Tilaus ti JOIN TilattuTuote tx ON ti.tilaus_id = tx.tilaus_id JOIN Tuote tu ON tu.tuote_id=tx.tuote_id WHERE ti.status_id=5 OR ti.status_id=5 GROUP BY tu.tuote_nimi ORDER BY lkm DESC;";
+			String sqlSelect = "SELECT tu.tuote_nimi, SUM(tx.lkm) AS 'lkm', tu.tuote_hinta AS 'kplhinta', ti.status_id FROM Tilaus ti JOIN TilattuTuote tx ON ti.tilaus_id = tx.tilaus_id JOIN Tuote tu ON tu.tuote_id=tx.tuote_id WHERE ti.status_id=5 OR ti.status_id=400 OR ti.status_id=666 GROUP BY tu.tuote_nimi ORDER BY lkm DESC;";
 			stmtSelect = connection.prepareStatement(sqlSelect);
 			
 			rs = stmtSelect.executeQuery(sqlSelect);
@@ -403,7 +403,6 @@ public class TilausDAO extends DataAccessObject {
 			stmtDelete = connection.prepareStatement(sqlDelete);
 			stmtDelete.setInt(1, Tilaus.getId());
 			stmtDelete.executeUpdate();
-			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {

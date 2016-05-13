@@ -122,11 +122,11 @@ protected void doPost(HttpServletRequest request,
 			vSipuli = 1;
 		}		
 		lisatayte = request.getParameterValues("lisatayte");
-		if(lisatayte != null){
-			for(int i=0; i<lisatayte.length;i++){
-				System.out.println("lisätäyte " + lisatayte.toString());
-			}
-		}
+		//if(lisatayte != null){
+		//	for(int i=0; i<lisatayte.length;i++){
+		//		System.out.println("lisätäyte " + lisatayte.toString());
+		//	}
+		//}
 		
 		Pizza pizza = new Pizza();
 		for(int i=0; i<pizzaLista.size();i++){ //luodaan pizzaID mukaan pizza
