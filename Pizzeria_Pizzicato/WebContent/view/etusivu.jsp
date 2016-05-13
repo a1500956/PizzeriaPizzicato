@@ -166,7 +166,7 @@ media="only screen and (min-width: 771px)">
 
 <div class="pizzat">
 
-  <h1 class="pizzaotsikko"><br>PIZZA MENU</h1>
+  <h1 class="pizzaotsikko">PIZZA MENU</h1>
   
     <section>
    
@@ -195,7 +195,7 @@ media="only screen and (min-width: 771px)">
 				 		<%for(int n=0; n<10;n++){%>
 				 			<option value="<%=n+1%>"><%=n+1%></option>
 				 		<%}%>
-					</select>Kpl 
+					</select>Kpl
 					<input  class="koriin" type="submit" value="Koriin" >
 				</form></td>			
 			</tr>
