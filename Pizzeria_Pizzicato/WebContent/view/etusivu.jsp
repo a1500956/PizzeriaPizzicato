@@ -71,12 +71,13 @@ and (max-device-width: 770px)" >
 
 </head>
 <body>
-
 	
-	<%if((String) session.getAttribute("tilausLapi") == "true") {%>	
+	<%if((String) session.getAttribute("tilausLapi") == "true" ){ %>	
 	<div id="dialog" title="Tilaus lähetetty">
-  		<p style="color:black;" autofocus>Tilaus lähetetty eteenpäin!<br>
-  		Tilauksenne on valmis tunnin sisällä (kiirevarauksella)</p>
+  		<p style="color:black;" autofocus>Kiitos tilauksestanne!<br>
+  		Noudettuna tilauksen voi noutaa noin 30 minuuttia tilauksesta.<br>
+  		Jos valitsit kuljetuksen, kuljetamme tilauksenne antamaanne osoitteeseen noin 45 minuuttia tilauksesta.<br>
+  		(Kiirevarauksin)</p>
 	</div>
 	<%} %>
 	
@@ -322,13 +323,15 @@ and (max-device-width: 770px)" >
 	</body>
 	<script>
 		var tilausLapi = "${tilausLapi}";
-		if(tilausLapi == "true"){
+		if(tilausLapi == "true" ){
 			$(function() {
 				$(" #dialog ").dialog();
 			});
+			
 		}
 	</script>
 	<c:remove var="tilausLapi" scope="session" />
+	<c:remove var="toimitustapa" scope="session" />
 	
 	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
 	<script>

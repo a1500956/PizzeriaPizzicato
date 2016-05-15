@@ -156,8 +156,13 @@ public class vahvistaTilaus extends HttpServlet {
 		String tilausLapi = "true"; //otetaan tieto tilauksen l‰pimenemisest‰ talteen
 		session.removeAttribute("eNimi"); //poistetaan sessiosta formi tiedot
 		session.removeAttribute("sNimi");
+		session.removeAttribute("osoite");
+		session.removeAttribute("puhnro");
+		session.removeAttribute("sPosti");
 		session.removeAttribute("ostoskori"); // tyhjennet‰‰n ostoskori
-		session.setAttribute("tilausLapi", tilausLapi); //vied‰‰n tieto tilauksen l‰pimenemisest‰ session
+		session.setAttribute("tilausLapi", tilausLapi);//vied‰‰n tieto tilauksen l‰pimenemisest‰ sessioon
+		System.out.println(toimitus);
+		session.setAttribute("toimitustapa", toimitus);//vied‰‰n tieto tilauksen toimitustavasta sessioon
 		response.sendRedirect("pizzaMenu"); // l‰hetet‰‰n etusivulle
 		
 		}else{
