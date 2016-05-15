@@ -123,7 +123,7 @@ and (max-width: 770px)">
 
 		<footer>
 
-		<p>Ratapihantie 13, 00100 Helsinki. Phone (09) 123 123 12</p>
+		<p>Kuusitie 6, Meilahti, Helsinki. Phone 040 123 456</p>
 		<address></address>
 		</footer>
 		<!-- end .container -->

@@ -86,8 +86,8 @@ for(Cookie cookie : cookies){
 <img class="pizzamies" src="Kuvia/pizzamies.png" id="logo"/>
 <div class="nav2">
 <div class="nav1">
- <h4 class="h4c">Pizzeria Pizzicato<br> Meilahdentie 1, 00210 Helsinki.<br> Phone: (09) 300 300 30</h4>
- <h6 class="h6c">Open Mon-Thu 11-21, Fri-Sat 12-23, Sun 12-21</h6>
+ <h4 class="h4c">Pizzeria Pizzicato<br> Kuusitie 6, Meilahti, Helsinki.<br> Phone: 040 123 456</h4>
+ <h6 class="h6c">Open Mon-Thu 11-21, Fri-Sat 12-22, Sun 12-19</h6>
  </div>
  <div class="ostos">
 <a href="/Pizzeria_Pizzicato/vahvistaTilausEn"><img src="Kuvia/icon-cart.png" alt="X" style="width:20%; height:20%; padding-right:2px"/>Cart(<%=ostoskori.getMaara()%>)</a>
@@ -277,8 +277,8 @@ for(Cookie cookie : cookies){
  	
   <footer>
      
-  <p>Ratapihantie 13, 00100 Helsinki.  
-  <p>Puh. (09) 123 123 12</p>
+  <p>Kuusitie 6, Meilahti, Helsinki.</p> 
+  <p>Phone 040 123 456</p>
     <address>
       
     </address>

@@ -330,7 +330,7 @@ var FormStuff = {
  	
   <footer>
      
-  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
+  <p>Kuusitie 6, Meilahti, Helsinki. Phone 040 123 456</p>
     <address>
       
     </address>

@@ -140,7 +140,7 @@ media="only screen and (min-width: 771px)">
  	
   <footer>
      
-  <p>Ratapihantie 13, 00100 Helsinki.  Puh. (09) 123 123 12</p>
+  <p>Kuusitie 6, Meilahti, Helsinki.  Puh. 040 123 456</p>
     <address>
       
     </address>
