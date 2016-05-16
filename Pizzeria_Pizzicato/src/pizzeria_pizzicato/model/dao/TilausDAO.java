@@ -22,64 +22,78 @@ public class TilausDAO extends DataAccessObject {
 
 		Connection connection = null;
 		PreparedStatement stmtInsert = null;
-		TuoteDAO tdao = new TuoteDAO();
+		TuoteDAO tdao = new TuoteDAO(); //Luodaan 'TuoteDAO', jotta voimme hakea tuotteen tiedot. Ostoskorin objekteissa vain täytteet & ID.
 
 		try {
 
-			connection = getConnection();
+			connection = getConnection(); //Haetaan yhteys.
 
+			//Valmistellaan 'Tilaus'-tauluun lisättävät tilaukselle kuuluvat tiedot.
 			String sqlInsert = "INSERT INTO Tilaus(tilaus_osoite, kayttaja_id, tilaus_puhnro, status_id) VALUES (?, ?, ?, ?)";
 			stmtInsert = connection.prepareStatement(sqlInsert);
 			stmtInsert.setString(1, Tilaus.getOsoite());
 			stmtInsert.setInt(2, Tilaus.getKayttaja().getKayttaja_id());
 			stmtInsert.setString(3, Tilaus.getPuhnro());
 			stmtInsert.setInt(4, Tilaus.getStatusID());
-			
 
-			stmtInsert.executeUpdate();
+			//Toteutetaan lisäys 'Tilaus'-tauluun.
+			stmtInsert.executeUpdate(); 
 			
 			//Valmistellaan tilattujen tuotteiden lisäys
 			String sqlInsert2 = "INSERT INTO TilattuTuote(tilaus_id, tuote_id, tilaus_rivi, tuote_hinta, lkm, valkosipuli, oregano) VALUES (?,?,?,?,?,?,?)";
-			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus
+			
+			//Emme tiedä Tilaus-tauluun tehdyn tilauksen ID-lukua, mutta tarvitsemme sitä, joten meidän tulee etsiä se.
+			//Käytetään tilauksen ID-luvun löytävää metodia löytämään viimeisin kyseessä olevan käyttäjän kyseiseen osoitteeseen tekemä tilaus.
 			int tilauksenID = haeTilauksenID(Tilaus.getOsoite(), Tilaus.getKayttaja().getKayttaja_id());
 			
-			
+			//Toistetaan seuraava vaihe jokaista ostoskorin objektia kohden.
 			for (int i = 0; i < ostoskori.getKoko(); i++) {
-					TilattuTuote TX = ostoskori.getTuotteet().get(i);
-					Pizza p;
+					TilattuTuote TX = ostoskori.getTuotteet().get(i); //Poimitaan ostoskorista TilattuTuote.
+					Pizza p;	//Luodaan pizza.
 					stmtInsert = connection.prepareStatement(sqlInsert2);
-					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua
+					
+					//Valmistelemme lisäyskäskyn.
+					//Tässä käytämme aiemmin esillekaivamaamme uusimman ID:n lukua.
 					stmtInsert.setInt(1, tilauksenID);
 					stmtInsert.setInt(2, TX.getTuote().getId());
 					stmtInsert.setInt(3, i);
+					//'i'-luku toistuu yhä uudelleen useassa tilauksessa, mutta vain kerran jokaista tilausta kohden.
+					//Sen tarkoitus on auttaa tunnistamaan tilauksen sisällä juuri TIETTY tilauksen tuote, 
+					//sillä useita saman ID-luvun omaavia tuotteita, joilla on jokin pieni eroavaisuus (esim. oregano) voi olla.
+					
 					stmtInsert.setDouble(4, TX.getTuote().getHinta());
 					stmtInsert.setDouble(5, TX.getLkm());
 					stmtInsert.setInt(6, TX.getvSipuli());
 					stmtInsert.setInt(7, TX.getOregano());
 					stmtInsert.executeUpdate();
 
-				if(tdao.pizzaVaiJuoma(TX.getTuote().getId())){
-					p = (Pizza) TX.getTuote();
-					ArrayList<Tayte> lisataytteet = p.getTaytteet();
+				//Jos tuotteen ID on 'Pizza'-taulussa, eli jos tuote on pizza.
+				if(tdao.pizzaVaiJuoma(TX.getTuote().getId())){ //'pizzaVaiJuoma'-metodi ottaa selville tuotteen luonteen.
+					p = (Pizza) TX.getTuote(); //Koska tuote ON pizza, voimme huoletta heittää sen 'Pizza'-muotoon
+					ArrayList<Tayte> lisataytteet = p.getTaytteet(); //Haetaan pizzan täytteet.
 					
-					PizzaTayteDAO PTdao = new PizzaTayteDAO();
-					ArrayList<Tayte> alkupPizzanTaytteet = PTdao.haePizzanTaytteet(p.getId());
-					if(alkupPizzanTaytteet.size()<lisataytteet.size()){
+					PizzaTayteDAO PTdao = new PizzaTayteDAO(); //Luomme PizzaTayte DAO:n, jolla otamme selvää, mikäli pizzassa on lisätäytteitä.
+					ArrayList<Tayte> alkupPizzanTaytteet = PTdao.haePizzanTaytteet(p.getId()); //Haemme pizzan aluperäiset täytteet.
+					
+					if(alkupPizzanTaytteet.size()<lisataytteet.size()){ //Jos pizzassa on enemmän täytteitä kuin pitäisi, on siinä lisätäytteitä.
 						
-						//Karsii kaiken paitsi ylimääräiset lisätäytteet
+						//Tämä metodi karsii kaiken paitsi tavallisuudesta poikkeavat lisätäytteet
 						lisataytteet = karsiTavallisetTaytteet(alkupPizzanTaytteet, lisataytteet);
 						
+						//Valmistelemme lisäyskäskyn.
 						String inserttaaLisataytteet = "INSERT INTO LisaTayte(tilaus_id, tilaus_rivi, tayte_id) VALUES(?,?,?);";
-						for(Tayte t:lisataytteet){
+						
+						for(Tayte t:lisataytteet){ //Lisäämme jäljelle jääneet täytteet.
 							stmtInsert = connection.prepareStatement(inserttaaLisataytteet);
 							stmtInsert.setInt(1, tilauksenID);
-							stmtInsert.setInt(2, i); //'i'-lukua käytetään aiemmin 'tilaus_rivi'-kohdan arvona
+							stmtInsert.setInt(2, i); //Lukua 'i' käytetään aiemmin 'tilaus_rivi'-kohdan arvona, tilauksen sisäisenä tuotteen yksilöijänä.
 							stmtInsert.setInt(3, t.getTayte_id());
 							stmtInsert.executeUpdate();
 						}
 						
 					}else{
-						//System.out.println("Ei lisätäytteitä!");
+						//System.out.println("Ei lisätäytteitä!"); 
+						//Tätä ei Teidän, yleisön, tarvitse huomioida, ellei jokin ole mennyt vikaan ja meidän tarvitsee paniikinsekaisesti korjata koodia edessänne.
 					}
 
 					}
